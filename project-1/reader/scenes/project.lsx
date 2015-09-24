@@ -51,11 +51,11 @@ In the following, these symbols have the significance:
 
 <MATERIALS>
     <MATERIAL id="mat-1">                                  
-        <shininess value="ff" />
-        <specular r="ff" g="ff" b="ff" a="ff" />        <!-- specular reflection -->
-        <diffuse r="ff" g="ff" b="ff" a="ff" />         <!-- diffuse reflection -->
-        <ambient r="ff" g="ff" b="ff" a="ff" />         <!-- ambient reflection -->
-        <emission r="ff" g="ff" b="ff" a="ff" />        <!-- emission component -->
+        <shininess value="0" />
+        <specular r="0" g="0" b="0" a="0" />        <!-- specular reflection -->
+        <di0use r="0" g="0" b="0" a="0" />         <!-- di0use reflection -->
+        <ambient r="0" g="0" b="0" a="0" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="0" />        <!-- emission component -->
     </MATERIAL>
 
     <!-- NOTE: the "MATERIAL" block may be repeated as required. Each defined material requires a distinct "id" -->
@@ -66,10 +66,12 @@ In the following, these symbols have the significance:
 <LEAVES>
 
     <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
-    <LEAF id="ss" type="rectangle" args="ff ff ff ff" />
-    <LEAF id="ss" type="cylinder" args="ff ff ff ii ii" /> 
-    <LEAF id="ss" type="sphere" args="ff ii ii" />
-    <LEAF id="ss" type="triangle" args="ff ff ff  ff ff ff  ff ff ff" />
+    <LEAF id="leaf-1" type="rectangle" args="0 1 1 0" />
+    <!-- Commented for example
+    <LEAF id="leaf-2" type="cylinder" args="ff ff ff ii ii" /> 
+    <LEAF id="leaf-3" type="sphere" args="ff ii ii" />
+    <LEAF id="leaf-4" type="triangle" args="ff ff ff  ff ff ff  ff ff ff" /> 
+    -->
 
     <!-- Parameters of the above primitives:                                                         -->
         <!--rectangle: 2D coordinates for left-top and right-bottom vertices.                        -->
@@ -82,28 +84,30 @@ In the following, these symbols have the significance:
 
 <NODES>
 
-    <ROOT id="ss" />     <!-- identifier of root node of the scene graph; this node     -->
+    <ROOT id="root" />     <!-- identifier of root node of the scene graph; this node     -->
                          <!--   must be defined in one of the following NODE declarations -->
 
-    <NODE id="ss">       <!--   defines one intermediate node; may be repeated as necessary -->
+    <NODE id="node-1">       <!--   defines one intermediate node; may be repeated as necessary -->
 
         <!-- next two lines are mandatory -->
-        <MATERIAL id="ss" />      <!-- declared material superimposes the material received from parent node -->
+        <MATERIAL id="mat-1" />      <!-- declared material superimposes the material received from parent node -->
                                   <!-- id="null" maintains material from parent node        -->
-        <TEXTURE id="ss" />       <!-- declared texture superimposes the texture received from parent node -->
+        <TEXTURE id="mat-1" />       <!-- declared texture superimposes the texture received from parent node -->
                                   <!-- id="null" maintains texture from parent node       -->
                                   <!-- id="clear" clears texture declaration received from parent node      -->
 
 
         <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <!-- 
         <TRANSLATION x="ff" y="ff" z="ff" />
         <ROTATION axis="cc" angle="ff" />
         <SCALE sx="ff" sy="ff" sz="ff" />
+        -->
 
-
+        
         <!-- declaring descendents, ate least one node or one leaf must be present -->
         <DESCENDANTS>
-            <DESCENDANT id="ss" />       <!-- "ss" is the identifier of a node or of leaf; -->
+            <DESCENDANT id="leaf-1" />    <!-- "ss" is the identifier of a node or of leaf; -->
                                          <!-- may be repeatad as necessary. It can refer an -->
                                          <!-- identifier of another node or leaf, later defined in the lsx file. -->
         </DESCENDANTS>
