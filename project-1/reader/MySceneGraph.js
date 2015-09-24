@@ -23,8 +23,12 @@ function MySceneGraph(filename, scene) {
  */
 MySceneGraph.prototype.onXMLReady=function() 
 {
-	console.log("XML Loading finished.");
-	var rootElement = this.reader.xmlDoc.documentElement;
+	console.log("LSX Loading finished.");
+
+	rootElement = this.reader.xmlDoc.documentElement;
+	
+	console.log(rootElement);
+	/*var rootElement = this.reader.xmlDoc.documentElement;
 	
 	// Here should go the calls for different functions to parse the various blocks
 	var error = this.parseGlobalsExample(rootElement);
@@ -32,7 +36,8 @@ MySceneGraph.prototype.onXMLReady=function()
 	if (error != null) {
 		this.onXMLError(error);
 		return;
-	}	
+	}
+	*/
 
 	this.loadedOk=true;
 	
@@ -45,7 +50,7 @@ MySceneGraph.prototype.onXMLReady=function()
 /*
  * Example of method that parses elements of one block and stores information in a specific data structure
  */
-MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
+/*MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 	
 	var elems =  rootElement.getElementsByTagName('globals');
 	if (elems == null) {
@@ -83,7 +88,7 @@ MySceneGraph.prototype.parseGlobalsExample= function(rootElement) {
 		console.log("Read list item id "+ e.id+" with value "+this.list[e.id]);
 	};
 
-};
+};*/
 	
 /*
  * Callback to be executed on any read error
