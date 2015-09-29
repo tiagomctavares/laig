@@ -36,6 +36,12 @@ MySceneGraph.prototype.onXMLReady=function()
 		return;
 	}
 
+	var error = this.lerIlumination(rootElement);
+
+	if (error != null) {
+		this.onXMLError(error);
+		return;
+	}
 	this.loadedOk=true;
 	
 	// As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
@@ -47,7 +53,39 @@ MySceneGraph.prototype.onXMLReady=function()
 /*
  * Example of method that parses elements of one block and stores information in a specific data structure
  */
-MySceneGraph.prototype.lerInitials= function(root) {
+
+
+MySceneGraph.prototype.lerIlumination = function(root) {
+
+	var elems = root.getElementsByTagName('ILLUMINATION');
+
+	if(elems == null) {
+		return "ILLUMINATION element is missing.";
+	}
+
+	if(elems.length != 1) {
+		return "either zero or more than one 'ILLUMINATION' element found.";
+	}
+
+	var ambient = this.lerCoordenadasRGBA(elems[0], 'ambient');
+	this.verificaArray(ambient, 'ambient', elems[0].nodeName);
+
+	var nodeDoubleside = elems[0].getElementsByTagName('doubleside');
+	var doubleside = this.reader.getBoolean(nodeDoubleside[0],'value', true);
+
+	if(doubleside == null)
+		return "Valor do doubleside:" + doubleside + " não é válido."; 
+
+	var background = this.lerCoordenadasRGBA(elems[0], 'background');
+	this.verificaArray(background, 'background', elems[0].nodeName);
+
+	this.scene.setBackground(background);
+	this.scene.setDoubleside(doubleside);
+	this.scene.setAmbient(ambient);
+
+};
+
+MySceneGraph.prototype.lerInitials = function(root) {
 	
 	var elems =  root.getElementsByTagName('INITIALS');
 	if (elems == null) {
@@ -121,24 +159,7 @@ MySceneGraph.prototype.lerInitials= function(root) {
 
 	console.log("Globals read from file: {background=" + frustumFar + ", drawmode=" + frustumNear + ", cullface=" + scale + ", cullorder=" + translate + "}");
 
-/*	var tempList=rootElement.getElementsByTagName('list');
-
-	if (tempList == null  || tempList.length==0) {
-		return "list element is missing.";
-	}
-	
-	this.list=[];
-	// iterate over every element
-	var nnodes=tempList[0].children.length;
-	for (var i=0; i< nnodes; i++)
-	{
-		var e=tempList[0].children[i];
-
-		// process each element and store its information
-		this.list[e.id]=e.attributes.getNamedItem("coords").value;
-		console.log("Read list item id "+ e.id+" with value "+this.list[e.id]);
-	};
-*/
+return null;
 };
 	
 /*

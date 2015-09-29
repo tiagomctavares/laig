@@ -40,25 +40,37 @@ XMLscene.prototype.initCameras = function () {
     this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
 };
 
+XMLscene.prototype.setBackground = function(rgba) {
+	this.background = rgba;
+};
+
+XMLscene.prototype.setDoubleside = function(doubleside) {
+	this.doubleside = doubleside;
+};
+
+XMLscene.prototype.setAmbient = function(rgba) {
+	this.ambient = rgba;
+};
+
 XMLscene.prototype.setFrustum = function(near, far) {
 	this.frustumNear = near;
 	this.frustumFar = far;
-}
+};
 
 
 XMLscene.prototype.setSceneScale = function(vec) {
 	this.sceneScale = vec;
-}
+};
 
 XMLscene.prototype.setSceneTranslate = function(vec) {
 	this.sceneTranslate = vec;
-}
+};
 
 XMLscene.prototype.setSceneRotation = function(vec) {
 	this.sceneRotateX = vec[0];
 	this.sceneRotateY = vec[1];
 	this.sceneRotateZ = vec[2];
-}
+};
 
 XMLscene.prototype.setDefaultAppearance = function () {
     this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -73,8 +85,14 @@ XMLscene.prototype.onGraphLoaded = function ()
 {
 	//this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
 
-	this.camera.near = this.frustumNear;
-	this.camera.far = this.frustumFar;
+	//this.camera.near = this.frustumNear;
+	//this.camera.far = this.frustumFar;
+
+	// SET BACKGROUND
+	this.gl.clearColor(this.background[0], this.background[1], this.background[2], this.background[3]);
+	
+	// SET GLOBAL ILLUMINATION
+	this.setGlobalAmbientLight.apply(this, this.ambient);
 
 	this.lights[0].setVisible(true);
     this.lights[0].enable();

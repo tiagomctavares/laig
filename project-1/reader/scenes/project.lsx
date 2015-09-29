@@ -10,7 +10,7 @@ In the following, these symbols have the significance:
 
 <INITIALS>
     <frustum near="10.0" far="-10.0"/>                      <!-- frustum planes-->
-    <translate x="10" y="10" z="10" />                 <!-- initial translate -->
+    <translate x="2" y="5" z="1" />                 <!-- initial translate -->
     <rotation axis="x" angle="0" />                  <!-- initial rotation 1 -->
     <rotation axis="y" angle="0" />                  <!-- initial rotation 1 -->
     <rotation axis="z" angle="0" />                  <!-- initial rotation 1 -->
@@ -20,15 +20,15 @@ In the following, these symbols have the significance:
 
 
 <ILLUMINATION>
-    <ambient r="1" g="1" b="1" a="1" />            <!-- global ambient -->
+    <ambient r="1" g="0" b="0" a="1" />            <!-- global ambient -->
     <doubleside value="1" />                          <!-- double or single side illum. -->
-    <background r="0" g="0.5" b="0" a="1" />         <!-- background color -->
+    <background r="0" g="0" b="0" a="1" />         <!-- background color -->
 </ILLUMINATION>
 
 
 <LIGHTS>
     <LIGHT id="light-1">                                    <!-- light identifier -->
-        <enable value ="0" />                         <!-- enable/disable -->
+        <enable value ="1" />                         <!-- enable/disable -->
         <position x="5" y="5" z="5" w="1" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
         <di0use r="0" g="0" b="0" a="0" />        <!-- di0use component -->
