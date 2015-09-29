@@ -21,6 +21,8 @@ XMLscene.prototype.init = function (application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 
 	this.axis=new CGFaxis(this);
+
+	this.quad=new MyQuad(this);
 };
 
 XMLscene.prototype.initLights = function () {
@@ -38,6 +40,11 @@ XMLscene.prototype.initCameras = function () {
     this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
 };
 
+XMLscene.prototype.setFrustum = function(near, far) {
+	this.frustumNear = near;
+	this.frustumFar = far;
+}
+
 XMLscene.prototype.setDefaultAppearance = function () {
     this.setAmbient(0.2, 0.4, 0.8, 1.0);
     this.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -49,7 +56,11 @@ XMLscene.prototype.setDefaultAppearance = function () {
 // As loading is asynchronous, this may be called already after the application has started the run loop
 XMLscene.prototype.onGraphLoaded = function () 
 {
-	this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
+	//this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
+
+	this.camera.near = this.frustumNear;
+	this.camera.far = this.frustumFar;
+	
 	this.lights[0].setVisible(true);
     this.lights[0].enable();
 };
@@ -73,6 +84,8 @@ XMLscene.prototype.display = function () {
 	this.axis.display();
 
 	this.setDefaultAppearance();
+
+	this.quad.display();
 	
 	// ---- END Background, camera and axis setup
 
@@ -82,7 +95,9 @@ XMLscene.prototype.display = function () {
 	if (this.graph.loadedOk)
 	{
 		this.lights[0].update();
-	};	
+	};
+
+	//charmar funçao do graph que faz o display
 
     this.shader.unbind();
 };
