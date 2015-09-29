@@ -45,6 +45,21 @@ XMLscene.prototype.setFrustum = function(near, far) {
 	this.frustumFar = far;
 }
 
+
+XMLscene.prototype.setSceneScale = function(vec) {
+	this.sceneScale = vec;
+}
+
+XMLscene.prototype.setSceneTranslate = function(vec) {
+	this.sceneTranslate = vec;
+}
+
+XMLscene.prototype.setSceneRotation = function(vec) {
+	this.sceneRotateX = vec[0];
+	this.sceneRotateY = vec[1];
+	this.sceneRotateZ = vec[2];
+}
+
 XMLscene.prototype.setDefaultAppearance = function () {
     this.setAmbient(0.2, 0.4, 0.8, 1.0);
     this.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -60,7 +75,7 @@ XMLscene.prototype.onGraphLoaded = function ()
 
 	this.camera.near = this.frustumNear;
 	this.camera.far = this.frustumFar;
-	
+
 	this.lights[0].setVisible(true);
     this.lights[0].enable();
 };
@@ -79,6 +94,11 @@ XMLscene.prototype.display = function () {
 
 	// Apply transformations corresponding to the camera position relative to the origin
 	this.applyViewMatrix();
+	this.scale.apply(this, this.sceneScale);
+	this.rotate(this.sceneRotateX, 1.0, 0.0, 0.0);
+	this.rotate(this.sceneRotateY, 0.0, 1.0, 0.0);
+	this.rotate(this.sceneRotateZ, 0.0, 0.0, 1.0);
+	this.translate.apply(this, this.sceneTranslate);
 
 	// Draw axis
 	this.axis.display();

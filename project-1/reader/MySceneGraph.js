@@ -71,35 +71,39 @@ MySceneGraph.prototype.lerInitials= function(root) {
 	this.verificaArray(translate, 'translate', elems[0].nodeName);
 
 	
-	var nodeRotate = elems[0].getElementsByTagName('rotate');
+	var nodeRotate = elems[0].getElementsByTagName('rotation');
 	var numRotates = nodeRotate.length;
 
 	//eixos x, y, z (obrigatorios)
 	var eixoLido = [false, false, false];
 	var rotacoes = [];
+	
 	for(var i=0; i < numRotates; i++){
 		var rotateAxis = this.reader.getItem(nodeRotate[i], 'axis', ['x', 'y', 'z']);
 		var rotateAngle = this.reader.getFloat(nodeRotate[i], 'angle', true);
 
-		if(axis == 'x' && !eixoLido[0]){
-			eixoLiddo[0] = true;
+		if(rotateAxis == 'x' && !eixoLido[0]){
+			eixoLido[0] = true;
 			rotacoes[0] = rotateAngle;
 		}
 
-		else if(axis == 'y' && !eixoLido[1]){
-			eixoLiddo[1] = true;
+		else if(rotateAxis == 'y' && !eixoLido[1]){
+			eixoLido[1] = true;
 			rotacoes[1] = rotateAngle;
 		}
 
-		else if(axis == 'z' && !eixoLido[2]){
-			eixoLiddo[2] = true;
+		else if(rotateAxis == 'z' && !eixoLido[2]){
+			eixoLido[2] = true;
 			rotacoes[2] = rotateAngle;
 		}
-		else
-			console.warn("Eixos não válidos");
+		else 
+			console.warn("Eixo não válido");
 		
 
 	}
+
+	if(!eixoLido[0] || !eixoLido[1] || !eixoLido[2])
+		return "Pelo menos um dos eixos nao foi lido";
 
 
 	var scale = this.lerCoordenadasEscalamento(elems[0], 'scale');
@@ -110,6 +114,10 @@ MySceneGraph.prototype.lerInitials= function(root) {
 	var referenceLength = this.reader.getFloat(nodeReference[0], 'length', true);
 	this.verificaArray(referenceLength);
 
+	
+	this.scene.setSceneScale(scale);
+	this.scene.setSceneTranslate(translate);
+	this.scene.setSceneRotation(rotacoes);
 
 	console.log("Globals read from file: {background=" + frustumFar + ", drawmode=" + frustumNear + ", cullface=" + scale + ", cullorder=" + translate + "}");
 

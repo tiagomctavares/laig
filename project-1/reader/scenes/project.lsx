@@ -11,6 +11,8 @@ In the following, these symbols have the significance:
 <INITIALS>
     <frustum near="10.0" far="-10.0"/>                      <!-- frustum planes-->
     <translate x="10" y="10" z="10" />                 <!-- initial translate -->
+    <rotation axis="x" angle="0" />                  <!-- initial rotation 1 -->
+    <rotation axis="y" angle="0" />                  <!-- initial rotation 1 -->
     <rotation axis="z" angle="0" />                  <!-- initial rotation 1 -->
     <scale sx="2" sy="2" sz="2" />                 <!-- initial scaling -->
     <reference length="1" />                          <!-- axis length; "0" means no axis-->
