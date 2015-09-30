@@ -22,7 +22,11 @@ XMLscene.prototype.init = function (application) {
 
 	this.axis=new CGFaxis(this);
 
-	this.quad=new MyQuad(this);
+	this.quad = new MyQuad(this);
+	this.semiEsfera = new MyLamp(this, 100, 100);
+	this.cylinder = new MyCylinder(this, 100, 100);
+
+	this.numeroLuzes = 1;
 };
 
 XMLscene.prototype.initLights = function () {
@@ -35,6 +39,29 @@ XMLscene.prototype.initLights = function () {
  
     this.shader.unbind();
 };
+
+//////////////////////////////////////////////////
+
+XMLscene.prototype.arrayLights = function (enabled, position, ambient, diffuse, specular) {
+
+	var luz = this.lights[this.numeroLuzes];
+	luz.setPosition(position[0],position[1], position[2], position[3]);
+	luz.setAmbient(ambient[0],ambient[1], ambient[2], ambient[3]);
+	luz.setDiffuse(diffuse[0],diffuse[1], diffuse[2], diffuse[3]);
+	luz.setSpecular(specular[0],specular[1], specular[2], specular[3]);
+	
+	if(enabled == true)
+		luz.enable();
+	else 
+		luz.disable();
+
+	return this.lights[this.numeroLuzes++];
+ 
+};
+
+
+
+//////////////////////////////////////////////////
 
 XMLscene.prototype.initCameras = function () {
     this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
@@ -51,6 +78,8 @@ XMLscene.prototype.setDoubleside = function(doubleside) {
 XMLscene.prototype.setAmbient = function(rgba) {
 	this.ambient = rgba;
 };
+
+
 
 XMLscene.prototype.setFrustum = function(near, far) {
 	this.frustumNear = near;
@@ -77,6 +106,18 @@ XMLscene.prototype.setDefaultAppearance = function () {
     this.setDiffuse(0.2, 0.4, 0.8, 1.0);
     this.setSpecular(0.2, 0.4, 0.8, 1.0);
     this.setShininess(10.0);	
+};
+
+XMLscene.prototype.setEmission = function(rgba) {
+	this.emission = rgba;
+};
+
+XMLscene.prototype.setShininess = function(s) {
+	this.ambient = s;
+};
+
+XMLscene.prototype.setSpecular = function(rgba) {
+	this.specular = rgba;
 };
 
 // Handler called when the graph is finally loaded. 
@@ -124,6 +165,7 @@ XMLscene.prototype.display = function () {
 	this.setDefaultAppearance();
 
 	this.quad.display();
+	this.semiEsfera.display();
 	
 	// ---- END Background, camera and axis setup
 

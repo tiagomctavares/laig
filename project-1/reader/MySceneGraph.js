@@ -5,6 +5,8 @@ function MySceneGraph(filename, scene) {
 	// Establish bidirectional references between scene and graph
 	this.scene = scene;
 	scene.graph=this;
+
+
 		
 	// File reading 
 	this.reader = new CGFXMLreader();
@@ -14,6 +16,11 @@ function MySceneGraph(filename, scene) {
 	 * After the file is read, the reader calls onXMLReady on this object.
 	 * If any error occurs, the reader calls onXMLError on this object, with an error message
 	 */
+
+	 this.lights = {};
+	 this.textures = {};
+	 this.materials = {};
+	 this.leaves = {};
 	 
 	this.reader.open('scenes/'+filename, this);  
 }
@@ -57,14 +64,14 @@ MySceneGraph.prototype.onXMLReady=function()
 
 MySceneGraph.prototype.lerIlumination = function(root) {
 
-	var elems = root.getElementsByTagName('ILLUMINATION');
+	var elems = root.getElementsByTagName('ILUMINATION');
 
 	if(elems == null) {
-		return "ILLUMINATION element is missing.";
+		return "ILUMINATION element is missing.";
 	}
 
 	if(elems.length != 1) {
-		return "either zero or more than one 'ILLUMINATION' element found.";
+		return "either zero or more than one 'ILUMINATION' element found.";
 	}
 
 	var ambient = this.lerCoordenadasRGBA(elems[0], 'ambient');
@@ -161,6 +168,156 @@ MySceneGraph.prototype.lerInitials = function(root) {
 
 return null;
 };
+
+MySceneGraph.prototype.lerLights = function(root, id){
+
+	//falta verificar o numero de luzes em cena (nao podem ser mais de 8)
+
+	var elems = root.getElementsByTagName('LIGHTS');
+
+	if(elems == null) {
+		return "LIGHTS element is missing.";
+	}
+
+	if(elems.length != 1) {
+		return "either zero or more than one 'LIGHTS' element found.";
+	}
+
+	var nodeEnable = elems[0].getElementsByTagName('enable');
+	var enable = this.reader.getBoolean(nodeEnable[0],'value', true);
+
+	if(enable == null)
+		return "Valor de enable:" + enable + " não válido."; 
+	
+	var position = this.lerCoordenadasXYZW(elems[0], 'position');
+	this.verificaArray(position, 'position', elems[0].nodeName);
+
+	var ambient = this.lerCoordenadasRGBA(elems[0], 'ambient');
+	this.verificaArray(ambient, 'ambient', elems[0].nodeName);
+
+	var diffuse = this.lerCoordenadasRGBA(elems[0], 'diffuse');
+	this.verificaArray(diffuse, 'diffuse', elems[0].nodeName);
+	
+	var specular = this.lerCoordenadasRGBA(elems[0], 'specular');
+	this.verificaArray(specular, 'specular', elems[0].nodeName);
+
+	this.lights[id] = this.scene.arrayLights(enable, position, ambient, diffuse, specular);
+
+	return null;
+
+/*
+	this.scene.setScenePosition(position);
+	this.scene.setSceneAmbient(ambient);
+	this.scene.setSceneDiffuse(diffuse);
+	this.scene.setSceneSpecular(specular);
+*/
+	
+};
+
+
+MySceneGraph.prototype.lerMaterials = function(root, id){
+
+	var elems = root.getElementsByTagName('MATERIALS');
+
+	if(elems == null) {
+		return "MATERIALS element is missing.";
+	}
+
+	if(elems.length != 1) {
+		return "either zero or more than one 'MATERIALS' element found.";
+	}
+
+	var nodeShininess = elems[0].getElementsByTagName('shininess');
+	var shininess = this.reader.getBoolean(nodeEnable[0],'value', true);
+
+	if(shininess == null)
+		return "Valor de enable:" + shininess + " não válido.";
+
+	var specular = this.lerCoordenadasRGBA(elems[0], 'specular');
+	this.verificaArray(specular, 'specular', elems[0].nodeName);
+
+	var diffuse = this.lerCoordenadasRGBA(elems[0], 'diffuse');
+	this.verificaArray(diffuse, 'diffuse', elems[0].nodeName);
+
+	var ambient = this.lerCoordenadasRGBA(elems[0], 'ambient');
+	this.verificaArray(ambient, 'ambient', elems[0].nodeName);
+
+	var emission = this.lerCoordenadasRGBA(elems[0], 'emission');
+	this.verificaArray(emission, 'emission', elems[0].nodeName);
+
+/*
+	this.scene.setSceneSpecular(specular);
+	this.scene.setScenediffuse(diffuse);
+	this.scene.setSceneAmbient(ambient);
+	this.scene.setSceneEmission(emission);
+*/
+
+	var myMaterial = new CGFappearance(this.scene);
+
+	myMaterial.setAmbient(ambient[0], ambient[1], ambient[2], ambient[3]);
+	myMaterial.setDiffuse(diffuse[0], diffuse[1], diffuse[2], diffuse[3]);
+	myMaterial.setSpecular(specular[0], specular[1], specular[2], specular[3]);
+	myMaterial.setEmission(emission[0], emission[1], emission[2], emission[3]);
+	myMaterial.setShininess(shininess);
+
+	this.materials[id] = new Material;
+
+
+
+};
+
+MySceneGraph.prototype.lerTextures = function(root, id){
+
+	var elems = root.getElementsByTagName('TEXTURES');
+
+	if(elems == null) {
+		return "TEXTURES element is missing.";
+	}
+
+	if(elems.length != 1) {
+		return "either zero or more than one 'TEXTURES' element found.";
+	}
+
+	var nodeFile = elems[0].getElementsByTagName('file');
+
+	var filePath =  this.reader.getString(nodeFile[0], 'path', true);
+	this.verificaArray(filePath);
+
+	var nodeFactor = elems[0].getElementsByTagName('amplif_factor');
+
+	var amplificaS = this.reader.getFloat(nodeFactor[0], 's', true);
+
+	var amplificaT = this.reader.getFloat(nodeFactor[0], 't', true);
+
+	this.textures[id] = [filePath, amplificaS, amplificaT];
+
+	return null;
+};
+
+MySceneGraph.prototype.lerLeaves = function(root, id){
+
+	var elems = root.getElementsByTagName('LEAVES');
+
+	if(elems == null) {
+		return "LEAVES element is missing.";
+	}
+
+	if(elems.length != 1) {
+		return "either zero or more than one 'LEAVES' element found.";
+	}
+
+	var nodeLeaf = elems[0].getElementsByTagName('leaf');
+
+	var leafType =  this.reader.getFloat(nodeLeaf[0], 'type', true);
+	this.verificaArray(leafType);
+
+	//var leafArgs =  this.reader.getFloat(nodeLeaf[0], 'args', true);
+	//this.verificaArray(leafArgs);
+	
+
+};
+
+
 	
 /*
  * Callback to be executed on any read error
