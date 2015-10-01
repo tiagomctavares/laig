@@ -10,7 +10,7 @@ In the following, these symbols have the significance:
 
 <INITIALS>
     <frustum near="10.0" far="-10.0"/>                      <!-- frustum planes-->
-    <translate x="2" y="5" z="1" />                 <!-- initial translate -->
+    <translate x="0" y="0" z="0" />                 <!-- initial translate -->
     <rotation axis="x" angle="0" />                  <!-- initial rotation 1 -->
     <rotation axis="y" angle="0" />                  <!-- initial rotation 1 -->
     <rotation axis="z" angle="0" />                  <!-- initial rotation 1 -->
@@ -88,7 +88,7 @@ In the following, these symbols have the significance:
     
     <LEAF id="leaf-2" type="cylinder" args="ff ff ff ii ii" /> 
     <LEAF id="leaf-3" type="sphere" args="ff ii ii" />
-    <LEAF id="leaf-4" type="triangle" args="ff ff ff  ff ff ff  ff ff ff" /> 
+    <LEAF id="leaf-4" type="triangle" args="ff ff ff ff ff ff ff ff ff" /> 
     
     <!-- Parameters of the above primitives:                                                         -->
         <!--rectangle: 2D coordinates for left-top and right-bottom vertices.                        -->

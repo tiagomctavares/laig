@@ -23,7 +23,7 @@ XMLscene.prototype.init = function (application) {
 	this.axis=new CGFaxis(this);
 
 	this.quad = new MyQuad(this);
-	this.semiEsfera = new MyLamp(this, 100, 100);
+	this.semiEsfera = new MyLamp(this, 2, 100, 100);
 	this.cylinder = new MyCylinder(this, 100, 100);
 
 	this.numeroLuzes = 1;
@@ -172,7 +172,7 @@ XMLscene.prototype.display = function () {
 
 	this.setDefaultAppearance();
 
-	this.quad.display();
+	//this.quad.display();
 	this.semiEsfera.display();
 	
 	// ---- END Background, camera and axis setup
@@ -189,7 +189,7 @@ XMLscene.prototype.display = function () {
 		}
 	};
 
-	//charmar funçao do graph que faz o display
+	//chamar funçao do graph que faz o display
 
     this.shader.unbind();
 };

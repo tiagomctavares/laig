@@ -348,6 +348,7 @@ MySceneGraph.prototype.lerTextures = function (root)
 	return this.lerArray(root, 'TEXTURE', this.lerTexture);
 };
 
+
 MySceneGraph.prototype.lerLeaf = function(root, id){
 /*
 	var elems = root.getElementsByTagName('LEAVES');
@@ -366,8 +367,33 @@ MySceneGraph.prototype.lerLeaf = function(root, id){
 	var leafType =  this.reader.getString(root, 'type', true);
 	this.verificaArray(leafType);
 
-	//var leafArgs =  this.reader.getFloat(nodeLeaf[0], 'args', true);
-	//this.verificaArray(leafArgs);
+	var leafArgs =  this.reader.getString(root, 'args', true);
+	this.verificaArray(leafArgs);
+
+	var argArray = leafArgs.trim().split(' ');
+
+	console.log(argArray);
+
+	switch(leafType){
+		case 'rectangle':
+			this.criarRetangulo(id, argArray);
+			break;
+
+		case 'cylinder':
+			this.criarCilindro(id, argArray);
+			break;
+		
+		case 'sphere':
+			this.criarEsfera(id, argArray);			
+			break;
+
+		case 'triangle':
+			this.criarTriangulo(id, argArray);
+			break;
+		
+		default:
+			break;
+	}
 	
 	return null;
 };
@@ -377,13 +403,117 @@ MySceneGraph.prototype.lerLeaves = function (root){
 		return this.lerArray(root, 'LEAF', this.lerLeaf);
 };
 
+MySceneGraph.prototype.criarRetangulo = function(id, args){
+
+	if(args.length != 4)
+		return "O numero de parametros para um retangulo não é valido.";
+	
+	var x1 = parseFloat(args[0]);
+	var y1 = parseFloat(args[1]);
+
+	if(x1 != x1 || y1 != y1)
+		return "O valor de x1: " + x1 + "ou de y1: " + y1 + "não é valido.";
+
+	var x2 = parseFloat(args[2]);
+	var y2 = parseFloat(args[3]);
+
+	if(x2 != x2 || y2 != y2)
+		return "O valor de x2: " + x2 + "ou de y2: " + y2 + "não é valido.";
+
+	this.leaves[id] = new MyQuad(this.scene, x1, y1, x2, y2);
+
+	return null;
+
+};
+
+MySceneGraph.prototype.criarCilindro = function(id, args){
+
+	if(args.length != 5)
+		return "O numero de parametros para um cilindro não é valido";
+	
+	var altura = parseFloat(args[0]);
+	var raio_base = parseFloat(args[1]);
+	var raio_topo = parseFloat(args[2]);
+
+	//separar
+
+	if(altura != altura || raio_base != raio_base || raio_topo != raio_topo)
+		return "O valor da altura: " + altura + "ou do raio_base" + raio_base + "ou do raio_topo" + raio_topo + "não é valido." ;
+
+
+	var slices = parseInt(args[3]);
+	var stacks = parseInt(args[4]);
+
+	if(slices != slices || stacks != stacks)
+		return "O valor das slices" + slices + "ou das stacks" + stacks + "não é valido." ;
+
+	this.leaves[id] = new MyCylinder(this.scene, altura, raio_base, raio_topo, slices, stacks);
+
+	return null;	
+
+};
+
+MySceneGraph.prototype.criarEsfera = function(id, args){
+
+	if(args.length != 3)
+		return "O numero de parametros para uma esfera não é valido";
+	
+	var raio = parseFloat(args[0]);
+	var slices = parseInt(args[1]);
+	var stacks = parseInt(args[2]);
+
+	if(raio != raio || slices != slices || stacks != stacks)
+		return "O valor do raio: " + raio + "ou das slices" + slices + "ou das stacks" + stacks + "não é valido." ;
+
+	
+	this.leaves[id] = new MySphere(this.scene, raio, slices, stacks);
+	
+	return null;
+
+};
+
+MySceneGraph.prototype.criarTriangulo = function(id, args){
+
+	if(args.length != 9)
+		return "O numero de parametros para um triangulo não é valido";
+	
+	var x1 = parseFloat(args[0]);
+	var y1 = parseFloat(args[1]);
+	var z1 = parseFloat(args[2]);
+
+	if(x1 != x1 || y1 != y1 || z1 != z1)
+		return "O valor de x1: " + x1 + "ou de y1: " + y1 + "ou de z1: " + z1 + "não é valido.";
+
+	var x2 = parseFloat(args[3]);
+	var y2 = parseFloat(args[4]);
+	var z2 = parseFloat(args[5]);
+
+	if(x2 != x2 || y2 != y2 || z2 != z2)
+		return "O valor de x2: " + x2 + "ou de y2: " + y2 + "ou de z2: " + z2 + "não é valido.";
+
+	var x3 = parseFloat(args[6]);
+	var y3 = parseFloat(args[7]);
+	var z3 = parseFloat(args[8]);
+
+	if(x3 != x3 || y3 != y3 || z3 != z3)
+		return "O valor de x3: " + x3 + "ou de y3: " + y3 + "ou de z3: " + z3 + "não é valido.";
+
+	v1 = [x1, y1, z1];
+	v2 = [x2, y2, z2];
+	v3 = [x3, y3, z3];
+
+	this.leaves[id] = new MyTriangle(this.scene, v1, v2, v3);
+
+	return null;	
+
+};
+
 
 MySceneGraph.prototype.lerArray = function(root, nodeName, func){
 
 	//root -> apontador para uma estrutura que contém uma lista de tags (ex: <LIGHTS></LIGHTS><MATERIALS></MATERIALS>)
 	//nodeName -> tags lá dentro com o mesmo nome
 	//func -> apontador para a função que processa cada elemento da lista
-
 
 	
 	for(var i = 0; i < root.children.length; i++){

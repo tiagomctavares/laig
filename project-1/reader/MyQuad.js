@@ -3,7 +3,7 @@
  * @param gl {WebGLRenderingContext}
  * @constructor
  */
-function MyQuad(scene) {
+function MyQuad(scene, x1, y1, x2, y2) {
 	CGFobject.call(this,scene);
 
 	this.initBuffers();
