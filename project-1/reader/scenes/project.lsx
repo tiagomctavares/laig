@@ -53,7 +53,7 @@ In the following, these symbols have the significance:
 
 <MATERIALS>
     <MATERIAL id="mat-1">                                  
-        <shininess value="0" />
+        <shininess value="1" />
         <specular r="0" g="0" b="0" a="0" />        <!-- specular reflection -->
         <diffuse r="0" g="0" b="0" a="0" />         <!-- di0use reflection -->
         <ambient r="0" g="0" b="0" a="0" />         <!-- ambient reflection -->
@@ -85,12 +85,11 @@ In the following, these symbols have the significance:
 
     <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
     <LEAF id="leaf-1" type="rectangle" args="0 1 1 0" />
-    <!-- Commented for example
+    
     <LEAF id="leaf-2" type="cylinder" args="ff ff ff ii ii" /> 
     <LEAF id="leaf-3" type="sphere" args="ff ii ii" />
     <LEAF id="leaf-4" type="triangle" args="ff ff ff  ff ff ff  ff ff ff" /> 
-    -->
-
+    
     <!-- Parameters of the above primitives:                                                         -->
         <!--rectangle: 2D coordinates for left-top and right-bottom vertices.                        -->
         <!-- cylinder:  height, bottom radius, top radius, sections along height, parts per section  -->

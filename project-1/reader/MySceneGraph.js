@@ -61,7 +61,7 @@ MySceneGraph.prototype.onXMLReady=function()
 
 	var node = rootElement.getElementsByTagName('MATERIALS');
 
-	error = this.lerMaterial(node[0]);
+	error = this.lerMaterials(node[0]);
 	
 	if (error != null) {
    		this.onXMLError(error);
@@ -70,7 +70,7 @@ MySceneGraph.prototype.onXMLReady=function()
 
 	var node = rootElement.getElementsByTagName('TEXTURES');
 
-	error = this.lerTexture(node[0]);
+	error = this.lerTextures(node[0]);
 	
 	if (error != null) {
    		this.onXMLError(error);
@@ -79,7 +79,7 @@ MySceneGraph.prototype.onXMLReady=function()
 
 	var node = rootElement.getElementsByTagName('LEAVES');
 
-	error = this.lerLeaf(node[0])
+	error = this.lerLeaves(node[0])
 	
 	if (error != null) {
    		this.onXMLError(error);
@@ -254,39 +254,29 @@ MySceneGraph.prototype.lerLight = function(root, id){
 
 MySceneGraph.prototype.lerLights = function (root){
 
-	return this.lerArray(root, 'LIGHTS', this.lerLight);
+	return this.lerArray(root, 'LIGHT', this.lerLight);
 };
 
 
 MySceneGraph.prototype.lerMaterial = function(root, id){
 
-	var elems = root.getElementsByTagName('MATERIALS');
-
-	if(elems == null) {
-		return "MATERIALS element is missing.";
-	}
-
-	if(elems.length != 1) {
-		return "either zero or more than one 'MATERIALS' element found.";
-	}
-
-	var nodeShininess = elems[0].getElementsByTagName('shininess');
-	var shininess = this.reader.getBoolean(nodeEnable[0],'value', true);
+	var nodeShininess = root.getElementsByTagName('shininess');
+	var shininess = this.reader.getFloat(nodeShininess[0],'value', true);
 
 	if(shininess == null)
 		return "Valor de enable:" + shininess + " não válido.";
 
-	var specular = this.lerCoordenadasRGBA(elems[0], 'specular');
-	this.verificaArray(specular, 'specular', elems[0].nodeName);
+	var specular = this.lerCoordenadasRGBA(root, 'specular');
+	this.verificaArray(specular, 'specular', root.nodeName);
 
-	var diffuse = this.lerCoordenadasRGBA(elems[0], 'diffuse');
-	this.verificaArray(diffuse, 'diffuse', elems[0].nodeName);
+	var diffuse = this.lerCoordenadasRGBA(root, 'diffuse');
+	this.verificaArray(diffuse, 'diffuse', root.nodeName);
 
-	var ambient = this.lerCoordenadasRGBA(elems[0], 'ambient');
-	this.verificaArray(ambient, 'ambient', elems[0].nodeName);
+	var ambient = this.lerCoordenadasRGBA(root, 'ambient');
+	this.verificaArray(ambient, 'ambient', root.nodeName);
 
-	var emission = this.lerCoordenadasRGBA(elems[0], 'emission');
-	this.verificaArray(emission, 'emission', elems[0].nodeName);
+	var emission = this.lerCoordenadasRGBA(root, 'emission');
+	this.verificaArray(emission, 'emission', root.nodeName);
 
 /*
 	this.scene.setSceneSpecular(specular);
@@ -303,18 +293,20 @@ MySceneGraph.prototype.lerMaterial = function(root, id){
 	myMaterial.setEmission(emission[0], emission[1], emission[2], emission[3]);
 	myMaterial.setShininess(shininess);
 
-	this.materials[id] = new Material;
+	this.materials[id] = myMaterial;
 
+	return null;
 };
 
 MySceneGraph.prototype.lerMaterials = function (root){
 
-	return this.lerArray(root, 'MATERIALS', this.lerMaterial);
+	return this.lerArray(root, 'MATERIAL', this.lerMaterial);
 		
 };
 
 MySceneGraph.prototype.lerTexture = function(root, id){
 
+/*
 	var elems = root.getElementsByTagName('TEXTURES');
 
 	if(elems == null) {
@@ -324,13 +316,14 @@ MySceneGraph.prototype.lerTexture = function(root, id){
 	if(elems.length != 1) {
 		return "either zero or more than one 'TEXTURES' element found.";
 	}
+*/
 
-	var nodeFile = elems[0].getElementsByTagName('file');
+	var nodeFile = root.getElementsByTagName('file');
 
 	var filePath =  this.reader.getString(nodeFile[0], 'path', true);
 	this.verificaArray(filePath);
 
-	var nodeFactor = elems[0].getElementsByTagName('amplif_factor');
+	var nodeFactor = root.getElementsByTagName('amplif_factor');
 
 	var amplificaS = this.reader.getFloat(nodeFactor[0], 's', true);
 
@@ -342,12 +335,12 @@ MySceneGraph.prototype.lerTexture = function(root, id){
 };
 
 MySceneGraph.prototype.lerTextures = function (root){
-	return this.lerArray(root, 'TEXTURES', this.lerTexture);
+	return this.lerArray(root, 'TEXTURE', this.lerTexture);
 		
 };
 
 MySceneGraph.prototype.lerLeaf = function(root, id){
-
+/*
 	var elems = root.getElementsByTagName('LEAVES');
 
 	if(elems == null) {
@@ -357,21 +350,22 @@ MySceneGraph.prototype.lerLeaf = function(root, id){
 	if(elems.length != 1) {
 		return "either zero or more than one 'LEAVES' element found.";
 	}
+*/
 
-	var nodeLeaf = elems[0].getElementsByTagName('leaf');
+	//var nodeLeaf = root.getElementsByTagName('leaf');
 
-	var leafType =  this.reader.getFloat(nodeLeaf[0], 'type', true);
+	var leafType =  this.reader.getString(root, 'type', true);
 	this.verificaArray(leafType);
 
 	//var leafArgs =  this.reader.getFloat(nodeLeaf[0], 'args', true);
 	//this.verificaArray(leafArgs);
 	
-
+	return null;
 };
 
 MySceneGraph.prototype.lerLeaves = function (root){
 
-		return this.lerArray(root, 'LEAVES', this.lerLeaf);
+		return this.lerArray(root, 'LEAF', this.lerLeaf);
 };
 
 
@@ -487,6 +481,7 @@ MySceneGraph.prototype.verificaArray = function(valor, atrib, pai, id)
 		else
 			console.warn("o atributo " + atrib + " da " + pai + " com id=" + id + " nao foi encontrado");
 	}
+	
 	else if(valor != valor){
 
 		if(id == undefined)
