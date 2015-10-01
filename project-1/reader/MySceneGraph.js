@@ -374,6 +374,7 @@ MySceneGraph.prototype.lerLeaves = function (root){
 		return this.lerArray(root, 'LEAVES', this.lerLeaf);
 };
 
+
 MySceneGraph.prototype.lerArray = function(root, nodeName, func){
 
 	//root -> apontador para uma estrutura que contém uma lista de tags (ex: <LIGHTS></LIGHTS><MATERIALS></MATERIALS>)
