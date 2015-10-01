@@ -204,13 +204,13 @@ MySceneGraph.prototype.lerInitials = function(root) {
 
 	console.log("Globals read from file: {background=" + frustumFar + ", drawmode=" + frustumNear + ", cullface=" + scale + ", cullorder=" + translate + "}");
 
-return null;
+	return null;
 };
 
 MySceneGraph.prototype.lerLight = function(root, id){
 
 	//falta verificar o numero de luzes em cena (nao podem ser mais de 8)
-
+/*
 	var elems = root.getElementsByTagName('LIGHTS');
 
 	if(elems == null) {
@@ -219,27 +219,34 @@ MySceneGraph.prototype.lerLight = function(root, id){
 
 	if(elems.length != 1) {
 		return "either zero or more than one 'LIGHTS' element found.";
-	}
+	
 
-	var nodeEnable = elems[0].getElementsByTagName('enable');
+	*/
+
+	
+	var nodeEnable = root.getElementsByTagName('enable');
 	var enable = this.reader.getBoolean(nodeEnable[0],'value', true);
 
 	if(enable == null)
 		return "Valor de enable:" + enable + " não válido."; 
 	
-	var position = this.lerCoordenadasXYZW(elems[0], 'position');
-	this.verificaArray(position, 'position', elems[0].nodeName);
+	var position = this.lerCoordenadasXYZW(root, 'position');
+	this.verificaArray(position, 'position', root.nodeName);
 
-	var ambient = this.lerCoordenadasRGBA(elems[0], 'ambient');
-	this.verificaArray(ambient, 'ambient', elems[0].nodeName);
+	var ambient = this.lerCoordenadasRGBA(root, 'ambient');
+	this.verificaArray(ambient, 'ambient', root.nodeName);
 
-	var diffuse = this.lerCoordenadasRGBA(elems[0], 'diffuse');
-	this.verificaArray(diffuse, 'diffuse', elems[0].nodeName);
+	var diffuse = this.lerCoordenadasRGBA(root, 'diffuse');
+	this.verificaArray(diffuse, 'diffuse', root.nodeName);
 	
-	var specular = this.lerCoordenadasRGBA(elems[0], 'specular');
-	this.verificaArray(specular, 'specular', elems[0].nodeName);
+	var specular = this.lerCoordenadasRGBA(root, 'specular');
+	this.verificaArray(specular, 'specular', root.nodeName);
+
+	
 
 	this.lights[id] = this.scene.arrayLights(enable, position, ambient, diffuse, specular);
+
+	
 
 	return null;
 
@@ -254,7 +261,9 @@ MySceneGraph.prototype.lerLight = function(root, id){
 
 MySceneGraph.prototype.lerLights = function (root){
 
+
 	return this.lerArray(root, 'LIGHT', this.lerLight);
+
 };
 
 
@@ -334,9 +343,9 @@ MySceneGraph.prototype.lerTexture = function(root, id){
 	return null;
 };
 
-MySceneGraph.prototype.lerTextures = function (root){
+MySceneGraph.prototype.lerTextures = function (root)
+{
 	return this.lerArray(root, 'TEXTURE', this.lerTexture);
-		
 };
 
 MySceneGraph.prototype.lerLeaf = function(root, id){
@@ -375,31 +384,33 @@ MySceneGraph.prototype.lerArray = function(root, nodeName, func){
 	//nodeName -> tags lá dentro com o mesmo nome
 	//func -> apontador para a função que processa cada elemento da lista
 
+
 	
 	for(var i = 0; i < root.children.length; i++){
 
 		//aceder aos elementos da lista
 		var elemento = root.children[i];
 
-		if( elemento.nodeName != nodeName)
-			console.warn("tá mal, mas passa xD");
+		if( elemento.nodeName != nodeName){
+			console.warn("Está mal, mas passa xD");
 			continue;
+		}
 		
 		//ler id respectivos
 		var id = this.reader.getString(elemento, 'id', false);
 
-		if(id == null)
+		if(id == null){
 			console.warn("atributo id: " + id + "nao encontrado.");
 			continue;
-		
+		}
 
-		var ret = func.call(this, id, elemento);
+		var ret = func.call(this, elemento, id);
 
 		if(ret != null)
 			this.onXMLError(ret);
 	}
 
-return null;
+	return null;
 
 };
 
@@ -481,7 +492,7 @@ MySceneGraph.prototype.verificaArray = function(valor, atrib, pai, id)
 		else
 			console.warn("o atributo " + atrib + " da " + pai + " com id=" + id + " nao foi encontrado");
 	}
-	
+
 	else if(valor != valor){
 
 		if(id == undefined)

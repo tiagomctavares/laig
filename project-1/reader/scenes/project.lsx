@@ -29,10 +29,10 @@ In the following, these symbols have the significance:
 <LIGHTS>
     <LIGHT id="light-1">                                    <!-- light identifier -->
         <enable value ="1" />                         <!-- enable/disable -->
-        <position x="5" y="5" z="5" w="1" />       <!-- light position -->
-        <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
-        <diffuse r="0" g="0" b="0" a="0" />        <!-- di0use component -->
-        <specular r="0" g="0" b="0" a="0" />       <!-- specular component -->
+        <position x="7" y="5" z="5" w="1" />       <!-- light position -->
+        <ambient r="0.5" g="0.5" b="0.5" a="1" />        <!-- ambient component -->
+        <diffuse r="1" g="1" b="1" a="1" />        <!-- di0use component -->
+        <specular r="0.5" g="0.5" b="0.5" a="1" />       <!-- specular component -->
     </LIGHT>
 
     <!-- NOTE: this block "LIGHT" must be repeated as necessary with different "id" -->

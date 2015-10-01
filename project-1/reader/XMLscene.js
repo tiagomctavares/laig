@@ -44,16 +44,24 @@ XMLscene.prototype.initLights = function () {
 
 XMLscene.prototype.arrayLights = function (enabled, position, ambient, diffuse, specular) {
 
+	this.shader.bind();
+
 	var luz = this.lights[this.numeroLuzes];
+
 	luz.setPosition(position[0],position[1], position[2], position[3]);
 	luz.setAmbient(ambient[0],ambient[1], ambient[2], ambient[3]);
 	luz.setDiffuse(diffuse[0],diffuse[1], diffuse[2], diffuse[3]);
 	luz.setSpecular(specular[0],specular[1], specular[2], specular[3]);
-	
+
+
 	if(enabled == true)
 		luz.enable();
 	else 
 		luz.disable();
+
+	luz.setVisible(true);
+	luz.update();
+	this.shader.unbind();
 
 	return this.lights[this.numeroLuzes++];
  
@@ -174,7 +182,11 @@ XMLscene.prototype.display = function () {
 	// This is one possible way to do it
 	if (this.graph.loadedOk)
 	{
-		this.lights[0].update();
+		//this.lights[0].update();
+
+		for(var i = 0; i < this.numeroLuzes; i++){
+			this.lights[i].update();
+		}
 	};
 
 	//charmar funçao do graph que faz o display
