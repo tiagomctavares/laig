@@ -30,8 +30,27 @@ function MyTriangle(scene, v1, v2, v3) {
 
 	this.initGLBuffers();
 
-	this.initBuffers();
+	//this.initBuffers();
 };
 
-MyTriangle.prototype = Object.create(CGFobject.prototype);
+MyTriangle.prototype = Object.create(MyPrimitive.prototype);
 MyTriangle.prototype.constructor=MyTriangle;
+
+
+MyTriangle.prototype.updateTexCoords = function(ampS, ampT)
+{
+    // declarar novas coordenadas de textura em função dos fatores de amplificação
+   /*	var maxS_novo = Math.abs(this.maxX - this.minX) / ampS;
+	var maxT_novo = Math.abs(this.maxY - this.minY) / ampT;
+
+    this.texCoords = [
+		0.0, maxT_novo,
+		maxS_novo, maxT_novo,
+		0.0, 0.0,
+		maxS_novo, 0.0
+	];
+ 
+    this.updateTexCoordsGLBuffers();*/
+
+    return null;
+};

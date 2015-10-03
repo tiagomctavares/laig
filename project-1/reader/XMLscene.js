@@ -22,9 +22,10 @@ XMLscene.prototype.init = function (application) {
 
 	this.axis=new CGFaxis(this);
 
-	this.quad = new MyQuad(this);
-	this.semiEsfera = new mySemiSphere(this, 2, 100, 100);
-	this.cylinder = new MyCylinder(this, 100, 100);
+	//this.quad = new MyQuad(this);
+	
+	//this.semiEsfera = new mySemiSphere(this, 2, 100, 100);
+	//this.cylinder = new MyCylinder(this, 100, 100);
 
 	this.numeroLuzes = 1;
 };

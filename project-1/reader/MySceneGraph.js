@@ -6,7 +6,6 @@ function MySceneGraph(filename, scene) {
 	this.scene = scene;
 	scene.graph=this;
 
-
 		
 	// File reading 
 	this.reader = new CGFXMLreader();
@@ -431,7 +430,7 @@ MySceneGraph.prototype.criarRetangulo = function(id, args){
 	if(x2 != x2 || y2 != y2)
 		return "O valor de x2: " + x2 + "ou de y2: " + y2 + "não é valido.";
 
-	this.leaves[id] = new MyQuad(this.scene, x1, y1, x2, y2);
+	this.leaves[id] = new MyQuad(this.scene, -0.5, -0.5, 0.5, 0.5);
 
 	return null;
 

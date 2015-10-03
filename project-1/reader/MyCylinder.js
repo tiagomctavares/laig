@@ -12,7 +12,7 @@ function MyCylinder(scene, slices, stacks) {
 }
 ;
 
-MyCylinder.prototype = Object.create(CGFobject.prototype);
+MyCylinder.prototype = Object.create(MyPrimitive.prototype);
 MyCylinder.prototype.constructor = MyCylinder;
 
 MyCylinder.prototype.initBuffers = function() {
@@ -61,4 +61,9 @@ MyCylinder.prototype.initBuffers = function() {
     
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
+};
+
+MyCylinder.prototype.updateTexCoords= function(ampS, ampT)
+{
+    return null;
 };

@@ -15,7 +15,12 @@ function mySemiSphere(scene, radius, slices, stacks) {
     this.initBuffers();
 };
 
-mySemiSphere.prototype = Object.create(CGFobject.prototype);
+mySemiSphere.prototype.updateTexCoords = function (ampS, ampT)
+{
+   return null;
+};
+
+mySemiSphere.prototype = Object.create(MyPrimitive.prototype);
 mySemiSphere.prototype.constructor = mySemiSphere;
 
 mySemiSphere.prototype.initBuffers = function() {
