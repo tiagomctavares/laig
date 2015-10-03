@@ -61,6 +61,16 @@ MySceneGraph.prototype.onXMLReady=function()
 
 	var node = rootElement.getElementsByTagName('MATERIALS');
 
+	// Refactor code
+	var xmlMaterials = node[0].getElementsByTagName('MATERIAL');
+
+	for (var index = 0; index < xmlMaterials.length; ++index) {
+		var material = new Material(this.reader, xmlMaterials[index]);
+		this.materials[material.id] = material.toCGFapperance(new CGFappearance(this.scene));
+	}
+
+	console.log(this.materials);
+
 	error = this.lerMaterials(node[0]);
 	
 	if (error != null) {
@@ -88,6 +98,7 @@ MySceneGraph.prototype.onXMLReady=function()
 	
 
 	this.loadedOk=true;
+
 	
 	// As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
 	this.scene.onGraphLoaded();
@@ -309,7 +320,6 @@ MySceneGraph.prototype.lerMaterial = function(root, id){
 };
 
 MySceneGraph.prototype.lerMaterials = function (root){
-
 	return this.lerArray(root, 'MATERIAL', this.lerMaterial);
 		
 };

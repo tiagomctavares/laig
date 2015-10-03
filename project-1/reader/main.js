@@ -12,6 +12,7 @@ function getUrlVars() {
 }	 
 
 serialInclude(['../lib/CGF.js', 'MyQuad.js', 'MySemiSphere.js', 'MyCylinder.js', 'XMLscene.js', 'MySceneGraph.js',
+    './parser/BaseParser.js', './parser/Material.js', './parser/RGBA.js',
 
 main=function()
 {
