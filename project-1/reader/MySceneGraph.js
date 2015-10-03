@@ -115,17 +115,18 @@ MySceneGraph.prototype.lerIlumination = function(root) {
 	var ambient = this.lerCoordenadasRGBA(elems[0], 'ambient');
 	this.verificaArray(ambient, 'ambient', elems[0].nodeName);
 
+/*
 	var nodeDoubleside = elems[0].getElementsByTagName('doubleside');
 	var doubleside = this.reader.getBoolean(nodeDoubleside[0],'value', true);
 
 	if(doubleside == null)
 		return "Valor do doubleside:" + doubleside + " não é válido."; 
-
+*/
 	var background = this.lerCoordenadasRGBA(elems[0], 'background');
 	this.verificaArray(background, 'background', elems[0].nodeName);
 
 	this.scene.setBackground(background);
-	this.scene.setDoubleside(doubleside);
+	//this.scene.setDoubleside(doubleside);
 	this.scene.setAmbient(ambient);
 
 };
@@ -544,6 +545,17 @@ MySceneGraph.prototype.lerArray = function(root, nodeName, func){
 
 };
 
+////////////////////////////////////////////////
+
+MySceneGraph.prototype.display= function(){
+
+	//como é um map, este leaf contem apenas a chave
+
+	for(var leaf in this.leaves){
+			this.leaves[leaf].display();
+	}
+};
+////////////////////////////////////////////////
 
 	
 /*
