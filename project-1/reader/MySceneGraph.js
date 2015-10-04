@@ -252,7 +252,7 @@ MySceneGraph.prototype.lerLight = function(root, id){
 	
 	var specular = this.lerCoordenadasRGBA(root, 'specular');
 	this.verificaArray(specular, 'specular', root.nodeName);
-
+	
 	
 
 	this.lights[id] = this.scene.arrayLights(enable, position, ambient, diffuse, specular);
