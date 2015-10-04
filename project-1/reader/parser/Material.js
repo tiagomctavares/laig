@@ -1,14 +1,14 @@
 function Material(reader, XMLElement) {
 	this.reader = reader;
+	// Parent Class
+	BaseParser.call(this, reader);
+
 	var colorElements = ['specular', 'diffuse', 'ambient', 'emission'];
 	var singleValueElements = ['shininess'];
 
 	this.parseId(XMLElement);
 	this.parseSingleValueElements(XMLElement, singleValueElements);
 	this.parseColorElements(XMLElement, colorElements);
-
-	// Parent Class
-	BaseParser.call(this, reader);
 }
 Material.prototype = Object.create(BaseParser.prototype);
 
@@ -19,7 +19,7 @@ Material.prototype.parseColorElements = function(XMLElement, colorElements) {
 
 		var childElement = XMLElement.getElementsByTagName(tagName)[0];
 
-		this[tagName] = new RGBA(this.reader, childElement);
+		this[tagName] = this.getColor(childElement);
 	}
 };
 
@@ -35,12 +35,12 @@ Material.prototype.parseSingleValueElements = function(XMLElement, singleValueEl
 };
 
 
-Material.prototype.toCGFapperance = function(MyCGFapperance) {
+Material.prototype.toCGF = function(MyCGFapperance) {
 
-	MyCGFapperance.setAmbient(this.ambient.red, this.ambient.green, this.ambient.blue, this.ambient.alpha);
-	MyCGFapperance.setDiffuse(this.diffuse.red, this.diffuse.green, this.diffuse.blue, this.diffuse.alpha);
-	MyCGFapperance.setSpecular(this.specular.red, this.specular.green, this.specular.blue, this.specular.alpha);
-	MyCGFapperance.setEmission(this.emission.red, this.emission.green, this.emission.blue, this.emission.alpha);
+	MyCGFapperance.setAmbient(this.ambient.r, this.ambient.g, this.ambient.b, this.ambient.a);
+	MyCGFapperance.setDiffuse(this.diffuse.r, this.diffuse.g, this.diffuse.b, this.diffuse.a);
+	MyCGFapperance.setSpecular(this.specular.r, this.specular.g, this.specular.b, this.specular.a);
+	MyCGFapperance.setEmission(this.emission.r, this.emission.g, this.emission.b, this.emission.a);
 	MyCGFapperance.setShininess(this.shininess);
 
 	return MyCGFapperance;

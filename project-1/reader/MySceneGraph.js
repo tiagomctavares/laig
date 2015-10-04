@@ -31,17 +31,23 @@ MySceneGraph.prototype.onXMLReady=function()
 {
 	console.log("LSX Loading finished.");
 
+
 	var rootElement = this.reader.xmlDoc.documentElement;
 	
-	console.log(rootElement);
 
-	var error = this.lerInitials(rootElement);
+	console.log('Parsing Initials.....');
+	var initials = new Initials(this.reader, rootElement);
+	
+	initials.toCGF(this.scene);
+	console.log('DONE!');
+	
+	/*var error = this.lerInitials(rootElement);
 
 	if (error != null) {
 		this.onXMLError(error);
 		return;
-	}
-
+	}*/
+	
 	var error = this.lerIlumination(rootElement);
 
 	if (error != null) {
@@ -60,22 +66,24 @@ MySceneGraph.prototype.onXMLReady=function()
 
 	var node = rootElement.getElementsByTagName('MATERIALS');
 
+	console.log('Parsing Materials...');
 	// Refactor code
 	var xmlMaterials = node[0].getElementsByTagName('MATERIAL');
 
 	for (var index = 0; index < xmlMaterials.length; ++index) {
 		var material = new Material(this.reader, xmlMaterials[index]);
-		this.materials[material.id] = material.toCGFapperance(new CGFappearance(this.scene));
-	}
+		this.materials[material.id] = material.toCGF(new CGFappearance(this.scene));
+	}	
+	console.log(this.materials, 'DONE!');
 
-	console.log(this.materials);
-
+	/*
 	error = this.lerMaterials(node[0]);
 	
 	if (error != null) {
    		this.onXMLError(error);
     	return;
 	}
+	*/
 
 	var node = rootElement.getElementsByTagName('TEXTURES');
 
@@ -207,7 +215,6 @@ MySceneGraph.prototype.lerInitials = function(root) {
 
 	var referenceLength = this.reader.getFloat(nodeReference[0], 'length', true);
 	this.verificaArray(referenceLength);
-
 	
 	this.scene.setSceneScale(scale);
 	this.scene.setSceneTranslate(translate);
@@ -252,7 +259,7 @@ MySceneGraph.prototype.lerLight = function(root, id){
 	
 	var specular = this.lerCoordenadasRGBA(root, 'specular');
 	this.verificaArray(specular, 'specular', root.nodeName);
-	
+
 	
 
 	this.lights[id] = this.scene.arrayLights(enable, position, ambient, diffuse, specular);
@@ -382,7 +389,7 @@ MySceneGraph.prototype.lerLeaf = function(root, id){
 
 	var argArray = leafArgs.trim().split(' ');
 
-	console.log(argArray);
+	// console.log(argArray);
 
 	switch(leafType){
 		case 'rectangle':
