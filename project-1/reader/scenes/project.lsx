@@ -9,20 +9,20 @@ In the following, these symbols have the significance:
 <SCENE>
 
 <INITIALS>
-    <frustum near="10.0" far="-10.0"/>                      <!-- frustum planes-->
+    <frustum near="-10" far="10.0"/>                      <!-- frustum planes-->
     <translate x="0" y="0" z="0" />                 <!-- initial translate -->
     <rotation axis="x" angle="0" />                  <!-- initial rotation 1 -->
     <rotation axis="y" angle="0" />                  <!-- initial rotation 1 -->
     <rotation axis="z" angle="0" />                  <!-- initial rotation 1 -->
-    <scale sx="2" sy="2" sz="2" />                 <!-- initial scaling -->
+    <scale sx="1" sy="1" sz="1" />                 <!-- initial scaling -->
     <reference length="1" />                          <!-- axis length; "0" means no axis-->
 </INITIALS>
 
 
 <ILUMINATION>
-    <ambient r="1" g="0" b="0" a="1" />            <!-- global ambient -->
+    <ambient r="1" g="1" b="1" a="1" />            <!-- global ambient -->
    <!--  <doubleside value="1" />  -->                        <!-- double or single side illum. -->
-    <background r="0" g="0" b="0" a="1" />         <!-- background color -->
+    <background r="0" g="0" b="1" a="0.5" />         <!-- background color -->
 </ILUMINATION>
 
 
