@@ -3,7 +3,7 @@ function Initials(reader, XMLElement) {
 
 	var frustumElement = XMLElement.getElementsByTagName('frustum')[0];
 	var referenceElement = XMLElement.getElementsByTagName('reference')[0];
-	var translateElement = XMLElement.getElementsByTagName('translate')[0];
+	var translateElement = XMLElement.getElementsByTagName('translation')[0];
 	var rotationElements = XMLElement.getElementsByTagName('rotation');
 	var scaleElement = XMLElement.getElementsByTagName('scale')[0];
 

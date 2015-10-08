@@ -16,7 +16,7 @@ function Parser(reader, scene, rootElement) {
 	this.loadMaterials();
 	this.loadTextures();
 	this.loadLeaves();
-	this.loadNodes();
+	// this.loadNodes();
 
 }
 
@@ -33,8 +33,8 @@ Parser.prototype.loadInitials = function() {
 Parser.prototype.loadIlumination = function() {
 	console.log('Parsing Ilumination.....');
 
-	var xmlInitials = this.rootElement.getElementsByTagName('ILUMINATION')[0];
-	var ilumination = new Ilumination(this.reader, xmlInitials);
+	var xmlInitials = this.rootElement.getElementsByTagName('ILLUMINATION')[0];
+	var ilumination = new Illumination(this.reader, xmlInitials);
 	ilumination.toCGF(this.scene);
 
 	console.log('Done!');
@@ -79,7 +79,7 @@ Parser.prototype.loadTextures = function() {
 		this.textures[texture.id] = texture.toCGF(this.scene);
 	}
 
-	console.log(this.materials, 'DONE!');
+	console.log('DONE!');
 };
 
 Parser.prototype.loadLeaves = function() {
@@ -94,9 +94,14 @@ Parser.prototype.loadLeaves = function() {
 		this.leaves[leaf.id] = leaf.toCGF(this.scene);
 	}
 
-	console.log(this.materials, 'DONE!');
+	console.log('DONE!');
 };
 
 Parser.prototype.loadNodes = function() {
-	
+	console.log('Parsing NODES...');
+
+	var xmlNodes = this.rootElement.getElementsByTagName('NODES')[0];
+	this.graph = new Graph(this.reader, xmlNodes);
+
+	console.log('DONE!');
 };

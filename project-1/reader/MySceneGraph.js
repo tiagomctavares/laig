@@ -50,6 +50,7 @@ MySceneGraph.prototype.onXMLReady=function()
 MySceneGraph.prototype.display= function(){
 
 	//como é um map, este leaf contem apenas a chave
+
 	for(var leaf in this.leaves){
 		this.leaves[leaf].display();
 	}
@@ -60,7 +61,6 @@ MySceneGraph.prototype.display= function(){
 /*
  * Callback to be executed on any read error
  */
-
  
 MySceneGraph.prototype.onXMLError=function (message) {
 	console.error("XML Loading Error: "+message);	

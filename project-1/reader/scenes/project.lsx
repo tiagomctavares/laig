@@ -19,11 +19,11 @@ In the following, these symbols have the significance:
 </INITIALS>
 
 
-<ILUMINATION>
+<ILLUMINATION>
     <ambient r="1" g="1" b="1" a="1" />            <!-- global ambient -->
    <!--  <doubleside value="1" />  -->                        <!-- double or single side illum. -->
     <background r="0" g="0" b="1" a="0.5" />         <!-- background color -->
-</ILUMINATION>
+</ILLUMINATION>
 
 
 <LIGHTS>
@@ -100,7 +100,7 @@ In the following, these symbols have the significance:
 
 
 <NODES>
-
+    
     <ROOT id="root" />     <!-- identifier of root node of the scene graph; this node     -->
                          <!--   must be defined in one of the following NODE declarations -->
 
