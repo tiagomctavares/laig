@@ -12,17 +12,6 @@ function Material(reader, XMLElement) {
 }
 Material.prototype = Object.create(BaseParser.prototype);
 
-Material.prototype.parseColorElements = function(XMLElement, colorElements) {
-
-	for (var index = 0; index < colorElements.length; ++index) {
-		var tagName = colorElements[index];
-
-		var childElement = XMLElement.getElementsByTagName(tagName)[0];
-
-		this[tagName] = this.getColor(childElement);
-	}
-};
-
 Material.prototype.parseSingleValueElements = function(XMLElement, singleValueElements) {
 	
 	for (var index = 0; index < singleValueElements.length; ++index) {

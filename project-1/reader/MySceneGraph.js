@@ -36,9 +36,12 @@ MySceneGraph.prototype.onXMLReady=function()
 	
 
 	console.log('Parsing Initials.....');
-	var initials = new Initials(this.reader, rootElement);
+
+	var xmlInitials = rootElement.getElementsByTagName('INITIALS')[0];
+	var initials = new Initials(this.reader, xmlInitials);
 	
 	initials.toCGF(this.scene);
+	
 	console.log('DONE!');
 	
 	/*var error = this.lerInitials(rootElement);
@@ -48,12 +51,14 @@ MySceneGraph.prototype.onXMLReady=function()
 		return;
 	}*/
 	
-	var error = this.lerIlumination(rootElement);
+	console.log('Parsing Ilumination.....');
 
-	if (error != null) {
-		this.onXMLError(error);
-		return;
-	}
+	var xmlInitials = rootElement.getElementsByTagName('ILUMINATION')[0];
+	var ilumination = new Ilumination(this.reader, xmlInitials);
+	ilumination.toCGF(this.scene);
+
+	console.log('Done!');
+
 
 	var node = rootElement.getElementsByTagName('LIGHTS');
 
@@ -67,13 +72,14 @@ MySceneGraph.prototype.onXMLReady=function()
 	var node = rootElement.getElementsByTagName('MATERIALS');
 
 	console.log('Parsing Materials...');
-	// Refactor code
+
 	var xmlMaterials = node[0].getElementsByTagName('MATERIAL');
 
 	for (var index = 0; index < xmlMaterials.length; ++index) {
 		var material = new Material(this.reader, xmlMaterials[index]);
 		this.materials[material.id] = material.toCGF(new CGFappearance(this.scene));
-	}	
+	}
+
 	console.log(this.materials, 'DONE!');
 
 	/*
@@ -109,44 +115,6 @@ MySceneGraph.prototype.onXMLReady=function()
 	
 	// As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
 	this.scene.onGraphLoaded();
-};
-
-
-
-/*
- * Example of method that parses elements of one block and stores information in a specific data structure
- */
-
-
-MySceneGraph.prototype.lerIlumination = function(root) {
-
-	var elems = root.getElementsByTagName('ILUMINATION');
-
-	if(elems == null) {
-		return "ILUMINATION element is missing.";
-	}
-
-	if(elems.length != 1) {
-		return "either zero or more than one 'ILUMINATION' element found.";
-	}
-
-	var ambient = this.lerCoordenadasRGBA(elems[0], 'ambient');
-	this.verificaArray(ambient, 'ambient', elems[0].nodeName);
-
-/*
-	var nodeDoubleside = elems[0].getElementsByTagName('doubleside');
-	var doubleside = this.reader.getBoolean(nodeDoubleside[0],'value', true);
-
-	if(doubleside == null)
-		return "Valor do doubleside:" + doubleside + " não é válido."; 
-*/
-	var background = this.lerCoordenadasRGBA(elems[0], 'background');
-	this.verificaArray(background, 'background', elems[0].nodeName);
-
-	this.scene.setBackground(background);
-	//this.scene.setDoubleside(doubleside);
-	this.scene.setAmbient(ambient);
-
 };
 
 MySceneGraph.prototype.lerInitials = function(root) {

@@ -1,21 +1,11 @@
 function Initials(reader, XMLElement) {
 	this.reader = reader;
 
-	var initialsXML =  XMLElement.getElementsByTagName('INITIALS')[0];
-
-	/*if (elems == null) {
-		return "INITIALS element is missing.";
-	}
-
-	if (elems.length != 1) {
-		throw "either zero or more than one 'INITIALS' element found.";
-	}*/
-
-	var frustumElement = initialsXML.getElementsByTagName('frustum')[0];
-	var referenceElement = initialsXML.getElementsByTagName('reference')[0];
-	var translateElement = initialsXML.getElementsByTagName('translate')[0];
-	var rotationElements = initialsXML.getElementsByTagName('rotation');
-	var scaleElement = initialsXML.getElementsByTagName('scale')[0];
+	var frustumElement = XMLElement.getElementsByTagName('frustum')[0];
+	var referenceElement = XMLElement.getElementsByTagName('reference')[0];
+	var translateElement = XMLElement.getElementsByTagName('translate')[0];
+	var rotationElements = XMLElement.getElementsByTagName('rotation');
+	var scaleElement = XMLElement.getElementsByTagName('scale')[0];
 
 	this.parseFrustum(frustumElement);
 	this.parseTranslation(translateElement);
