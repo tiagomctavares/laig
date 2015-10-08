@@ -16,6 +16,7 @@ function Parser(reader, scene, rootElement) {
 	this.loadMaterials();
 	this.loadTextures();
 	this.loadLeaves();
+	this.loadNodes();
 
 }
 
@@ -94,4 +95,8 @@ Parser.prototype.loadLeaves = function() {
 	}
 
 	console.log(this.materials, 'DONE!');
+};
+
+Parser.prototype.loadNodes = function() {
+	
 };

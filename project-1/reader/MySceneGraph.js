@@ -50,7 +50,6 @@ MySceneGraph.prototype.onXMLReady=function()
 MySceneGraph.prototype.display= function(){
 
 	//como é um map, este leaf contem apenas a chave
-
 	for(var leaf in this.leaves){
 		this.leaves[leaf].display();
 	}

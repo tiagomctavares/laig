@@ -63,5 +63,10 @@ Initials.prototype.toCGF = function(scene) {
 	scene.setSceneTranslate(this.getTranslationArray());
 	scene.setSceneRotation(this.getRotationArray());
 
+	// console.log(this.reference);
+	scene.axis = new CGFaxis(scene, this.reference);
+
+	// scene.axis = ;
+
 	return scene;
 }
