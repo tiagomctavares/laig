@@ -4,7 +4,7 @@ function Ilumination(reader, XMLElement) {
 	BaseParser.call(this, reader);
 
 	var colorElements = ['ambient', 'background'];
-
+	
 	this.parseColorElements(XMLElement, colorElements);
 }
 Ilumination.prototype = Object.create(BaseParser.prototype);

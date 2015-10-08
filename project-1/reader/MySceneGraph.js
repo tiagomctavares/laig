@@ -68,14 +68,14 @@ MySceneGraph.prototype.onXMLReady=function()
 		var light = new Light(this.reader, xmlLights[index]);
 		this.lights[light.id] = light.toCGF(this.scene);
 	}
-	
+
 	console.log('Done!');
 
 
 	console.log('Parsing Materials...');
 
-	var node = rootElement.getElementsByTagName('MATERIALS');
-	var xmlMaterials = node[0].getElementsByTagName('MATERIAL');
+	var node = rootElement.getElementsByTagName('MATERIALS')[0];
+	var xmlMaterials = node.getElementsByTagName('MATERIAL');
 
 	for (var index = 0; index < xmlMaterials.length; ++index) {
 		var material = new Material(this.reader, xmlMaterials[index]);
@@ -84,6 +84,17 @@ MySceneGraph.prototype.onXMLReady=function()
 
 	console.log(this.materials, 'DONE!');
 
+	console.log('Parsing Textures...');
+
+	/*var node = rootElement.getElementsByTagName('TEXTURES')[0];
+	var xmlTextures = node.getElementsByTagName('TEXTURE');
+
+	for (var index = 0; index < xmlTextures.length; ++index) {
+		var texture = new Texture(this.reader, xmlTextures[index]);
+		this.textures[texture.id] = texture.toCGF(this.scene);
+	}*/
+
+	console.log(this.materials, 'DONE!');
 	/*
 	error = this.lerMaterials(node[0]);
 	

@@ -5,10 +5,11 @@ function Light(reader, XMLElement) {
 
 	var colorElements = ['ambient', 'diffuse', 'specular'];
 	var singleValueElements = ['enable'];
+	var xmlPosition = XMLElement.getElementsByTagName('position')[0];
 
 	this.parseId(XMLElement);
 	this.parseSingleValueElements(XMLElement, singleValueElements);
-	this.parsePosition(XMLElement);
+	this.parsePosition(xmlPosition);
 	this.parseColorElements(XMLElement, colorElements);
 }
 Light.prototype = Object.create(BaseParser.prototype);
