@@ -52,7 +52,7 @@ MySceneGraph.prototype.display= function(){
 	//como é um map, este leaf contem apenas a chave
 
 	for(var leaf in this.leaves){
-			this.leaves[leaf].display();
+		this.leaves[leaf].display();
 	}
 };
 ////////////////////////////////////////////////
@@ -61,92 +61,6 @@ MySceneGraph.prototype.display= function(){
 /*
  * Callback to be executed on any read error
  */
-
-
-MySceneGraph.prototype.lerCoordenadas = function(root, atrib, c1, c2, c3, c4){
-	
-	//todas as tags com nome: atrib
-	var node = root.getElementsByTagName(atrib);
-
-	//nao foi encontrado nenhuma tag com o nome atrib
-	if(node == null || node.length == 0){
-		return null;
-	}
-
-	var x = this.reader.getFloat(node[0], c1, true);
-	
-	if(x != x || x == null)
-		return NaN;
-	
-	var y = this.reader.getFloat(node[0], c2, true);
-	
-	if(y != y || y == null)
-		return NaN;
-	
-	var z = this.reader.getFloat(node[0], c3, true);
-	
-	if(z != z || z == null)
-		return NaN;
-
-	//verificar se as coordenadas sao validas
-
-	if(arguments.length == 6){
-
-		var w = this.reader.getFloat(node[0], c4, true);
-
-		if(w != w || w == null)
-			return NaN;
-		
-		return [x, y, z, w];
-
-	}
-
-	return [x, y, z];
-
-};
-
-MySceneGraph.prototype.lerCoordenadasXYZW = function(root, atrib)
-{
-	return this.lerCoordenadas(root, atrib, 'x', 'y', 'z', 'w');
-};
-
-MySceneGraph.prototype.lerCoordenadasRGBA = function(root, atrib)
-{
- 	return this.lerCoordenadas(root, atrib, 'r', 'g', 'b', 'a');
-};
-
-MySceneGraph.prototype.lerCoordenadasXYZ = function(root, atrib)
-{
-	return this.lerCoordenadas(root, atrib, 'x', 'y', 'z');
-};
-
-MySceneGraph.prototype.lerCoordenadasEscalamento = function(root, atrib)
-{
-	return this.lerCoordenadas(root, atrib, 'sx', 'sy', 'sz');
-};
-
-MySceneGraph.prototype.verificaArray = function(valor, atrib, pai, id)
-{
-	if(valor == null){
-
-		if(id == undefined)
-			console.warn("o atributo " + atrib + " de  <" + pai + "> nao foi encontrado");
-		else
-			console.warn("o atributo " + atrib + " da " + pai + " com id=" + id + " nao foi encontrado");
-	}
-
-	else if(valor != valor){
-
-		if(id == undefined)
-			console.warn("o atributo " + atrib + " de  <" + pai + "> nao é valido");
-		else
-			console.warn("o atributo " + atrib + " da " + pai + " com id=" + id + "nao é valido");
-
-	}	
-
-};
-
-
 
  
 MySceneGraph.prototype.onXMLError=function (message) {
