@@ -12,18 +12,6 @@ function Material(reader, XMLElement) {
 }
 Material.prototype = Object.create(BaseParser.prototype);
 
-Material.prototype.parseSingleValueElements = function(XMLElement, singleValueElements) {
-	
-	for (var index = 0; index < singleValueElements.length; ++index) {
-
-		var tagName = singleValueElements[index];
-		
-		var childElement = XMLElement.getElementsByTagName(tagName)[0];
-		this[tagName] = this.getFloat(childElement, 'value');
-	}
-};
-
-
 Material.prototype.toCGF = function(MyCGFapperance) {
 
 	MyCGFapperance.setAmbient(this.ambient.r, this.ambient.g, this.ambient.b, this.ambient.a);

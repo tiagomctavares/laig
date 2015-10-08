@@ -36,8 +36,11 @@ BaseParser.prototype.parseId = function(XMLElement) {
 	this.id = this.reader.getString(XMLElement, 'id', true);
 }
 
-BaseParser.prototype.getCoordinates = function(XMLElement) {
-	return this.getFloat(XMLElement, ['x', 'y', 'z']);
+BaseParser.prototype.getCoordinates = function(XMLElement, coordinates) {
+	if(coordinates === undefined)
+		coordinates = ['x', 'y', 'z'];
+
+	return this.getFloat(XMLElement, coordinates);
 }
 
 BaseParser.prototype.getColor = function(XMLElement) {
@@ -76,6 +79,17 @@ BaseParser.prototype.parseColorElements = function(XMLElement, colorElements) {
 		var childElement = XMLElement.getElementsByTagName(tagName)[0];
 
 		this[tagName] = this.getColor(childElement);
+	}
+};
+
+BaseParser.prototype.parseSingleValueElements = function(XMLElement, singleValueElements) {
+	
+	for (var index = 0; index < singleValueElements.length; ++index) {
+
+		var tagName = singleValueElements[index];
+		
+		var childElement = XMLElement.getElementsByTagName(tagName)[0];
+		this[tagName] = this.getFloat(childElement, 'value');
 	}
 };
 

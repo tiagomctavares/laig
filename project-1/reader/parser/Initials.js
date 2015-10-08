@@ -8,7 +8,7 @@ function Initials(reader, XMLElement) {
 	var scaleElement = XMLElement.getElementsByTagName('scale')[0];
 
 	this.parseFrustum(frustumElement);
-	this.parseTranslation(translateElement);
+	this.translate = this.getCoordinates(translateElement);
 	this.parseRotations(rotationElements);
 	this.parseScale(scaleElement);
 	this.parseReference(referenceElement);
@@ -20,10 +20,6 @@ Initials.prototype = Object.create(BaseParser.prototype);
 
 Initials.prototype.parseFrustum = function(XMLElement) {
 	this.frustum =  this.getFloat(XMLElement, ['near', 'far']);
-}
-
-Initials.prototype.parseTranslation = function(XMLElement) {
-	this.translate = this.getCoordinates(XMLElement);
 }
 
 Initials.prototype.parseRotations = function(XMLElements) {

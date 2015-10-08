@@ -59,20 +59,22 @@ MySceneGraph.prototype.onXMLReady=function()
 
 	console.log('Done!');
 
+	console.log('Parsing Ligths.....');
 
-	var node = rootElement.getElementsByTagName('LIGHTS');
+	var node = rootElement.getElementsByTagName('LIGHTS')[0];
+	var xmlLights = node.getElementsByTagName('LIGHT');
 
-	error = this.lerLights(node[0]);
-	
-	if (error != null) {
-   		this.onXMLError(error);
-    	return;
+	for (var index = 0; index < xmlLights.length; ++index) {
+		var light = new Light(this.reader, xmlLights[index]);
+		this.lights[light.id] = light.toCGF(this.scene);
 	}
+	
+	console.log('Done!');
 
-	var node = rootElement.getElementsByTagName('MATERIALS');
 
 	console.log('Parsing Materials...');
 
+	var node = rootElement.getElementsByTagName('MATERIALS');
 	var xmlMaterials = node[0].getElementsByTagName('MATERIAL');
 
 	for (var index = 0; index < xmlMaterials.length; ++index) {
@@ -229,7 +231,6 @@ MySceneGraph.prototype.lerLight = function(root, id){
 	this.verificaArray(specular, 'specular', root.nodeName);
 
 	
-
 	this.lights[id] = this.scene.arrayLights(enable, position, ambient, diffuse, specular);
 
 	
