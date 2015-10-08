@@ -3,15 +3,18 @@ function Texture(reader, XMLElement) {
 	// Parent Class
 	BaseParser.call(this, reader);
 
-	console.log('node');
-	this.parseFile(XMLElement.getElementsByTagName('file'));
-	this.parseAmplif_factor(XMLElement.getElementsByTagName('amplif_factor'));
+	var xmlFile = XMLElement.getElementsByTagName('file')[0];
+	var xmlAmplif_factor = XMLElement.getElementsByTagName('amplif_factor')[0];
+
+	this.parseId(XMLElement);
+	this.parseFile(xmlFile);
+	this.parseAmplif_factor(xmlAmplif_factor);
 
 }
 Texture.prototype = Object.create(BaseParser.prototype);
 
 Texture.prototype.parseAmplif_factor = function(XMLElement) {
-	this.amplif_factor = this.getCoordinates(xmlAmplif_factor, ['s', 't']);
+	this.amplif_factor = this.getCoordinates(XMLElement, ['s', 't']);
 }
 
 Texture.prototype.parseFile = function(XMLElement) {
@@ -19,7 +22,7 @@ Texture.prototype.parseFile = function(XMLElement) {
 }
 
 Texture.prototype.toCGF = function(scene) {
+	var texture = new CGFtexture(scene, this.file);
 
-
-	return scene;
+	return texture;
 }

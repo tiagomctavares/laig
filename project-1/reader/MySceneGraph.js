@@ -79,39 +79,22 @@ MySceneGraph.prototype.onXMLReady=function()
 
 	for (var index = 0; index < xmlMaterials.length; ++index) {
 		var material = new Material(this.reader, xmlMaterials[index]);
-		this.materials[material.id] = material.toCGF(new CGFappearance(this.scene));
+		this.materials[material.id] = material.toCGF(this.scene);
 	}
 
 	console.log(this.materials, 'DONE!');
 
 	console.log('Parsing Textures...');
 
-	/*var node = rootElement.getElementsByTagName('TEXTURES')[0];
+	var node = rootElement.getElementsByTagName('TEXTURES')[0];
 	var xmlTextures = node.getElementsByTagName('TEXTURE');
 
 	for (var index = 0; index < xmlTextures.length; ++index) {
 		var texture = new Texture(this.reader, xmlTextures[index]);
 		this.textures[texture.id] = texture.toCGF(this.scene);
-	}*/
+	}
 
 	console.log(this.materials, 'DONE!');
-	/*
-	error = this.lerMaterials(node[0]);
-	
-	if (error != null) {
-   		this.onXMLError(error);
-    	return;
-	}
-	*/
-
-	var node = rootElement.getElementsByTagName('TEXTURES');
-
-	error = this.lerTextures(node[0]);
-	
-	if (error != null) {
-   		this.onXMLError(error);
-    	return;
-	}
 
 	var node = rootElement.getElementsByTagName('LEAVES');
 

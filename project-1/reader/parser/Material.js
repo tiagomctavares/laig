@@ -12,13 +12,13 @@ function Material(reader, XMLElement) {
 }
 Material.prototype = Object.create(BaseParser.prototype);
 
-Material.prototype.toCGF = function(MyCGFapperance) {
+Material.prototype.toCGF = function(scene) {
+	var material = new CGFappearance(this.scene)
+	material.setAmbient(this.ambient.r, this.ambient.g, this.ambient.b, this.ambient.a);
+	material.setDiffuse(this.diffuse.r, this.diffuse.g, this.diffuse.b, this.diffuse.a);
+	material.setSpecular(this.specular.r, this.specular.g, this.specular.b, this.specular.a);
+	material.setEmission(this.emission.r, this.emission.g, this.emission.b, this.emission.a);
+	material.setShininess(this.shininess);
 
-	MyCGFapperance.setAmbient(this.ambient.r, this.ambient.g, this.ambient.b, this.ambient.a);
-	MyCGFapperance.setDiffuse(this.diffuse.r, this.diffuse.g, this.diffuse.b, this.diffuse.a);
-	MyCGFapperance.setSpecular(this.specular.r, this.specular.g, this.specular.b, this.specular.a);
-	MyCGFapperance.setEmission(this.emission.r, this.emission.g, this.emission.b, this.emission.a);
-	MyCGFapperance.setShininess(this.shininess);
-
-	return MyCGFapperance;
+	return material;
 }
