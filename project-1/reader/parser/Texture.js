@@ -1,4 +1,5 @@
 function Texture(reader, XMLElement) {
+	this.TEXTURE_PATH = './textures/';
 	this.reader = reader;
 	// Parent Class
 	BaseParserObject.call(this, reader);
@@ -18,7 +19,7 @@ Texture.prototype.parseAmplif_factor = function(XMLElement) {
 }
 
 Texture.prototype.parseFile = function(XMLElement) {
-	this.file = this.getString(XMLElement, 'path');
+	this.file = this.TEXTURE_PATH + this.getString(XMLElement, 'path');
 }
 
 Texture.prototype.toCGF = function(scene) {

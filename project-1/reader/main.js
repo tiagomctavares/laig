@@ -16,7 +16,7 @@ serialInclude(['../lib/CGF.js',
     './geometricFigures/MyPrimitive.js', './geometricFigures/MyQuad.js', './geometricFigures/MySemiSphere.js', 
     './geometricFigures/MyCylinder.js',
     './parser/Parser.js', './parser/BaseParserObject.js', './parser/Initials.js', './parser/Ilumination.js', './parser/Light.js', './parser/Material.js',
-    './parser/Texture.js',
+    './parser/Texture.js', './parser/Leaf.js',
 
 main=function()
 {

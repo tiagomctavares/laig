@@ -16,10 +16,10 @@ function MySceneGraph(filename, scene) {
 	 * If any error occurs, the reader calls onXMLError on this object, with an error message
 	 */
 
-	 this.lights = {};
-	 this.textures = {};
-	 this.materials = {};
-	 this.leaves = {};
+	this.lights = {};
+	this.textures = {};
+	this.materials = {};
+	this.leaves = {};
 	 
 	this.reader.open('scenes/'+filename, this);  
 }
@@ -32,6 +32,10 @@ MySceneGraph.prototype.onXMLReady=function()
 	console.log("LSX Loading finished.");
 
 	var parser = new Parser(this.reader, this.scene);
+	this.lights = parser.lights;
+	this.textures = parser.textures;
+	this.materials = parser.materials;
+	this.leaves = parser.leaves;
 
 	console.log('Done!');
 	

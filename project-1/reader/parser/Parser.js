@@ -15,7 +15,7 @@ function Parser(reader, scene, rootElement) {
 	this.loadLights();
 	this.loadMaterials();
 	this.loadTextures();
-	this.loadLeafs();
+	this.loadLeaves();
 
 }
 
@@ -81,13 +81,17 @@ Parser.prototype.loadTextures = function() {
 	console.log(this.materials, 'DONE!');
 };
 
-Parser.prototype.loadLeafs = function() {
-	var node = this.rootElement.getElementsByTagName('LEAVES');
+Parser.prototype.loadLeaves = function() {
+	console.log('Parsing Leafs...');
 
-	error = this.lerLeaves(node[0])
-	
-	if (error != null) {
-   		this.onXMLError(error);
-    	return;
+	var node = this.rootElement.getElementsByTagName('LEAVES')[0];
+	var xmlLeafs = this.rootElement.getElementsByTagName('LEAF');
+
+	for (var index = 0; index < xmlLeafs.length; ++index) {
+		var leaf = new Leaf(this.reader, xmlLeafs[index]);
+		console.log(leaf);
+		this.leaves[leaf.id] = leaf.toCGF(this.scene);
 	}
+
+	console.log(this.materials, 'DONE!');
 };
