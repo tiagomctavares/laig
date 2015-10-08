@@ -1,7 +1,7 @@
 function Material(reader, XMLElement) {
 	this.reader = reader;
 	// Parent Class
-	BaseParser.call(this, reader);
+	BaseParserObject.call(this, reader);
 
 	var colorElements = ['specular', 'diffuse', 'ambient', 'emission'];
 	var singleValueElements = ['shininess'];
@@ -10,7 +10,7 @@ function Material(reader, XMLElement) {
 	this.parseSingleValueElements(XMLElement, singleValueElements);
 	this.parseColorElements(XMLElement, colorElements);
 }
-Material.prototype = Object.create(BaseParser.prototype);
+Material.prototype = Object.create(BaseParserObject.prototype);
 
 Material.prototype.toCGF = function(scene) {
 	var material = new CGFappearance(this.scene)

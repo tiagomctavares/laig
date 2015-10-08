@@ -14,9 +14,9 @@ function Initials(reader, XMLElement) {
 	this.parseReference(referenceElement);
 
 	// Parent Class
-	BaseParser.call(this, reader);
+	BaseParserObject.call(this, reader);
 }
-Initials.prototype = Object.create(BaseParser.prototype);
+Initials.prototype = Object.create(BaseParserObject.prototype);
 
 Initials.prototype.parseFrustum = function(XMLElement) {
 	this.frustum =  this.getFloat(XMLElement, ['near', 'far']);

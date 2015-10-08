@@ -31,83 +31,11 @@ MySceneGraph.prototype.onXMLReady=function()
 {
 	console.log("LSX Loading finished.");
 
-
-	var rootElement = this.reader.xmlDoc.documentElement;
-	
-
-	console.log('Parsing Initials.....');
-
-	var xmlInitials = rootElement.getElementsByTagName('INITIALS')[0];
-	var initials = new Initials(this.reader, xmlInitials);
-	
-	initials.toCGF(this.scene);
-	
-	console.log('DONE!');
-	
-	/*var error = this.lerInitials(rootElement);
-
-	if (error != null) {
-		this.onXMLError(error);
-		return;
-	}*/
-	
-	console.log('Parsing Ilumination.....');
-
-	var xmlInitials = rootElement.getElementsByTagName('ILUMINATION')[0];
-	var ilumination = new Ilumination(this.reader, xmlInitials);
-	ilumination.toCGF(this.scene);
+	var parser = new Parser(this.reader, this.scene);
 
 	console.log('Done!');
-
-	console.log('Parsing Ligths.....');
-
-	var node = rootElement.getElementsByTagName('LIGHTS')[0];
-	var xmlLights = node.getElementsByTagName('LIGHT');
-
-	for (var index = 0; index < xmlLights.length; ++index) {
-		var light = new Light(this.reader, xmlLights[index]);
-		this.lights[light.id] = light.toCGF(this.scene);
-	}
-
-	console.log('Done!');
-
-
-	console.log('Parsing Materials...');
-
-	var node = rootElement.getElementsByTagName('MATERIALS')[0];
-	var xmlMaterials = node.getElementsByTagName('MATERIAL');
-
-	for (var index = 0; index < xmlMaterials.length; ++index) {
-		var material = new Material(this.reader, xmlMaterials[index]);
-		this.materials[material.id] = material.toCGF(this.scene);
-	}
-
-	console.log(this.materials, 'DONE!');
-
-	console.log('Parsing Textures...');
-
-	var node = rootElement.getElementsByTagName('TEXTURES')[0];
-	var xmlTextures = node.getElementsByTagName('TEXTURE');
-
-	for (var index = 0; index < xmlTextures.length; ++index) {
-		var texture = new Texture(this.reader, xmlTextures[index]);
-		this.textures[texture.id] = texture.toCGF(this.scene);
-	}
-
-	console.log(this.materials, 'DONE!');
-
-	var node = rootElement.getElementsByTagName('LEAVES');
-
-	error = this.lerLeaves(node[0])
 	
-	if (error != null) {
-   		this.onXMLError(error);
-    	return;
-	}
-	
-
 	this.loadedOk=true;
-
 	
 	// As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
 	this.scene.onGraphLoaded();

@@ -1,4 +1,4 @@
-function Texture(reader, XMLElement) {
+function Leaf(reader, XMLElement) {
 	this.reader = reader;
 	// Parent Class
 	BaseParserObject.call(this, reader);
@@ -11,17 +11,17 @@ function Texture(reader, XMLElement) {
 	this.parseAmplif_factor(xmlAmplif_factor);
 
 }
-Texture.prototype = Object.create(BaseParserObject.prototype);
+Leaf.prototype = Object.create(BaseParserObject.prototype);
 
-Texture.prototype.parseAmplif_factor = function(XMLElement) {
+Leaf.prototype.parseAmplif_factor = function(XMLElement) {
 	this.amplif_factor = this.getCoordinates(XMLElement, ['s', 't']);
 }
 
-Texture.prototype.parseFile = function(XMLElement) {
+Leaf.prototype.parseFile = function(XMLElement) {
 	this.file = this.getString(XMLElement, 'path');
 }
 
-Texture.prototype.toCGF = function(scene) {
+Leaf.prototype.toCGF = function(scene) {
 	var texture = new CGFtexture(scene, this.file);
 
 	return texture;
