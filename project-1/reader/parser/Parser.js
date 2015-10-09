@@ -16,7 +16,7 @@ function Parser(reader, scene, rootElement) {
 	this.loadMaterials();
 	this.loadTextures();
 	this.loadLeaves();
-	// this.loadNodes();
+	this.loadNodes();
 
 }
 
@@ -101,7 +101,7 @@ Parser.prototype.loadNodes = function() {
 	console.log('Parsing NODES...');
 
 	var xmlNodes = this.rootElement.getElementsByTagName('NODES')[0];
-	this.graph = new Graph(this.reader, xmlNodes);
+	this.graph = new Graph(this, xmlNodes);
 
 	console.log('DONE!');
 };

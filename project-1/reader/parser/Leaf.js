@@ -3,7 +3,7 @@ function Leaf(reader, XMLElement) {
 	// Parent Class
 	BaseParserObject.call(this, reader);
 
-	this.parseId(XMLElement);
+	this.id = this.parseId(XMLElement);
 	this.type = this.getString(XMLElement, 'type');
 	this.parseArgs(XMLElement);
 }

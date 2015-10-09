@@ -1,5 +1,5 @@
 function Texture(reader, XMLElement) {
-	this.TEXTURE_PATH = './textures/';
+	this.TEXTURE_PATH = '';
 	this.reader = reader;
 	// Parent Class
 	BaseParserObject.call(this, reader);
@@ -7,7 +7,7 @@ function Texture(reader, XMLElement) {
 	var xmlFile = XMLElement.getElementsByTagName('file')[0];
 	var xmlAmplif_factor = XMLElement.getElementsByTagName('amplif_factor')[0];
 
-	this.parseId(XMLElement);
+	this.id = this.parseId(XMLElement);
 	this.parseFile(xmlFile);
 	this.parseAmplif_factor(xmlAmplif_factor);
 }

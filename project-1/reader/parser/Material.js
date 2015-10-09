@@ -6,7 +6,7 @@ function Material(reader, XMLElement) {
 	var colorElements = ['specular', 'diffuse', 'ambient', 'emission'];
 	var singleValueElements = ['shininess'];
 
-	this.parseId(XMLElement);
+	this.id = this.parseId(XMLElement);
 	this.parseSingleValueElements(XMLElement, singleValueElements);
 	this.parseColorElements(XMLElement, colorElements);
 }

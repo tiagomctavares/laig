@@ -14,9 +14,9 @@ function getUrlVars() {
 serialInclude(['../lib/CGF.js', 
     'XMLscene.js', 'MySceneGraph.js',
     './geometricFigures/MyPrimitive.js', './geometricFigures/MyQuad.js', './geometricFigures/MySemiSphere.js', 
-    './geometricFigures/MyCylinder.js',
+    './geometricFigures/MyCylinder.js', './geometricFigures/MySphere.js',
     './parser/Parser.js', './parser/BaseParserObject.js', './parser/Initials.js', './parser/Illumination.js', './parser/Light.js', './parser/Material.js',
-    './parser/Texture.js', './parser/Leaf.js',
+    './parser/Texture.js', './parser/Leaf.js', './parser/Graph.js', './parser/Node.js',
 
 main=function()
 {

@@ -11,7 +11,8 @@ BaseParserObject.prototype.getString = function(XMLElement, attribute, required)
 
 BaseParserObject.prototype.parseId = function(XMLElement) {
 
-	this.id = this.reader.getString(XMLElement, 'id', true);
+	return this.reader.getString(XMLElement, 'id', true);
+
 }
 
 BaseParserObject.prototype.getCoordinates = function(XMLElement, coordinates) {

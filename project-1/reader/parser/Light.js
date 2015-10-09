@@ -7,7 +7,7 @@ function Light(reader, XMLElement) {
 	var singleValueElements = ['enable'];
 	var xmlPosition = XMLElement.getElementsByTagName('position')[0];
 
-	this.parseId(XMLElement);
+	this.id = this.parseId(XMLElement);
 	this.parseSingleValueElements(XMLElement, singleValueElements);
 	this.parsePosition(xmlPosition);
 	this.parseColorElements(XMLElement, colorElements);
