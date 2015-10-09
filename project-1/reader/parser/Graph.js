@@ -1,5 +1,6 @@
 function Graph(parser, XMLElement) {
 	this.reader = parser.reader;
+	this.leaves = parser.leaves;
 
 	var xmlRootNode = XMLElement.getElementsByTagName('ROOT')[0];
 	var xmlNodes = XMLElement.getElementsByTagName('NODE');
@@ -8,6 +9,7 @@ function Graph(parser, XMLElement) {
 	this.nodes = {};
 
 	this.parseNodes(xmlNodes);
+	this.buildGraphTree();
 
 	// Parent Class
 	BaseParserObject.call(this, this.reader);
@@ -19,4 +21,28 @@ Graph.prototype.parseNodes = function(XMLElements) {
 		var elementId = this.parseId(XMLElements[i]);
 		this.nodes[elementId] = new Node(this.reader, XMLElements[i]);
 	}
+};
+
+Graph.prototype.buildGraphTree = function() {
+	this.graph = {};
+
+	this.graph = this.nodes[this.rootId];
+	this.buildDescendantsTree(this.graph);
+
+	console.log(this.graph);
+}
+
+Graph.prototype.buildDescendantsTree = function(node) {
+
+	var descendantsArray = node.descendants.slice(0);
+
+	for (var i = 0; i < descendantsArray.length; i++) {
+		
+		if(this.nodes[descendantsArray[i]] == undefined)
+			return;
+
+		node.descendants[i] = {};
+		node.descendants[i] = this.nodes[descendantsArray[i]];
+		this.buildDescendantsTree(node.descendants[i]);
+	};
 };

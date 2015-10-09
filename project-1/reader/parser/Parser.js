@@ -90,7 +90,6 @@ Parser.prototype.loadLeaves = function() {
 
 	for (var index = 0; index < xmlLeafs.length; ++index) {
 		var leaf = new Leaf(this.reader, xmlLeafs[index]);
-		console.log(leaf);
 		this.leaves[leaf.id] = leaf.toCGF(this.scene);
 	}
 

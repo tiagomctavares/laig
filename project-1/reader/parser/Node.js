@@ -8,7 +8,7 @@ function Node(reader, XMLElement) {
 	var xmlDescendants = XMLElement.getElementsByTagName('DESCENDANTS')[0];
 	xmlDescendants = xmlDescendants.getElementsByTagName('DESCENDANT');
 
-	this.descendants = {};
+	this.id = this.parseId(XMLElement);
 
 	this.translations = {};
 	this.rotations = {};
@@ -25,8 +25,6 @@ function Node(reader, XMLElement) {
 
 	// Parent Class
 	BaseParserObject.call(this, reader);
-
-	console.log(this);
 }
 Node.prototype = Object.create(BaseParserObject.prototype);
 
@@ -35,9 +33,9 @@ Node.prototype.parse = function(first_argument) {
 };
 
 Node.prototype.parseDescendants = function(XMLElements) {
-
+	this.descendants = [];
 	for (var i = 0; i < XMLElements.length; i++) {
-		this.descendants[i] = this.parseId(XMLElements[i]);
+			this.descendants[i] = this.parseId(XMLElements[i]);
 	}
 };
 
@@ -70,3 +68,7 @@ Node.prototype.parseTranslations = function(XMLElements) {
 	};
 }
 
+// NEED TO IMPLEMENT PROPERLY
+Node.prototype.isLeaf = function(node, leaves) {
+	return leaves.hasOwnProperty(node);
+}
