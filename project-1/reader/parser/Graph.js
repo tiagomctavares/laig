@@ -1,48 +1,56 @@
-function Graph(parser, XMLElement) {
-	this.reader = parser.reader;
-	this.leaves = parser.leaves;
-
-	var xmlRootNode = XMLElement.getElementsByTagName('ROOT')[0];
-	var xmlNodes = XMLElement.getElementsByTagName('NODE');
-
-	this.rootId = this.parseId(xmlRootNode);
-	this.nodes = {};
-
-	this.parseNodes(xmlNodes);
-	this.buildGraphTree();
-
-	// Parent Class
-	BaseParserObject.call(this, this.reader);
+function Graph(SceneGraph) { 
+	this.sceneGraph = SceneGraph;
+	this.graph = {};
+	// this.buildGraphTree();
 }
-Graph.prototype = Object.create(BaseParserObject.prototype);
-
-Graph.prototype.parseNodes = function(XMLElements) {
-	for (var i = 0; i < XMLElements.length; i++) {
-		var elementId = this.parseId(XMLElements[i]);
-		this.nodes[elementId] = new Node(this.reader, XMLElements[i]);
-	}
-};
 
 Graph.prototype.buildGraphTree = function() {
-	this.graph = {};
-
-	this.graph = this.nodes[this.rootId];
-	this.buildDescendantsTree(this.graph);
-
+	this.graph.root = this.scene.nodes[this.scene.rootId];
+	this.buildDescendantsTree(this.graph.root);
+	
 	console.log(this.graph);
+
+	this.debug(this.graph.root);
 }
 
 Graph.prototype.buildDescendantsTree = function(node) {
-
 	var descendantsArray = node.descendants.slice(0);
+	// console.log(descendantsArray, descendantsArray instanceof Node);
+	
 
 	for (var i = 0; i < descendantsArray.length; i++) {
+		node.descendants[i] = [];
 		
-		if(this.nodes[descendantsArray[i]] == undefined)
-			return;
+		// Already parsed this descendant just save reference
+		/*if(descendantsArray[i] instanceof Node) {
+			node.descendants[i] = descendantsArray[i];
+			return ;
+		}*/
 
-		node.descendants[i] = {};
-		node.descendants[i] = this.nodes[descendantsArray[i]];
+		// If can't find the node it's a leaf
+		if(this.scene.nodes[descendantsArray[i]] === undefined) {
+			// console.log(node.id, i, descendantsArray, this.scene.leaves[descendantsArray[i]]);
+			node.descendants[i] = this.scene.leaves[descendantsArray[i]];
+			return ;
+		}
+
+		var cloneNode = this.scene.nodes[descendantsArray[i]];
+		node.descendants[i] = cloneNode;
 		this.buildDescendantsTree(node.descendants[i]);
-	};
-};
+	}
+}
+
+Graph.prototype.display = function() {
+	this.sceneGraph.nodes[this.sceneGraph.rootId].display(this.sceneGraph);
+}
+
+Graph.prototype.debug = function(node) {
+	if(node !== undefined && node.descendants !== undefined)
+		for (var i = 0; i < node.descendants.length; i++) {
+			if(node.descendants[i].id === undefined)
+				console.log(node.descendants[i]);
+			else
+				console.log(node.descendants[i].id);
+			this.debug(node.descendants[i]);
+		};
+}

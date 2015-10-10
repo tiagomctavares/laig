@@ -7,6 +7,7 @@ function Parser(reader, scene, rootElement) {
 	this.textures = {};
 	this.materials = {};
 	this.leaves = {};
+	this.nodes = [];
 
 	this.rootElement = this.reader.xmlDoc.documentElement;
 
@@ -99,8 +100,17 @@ Parser.prototype.loadLeaves = function() {
 Parser.prototype.loadNodes = function() {
 	console.log('Parsing NODES...');
 
-	var xmlNodes = this.rootElement.getElementsByTagName('NODES')[0];
-	this.graph = new Graph(this, xmlNodes);
+	var nodes = this.rootElement.getElementsByTagName('NODES')[0];
+	
+	this.rootId = this.reader.getString(nodes.getElementsByTagName('ROOT')[0], 'id', true);
+
+	var xmlNodes = nodes.getElementsByTagName('NODE');
+
+	for (var i = 0; i < xmlNodes.length; i++) {
+		var node = new Node(this.reader);
+		node.parseXML(xmlNodes[i]);
+		this.nodes[node.id] = node;
+	}
 
 	console.log('DONE!');
 };

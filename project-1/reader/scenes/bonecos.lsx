@@ -1,0 +1,1581 @@
+
+<SCN>
+<INITIALS>
+    <frustum near="10" far="80" />                       <!-- frustum planes-->
+    <translation x="0" y="0" z="0" />                  <!-- initial translate -->
+    <rotation axis="x" angle="00" />                    <!-- initial rotation 3 -->
+    <rotation axis="y" angle="0" />                    <!-- initial rotation 2 -->
+    <rotation axis="z" angle="00" />                    <!-- initial rotation 1 -->
+    <scale sx="1" sy="1" sz="1" />                 	    <!-- initial scaling -->
+    <reference length="50" />                           <!-- axis length; "0" means no axis-->
+</INITIALS>
+
+<ILLUMINATION>
+    <ambient r="0" g="0" b="0" a="1" />            	    <!-- global ambient -->
+    <doubleside value="true" />                         <!-- double or single side illum. -->
+    <background r="0.3" g="0.5" b="0.3" a="1" />          <!-- background color -->
+</ILLUMINATION>
+
+<LIGHTS>
+    <LIGHT id="1">                                    <!-- light identifier -->
+        <enable value ="t" />                         <!-- enable/disable -->
+        <position x="2" y="13" z="18" w="1" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="0" />        <!-- ambient component -->
+        <diffuse r="1" g="0.7" b="0.7" a="1" />        <!-- diffuse component -->
+        <specular r="1" g="0.7" b="0.7" a="1" />       <!-- specular component -->
+    </LIGHT>
+	<LIGHT id="2">                                    <!-- light identifier -->
+        <enable value ="t" />                         <!-- enable/disable -->
+        <position x="2" y="13" z="2" w="1" />       <!-- light position -->
+        <ambient r="0.2" g="0.2" b="0.2" a="1" />        <!-- ambient component -->
+         <diffuse r="0.7" g="1" b="0.7" a="1" />        <!-- diffuse component -->
+        <specular r="0.7" g="1" b="0.7" a="1" />       <!-- specular component -->
+    </LIGHT>
+	<LIGHT id="3">                                    <!-- light identifier -->
+        <enable value ="t" />                         <!-- enable/disable -->
+        <position x="18" y="13" z="18" w="1" />      <!-- light position -->
+        <ambient r="1" g="1" b="0" a="1" />        <!-- ambient component -->
+        <diffuse r="0.7" g="0.7" b="1" a="1" />        <!-- diffuse component -->
+        <specular r="0.7" g="0.7" b="1" a="1" />       <!-- specular component -->
+    </LIGHT>
+	<LIGHT id="4">                                    <!-- light identifier -->
+        <enable value ="t" />                         <!-- enable/disable -->
+        <position x="18" y="13" z="2" w="1" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="1" />        <!-- ambient component -->
+        <diffuse r="1" g="1" b="1" a="0.2" />        <!-- diffuse component -->
+        <specular r="1" g="1" b="1" a="0.2" />       <!-- specular component -->
+    </LIGHT>
+
+
+    <!-- NOTE: this block "LIGHT" must be repeated as necessary with different "id" -->
+</LIGHTS>
+
+<TEXTURES>
+	<TEXTURE id="snow">
+        <file path="snow.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+	<TEXTURE id="wood">
+        <file path="wood.jpg" />                             <!-- path to file -->
+        <amplif_factor s="2" t="2" />                <!-- x/s, y/t -->
+    </TEXTURE>	
+
+    <!-- NOTE: this block "TEXTURE" must be repeated as necessary with different "id" -->
+</TEXTURES>
+
+<MATERIALS>
+    <MATERIAL id="laranja">                                  
+        <shininess value="1" />
+        <specular r="1" g="0.5" b="0" a="0.5" />       <!-- specular reflection -->
+        <diffuse r="1" g="0.5" b="0" a="0.5" />         <!-- diffuse reflection -->
+        <ambient r="0" g="0" b="0" a="0.5" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="0.5" />       <!-- emission component -->
+    </MATERIAL>
+	<MATERIAL id="preto">                                  
+        <shininess value="60" />
+        <specular r="0" g="0" b="0" a="0.5" />       <!-- specular reflection -->
+        <diffuse r="0" g="0" b="0" a="0.5" />         <!-- diffuse reflection -->
+        <ambient r="0" g="0" b="0" a="0.5" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="0.5 " />       <!-- emission component -->
+    </MATERIAL>
+	<MATERIAL id="green">                                  
+        <shininess value="60" />
+        <specular r="0.4" g="0.8" b="0.4" a="0.5" />       <!-- specular reflection -->
+        <diffuse r="0.4" g="0.8" b="0.4" a="0.5" />         <!-- diffuse reflection -->
+        <ambient r="0" g="0" b="0" a="0.5" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="0.5 " />       <!-- emission component -->
+    </MATERIAL>
+	<MATERIAL id="pirilampo_verde">                                  
+        <shininess value="60" />
+        <specular r="1" g="1" b="1" a="0.5" />       <!-- specular reflection -->
+        <diffuse r="1" g="1" b="1" a="0.5" />          <!-- diffuse reflection -->
+        <ambient r="0" g="0" b="0" a="0.5" />         <!-- ambient reflection -->
+        <emission r="0.4" g="1" b="0.4" a="0.5 " />       <!-- emission component -->
+    </MATERIAL>
+	<MATERIAL id="pirilampo_vermelho">                                  
+        <shininess value="60" />
+        <specular r="1" g="1" b="1" a="0.5" />       <!-- specular reflection -->
+        <diffuse r="1" g="1" b="1" a="0.5" />         <!-- diffuse reflection -->
+        <ambient r="0" g="0" b="0" a="0.5" />         <!-- ambient reflection -->
+        <emission r="1" g="0.4" b="0.4" a="0.5 " />       <!-- emission component -->
+    </MATERIAL>
+	<MATERIAL id="brown">                                  
+        <shininess value="60" />
+        <specular r="0.65" g="0.49" b="0.18" a="0.5" />       <!-- specular reflection -->
+        <diffuse r="0.65" g="0.49" b="0.18" a="0.5" />         <!-- diffuse reflection -->
+        <ambient r="0" g="0" b="0" a="0.5" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="0.5 " />       <!-- emission component -->
+    </MATERIAL>
+	
+	<MATERIAL id="branco">                                  
+        <shininess value="10" />
+        <specular r="1" g="1" b="1" a="0.5" />       <!-- specular reflection -->
+        <diffuse r="1" g="1" b="1" a="0.5" />         <!-- diffuse reflection -->
+        <ambient r="0" g="0" b="0" a="0.5" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="0.5 " />       <!-- emission component -->
+    </MATERIAL>
+
+    <!-- NOTE: the "MATERIAL" block may be repeated as required. Each defined material requires a distinct "id" -->
+
+</MATERIALS>
+
+<LEAVES>
+
+    <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
+	<LEAF id="l1t" type="triangle" args="1 0 0 -1 0 0 0 2 0" />
+	<LEAF id="l1e" type="rectangle" args="0 0 5 5" />
+	<LEAF id="l2e" type="rectangle" args="-0.5 0.5 0.5 -0.5" />
+    <LEAF id="l1c" type="cylinder" args="40 1 1 2 40" /> 
+	<LEAF id="l2c" type="cylinder" args="60 2 0 1 40" /> 
+	<LEAF id="l3c" type="cylinder" args="30 2 0 1 40" /> 
+    <LEAF id="l1s" type="sphere" args="1 40 40" />
+    
+
+    <!-- Parameters of the above primitives:                                                         -->
+        <!--rectangle: 2D coordinates for left-top and right-bottom vertices.                        -->
+        <!-- cylinder:  height, bottom radius, top radius, sections along height, parts per section  -->
+        <!-- sphere:    radius, parts along radius, parts per section                                -->
+        <!-- triangle:   coordinates of each vertex                                                  -->
+
+</LEAVES>
+
+<NODES>
+
+    <ROOT id="ROOT" />     <!-- identifier of root node of the scene graph; this node     -->
+                         <!--   must be defined in one of the following NODE declarations -->
+
+    <NODE id="ROOT">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="BONECO1" />
+			<DESCENDANT id="BONECO_BLOCK" />
+			<DESCENDANT id="CHAO" />
+			<DESCENDANT id="CANDEEIRO_BLOCK" />
+			<DESCENDANT id="MINIMALIST_TREE_BLOCK" />
+			<DESCENDANT id="PIRILAMPO_VERDE1" />
+			<DESCENDANT id="PIRILAMPO_VERDE2" />
+			<DESCENDANT id="PIRILAMPO_VERMELHO1" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="MINIMALIST_TREE_BLOCK">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="12" y="0" z="16" />
+		<SCALE sx="1" sy="1.5" sz="1" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="MINIMALIST_TREE_1" />
+			<DESCENDANT id="MINIMALIST_TREE_2" />
+			<DESCENDANT id="MINIMALIST_TREE_3" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="PIRILAMPO_VERDE2">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="pirilampo_verde" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="14" y="6" z="14.8" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="PIRILAMPO_VERDE" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="PIRILAMPO_VERMELHO1">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="pirilampo_vermelho" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="14" y="8" z="16.8" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="PIRILAMPO_VERMELHO" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="PIRILAMPO_VERDE1">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="pirilampo_verde" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="10" y="4" z="14.5" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="PIRILAMPO_VERDE" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="PIRILAMPO_VERDE">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="pirilampo_verde" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<SCALE sx="0.1" sy="0.05" sz="0.05" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="PIRILAMPO_VERMELHO">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="pirilampo_vermelho" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<SCALE sx="0.1" sy="0.05" sz="0.05" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="MINIMALIST_TREE_1">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="2" y="0" z="0" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="MINIMALIST_TREE" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="MINIMALIST_TREE_3">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0" y="0" z="1" />
+		<SCALE sx="0.5" sy="0.8" sz="0.5" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="MINIMALIST_TREE" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="MINIMALIST_TREE_2">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="-2" y="0" z="0" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="MINIMALIST_TREE" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	
+	
+	
+	<NODE id="MINIMALIST_TREE">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+	
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="FOLHAS" />
+			<DESCENDANT id="TRONCO_ARVORE" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="FOLHAS">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="green" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0" y="2" z="0" />
+		<SCALE sx="0.8" sy="0.1" sz="0.8" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l2c" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="TRONCO_ARVORE">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="brown" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<SCALE sx="0.5" sy="0.07" sz="0.5" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+			<DESCENDANT id="l1c" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CANDEEIRO_BLOCK">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+	
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CANDEEIRO1" />
+			<DESCENDANT id="CANDEEIRO2" />
+			<DESCENDANT id="CANDEEIRO3" />
+			<DESCENDANT id="CANDEEIRO4" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BONECO_BLOCK">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="10" y="2" z="10" />
+		<SCALE sx="0.5" sy="0.5" sz="0.5" />
+		<ROTATION axis="y" angle="180" />
+	
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="BONECO_DE_NEVE1" />
+			<DESCENDANT id="BONECO_DE_NEVE2" />
+			<DESCENDANT id="BONECO_DE_NEVE3" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BONECO_DE_NEVE1">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0" y="-2" z="0" />
+		
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="BONECO3" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BONECO_DE_NEVE2">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0" y="-1" z="6" />
+		<SCALE sx="1.3" sy="1.3" sz="1.3" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="BONECO3" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BONECO_DE_NEVE3">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+		<TRANSLATION x="0" y="-2" z="-6" />
+		<SCALE sx="0.8" sy="0.8" sz="0.8" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="BONECO3" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BONECO_DE_NEVE4">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="BONECO3" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="PIRAMIDE_QUAD">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="laranja" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="BASE_PIRAMIDE" />
+			<DESCENDANT id="LADO_DIREITO_PIRAMIDE_QUAD" />
+			<DESCENDANT id="LADO_ESQUERDO_PIRAMIDE_QUAD" />
+			<DESCENDANT id="LADO_POSTERIOR_PIRAMIDE_QUAD" />
+			<DESCENDANT id="LADO_ANTERIOR_PIRAMIDE_QUAD" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="LADO_ANTERIOR_PIRAMIDE_QUAD">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0" y="0" z="-1" />
+		<ROTATION axis="x" angle="30" />
+		
+		
+		
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1t" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="LADO_POSTERIOR_PIRAMIDE_QUAD">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0" y="0" z="1" />
+		<ROTATION axis="x" angle="-30" />
+		<ROTATION axis="y" angle="180" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1t" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="LADO_ESQUERDO_PIRAMIDE_QUAD">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="-1" y="0" z="0" />
+		<ROTATION axis="z" angle="-30" />
+		<ROTATION axis="y" angle="90" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1t" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="LADO_DIREITO_PIRAMIDE_QUAD">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="1" y="0" z="0" />
+		<ROTATION axis="z" angle="30" />
+		<ROTATION axis="y" angle="-90" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1t" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BASE_PIRAMIDE">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<SCALE sx="2" sy="1" sz="2" />
+		<ROTATION axis="x" angle="90" />
+		
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l2e" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CANDEEIRO1">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="wood" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+		<TRANSLATION x="2" y="0.25" z="2" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+			<DESCENDANT id="POSTE" />
+			<DESCENDANT id="LAMP" />
+			<DESCENDANT id="BASE" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CANDEEIRO2">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="wood" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+		<TRANSLATION x="18" y="0.25" z="18" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+			<DESCENDANT id="POSTE" />
+			<DESCENDANT id="LAMP" />
+			<DESCENDANT id="BASE" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CANDEEIRO3">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="wood" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+		<TRANSLATION x="18" y="0.25" z="2" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+			<DESCENDANT id="POSTE" />
+			<DESCENDANT id="LAMP" />
+			<DESCENDANT id="BASE" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CANDEEIRO4">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="wood" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+		<TRANSLATION x="2" y="0.25" z="18" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+			<DESCENDANT id="POSTE" />
+			<DESCENDANT id="LAMP" />
+			<DESCENDANT id="BASE" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="LAMP">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<SCALE sx="1.5" sy="1" sz="1.5" />
+		<TRANSLATION x="0" y="10" z="0" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CAIXILHO" />
+			<DESCENDANT id="TELHADO_LAMP" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="TELHADO_LAMP">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0" y="0.5" z="0" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+			<DESCENDANT id="PIRAMIDE_QUAD" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CAIXILHO">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CUBE" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="POSTE">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<SCALE sx="0.5" sy="10" sz="0.5" />
+		<TRANSLATION x="0" y="0.5" z="0" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CUBE" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BASE">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CUBO1" />
+			<DESCENDANT id="CUBO2" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CUBO1">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<SCALE sx="2" sy="0.5" sz="2" />
+		<TRANSLATION x="0" y="1" z="0" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CUBE" />			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CUBO2">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<SCALE sx="3" sy="0.5" sz="3" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CUBE" />			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CUBE">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="FACE_CUBO_SUPERIOR" />
+			<DESCENDANT id="FACE_CUBO_INFERIOR" />
+			<DESCENDANT id="FACE_CUBO_DIREITA" />
+			<DESCENDANT id="FACE_CUBO_ESQUERDA" />
+			<DESCENDANT id="FACE_CUBO_POSTERIOR" />
+			<DESCENDANT id="FACE_CUBO_ANTERIOR" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="FACE_CUBO_SUPERIOR">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<ROTATION axis="x" angle="-90" />
+		<TRANSLATION x="0" y="0" z="0.5" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l2e" />			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="FACE_CUBO_INFERIOR">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<ROTATION axis="x" angle="90" />
+		<TRANSLATION x="0" y="0" z="0.5" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l2e" />			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="FACE_CUBO_DIREITA">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0.5" y="0" z="0" />
+		<ROTATION axis="y" angle="90" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l2e" />			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="FACE_CUBO_ESQUERDA">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="-0.5" y="0" z="0" />
+		<ROTATION axis="y" angle="270" />
+		
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l2e" />			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="FACE_CUBO_POSTERIOR">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0" y="0" z="0.5" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l2e" />			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="FACE_CUBO_ANTERIOR">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<ROTATION axis="y" angle="180" />
+		<TRANSLATION x="0" y="0" z="0.5" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l2e" />			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CHAO">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="snow" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<ROTATION axis="x" angle="-90" />
+        <SCALE sx="20" sy="20" sz="1" />
+		<TRANSLATION x="0.5" y="-0.5" z="0" />
+		
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l2e" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	
+		
+	<NODE id="BONECO3">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CABECA" />
+			<DESCENDANT id="TRONCO_BONECO3" />
+			<DESCENDANT id="PES" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	
+    <NODE id="BONECO1">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <TRANSLATION x="2" y="2.8" z="8" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CABECA" />
+			<DESCENDANT id="TRONCO" />
+			<DESCENDANT id="PES" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="PES">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="branco" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        
+		<SCALE sx="2.5" sy="2.5" sz="2.5" />	
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="CABECA">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <TRANSLATION x="0" y="6" z="0" />
+		<SCALE sx="0.6" sy="0.6" sz="0.6" />
+	
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="CABECA2" />
+			<DESCENDANT id="CARTOLA" />
+			<DESCENDANT id="OLHOS" />
+			<DESCENDANT id="NARIZ" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="TRONCO">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="branco" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <TRANSLATION x="0" y="3.5" z="0" />
+		<SCALE sx="0.8" sy="0.8" sz="0.8" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="PEITO" />
+			<DESCENDANT id="BRACOS" />
+			<DESCENDANT id="BOTOES" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="TRONCO_BONECO3">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="branco" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <TRANSLATION x="0" y="3.5" z="0" />
+		<SCALE sx="0.8" sy="0.8" sz="0.8" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="PEITO" />
+			<DESCENDANT id="BOTOES" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BRACOS">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="laranja" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="BRACO_DIREITO" />
+			<DESCENDANT id="BRACO_ESQUERDO" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BRACO_DIREITO">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="laranja" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <TRANSLATION x="0" y="0" z="1.5" />
+		<ROTATION axis="x" angle="120" />
+		<SCALE sx="0.5" sy="0.10" sz="0.5" />
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1c" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BRACO_ESQUERDO">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="laranja" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <TRANSLATION x="0" y="0" z="-1.5" />
+		<ROTATION axis="x" angle="-120" />
+		<SCALE sx="0.5" sy="0.10" sz="0.5" />
+		
+		
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1c" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="PEITO">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <SCALE sx="2" sy="2" sz="2" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	<NODE id="BOTOES">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="preto" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="BOTAO1" />
+			<DESCENDANT id="BOTAO2" />
+			<DESCENDANT id="BOTAO3" />
+        </DESCENDANTS>
+
+    </NODE>
+	<NODE id="BOTAO1">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="1.8" y="1" z="0" />
+		<SCALE sx="0.1" sy="0.2" sz="0.1" />
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+        </DESCENDANTS>
+
+    </NODE>
+	<NODE id="BOTAO2">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="2" y="0" z="0" />
+		<SCALE sx="0.1" sy="0.2" sz="0.1" />
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+        </DESCENDANTS>
+
+    </NODE>
+	<NODE id="BOTAO3">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="1.8" y="-1" z="0" />
+		<SCALE sx="0.1" sy="0.2" sz="0.1" />
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	
+	<NODE id="CABECA2">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="branco" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <SCALE sx="2" sy="2" sz="2" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+        </DESCENDANTS>
+
+    </NODE>
+	<NODE id="CARTOLA">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="preto" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="0" y="1.8" z="0" />
+        <SCALE sx="1" sy="0.04" sz="1" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1c" />
+        </DESCENDANTS>
+
+    </NODE>
+	<NODE id="OLHOS">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="preto" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="OLHOESQUERDO" />
+			<DESCENDANT id="OLHODIREITO" />
+        </DESCENDANTS>
+
+    </NODE>
+	<NODE id="OLHOESQUERDO">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <SCALE sx="0.3" sy="0.3" sz="0.3" />
+		<TRANSLATION x="6" y="4" z="-2.5" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	<NODE id="OLHODIREITO">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="null" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+        <SCALE sx="0.3" sy="0.3" sz="0.3" />
+		<TRANSLATION x="6" y="4" z="2.5" />
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l1s" />
+			
+        </DESCENDANTS>
+
+    </NODE>
+	<NODE id="NARIZ">       <!--   defines one intermediate node; may be repeated as necessary -->
+
+        <!-- next two lines are mandatory -->
+        <MATERIAL id="laranja" />      <!-- declared material superimposes the material received from parent node -->
+                                  <!-- id="null" maintains material from parent node        -->
+        <TEXTURE id="null" />       <!-- declared texture superimposes the texture received from parent node -->
+                                  <!-- id="null" maintains texture from parent node       -->
+                                  <!-- id="clear" clears texture declaration received from parent node      -->
+
+
+        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+		<TRANSLATION x="2" y="0" z="0" />
+		<ROTATION axis="z" angle="260" />
+        <SCALE sx="0.2" sy="0.05" sz="0.2" />
+		
+
+
+        <!-- declaring descendents, ate least one node or one leaf must be present -->
+        <DESCENDANTS>
+            <DESCENDANT id="l3c" />
+        </DESCENDANTS>
+
+    </NODE>
+	
+	
+
+</NODES>
+
+
+</SCN>
