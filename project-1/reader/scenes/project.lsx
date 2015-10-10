@@ -6,8 +6,8 @@
    <rotation axis="x" angle="0" />                  <!-- initial rotation 3 -->
    <rotation axis="y" angle="0" />                  <!-- initial rotation 2 -->
    <rotation axis="z" angle="0" />                  <!-- initial rotation 1 -->
-   <scale sx="1" sy="1" sz="1" />                  <!-- initial scaling -->
-   <reference length="0" />                          <!-- axis length; "0" means no axis-->
+   <scale sx="1" sy="1" sz="1" />                   <!-- initial scaling -->
+   <reference length="10" />                          <!-- axis length; "0" means no axis-->
 </INITIALS>
 
 
@@ -158,7 +158,7 @@
 
        <!-- declaring descendents, ate least one node or one leaf must be present -->
        <DESCENDANTS>
-           <DESCENDANT id="mesa" />
+           <DESCENDANT id="face_front" />
        </DESCENDANTS>
 
    </NODE>

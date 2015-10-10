@@ -64,7 +64,7 @@ Node.prototype.parseRotation = function(XMLElement) {
 
 Node.prototype.parseScale = function(XMLElement) {
 	var scale = this.getFloat(XMLElement, ['sx', 'sy', 'sz']);
-	mat4.translate(this.transformations, this.transformations, [scale.sx, scale.sy, scale.sz]);
+	mat4.scale(this.transformations, this.transformations, [scale.sx, scale.sy, scale.sz]);
 }
 
 Node.prototype.parseTranslation = function(XMLElement) {
@@ -73,15 +73,14 @@ Node.prototype.parseTranslation = function(XMLElement) {
 }
 
 Node.prototype.display = function(sceneGraph) {
-
+	
 	sceneGraph.scene.pushMatrix();
 
 	this.applyTransformations(sceneGraph.scene);
 	this.applyAppearances();
 
-	// console.log('drawing: ' + this.id);
-
 	for (var i = 0; i < this.descendants.length; i++) {
+
 		var descendantId = this.descendants[i];
 
 		if(sceneGraph.nodes[descendantId] === undefined)

@@ -45,6 +45,7 @@ MySceneGraph.prototype.onXMLReady=function()
 
 	console.log('Done!');
 	
+	
 	this.loadedOk=true;
 	
 	// As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
@@ -54,7 +55,7 @@ MySceneGraph.prototype.onXMLReady=function()
 ////////////////////////////////////////////////
 
 MySceneGraph.prototype.display= function(){
-	this.scene.loadIdentity();
+
 	//como é um map, este leaf contem apenas a chave
 	this.graph.display();
 
