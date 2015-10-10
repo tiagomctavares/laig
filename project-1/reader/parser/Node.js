@@ -26,6 +26,7 @@ Node.prototype.parseXML = function(XMLElement) {
 
 	this.id = this.parseId(XMLElement);
 
+	// this.transformations = [];
 	this.translations = [];
 	this.rotations = [];
 	this.scales = [];
@@ -33,6 +34,7 @@ Node.prototype.parseXML = function(XMLElement) {
 	this.material = this.parseId(xmlMaterial);
 	this.texture = this.parseId(xmlTexture);
 
+	// this.parseTransformations();
 	this.parseRotations(xmlRotation);
 	this.parseScales(xmlScale);
 	this.parseTranslations(xmlTranslation);
@@ -78,11 +80,6 @@ Node.prototype.parseTranslations = function(XMLElements) {
 	};
 }
 
-// NEED TO IMPLEMENT PROPERLY
-Node.prototype.isLeaf = function(node, leaves) {
-	return leaves.hasOwnProperty(node);
-}
-
 Node.prototype.display = function(sceneGraph) {
 
 	sceneGraph.scene.pushMatrix();
@@ -103,19 +100,20 @@ Node.prototype.display = function(sceneGraph) {
 }
 
 Node.prototype.applyTransformations = function(scene) {
-	for (var index = 0; index < this.scales.length; index++) {
-		scene.scale(this.scales[index].sx, this.scales[index].sy, this.scales[index].sz);		
+	
+	for (var index = 0; index < this.translations.length; index++) {
+		scene.translate(this.translations[index].x, this.translations[index].y, this.translations[index].z);		
 	};
 	
 	for (var index = 0; index < this.rotations.length; index++) {
 		scene.rotate(this.rotations[index].angle, this.rotations[index].x, this.rotations[index].y, this.rotations[index].z);		
 	};
-	
-	for (var index = 0; index < this.translations.length; index++) {
-		scene.translate(this.translations[index].x, this.translations[index].y, this.translations[index].z);		
+
+	for (var index = 0; index < this.scales.length; index++) {
+		scene.scale(this.scales[index].sx, this.scales[index].sy, this.scales[index].sz);		
 	};
 }
 
 Node.prototype.applyAppearances = function() {
-
+	
 }
