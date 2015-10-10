@@ -37,11 +37,9 @@ MySceneGraph.prototype.onXMLReady=function()
 	this.materials = parser.materials;
 
 	this.leaves = parser.leaves;
-
-	this.rootId = parser.rootId;
 	this.nodes = parser.nodes;
 
-	this.graph = new Graph(this);
+	this.rootNode = this.nodes[parser.rootId];
 
 	console.log('Done!');
 	
@@ -57,7 +55,8 @@ MySceneGraph.prototype.onXMLReady=function()
 MySceneGraph.prototype.display= function(){
 
 	//como é um map, este leaf contem apenas a chave
-	this.graph.display();
+	
+	this.rootNode.display(this);
 
 	/*for(var leaf in this.leaves){
 		this.leaves[leaf].display();	

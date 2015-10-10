@@ -69,7 +69,7 @@ Node.prototype.parseScale = function(XMLElement) {
 
 Node.prototype.parseTranslation = function(XMLElement) {
 	var transformation = this.getCoordinates(XMLElement);
-	mat4.translate(this.transformations, this.transformations, [transformation.x, transformation.y, transformation.z]);
+	this.translate = mat4.translate(this.transformations, this.transformations, [transformation.x, transformation.y, transformation.z]);
 }
 
 Node.prototype.display = function(sceneGraph) {

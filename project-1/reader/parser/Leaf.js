@@ -35,7 +35,7 @@ Leaf.prototype.rectangle = function(scene, args) {
 
 	if(x2 != x2 || y2 != y2) return "O valor de x2: " + x2 + "ou de y2: " + y2 + "não é valido.";
 
-	return new MyQuad(scene, -0.5, -0.5, 0.5, 0.5);
+	return new MyQuad(scene, x1, y1, x2, y2);
 };
 
 Leaf.prototype.cylinder = function(scene, args) {

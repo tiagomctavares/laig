@@ -158,7 +158,7 @@
 
        <!-- declaring descendents, ate least one node or one leaf must be present -->
        <DESCENDANTS>
-           <DESCENDANT id="face_front" />
+           <DESCENDANT id="mesa" />
        </DESCENDANTS>
 
    </NODE>
