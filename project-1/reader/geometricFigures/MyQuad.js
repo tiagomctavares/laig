@@ -1,4 +1,4 @@
-/**
+﻿/**
  * MyQuad
  * @param gl {WebGLRenderingContext}
  * @constructor
@@ -7,9 +7,9 @@ function MyQuad(scene, x1,y1, x2, y2) {
 	CGFobject.call(this,scene);
 
 	this.minX = x1;
-	this.minY = y1;
+	this.maxY = y1;
 	this.maxX = x2;
-	this.maxY = y2;
+	this.minY = y2;
 
 	this.initBuffers();
 };
