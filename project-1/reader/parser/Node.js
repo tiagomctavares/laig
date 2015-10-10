@@ -10,9 +10,7 @@ Node.prototype = Object.create(BaseParserObject.prototype);
 Node.prototype.parseXML = function(XMLElement) {
 	var xmlMaterial = XMLElement.getElementsByTagName('MATERIAL')[0];
 	var xmlTexture = XMLElement.getElementsByTagName('TEXTURE')[0];
-	/*var xmlTranslation = XMLElement.getElementsByTagName('TRANSLATION');
-	var xmlRotation = XMLElement.getElementsByTagName('ROTATION');
-	var xmlScale = XMLElement.getElementsByTagName('SCALE');*/
+
 	var xmlDescendants = XMLElement.getElementsByTagName('DESCENDANTS')[0];
 	xmlDescendants = xmlDescendants.getElementsByTagName('DESCENDANT');
 
@@ -61,18 +59,17 @@ Node.prototype.parseRotation = function(XMLElement) {
 	var degrees = this.getFloat(XMLElement, 'angle');
 	rotation.angle = degrees*Math.PI/180.0;
 
-	mat4.rotate(this.transformations, rotation.angle, [rotation.x, rotation.y, rotation.z], this.transformations);
+	mat4.rotate(this.transformations, this.transformations, rotation.angle, [rotation.x, rotation.y, rotation.z]);
 }
 
 Node.prototype.parseScale = function(XMLElement) {
 	var scale = this.getFloat(XMLElement, ['sx', 'sy', 'sz']);
-	mat4.scale(this.transformations, [scale.sx, scale.sy, scale.sz], this.transformations);
+	mat4.translate(this.transformations, this.transformations, [scale.sx, scale.sy, scale.sz]);
 }
 
 Node.prototype.parseTranslation = function(XMLElement) {
 	var transformation = this.getCoordinates(XMLElement);
-	var oldMatrix = this.transformations;
-	mat4.translate(oldMatrix, [transformation.x, transformation.y, transformation.z], this.transformations);
+	mat4.translate(this.transformations, this.transformations, [transformation.x, transformation.y, transformation.z]);
 }
 
 Node.prototype.display = function(sceneGraph) {
@@ -82,7 +79,7 @@ Node.prototype.display = function(sceneGraph) {
 	this.applyTransformations(sceneGraph.scene);
 	this.applyAppearances();
 
-	console.log('drawing: ' + this.id);
+	// console.log('drawing: ' + this.id);
 
 	for (var i = 0; i < this.descendants.length; i++) {
 		var descendantId = this.descendants[i];
