@@ -18,18 +18,11 @@ Node.prototype.parseXML = function(XMLElement) {
 
 	this.id = this.parseId(XMLElement);
 
-	this.transformations = [];
-	/*this.translations = [];
-	this.rotations = [];
-	this.scales = [];*/
+	this.transformations = mat4.create();
+	mat4.identity(this.transformations);
 
 	this.material = this.parseId(xmlMaterial);
 	this.texture = this.parseId(xmlTexture);
-
-	// this.parseTransformations();
-	/*this.parseRotations(xmlRotation);
-	this.parseScales(xmlScale);
-	this.parseTranslations(xmlTranslation);*/
 	this.parseTransformations(XMLElement);
 
 	this.parseDescendants(xmlDescendants);
@@ -44,22 +37,16 @@ Node.prototype.parseDescendants = function(XMLElements) {
 
 Node.prototype.parseTransformations = function(XMLElement) {
 	var children = XMLElement.children;
-	var counter = 0;
+
 	for (var index = 0; index < children.length; index++) {
 		if(children[index].tagName == this.transformationsTypes[0]) {
-			this.transformations[counter] = this.parseRotation(children[index]);
-			this.transformations[counter].type = this.transformationsTypes[0];
-			counter++;
+			this.parseRotation(children[index]);
 		}
 		else if(children[index].tagName == this.transformationsTypes[1]) {
-			this.transformations[counter] = this.parseTranslation(children[index]);
-			this.transformations[counter].type = this.transformationsTypes[1];
-			counter++;
+			this.parseTranslation(children[index]);
 		}
 		else if(children[index].tagName == this.transformationsTypes[2]) {
-			this.transformations[counter] = this.parseScale(children[index]);
-			this.transformations[counter].type = this.transformationsTypes[2];
-			counter++;
+			this.parseScale(children[index]);
 		}
 	}
 }
@@ -70,21 +57,22 @@ Node.prototype.parseRotation = function(XMLElement) {
 	rotation.x = rotation.y = rotation.z = 0
 	var axis = this.getString(XMLElement, 'axis');
 	rotation[axis] = 1;
+
 	var degrees = this.getFloat(XMLElement, 'angle');
-	rotation.angle = degrees*(pi/180.0);
-	rotation.id = 'ROTATION';
-	return rotation;
+	rotation.angle = degrees*Math.PI/180.0;
+
+	mat4.rotate(this.transformations, rotation.angle, [rotation.x, rotation.y, rotation.z], this.transformations);
 }
 
 Node.prototype.parseScale = function(XMLElement) {
 	var scale = this.getFloat(XMLElement, ['sx', 'sy', 'sz']);
-
-	return scale;
+	mat4.scale(this.transformations, [scale.sx, scale.sy, scale.sz], this.transformations);
 }
 
 Node.prototype.parseTranslation = function(XMLElement) {
 	var transformation = this.getCoordinates(XMLElement);
-	return transformation;
+	var oldMatrix = this.transformations;
+	mat4.translate(oldMatrix, [transformation.x, transformation.y, transformation.z], this.transformations);
 }
 
 Node.prototype.display = function(sceneGraph) {
@@ -93,6 +81,8 @@ Node.prototype.display = function(sceneGraph) {
 
 	this.applyTransformations(sceneGraph.scene);
 	this.applyAppearances();
+
+	console.log('drawing: ' + this.id);
 
 	for (var i = 0; i < this.descendants.length; i++) {
 		var descendantId = this.descendants[i];
@@ -107,19 +97,7 @@ Node.prototype.display = function(sceneGraph) {
 }
 
 Node.prototype.applyTransformations = function(scene) {
-	for (var index = 0; index < this.transformations.length; index++) {
-		var transformation = this.transformations[index];
-
-		if(transformation.type == this.transformationsTypes[0]) {
-			scene.rotate(transformation.angle, transformation.x, transformation.y, transformation.z);
-		}
-		else if(transformation.type == this.transformationsTypes[1]) {
-			scene.translate(transformation.x, transformation.y, transformation.z);	
-		}
-		else if(transformation.type == this.transformationsTypes[2]) {
-			scene.scale(transformation.sx, transformation.sy, transformation.sz);		
-		}
-	}
+	scene.multMatrix(this.transformations);
 }
 
 Node.prototype.applyAppearances = function() {

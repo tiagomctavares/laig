@@ -54,7 +54,7 @@ MySceneGraph.prototype.onXMLReady=function()
 ////////////////////////////////////////////////
 
 MySceneGraph.prototype.display= function(){
-
+	this.scene.loadIdentity();
 	//como é um map, este leaf contem apenas a chave
 	this.graph.display();
 
