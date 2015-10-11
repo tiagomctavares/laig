@@ -74,4 +74,17 @@ MySceneGraph.prototype.onXMLError=function (message) {
 	this.loadedOk=false;
 };
 
+MySceneGraph.prototype.clearTexture = function(textureId) {
+	if(textureId == 'clear')
+		return ;
 
+	// this.textures[textureId].unbind();
+}
+
+MySceneGraph.prototype.applyTexture = function(textureId) {
+	this.textures[textureId].apply();
+}
+
+MySceneGraph.prototype.bindMaterial = function(materialId) {
+	this.materials[materialId].apply();
+}

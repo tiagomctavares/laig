@@ -72,12 +72,11 @@ Node.prototype.parseTranslation = function(XMLElement) {
 	this.translate = mat4.translate(this.transformations, this.transformations, [transformation.x, transformation.y, transformation.z]);
 }
 
-Node.prototype.display = function(sceneGraph) {
-	
+Node.prototype.display = function(sceneGraph, parentNode) {	
 	sceneGraph.scene.pushMatrix();
 
 	this.applyTransformations(sceneGraph.scene);
-	this.applyAppearances();
+	this.applyAppearance(sceneGraph, parentNode);
 
 	for (var i = 0; i < this.descendants.length; i++) {
 
@@ -86,7 +85,7 @@ Node.prototype.display = function(sceneGraph) {
 		if(sceneGraph.nodes[descendantId] === undefined)
 			sceneGraph.leaves[descendantId].display(sceneGraph);
 		else
-			sceneGraph.nodes[descendantId].display(sceneGraph);
+			sceneGraph.nodes[descendantId].display(sceneGraph, this);
 	}
 
 	sceneGraph.scene.popMatrix();
@@ -96,6 +95,22 @@ Node.prototype.applyTransformations = function(scene) {
 	scene.multMatrix(this.transformations);
 }
 
-Node.prototype.applyAppearances = function() {
-
+Node.prototype.applyAppearance = function(sceneGraph, parentNode) {
+	// Material
+	if(this.material != 'null')
+		sceneGraph.bindMaterial(this.material);
+	
+	if(this.texture == 'clear' && parentNode !== undefined) {
+		sceneGraph.clearTexture(parentNode.texture);
+	}
+	else if(this.texture == 'null' && parentNode !== undefined) {
+		if(parentNode.texture != 'null') {
+			// Setting texture for next call
+			this.texture = parentNode.texture;
+			// Apply
+			sceneGraph.applyTexture(parentNode.texture);
+		}
+	} else if(this.texture != 'clear' && this.texture != 'null'){
+		sceneGraph.applyTexture(this.texture);
+	}
 }
