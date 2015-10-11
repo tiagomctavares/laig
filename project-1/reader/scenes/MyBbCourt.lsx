@@ -67,62 +67,62 @@
 
 	<TEXTURES>
 		<TEXTURE id="text_piso">
-			<file path="scenes/images/lakers.jpg" />
+			<file path="images/lakers.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
 		
 		<TEXTURE id="text_tapete">
-			<file path="scenes/images/tapete_preto.jpg" />
+			<file path="images/tapete_preto.jpg" />
 			<amplif_factor s="0.2" t="0.4" />
 		</TEXTURE>
 		
 		<TEXTURE id="text_rede">
-			<file path="scenes/images/rede2.jpg" />
+			<file path="images/rede2.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
 		
 		<TEXTURE id="text_tab">
-			<file path="scenes/images/hoop.jpg" />
+			<file path="images/hoop.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
 		
 		<TEXTURE id="text_marcador">
-			<file path="scenes/images/scoreboard.jpg" />
+			<file path="images/scoreboard.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
 		
 		<TEXTURE id="text_banco">
-			<file path="scenes/images/madeira_branca.jpg" />
+			<file path="images/madeira_branca.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
 
 		<TEXTURE id="papel_parede">
-			<file path="scenes/images/fundo.jpg" />
+			<file path="images/fundo.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
 		
 		<TEXTURE id="text_parede">
-			<file path="scenes/images/possivel.jpg" />
+			<file path="images/possivel.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
 				
 		<TEXTURE id="text_bola">
-			<file path="scenes/images/basket.jpg" />
+			<file path="images/basket.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
 		
 		<TEXTURE id="text_bola2">
-			<file path="scenes/images/ball.png" />
+			<file path="images/ball.png" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
 
 		<TEXTURE id="text_bancada">
-			<file path="scenes/images/madeira_branca.jpg" />
+			<file path="images/madeira_branca.jpg" />
 			<amplif_factor s="0.5" t="1.0" />
 		</TEXTURE>
 		
 		<TEXTURE id="text_escada">
-			<file path="scenes/images/metal.jpg" />
+			<file path="images/metal.jpg" />
 			<amplif_factor s="1.0" t="3.0" />
 		</TEXTURE>
 	</TEXTURES>
@@ -280,8 +280,8 @@
 			<DESCENDANT id="g_diagonal2" />
 			<DESCENDANT id="g_diagonal3" />
 			<DESCENDANT id="g_diagonal4" />
-			<DESCENDANT id="g_diagonal5" />
-			<DESCENDANT id="g_diagonal6" />
+			<!--<DESCENDANT id="g_diagonal5" />-->
+			<!--<DESCENDANT id="g_diagonal6" />-->
 		</DESCENDANTS>
 	</NODE>
 	
