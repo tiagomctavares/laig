@@ -1,5 +1,5 @@
 function Texture(reader, XMLElement) {
-	this.TEXTURE_PATH = '';
+	this.TEXTURE_PATH = 'scenes/';
 	this.reader = reader;
 	// Parent Class
 	BaseParserObject.call(this, reader);

@@ -29,8 +29,6 @@ XMLscene.prototype.init = function (application) {
 XMLscene.prototype.initLights = function(lights) {
 	this.shader.bind();
 
-	console.log(this);
-
 	for (var index = 0; index < lights.length; index++) {
 		this.lights[index] = lights[index].bindInit(this.lights[index]);
 
