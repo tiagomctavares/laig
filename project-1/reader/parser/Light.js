@@ -18,8 +18,7 @@ Light.prototype.parsePosition = function(XMLElement) {
 	this.position = this.getCoordinates(XMLElement, ['x', 'y', 'z', 'w']);
 }
 
-Light.prototype.toCGF = function(scene) {
-	var light = new CGFlight(scene, this.id);
+Light.prototype.bindInit = function(light) {
 
 	light.setPosition(this.position.x, this.position.y, this.position.z, this.position.w);
 	light.setAmbient(this.ambient.r, this.ambient.g, this.ambient.b, this.ambient.a);

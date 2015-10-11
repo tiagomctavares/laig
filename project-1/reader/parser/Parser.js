@@ -3,7 +3,7 @@ function Parser(reader, scene, rootElement) {
 	this.reader = reader;
 	this.scene = scene;
 
-	this.lights = {};
+	this.lights = [];
 	this.textures = {};
 	this.materials = {};
 	this.leaves = {};
@@ -48,8 +48,7 @@ Parser.prototype.loadLights = function() {
 	var xmlLights = node.getElementsByTagName('LIGHT');
 
 	for (var index = 0; index < xmlLights.length; ++index) {
-		var light = new Light(this.reader, xmlLights[index]);
-		this.lights[light.id] = light.toCGF(this.scene);
+		this.lights[index] = new Light(this.reader, xmlLights[index]);
 	}
 
 	console.log('DONE!');

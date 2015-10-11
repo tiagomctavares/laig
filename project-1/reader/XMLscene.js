@@ -7,11 +7,10 @@ XMLscene.prototype = Object.create(CGFscene.prototype);
 XMLscene.prototype.constructor = XMLscene;
 
 XMLscene.prototype.init = function (application) {
+
     CGFscene.prototype.init.call(this, application);
 
     this.initCameras();
-
-    this.initLights();
 
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
@@ -19,55 +18,35 @@ XMLscene.prototype.init = function (application) {
     this.gl.enable(this.gl.DEPTH_TEST);
 	this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
+
+    this.enableTextures(true);
     
 	this.axis=new CGFaxis(this);
-
-	this.numeroLuzes = 1;
-
-	this.enableTextures(true);
-};
-
-XMLscene.prototype.initLights = function () {
-
-    this.shader.bind();
-
-	this.lights[0].setPosition(2, 3, 3, 1);
-    this.lights[0].setDiffuse(1.0,1.0,1.0,1.0);
-    this.lights[0].update();
- 
-    this.shader.unbind();
 };
 
 //////////////////////////////////////////////////
 
-XMLscene.prototype.arrayLights = function (enabled, position, ambient, diffuse, specular) {
-
+XMLscene.prototype.initLights = function(lights) {
 	this.shader.bind();
 
-	var luz = this.lights[this.numeroLuzes];
+	console.log(this);
 
-	luz.setPosition(position[0],position[1], position[2], position[3]);
-	luz.setAmbient(ambient[0],ambient[1], ambient[2], ambient[3]);
-	luz.setDiffuse(diffuse[0],diffuse[1], diffuse[2], diffuse[3]);
-	luz.setSpecular(specular[0],specular[1], specular[2], specular[3]);
+	for (var index = 0; index < lights.length; index++) {
+		this.lights[index] = lights[index].bindInit(this.lights[index]);
 
+		this.lights[index].setVisible(true);
+		this.lights[index].update();
+	};
 
-	if(enabled == true)
-		luz.enable();
-	else 
-		luz.disable();
-
-	luz.setVisible(true);
-	luz.update();
 	this.shader.unbind();
-
-	return this.lights[this.numeroLuzes++];
- 
-};
+}
 
 
-
-//////////////////////////////////////////////////
+XMLscene.prototype.updateLights = function() {
+	for (var index = 0; index < this.lights.length; index++) {
+		this.lights[index].update();
+	};
+}
 
 XMLscene.prototype.initCameras = function () {
     this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
@@ -140,9 +119,6 @@ XMLscene.prototype.onGraphLoaded = function ()
 	
 	// SET GLOBAL ILLUMINATION
 	this.setGlobalAmbientLight.apply(this, this.ambient);
-
-	this.lights[0].setVisible(true);
-    this.lights[0].enable();
 };
 
 XMLscene.prototype.display = function () {
@@ -175,21 +151,12 @@ XMLscene.prototype.display = function () {
 	
 	// ---- END Background, camera and axis setup
 
-	// it is important that things depending on the proper loading of the graph
-	// only get executed after the graph has loaded correctly.
-	// This is one possible way to do it
 	if (this.graph.loadedOk)
 	{
-		//this.lights[0].update();
-
-		for(var i = 0; i < this.numeroLuzes; i++){
-			this.lights[i].update();
-		}
+		this.updateLights();
 
 		this.graph.display();
 	};
-
-	//chamar funçao do graph que faz o display
 
     this.shader.unbind();
 };

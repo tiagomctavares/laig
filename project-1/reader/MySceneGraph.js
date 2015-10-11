@@ -42,8 +42,9 @@ MySceneGraph.prototype.onXMLReady=function()
 	this.rootNode = this.nodes[parser.rootId];
 
 	console.log('Done!');
-	
-	
+
+	this.scene.initLights(this.lights);
+		
 	this.loadedOk=true;
 	
 	// As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
@@ -52,10 +53,10 @@ MySceneGraph.prototype.onXMLReady=function()
 
 ////////////////////////////////////////////////
 
-MySceneGraph.prototype.display= function(){
+MySceneGraph.prototype.display= function()
+{
 
 	//como é um map, este leaf contem apenas a chave
-	
 	this.rootNode.display(this);
 
 	/*for(var leaf in this.leaves){
