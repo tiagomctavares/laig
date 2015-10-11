@@ -56,17 +56,13 @@ Initials.prototype.getScaleArray = function() {
 }
 
 Initials.prototype.toCGF = function(scene) {
-
 	scene.setFrustum(this.frustum.near, this.frustum.far);
 
 	scene.setSceneScale(this.getScaleArray());
 	scene.setSceneTranslate(this.getTranslationArray());
 	scene.setSceneRotation(this.getRotationArray());
-
-	// console.log(this.reference);
+	
 	scene.axis = new CGFaxis(scene, this.reference);
-
-	// scene.axis = ;
 
 	return scene;
 }

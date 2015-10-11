@@ -64,13 +64,10 @@ XMLscene.prototype.setAmbient = function(rgba) {
 	this.ambient = rgba;
 };
 
-
-
 XMLscene.prototype.setFrustum = function(near, far) {
 	this.frustumNear = near;
 	this.frustumFar = far;
 };
-
 
 XMLscene.prototype.setSceneScale = function(vec) {
 	this.sceneScale = vec;
@@ -93,33 +90,27 @@ XMLscene.prototype.setDefaultAppearance = function () {
     this.setShininess(10.0);	
 };
 
-XMLscene.prototype.setEmission = function(rgba) {
-	this.emission = rgba;
-};
-
-XMLscene.prototype.setShininess = function(s) {
-	this.ambient = s;
-};
-
-XMLscene.prototype.setSpecular = function(rgba) {
-	this.specular = rgba;
-};
-
 // Handler called when the graph is finally loaded. 
 // As loading is asynchronous, this may be called already after the application has started the run loop
 XMLscene.prototype.onGraphLoaded = function () 
 {
-	//this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
+	this.updateInitials();
+	this.updateIllumination();
+};
 
-	//this.camera.near = this.frustumNear;
-	//this.camera.far = this.frustumFar;
+XMLscene.prototype.updateInitials = function() {
+	this.camera.far = this.frustumFar;
+	this.camera.near = this.frustumNear;
+}
 
+XMLscene.prototype.updateIllumination = function() {
 	// SET BACKGROUND
 	this.gl.clearColor(this.background[0], this.background[1], this.background[2], this.background[3]);
 	
 	// SET GLOBAL ILLUMINATION
+	// this.setGlobalAmbientLight(this.ambient[0], this.ambient[1], this.ambient[2], this.ambient[3]);
 	this.setGlobalAmbientLight.apply(this, this.ambient);
-};
+}
 
 XMLscene.prototype.display = function () {
 	// ---- BEGIN Background, camera and axis setup
@@ -160,4 +151,3 @@ XMLscene.prototype.display = function () {
 
     this.shader.unbind();
 };
-

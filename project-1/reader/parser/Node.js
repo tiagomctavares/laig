@@ -101,10 +101,12 @@ Node.prototype.applyAppearance = function(sceneGraph, parentNode) {
 		sceneGraph.bindMaterial(this.material);
 	
 	if(this.texture == 'clear' && parentNode !== undefined) {
-		sceneGraph.clearTexture(parentNode.texture);
+		if(parentNode.texture != 'clear' && parentNode.texture != 'null') {
+			sceneGraph.clearTexture(parentNode.texture);
+		}
 	}
 	else if(this.texture == 'null' && parentNode !== undefined) {
-		if(parentNode.texture != 'null') {
+		if(parentNode.texture != 'null' && parentNode.texture != 'clear') {
 			// Setting texture for next call
 			this.texture = parentNode.texture;
 			// Apply
