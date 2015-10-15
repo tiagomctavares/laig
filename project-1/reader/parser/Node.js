@@ -72,24 +72,28 @@ Node.prototype.parseTranslation = function(XMLElement) {
 	this.translate = mat4.translate(this.transformations, this.transformations, [transformation.x, transformation.y, transformation.z]);
 }
 
-Node.prototype.display = function(sceneGraph, parentNode) {	
+Node.prototype.display = function(sceneGraph) {	
 	sceneGraph.scene.pushMatrix();
 
 	this.applyTransformations(sceneGraph.scene);
-	this.applyAppearance(sceneGraph, parentNode);
+	this.applyAppearance(sceneGraph);
 
 	for (var i = 0; i < this.descendants.length; i++) {
 
 		var descendantId = this.descendants[i];
 
-		//console.log("descendantId" + descendantId);
+		if (descendantId in sceneGraph.leaves) {
 
-		if (descendantId in sceneGraph.leaves)
+			// Updates scene to proper appearance
+			sceneGraph.updateAppearance();
 			sceneGraph.leaves[descendantId].display(sceneGraph);
-		else if(descendantId in sceneGraph.nodes)
-			sceneGraph.nodes[descendantId].display(sceneGraph, this);
+		}
+		else if(descendantId in sceneGraph.nodes) {
+			sceneGraph.nodes[descendantId].display(sceneGraph);
+		}
 	}
 
+	this.removeAppearance(sceneGraph);
 	sceneGraph.scene.popMatrix();
 }
 
@@ -97,42 +101,22 @@ Node.prototype.applyTransformations = function(scene) {
 	scene.multMatrix(this.transformations);
 }
 
-Node.prototype.applyAppearance = function(sceneGraph, parentNode) {
-	
-	if(parentNode !== undefined)
-		this.parentNode = parentNode;
-	
-	// Material
+Node.prototype.applyAppearance = function(sceneGraph) {
+
 	if(this.material != 'null')
 		sceneGraph.applyMaterial(this.material);
-	
-	if(this.texture == 'clear' && parentNode !== undefined) {
-		sceneGraph.clearTexture();
-	}
-	else if(this.texture == 'null') {
-		var parentTextureId = this.getParentTexture();
-		
-		if(parentTextureId !== undefined) {
-			// Apply
-			sceneGraph.applyTexture(parentTextureId);
-		}
-	} else if(this.texture != 'clear' && this.texture != 'null'){
-		sceneGraph.applyTexture(this.texture);
-	}
+
+	if(this.texture != 'null')
+		if(this.texture == 'clear')
+			sceneGraph.applyTexture(null);
+		else
+			sceneGraph.applyTexture(this.texture);
 }
 
-Node.prototype.getParentTexture = function() {
-	// If parent does not exist
-	if(this.parentNode === undefined)
-		return undefined;
+Node.prototype.removeAppearance = function(sceneGraph) {
+	if(this.material != 'null')
+		sceneGraph.removeMaterial();
 
-	// If texture is clear doesn't apply new texture
-	if(this.parentNode.texture == 'clear')
-		return undefined;
-
-	// If texture is null then fetch next parent
-	if(this.parentNode.texture == 'null')
-		return this.parentNode.getParentTexture();
-
-	return this.parentNode.texture;
+	if(this.texture != 'null')
+		sceneGraph.removeTexture();
 }

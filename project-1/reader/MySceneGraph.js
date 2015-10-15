@@ -75,14 +75,25 @@ MySceneGraph.prototype.onXMLError=function (message) {
 	this.loadedOk=false;
 };
 
-MySceneGraph.prototype.clearTexture = function(textureId) {
-	this.scene.applyTexture(null);
-}
-
 MySceneGraph.prototype.applyTexture = function(textureId) {
-	this.scene.applyTexture(this.textures[textureId]);
+	if(textureId === null)
+		this.scene.pushTexture(null);
+	else
+		this.scene.pushTexture(this.textures[textureId]);
 }
 
 MySceneGraph.prototype.applyMaterial = function(materialId) {
-	this.scene.applyAppearance(this.materials[materialId]);
+	this.scene.pushAppearance(this.materials[materialId]);
+}
+
+MySceneGraph.prototype.removeMaterial = function() {
+	this.scene.popAppearance();
+}
+
+MySceneGraph.prototype.removeTexture = function(materialId) {
+	this.scene.popTexture();
+}
+
+MySceneGraph.prototype.updateAppearance = function() {
+	this.scene.updateAppearance();
 }

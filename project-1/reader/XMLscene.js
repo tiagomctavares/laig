@@ -10,6 +10,9 @@ XMLscene.prototype.init = function (application) {
 
     CGFscene.prototype.init.call(this, application);
 
+    this.initAppearancesStack();
+    this.initTexturesStack();
+
     this.initCameras();
 
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -25,6 +28,34 @@ XMLscene.prototype.init = function (application) {
 };
 
 //////////////////////////////////////////////////
+
+XMLscene.prototype.initAppearancesStack = function() {
+	this.appearancesStack = new Array();
+	this.appearancesStack.push(this.createDefaultAppearance());
+}
+
+XMLscene.prototype.initTexturesStack = function() {
+
+	this.texturesStack = new Array();
+	this.texturesStack.push(null);
+
+}
+
+XMLscene.prototype.pushTexture = function(texture) {
+	this.texturesStack.push(texture);
+}
+
+XMLscene.prototype.popTexture = function() {
+	this.texturesStack.pop();
+}
+
+XMLscene.prototype.pushAppearance = function(appearance) {
+	this.appearancesStack.push(appearance);
+}
+
+XMLscene.prototype.popAppearance = function() {
+	this.appearancesStack.pop();
+}
 
 XMLscene.prototype.initLights = function(lights) {
 	this.shader.bind();
@@ -81,11 +112,15 @@ XMLscene.prototype.setSceneRotation = function(vec) {
 	this.sceneRotateZ = vec[2];
 };
 
-XMLscene.prototype.setDefaultAppearance = function () {
-    this.setAmbient(0.2, 0.4, 0.8, 1.0);
-    this.setDiffuse(0.2, 0.4, 0.8, 1.0);
-    this.setSpecular(0.2, 0.4, 0.8, 1.0);
-    this.setShininess(10.0);	
+XMLscene.prototype.createDefaultAppearance = function (appearance) {
+	var appearance = new CGFappearance(this);
+    
+    appearance.setAmbient(0.2, 0.4, 0.8, 1.0);
+    appearance.setDiffuse(0.2, 0.4, 0.8, 1.0);
+    appearance.setSpecular(0.2, 0.4, 0.8, 1.0);
+    appearance.setShininess(10.0);	
+
+    return appearance;
 };
 
 // Handler called when the graph is finally loaded. 
@@ -133,8 +168,6 @@ XMLscene.prototype.display = function () {
 	// Draw axis
 	this.axis.display();
 
-	this.setDefaultAppearance();
-
 	//this.quad.display();
 	//this.semiEsfera.display();
 	
@@ -150,12 +183,16 @@ XMLscene.prototype.display = function () {
     this.shader.unbind();
 };
 
-XMLscene.prototype.applyAppearance = function(material) {
-	this.actualMaterial = material;
-	this.actualMaterial.apply();
-};
+XMLscene.prototype.updateAppearance = function() {
+	// Get Last
+	var appearance = this.appearancesStack.pop();
+	var texture = this.texturesStack.pop();
 
-XMLscene.prototype.applyTexture = function(texture) {
-	this.actualMaterial.setTexture(texture);
-	this.actualMaterial.apply();
+	// Apply
+	appearance.setTexture(texture);
+	appearance.apply();
+
+	// Add it back to Stack
+	this.appearancesStack.push(appearance);
+	this.texturesStack.push(texture);
 };
