@@ -27,7 +27,7 @@ Texture.prototype.toCGF = function(scene) {
 
 	var appearance = new CGFappearance(scene);
 	appearance.setTexture(texture);
-	appearance.setTextureWrap(this.amplif_factor.s, this.amplif_factor.t);
+	//appearance.setTextureWrap(this.amplif_factor.s, this.amplif_factor.t);
 
 	return appearance;
 }

@@ -82,9 +82,11 @@ Node.prototype.display = function(sceneGraph, parentNode) {
 
 		var descendantId = this.descendants[i];
 
-		if(sceneGraph.nodes[descendantId] === undefined)
+		//console.log("descendantId" + descendantId);
+
+		if (descendantId in sceneGraph.leaves)
 			sceneGraph.leaves[descendantId].display(sceneGraph);
-		else
+		else if(descendantId in sceneGraph.nodes)
 			sceneGraph.nodes[descendantId].display(sceneGraph, this);
 	}
 

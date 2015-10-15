@@ -48,13 +48,13 @@ Leaf.prototype.cylinder = function(scene, args) {
 	if(altura != altura || raio_base != raio_base || raio_topo != raio_topo)
 		return "O valor da altura: " + altura + "ou do raio_base" + raio_base + "ou do raio_topo" + raio_topo + "não é valido." ;
 
-	var slices = parseInt(args[3]);
-	var stacks = parseInt(args[4]);
+	var stacks = parseInt(args[3]);
+	var slices = parseInt(args[4]);
 
 	if(slices != slices || stacks != stacks)
 		return "O valor das slices" + slices + "ou das stacks" + stacks + "não é valido." ;
 
-	return new MyCylinder(scene, altura, raio_base, raio_topo, slices, stacks);
+	return new MyCylinder(scene, altura, raio_base, raio_topo, stacks, slices);
 };
 
 Leaf.prototype.sphere = function(scene, args) {
