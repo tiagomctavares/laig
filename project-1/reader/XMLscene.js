@@ -58,11 +58,13 @@ XMLscene.prototype.popAppearance = function() {
 }
 
 XMLscene.prototype.initLights = function(lights) {
+	
 	this.shader.bind();
 
 	for (var index = 0; index < lights.length; index++) {
 		this.lights[index] = lights[index].bindInit(this.lights[index]);
 
+		this.interface.insertLight(index, lights[index].id, lights[index].enable);
 		this.lights[index].setVisible(true);
 		this.lights[index].update();
 	};
@@ -75,6 +77,17 @@ XMLscene.prototype.updateLights = function() {
 	for (var index = 0; index < this.lights.length; index++) {
 		this.lights[index].update();
 	};
+}
+
+XMLscene.prototype.setLight = function(id, enable) {
+	if(enable)
+		this.lights[id].enable();
+	else
+		this.lights[id].disable();
+}
+
+XMLscene.prototype.setInterface = function(myInterface){
+	this.interface=myInterface;
 }
 
 XMLscene.prototype.initCameras = function () {

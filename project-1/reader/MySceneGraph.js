@@ -21,7 +21,7 @@ function MySceneGraph(filename, scene) {
 	this.materials = {};
 	this.leaves = {};
 	 
-	this.reader.open('scenes/'+filename, this);  
+	this.reader.open('scenes/'+filename, this); 	
 }
 
 /*
