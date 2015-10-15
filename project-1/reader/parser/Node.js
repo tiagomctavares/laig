@@ -98,23 +98,41 @@ Node.prototype.applyTransformations = function(scene) {
 }
 
 Node.prototype.applyAppearance = function(sceneGraph, parentNode) {
+	
+	if(parentNode !== undefined)
+		this.parentNode = parentNode;
+	
 	// Material
 	if(this.material != 'null')
-		sceneGraph.bindMaterial(this.material);
+		sceneGraph.applyMaterial(this.material);
 	
 	if(this.texture == 'clear' && parentNode !== undefined) {
-		if(parentNode.texture != 'clear' && parentNode.texture != 'null') {
-			sceneGraph.clearTexture(parentNode.texture);
-		}
+		sceneGraph.clearTexture();
 	}
-	else if(this.texture == 'null' && parentNode !== undefined) {
-		if(parentNode.texture != 'null' && parentNode.texture != 'clear') {
-			// Setting texture for next call
-			this.texture = parentNode.texture;
+	else if(this.texture == 'null') {
+		var parentTextureId = this.getParentTexture();
+		
+		if(parentTextureId !== undefined) {
 			// Apply
-			sceneGraph.applyTexture(parentNode.texture);
+			sceneGraph.applyTexture(parentTextureId);
 		}
 	} else if(this.texture != 'clear' && this.texture != 'null'){
 		sceneGraph.applyTexture(this.texture);
 	}
+}
+
+Node.prototype.getParentTexture = function() {
+	// If parent does not exist
+	if(this.parentNode === undefined)
+		return undefined;
+
+	// If texture is clear doesn't apply new texture
+	if(this.parentNode.texture == 'clear')
+		return undefined;
+
+	// If texture is null then fetch next parent
+	if(this.parentNode.texture == 'null')
+		return this.parentNode.getParentTexture();
+
+	return this.parentNode.texture;
 }

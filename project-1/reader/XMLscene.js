@@ -149,3 +149,13 @@ XMLscene.prototype.display = function () {
 
     this.shader.unbind();
 };
+
+XMLscene.prototype.applyAppearance = function(material) {
+	this.actualMaterial = material;
+	this.actualMaterial.apply();
+};
+
+XMLscene.prototype.applyTexture = function(texture) {
+	this.actualMaterial.setTexture(texture);
+	this.actualMaterial.apply();
+};

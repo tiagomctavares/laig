@@ -76,16 +76,13 @@ MySceneGraph.prototype.onXMLError=function (message) {
 };
 
 MySceneGraph.prototype.clearTexture = function(textureId) {
-	if(textureId == 'clear')
-		return ;
-
-	// this.textures[textureId].unbind();
+	this.scene.applyTexture(null);
 }
 
 MySceneGraph.prototype.applyTexture = function(textureId) {
-	this.textures[textureId].apply();
+	this.scene.applyTexture(this.textures[textureId]);
 }
 
-MySceneGraph.prototype.bindMaterial = function(materialId) {
-	this.materials[materialId].apply();
+MySceneGraph.prototype.applyMaterial = function(materialId) {
+	this.scene.applyAppearance(this.materials[materialId]);
 }

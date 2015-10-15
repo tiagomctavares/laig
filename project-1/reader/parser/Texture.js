@@ -24,10 +24,11 @@ Texture.prototype.parseFile = function(XMLElement) {
 
 Texture.prototype.toCGF = function(scene) {
 	var texture = new CGFtexture(scene, this.file);
+	texture.s = this.amplif_factor.s;
+	texture.t = this.amplif_factor.t;
+	// var appearance = new CGFappearance(scene);
+	// appearance.setTexture(texture);
+	// appearance.setTextureWrap(this.amplif_factor.s, this.amplif_factor.t);
 
-	var appearance = new CGFappearance(scene);
-	appearance.setTexture(texture);
-	//appearance.setTextureWrap(this.amplif_factor.s, this.amplif_factor.t);
-
-	return appearance;
+	return texture;
 }

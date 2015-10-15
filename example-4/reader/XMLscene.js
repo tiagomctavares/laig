@@ -86,4 +86,3 @@ XMLscene.prototype.display = function () {
 
     this.shader.unbind();
 };
-
