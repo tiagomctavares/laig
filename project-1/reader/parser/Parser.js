@@ -1,4 +1,4 @@
-function Parser(reader, scene, rootElement) {
+function Parser(reader, scene, texturePath, rootElement) {
 	
 	this.reader = reader;
 	this.scene = scene;
@@ -10,7 +10,8 @@ function Parser(reader, scene, rootElement) {
 	this.nodes = [];
 
 	this.rootElement = this.reader.xmlDoc.documentElement;
-
+	this.texturePath = texturePath;
+	
 	this.loadInitials();
 	this.loadIlumination();
 	this.loadLights();
@@ -18,8 +19,7 @@ function Parser(reader, scene, rootElement) {
 	this.loadTextures();
 	this.loadLeaves();
 	this.loadNodes();
-
-}
+};
 
 Parser.prototype.loadInitials = function() {
 	console.log('Parsing Initials.....');
@@ -75,8 +75,8 @@ Parser.prototype.loadTextures = function() {
 	var xmlTextures = node.getElementsByTagName('TEXTURE');
 
 	for (var index = 0; index < xmlTextures.length; ++index) {
-		var texture = new Texture(this.reader, xmlTextures[index]);
-		this.textures[texture.id] = texture.toCGF(this.scene);
+		var texture = new Texture(this.reader, this.scene, xmlTextures[index], this.texturePath);
+		this.textures[texture.id] = texture;
 	}
 
 	console.log('DONE!');

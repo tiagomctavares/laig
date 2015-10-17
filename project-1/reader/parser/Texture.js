@@ -1,5 +1,6 @@
-function Texture(reader, XMLElement) {
-	this.TEXTURE_PATH = 'scenes/';
+function Texture(reader, scene, XMLElement, texturePath) {
+	console.log("texture-textureePath=" + texturePath);
+	this.TEXTURE_PATH = texturePath;
 	this.reader = reader;
 	// Parent Class
 	BaseParserObject.call(this, reader);
@@ -10,6 +11,8 @@ function Texture(reader, XMLElement) {
 	this.id = this.parseId(XMLElement);
 	this.parseFile(xmlFile);
 	this.parseAmplif_factor(xmlAmplif_factor);
+	this.texture = new CGFtexture(scene, this.file);
+	//console.log("xmlFile" + this.reader.xmlFile);
 }
 
 Texture.prototype = Object.create(BaseParserObject.prototype);
@@ -20,15 +23,4 @@ Texture.prototype.parseAmplif_factor = function(XMLElement) {
 
 Texture.prototype.parseFile = function(XMLElement) {
 	this.file = this.TEXTURE_PATH + this.getString(XMLElement, 'path');
-}
-
-Texture.prototype.toCGF = function(scene) {
-	var texture = new CGFtexture(scene, this.file);
-	texture.s = this.amplif_factor.s;
-	texture.t = this.amplif_factor.t;
-	// var appearance = new CGFappearance(scene);
-	// appearance.setTexture(texture);
-	// appearance.setTextureWrap(this.amplif_factor.s, this.amplif_factor.t);
-
-	return texture;
 }

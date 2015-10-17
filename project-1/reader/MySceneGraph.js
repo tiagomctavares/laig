@@ -21,7 +21,16 @@ function MySceneGraph(filename, scene) {
 	this.materials = {};
 	this.leaves = {};
 	 
-	this.reader.open('scenes/'+filename, this); 	
+	var lsxFile = 'scenes/'+filename;
+
+	this.reader.open(lsxFile, this); 
+
+	//substring(a,b) retorna a string compreendida entre o índice a e o índice b da string original
+	//lastIndexOf retorna o índice da última ocorrência do caracter
+	
+	this.texturePath = lsxFile.substring(0, lsxFile.lastIndexOf('/')) + '/';
+
+
 }
 
 /*
@@ -31,7 +40,7 @@ MySceneGraph.prototype.onXMLReady=function()
 {
 	console.log("LSX Loading finished.");
 
-	var parser = new Parser(this.reader, this.scene);
+	var parser = new Parser(this.reader, this.scene, this.texturePath);
 	this.lights = parser.lights;
 	this.textures = parser.textures;
 	this.materials = parser.materials;
@@ -49,6 +58,8 @@ MySceneGraph.prototype.onXMLReady=function()
 	
 	// As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
 	this.scene.onGraphLoaded();
+
+	//var Parser = new Parser(this.reader, this.scene, this.texturePath);
 };
 
 ////////////////////////////////////////////////
@@ -79,7 +90,7 @@ MySceneGraph.prototype.applyTexture = function(textureId) {
 	if(textureId === null)
 		this.scene.pushTexture(null);
 	else
-		this.scene.pushTexture(this.textures[textureId]);
+		this.scene.pushTexture(this.textures[textureId].texture);
 }
 
 MySceneGraph.prototype.applyMaterial = function(materialId) {

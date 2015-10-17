@@ -86,6 +86,10 @@ Node.prototype.display = function(sceneGraph) {
 
 			// Updates scene to proper appearance
 			sceneGraph.updateAppearance();
+			if (this.texture != 'null' && this.texture != 'clear') {
+				var thisTexture = sceneGraph.textures[this.texture];
+				sceneGraph.leaves[descendantId].updateTexCoords(thisTexture.amplif_factor.s, thisTexture.amplif_factor.t);
+			}
 			sceneGraph.leaves[descendantId].display(sceneGraph);
 		}
 		else if(descendantId in sceneGraph.nodes) {

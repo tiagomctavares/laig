@@ -1,4 +1,4 @@
-﻿/**
+/**
  * MyQuad
  * @param gl {WebGLRenderingContext}
  * @constructor
@@ -10,7 +10,8 @@ function MyQuad(scene, x1,y1, x2, y2) {
 	this.maxY = y1;
 	this.maxX = x2;
 	this.minY = y2;
-
+	this.ampS = 0.0;
+	this.ampT = 0.0;
 	this.initBuffers();
 };
 
@@ -49,11 +50,18 @@ MyQuad.prototype.initBuffers = function () {
 	this.initGLBuffers();
 };
 
-MyQuad.prototype.updateTexCoords = function(ampS, ampT)
-{
+MyQuad.prototype.updateTexCoords = function(ampS, ampT) {
+
+	if (ampS == this.ampS && ampT == this.ampT) {
+		return;
+	}
+
     // declarar novas coordenadas de textura em função dos fatores de amplificação
-   	var maxS_novo = Math.abs(this.maxX - this.minX) / ampS;
-	var maxT_novo = Math.abs(this.maxY - this.minY) / ampT;
+   	this.ampS = ampS;
+   	this.ampT = ampT;
+
+   	var maxS_novo = (this.maxX - this.minX) / this.ampS;
+	var maxT_novo = (this.maxY - this.minY) / this.ampT;
 
     this.texCoords = [
 		0.0, maxT_novo,
