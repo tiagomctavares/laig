@@ -24,6 +24,12 @@ XMLscene.prototype.init = function (application) {
 
     this.enableTextures(true);
     
+    this.rotationAxis = [];
+    this.rotationAngle = [];
+
+    this.sceneMatrix = mat4.create();
+    mat4.identity(this.sceneMatrix);
+    
 	this.axis=new CGFaxis(this);
 };
 
@@ -89,6 +95,26 @@ XMLscene.prototype.setLight = function(id, enable) {
 XMLscene.prototype.setInterface = function(myInterface){
 	this.interface=myInterface;
 }
+/*
+	Esta funcão recebe como parametros o id da rotacao = rotationId
+	a letra correspondente ao eixo de rotacao = axis
+	e ainda o valor angulo a aplicar ao eixo = angle
+
+*/
+XMLscene.prototype.setRotation = function(rotationId, axis, angle){
+
+	if(axis == 'x')
+		this.rotationAxis[rotationId] = [1,0,0];
+	
+	else if(axis == 'y')
+		this.rotationAxis[rotationId] = [0,1,0];
+	
+	else if(axis == 'z')
+		this.rotationAxis[rotationId] = [0,0,1];
+
+	this.rotationAngle[rotationId] = angle*Math.PI/180;
+
+}
 
 XMLscene.prototype.initCameras = function () {
     this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
@@ -119,11 +145,12 @@ XMLscene.prototype.setSceneTranslate = function(vec) {
 	this.sceneTranslate = vec;
 };
 
+/*
 XMLscene.prototype.setSceneRotation = function(vec) {
 	this.sceneRotateX = vec[0];
 	this.sceneRotateY = vec[1];
 	this.sceneRotateZ = vec[2];
-};
+};*/
 
 XMLscene.prototype.createDefaultAppearance = function (appearance) {
 	var appearance = new CGFappearance(this);
@@ -142,11 +169,21 @@ XMLscene.prototype.onGraphLoaded = function ()
 {
 	this.updateInitials();
 	this.updateIllumination();
+
 };
 
 XMLscene.prototype.updateInitials = function() {
 	this.camera.far = this.frustumFar;
 	this.camera.near = this.frustumNear;
+
+	mat4.scale(this.sceneMatrix, this.sceneMatrix, this.sceneScale);
+	
+	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[0], this.rotationAxis[0]);
+	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[1], this.rotationAxis[1]);
+	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[2], this.rotationAxis[2]);
+	
+
+	mat4.translate(this.sceneMatrix, this.sceneMatrix, this.sceneTranslate);
 }
 
 XMLscene.prototype.updateIllumination = function() {
@@ -172,12 +209,9 @@ XMLscene.prototype.display = function () {
 
 	// Apply transformations corresponding to the camera position relative to the origin
 	this.applyViewMatrix();
-	this.scale.apply(this, this.sceneScale);
-	this.rotate(this.sceneRotateX, 1.0, 0.0, 0.0);
-	this.rotate(this.sceneRotateY, 0.0, 1.0, 0.0);
-	this.rotate(this.sceneRotateZ, 0.0, 0.0, 1.0);
-	this.translate.apply(this, this.sceneTranslate);
 
+	this.multMatrix(this.sceneMatrix);
+		
 	// Draw axis
 	this.axis.display();
 

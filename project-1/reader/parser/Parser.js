@@ -25,7 +25,7 @@ Parser.prototype.loadInitials = function() {
 	console.log('Parsing Initials.....');
 
 	var xmlInitials = this.rootElement.getElementsByTagName('INITIALS')[0];
-	var initials = new Initials(this.reader, xmlInitials);
+	var initials = new Initials(this.reader, xmlInitials, this.scene);
 	initials.toCGF(this.scene);
 	
 	console.log('DONE!');
