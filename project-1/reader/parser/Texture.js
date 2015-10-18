@@ -1,5 +1,5 @@
 function Texture(reader, scene, XMLElement, texturePath) {
-	console.log("texture-textureePath=" + texturePath);
+
 	this.TEXTURE_PATH = texturePath;
 	this.reader = reader;
 	// Parent Class
@@ -12,7 +12,6 @@ function Texture(reader, scene, XMLElement, texturePath) {
 	this.parseFile(xmlFile);
 	this.parseAmplif_factor(xmlAmplif_factor);
 	this.texture = new CGFtexture(scene, this.file);
-	//console.log("xmlFile" + this.reader.xmlFile);
 }
 
 Texture.prototype = Object.create(BaseParserObject.prototype);

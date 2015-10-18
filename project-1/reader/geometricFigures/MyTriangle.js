@@ -57,15 +57,20 @@ MyTriangle.prototype.initBuffers  = function() {
 
 MyTriangle.prototype.updateTexCoords = function(ampS, ampT)
 {
-	console.log("AHEUHAEUHEUAH");
+
+	if (ampS == this.ampS && ampT == this.ampT) {
+		return;
+	}
+	
     // declarar novas coordenadas de textura em função dos fatores de amplificação
+
    	this.ampS = ampS;
    	this.ampT = ampT;
 
     this.texCoords = [
-  		(this.c - this.a * this.cosBeta) / this.ampS, (1.0 - this.a * this.sinBeta) / this.ampT,
-		0.0, 1.0 / this.ampT,
-		this.c / this.ampS, 1.0 / this.ampT
+  		(this.c - this.a * this.cosBeta) / this.ampS,  (this.a * this.sinBeta) / this.ampT,
+		0.0, 0.0,
+		this.c / this.ampS, 0.0
 	];
  
     this.updateTexCoordsGLBuffers();

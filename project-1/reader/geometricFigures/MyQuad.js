@@ -27,11 +27,10 @@ MyQuad.prototype.initBuffers = function () {
 			];
 
 	this.indices = [
-            0, 1, 2, 
-			3, 2, 1
+            0, 1, 2, 3
         ];
 		
-	this.primitiveType=this.scene.gl.TRIANGLES;
+	this.primitiveType=this.scene.gl.TRIANGLE_STRIP;
 
 	this.normals = [
 		0, 0, 1,

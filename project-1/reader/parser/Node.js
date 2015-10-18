@@ -71,7 +71,7 @@ Node.prototype.parseTranslation = function(XMLElement) {
 	var transformation = this.getCoordinates(XMLElement);
 	this.translate = mat4.translate(this.transformations, this.transformations, [transformation.x, transformation.y, transformation.z]);
 }
-
+/*
 Node.prototype.display = function(sceneGraph) {	
 	sceneGraph.scene.pushMatrix();
 
@@ -99,7 +99,7 @@ Node.prototype.display = function(sceneGraph) {
 
 	this.removeAppearance(sceneGraph);
 	sceneGraph.scene.popMatrix();
-}
+}*/
 
 Node.prototype.applyTransformations = function(scene) {
 	scene.multMatrix(this.transformations);

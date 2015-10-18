@@ -69,7 +69,6 @@ XMLscene.prototype.initLights = function(lights) {
 
 	for (var index = 0; index < lights.length; index++) {
 		this.lights[index] = lights[index].bindInit(this.lights[index]);
-
 		this.interface.insertLight(index, lights[index].id, lights[index].enable);
 		this.lights[index].setVisible(true);
 		this.lights[index].update();
@@ -78,6 +77,13 @@ XMLscene.prototype.initLights = function(lights) {
 	this.shader.unbind();
 }
 
+XMLscene.prototype.applyMaterial = function(material) {
+	material.apply();
+}
+
+XMLscene.prototype.drawLeaf = function(leaf) {
+	leaf.display();
+}
 
 XMLscene.prototype.updateLights = function() {
 	for (var index = 0; index < this.lights.length; index++) {
@@ -101,6 +107,7 @@ XMLscene.prototype.setInterface = function(myInterface){
 	e ainda o valor angulo a aplicar ao eixo = angle
 
 */
+
 XMLscene.prototype.setRotation = function(rotationId, axis, angle){
 
 	if(axis == 'x')
@@ -169,20 +176,16 @@ XMLscene.prototype.onGraphLoaded = function ()
 {
 	this.updateInitials();
 	this.updateIllumination();
-
 };
 
 XMLscene.prototype.updateInitials = function() {
 	this.camera.far = this.frustumFar;
 	this.camera.near = this.frustumNear;
 
-	mat4.scale(this.sceneMatrix, this.sceneMatrix, this.sceneScale);
-	
+	mat4.scale(this.sceneMatrix, this.sceneMatrix, this.sceneScale);	
 	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[0], this.rotationAxis[0]);
 	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[1], this.rotationAxis[1]);
 	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[2], this.rotationAxis[2]);
-	
-
 	mat4.translate(this.sceneMatrix, this.sceneMatrix, this.sceneTranslate);
 }
 
@@ -191,8 +194,7 @@ XMLscene.prototype.updateIllumination = function() {
 	this.gl.clearColor(this.background[0], this.background[1], this.background[2], this.background[3]);
 	
 	// SET GLOBAL ILLUMINATION
-	// this.setGlobalAmbientLight(this.ambient[0], this.ambient[1], this.ambient[2], this.ambient[3]);
-	this.setGlobalAmbientLight.apply(this, this.ambient);
+	this.setGlobalAmbientLight(this.ambient[0], this.ambient[1], this.ambient[2], this.ambient[3]);
 }
 
 XMLscene.prototype.display = function () {
@@ -209,14 +211,10 @@ XMLscene.prototype.display = function () {
 
 	// Apply transformations corresponding to the camera position relative to the origin
 	this.applyViewMatrix();
-
 	this.multMatrix(this.sceneMatrix);
 		
 	// Draw axis
 	this.axis.display();
-
-	//this.quad.display();
-	//this.semiEsfera.display();
 	
 	// ---- END Background, camera and axis setup
 
