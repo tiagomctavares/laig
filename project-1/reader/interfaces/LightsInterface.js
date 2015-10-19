@@ -4,19 +4,19 @@
  */
  
  
-function MyInterface() {
+function LightsInterface() {
 	//call CGFinterface constructor 
 	CGFinterface.call(this);
 };
 
-MyInterface.prototype = Object.create(CGFinterface.prototype);
-MyInterface.prototype.constructor = MyInterface;
+LightsInterface.prototype = Object.create(CGFinterface.prototype);
+LightsInterface.prototype.constructor = LightsInterface;
 
 /**
  * init
  * @param {CGFapplication} application
  */
-MyInterface.prototype.init = function(application) {
+LightsInterface.prototype.init = function(application) {
 	// call CGFinterface init
 	CGFinterface.prototype.init.call(this, application);
 	this.scene = application.scene;
@@ -42,7 +42,7 @@ MyInterface.prototype.init = function(application) {
 };
 
 
-MyInterface.prototype.insertLight = function(id, nome, estado){
+LightsInterface.prototype.insertLight = function(id, nome, estado){
 
     var self = this;
     this.lights[nome] = !!estado;

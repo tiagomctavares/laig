@@ -38,7 +38,7 @@ XMLscene.prototype.initLights = function(lights) {
 
 	for (var index = 0; index < lights.length; index++) {
 		this.lights[index] = lights[index].bindInit(this.lights[index]);
-		this.interface.insertLight(index, lights[index].id, lights[index].enable);
+		this.Lightsinterface.insertLight(index, lights[index].id, lights[index].enable);
 		this.lights[index].setVisible(true);
 		this.lights[index].update();
 	};
@@ -67,8 +67,8 @@ XMLscene.prototype.setLight = function(id, enable) {
 		this.lights[id].disable();
 }
 
-XMLscene.prototype.setInterface = function(myInterface){
-	this.interface=myInterface;
+XMLscene.prototype.setInterface = function(Lightsinterface){
+	this.Lightsinterface=Lightsinterface;
 }
 /*
 	Esta funcão recebe como parametros o id da rotacao = rotationId
