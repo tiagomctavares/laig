@@ -63,3 +63,7 @@ MySphere.prototype.initBuffers = function() {
 	this.primitiveType = this.scene.gl.TRIANGLES;
 	this.initGLBuffers();
 }
+
+MySphere.prototype.updateTexCoords = function(ampS, ampT)
+{
+};
