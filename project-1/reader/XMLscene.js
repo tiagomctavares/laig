@@ -10,9 +10,6 @@ XMLscene.prototype.init = function (application) {
 
     CGFscene.prototype.init.call(this, application);
 
-    this.initAppearancesStack();
-    this.initTexturesStack();
-
     this.initCameras();
 
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -34,34 +31,6 @@ XMLscene.prototype.init = function (application) {
 };
 
 //////////////////////////////////////////////////
-
-XMLscene.prototype.initAppearancesStack = function() {
-	this.appearancesStack = new Array();
-	this.appearancesStack.push(this.createDefaultAppearance());
-}
-
-XMLscene.prototype.initTexturesStack = function() {
-
-	this.texturesStack = new Array();
-	this.texturesStack.push(null);
-
-}
-
-XMLscene.prototype.pushTexture = function(texture) {
-	this.texturesStack.push(texture);
-}
-
-XMLscene.prototype.popTexture = function() {
-	this.texturesStack.pop();
-}
-
-XMLscene.prototype.pushAppearance = function(appearance) {
-	this.appearancesStack.push(appearance);
-}
-
-XMLscene.prototype.popAppearance = function() {
-	this.appearancesStack.pop();
-}
 
 XMLscene.prototype.initLights = function(lights) {
 	
@@ -131,10 +100,6 @@ XMLscene.prototype.setBackground = function(rgba) {
 	this.background = rgba;
 };
 
-XMLscene.prototype.setDoubleside = function(doubleside) {
-	this.doubleside = doubleside;
-};
-
 XMLscene.prototype.setAmbient = function(rgba) {
 	this.ambient = rgba;
 };
@@ -150,24 +115,6 @@ XMLscene.prototype.setSceneScale = function(vec) {
 
 XMLscene.prototype.setSceneTranslate = function(vec) {
 	this.sceneTranslate = vec;
-};
-
-/*
-XMLscene.prototype.setSceneRotation = function(vec) {
-	this.sceneRotateX = vec[0];
-	this.sceneRotateY = vec[1];
-	this.sceneRotateZ = vec[2];
-};*/
-
-XMLscene.prototype.createDefaultAppearance = function (appearance) {
-	var appearance = new CGFappearance(this);
-    
-    appearance.setAmbient(0.2, 0.4, 0.8, 1.0);
-    appearance.setDiffuse(0.2, 0.4, 0.8, 1.0);
-    appearance.setSpecular(0.2, 0.4, 0.8, 1.0);
-    appearance.setShininess(10.0);	
-
-    return appearance;
 };
 
 // Handler called when the graph is finally loaded. 
@@ -226,18 +173,4 @@ XMLscene.prototype.display = function () {
 	};
 
     this.shader.unbind();
-};
-
-XMLscene.prototype.updateAppearance = function() {
-	// Get Last
-	var appearance = this.appearancesStack.pop();
-	var texture = this.texturesStack.pop();
-
-	// Apply
-	appearance.setTexture(texture);
-	appearance.apply();
-
-	// Add it back to Stack
-	this.appearancesStack.push(appearance);
-	this.texturesStack.push(texture);
 };

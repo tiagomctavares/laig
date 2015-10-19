@@ -1,16 +1,18 @@
-function Material(reader, XMLElement) {
+function Material(reader) {
 	this.reader = reader;
 	// Parent Class
 	BaseParserObject.call(this, reader);
+}
+Material.prototype = Object.create(BaseParserObject.prototype);
 
+Material.prototype.parse = function(XMLElement) {
 	var colorElements = ['specular', 'diffuse', 'ambient', 'emission'];
 	var singleValueElements = ['shininess'];
 
 	this.id = this.parseId(XMLElement);
 	this.parseSingleValueElements(XMLElement, singleValueElements);
 	this.parseColorElements(XMLElement, colorElements);
-}
-Material.prototype = Object.create(BaseParserObject.prototype);
+};
 
 Material.prototype.toCGF = function(scene) {
 	var material = new CGFappearance(scene);
@@ -20,6 +22,6 @@ Material.prototype.toCGF = function(scene) {
 	material.setSpecular(this.specular.r, this.specular.g, this.specular.b, this.specular.a);
 	material.setEmission(this.emission.r, this.emission.g, this.emission.b, this.emission.a);
 	material.setShininess(this.shininess);
-
+	
 	return material;
 }

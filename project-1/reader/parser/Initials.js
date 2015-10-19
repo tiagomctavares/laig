@@ -1,7 +1,13 @@
-function Initials(reader, XMLElement, scene) {
+function Initials(reader) {
 	
 	this.reader = reader;
-	this.scene = scene;
+
+	// Parent Class
+	BaseParserObject.call(this, reader);
+}
+Initials.prototype = Object.create(BaseParserObject.prototype);
+
+Initials.prototype.parse = function(XMLElement) {
 
 	var frustumElement = XMLElement.getElementsByTagName('frustum')[0];
 	var referenceElement = XMLElement.getElementsByTagName('reference')[0];
@@ -15,10 +21,7 @@ function Initials(reader, XMLElement, scene) {
 	this.parseScale(scaleElement);
 	this.parseReference(referenceElement);
 
-	// Parent Class
-	BaseParserObject.call(this, reader);
-}
-Initials.prototype = Object.create(BaseParserObject.prototype);
+};
 
 Initials.prototype.parseFrustum = function(XMLElement) {
 	this.frustum =  this.getFloat(XMLElement, ['near', 'far']);
@@ -38,7 +41,7 @@ Initials.prototype.parseRotation = function(XMLElement) {
 }*/
 
 Initials.prototype.parseRotations = function(root){
-	
+	this.rotations = [];
 	//eixos x, y, z (obrigatorios)
 	var eixoLido = {
     'x': false,
@@ -56,8 +59,9 @@ Initials.prototype.parseRotations = function(root){
 		//verifica se o eixo da rotacao lida existe no map e se o valor deste no map nao é true
 		if(rotateAxis in eixoLido && !eixoLido[rotateAxis]){
 			eixoLido[rotateAxis] = true;
-			
-			this.scene.setRotation(j, rotateAxis, rotateAngle);
+			this.rotations[j] = {};
+			this.rotations[j].rotateAxis = rotateAxis;
+			this.rotations[j].rotateAngle = rotateAngle;
 			j++;
 		}
 		else 
@@ -78,11 +82,7 @@ Initials.prototype.parseScale = function(XMLElement) {
 Initials.prototype.parseReference = function(XMLElement) {
 	this.reference = this.getString(XMLElement, 'length');
 }
-/*
-Initials.prototype.getRotationArray = function() {
-	return [this.rotation.x, this.rotation.y, this.rotation.z];
-}
-*/
+
 Initials.prototype.getTranslationArray = function() {
 	return [this.translate.x, this.translate.y, this.translate.z];
 }
@@ -96,7 +96,10 @@ Initials.prototype.toCGF = function(scene) {
 	
 	scene.setSceneScale(this.getScaleArray());
 	scene.setSceneTranslate(this.getTranslationArray());
-	//scene.setSceneRotation(this.getRotationArray());
+
+	for (var i = 0; i < this.rotations.length; i++) {
+		scene.setRotation(i, this.rotations[i].rotateAxis, this.rotations[i].rotateAngle);
+	};
 	
 	scene.axis = new CGFaxis(scene, this.reference);
 

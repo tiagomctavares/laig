@@ -7,7 +7,7 @@ function Node(reader) {
 }
 Node.prototype = Object.create(BaseParserObject.prototype);
 
-Node.prototype.parseXML = function(XMLElement) {
+Node.prototype.parse = function(XMLElement) {
 	var xmlMaterial = XMLElement.getElementsByTagName('MATERIAL')[0];
 	var xmlTexture = XMLElement.getElementsByTagName('TEXTURE')[0];
 

@@ -1,14 +1,18 @@
-function Leaf(reader, XMLElement) {
+function Leaf(reader) {
 	this.reader = reader;
 	// Parent Class
 	BaseParserObject.call(this, reader);
+}
+
+Leaf.prototype = Object.create(BaseParserObject.prototype);
+
+Leaf.prototype.parse = function(XMLElement) {
 
 	this.id = this.parseId(XMLElement);
 	this.type = this.getString(XMLElement, 'type');
 	this.parseArgs(XMLElement);
-}
-
-Leaf.prototype = Object.create(BaseParserObject.prototype);
+	
+};
 
 Leaf.prototype.parseArgs = function(XMLElement) {
 

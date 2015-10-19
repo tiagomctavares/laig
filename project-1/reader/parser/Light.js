@@ -1,8 +1,12 @@
-function Light(reader, XMLElement) {
+function Light(reader) {
 	this.reader = reader;
 	// Parent Class
 	BaseParserObject.call(this, reader);
+}
+Light.prototype = Object.create(BaseParserObject.prototype);
 
+Light.prototype.parse = function(XMLElement) {
+	
 	var colorElements = ['ambient', 'diffuse', 'specular'];
 	var singleValueElements = ['enable'];
 	var xmlPosition = XMLElement.getElementsByTagName('position')[0];
@@ -11,8 +15,8 @@ function Light(reader, XMLElement) {
 	this.parseSingleValueElements(XMLElement, singleValueElements);
 	this.parsePosition(xmlPosition);
 	this.parseColorElements(XMLElement, colorElements);
-}
-Light.prototype = Object.create(BaseParserObject.prototype);
+	
+};
 
 Light.prototype.parsePosition = function(XMLElement) {
 	this.position = this.getCoordinates(XMLElement, ['x', 'y', 'z', 'w']);

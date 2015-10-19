@@ -25,7 +25,8 @@ Parser.prototype.loadInitials = function() {
 	console.log('Parsing Initials.....');
 
 	var xmlInitials = this.rootElement.getElementsByTagName('INITIALS')[0];
-	var initials = new Initials(this.reader, xmlInitials, this.scene);
+	var initials = new Initials(this.reader);
+	initials.parse(xmlInitials);
 	initials.toCGF(this.scene);
 	
 	console.log('DONE!');
@@ -35,7 +36,8 @@ Parser.prototype.loadIlumination = function() {
 	console.log('Parsing Ilumination.....');
 
 	var xmlInitials = this.rootElement.getElementsByTagName('ILLUMINATION')[0];
-	var ilumination = new Illumination(this.reader, xmlInitials);
+	var ilumination = new Illumination(this.reader);
+	ilumination.parse(xmlInitials);
 	ilumination.toCGF(this.scene);
 
 	console.log('Done!');
@@ -48,7 +50,8 @@ Parser.prototype.loadLights = function() {
 	var xmlLights = node.getElementsByTagName('LIGHT');
 
 	for (var index = 0; index < xmlLights.length; ++index) {
-		this.lights[index] = new Light(this.reader, xmlLights[index]);
+		this.lights[index] = new Light(this.reader);
+		this.lights[index].parse(xmlLights[index]);
 	}
 
 	console.log('DONE!');
@@ -61,7 +64,8 @@ Parser.prototype.loadMaterials = function() {
 	var xmlMaterials = node.getElementsByTagName('MATERIAL');
 
 	for (var index = 0; index < xmlMaterials.length; ++index) {
-		var material = new Material(this.reader, xmlMaterials[index]);
+		var material = new Material(this.reader);
+		material.parse(xmlMaterials[index]);
 		this.materials[material.id] = material.toCGF(this.scene);
 	}
 
@@ -75,7 +79,9 @@ Parser.prototype.loadTextures = function() {
 	var xmlTextures = node.getElementsByTagName('TEXTURE');
 
 	for (var index = 0; index < xmlTextures.length; ++index) {
-		var texture = new Texture(this.reader, this.scene, xmlTextures[index], this.texturePath);
+		var texture = new Texture(this.reader, this.texturePath);
+		texture.parse(xmlTextures[index]);
+		texture.toCGF(this.scene);
 		this.textures[texture.id] = texture;
 	}
 
@@ -89,7 +95,8 @@ Parser.prototype.loadLeaves = function() {
 	var xmlLeafs = this.rootElement.getElementsByTagName('LEAF');
 
 	for (var index = 0; index < xmlLeafs.length; ++index) {
-		var leaf = new Leaf(this.reader, xmlLeafs[index]);
+		var leaf = new Leaf(this.reader);
+		leaf.parse(xmlLeafs[index]);
 		this.leaves[leaf.id] = leaf.toCGF(this.scene);
 	}
 
@@ -107,7 +114,7 @@ Parser.prototype.loadNodes = function() {
 
 	for (var i = 0; i < xmlNodes.length; i++) {
 		var node = new Node(this.reader);
-		node.parseXML(xmlNodes[i]);
+		node.parse(xmlNodes[i]);
 		this.nodes[node.id] = node;
 	}
 
