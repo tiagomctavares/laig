@@ -15,8 +15,8 @@ serialInclude(['../lib/CGF.js',
     'XMLscene.js', 'MySceneGraph.js', 'MyInterface.js',
     './leaves/MyPrimitive.js', './leaves/MyQuad.js', './leaves/MySemiSphere.js', 
     './leaves/MyCylinder.js', './leaves/MySphere.js', './leaves/MyTriangle.js',
-    './parser/Parser.js', './parser/BaseParserObject.js', './parser/Initials.js', './parser/Illumination.js', './parser/Light.js', './parser/Material.js',
-    './parser/Texture.js', './parser/Leaf.js', './parser/Node.js',
+    './components/Parser.js', './components/BaseParserObject.js', './components/Initials.js', './components/Illumination.js', './components/Light.js', './components/Material.js',
+    './components/Texture.js', './components/Leaf.js', './components/Node.js',
 
 main=function()
 {
