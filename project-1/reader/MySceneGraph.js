@@ -1,4 +1,8 @@
-
+/**
+ * MySceneGraph
+ * @param filename - lsx File para ler
+ * @param {XMLscene} scene
+ */
 function MySceneGraph(filename, scene) {
 	this.loadedOk = null;
 	
@@ -63,12 +67,22 @@ MySceneGraph.prototype.onXMLReady=function()
 
 };
 
+/**
+ * Mostra o grafo lido do ficheiro lsx
+ * @return {null}
+ */
 MySceneGraph.prototype.display  = function()
 {
 	var rootNode = this.nodes[this.rootNode];
 	this.drawNode(rootNode, this.materialDefault, null);
 };
 
+/**
+ * Le o material Id do Node e retorna o material respetivo, se não existir retorna o material anterior
+ * @param node - o node a retirar o material Id
+ * @param parentMaterial - o material lida do pai
+ * @return {CGFAppearance}
+ */
 MySceneGraph.prototype.getNodeMaterial = function(node, parentMaterial) {
 	var materialId = node.getMaterialId();
 	
@@ -78,6 +92,12 @@ MySceneGraph.prototype.getNodeMaterial = function(node, parentMaterial) {
 	return this.materials[materialId];
 };
 
+/**
+ * Le a textura Id do Node e retorna a textura respetiva, se não existir retorna o textura anterior
+ * @param node - o node a retirar a texture Id
+ * @param parentTexture - a textura lida do pai
+ * @return {CGFTexture}
+ */
 MySceneGraph.prototype.getNodeTexture = function(node, parentTexture) {
 	var textureId = node.getTextureId();
 	
@@ -91,6 +111,13 @@ MySceneGraph.prototype.getNodeTexture = function(node, parentTexture) {
 	return this.textures[textureId];
 };
 
+/**
+ * Desenha o Nó e os seus descendentes
+ * @param node - o nó a desenhar
+ * @param material - o material usado nos nós pais
+ * @param texture - o textura usada nos nós pais
+ * @return {null}
+ */
 MySceneGraph.prototype.drawNode = function(node, material, texture) 
 {
 	this.scene.pushMatrix();
@@ -115,6 +142,13 @@ MySceneGraph.prototype.drawNode = function(node, material, texture)
 	this.scene.popMatrix();
 }
 
+/**
+ * Desenha a folha
+ * @param leaf - a folha a desenhar
+ * @param material - material a aplicar
+ * @param texture - textura a aplicar
+ * @return {null}
+ */
 MySceneGraph.prototype.drawLeaf = function(leaf, material, texture) {
 	// Update leaf textCoords if texture is defined
 	if(texture !== null) {
