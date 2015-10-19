@@ -1,5 +1,5 @@
 /**
-* init
+* Material
  * @param {CGFXMLreader} reader 
 */
 function Material(reader) {

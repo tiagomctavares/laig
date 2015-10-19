@@ -1,5 +1,5 @@
 /**
-* init
+* Node
  * @param {CGFXMLreader} reader 
 */
 function Node(reader) {

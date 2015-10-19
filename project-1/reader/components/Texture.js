@@ -1,5 +1,5 @@
 /**
-* init
+* Texture
  * @param {CGFXMLreader} reader 
 */
 function Texture(reader, texturePath) {

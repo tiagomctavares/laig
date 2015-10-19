@@ -1,5 +1,5 @@
 /**
-* init
+* Light
  * @param {CGFXMLreader} reader 
 */
 function Light(reader) {

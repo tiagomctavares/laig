@@ -1,5 +1,5 @@
 /**
-* init
+* Leaf
  * @param {CGFXMLreader} reader 
 */
 function Leaf(reader) {

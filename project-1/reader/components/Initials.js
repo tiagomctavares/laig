@@ -1,5 +1,5 @@
 /**
-* init
+* Initials
  * @param {CGFXMLreader} reader 
 */
 function Initials(reader) {

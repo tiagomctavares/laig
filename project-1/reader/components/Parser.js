@@ -1,5 +1,5 @@
 /**
-* init
+* Parser
  * @param {CGFXMLreader} reader 
 */
 function Parser(reader, scene, texturePath, rootElement) {
@@ -60,7 +60,7 @@ Parser.prototype.loadIllumination = function() {
 * @return {null}
 */
 Parser.prototype.loadLights = function() {
-	console.log('Parsing Ligths.....');
+	//console.log('Parsing Ligths.....');
 
 	var node = this.rootElement.getElementsByTagName('LIGHTS')[0];
 	var xmlLights = node.getElementsByTagName('LIGHT');
@@ -70,7 +70,7 @@ Parser.prototype.loadLights = function() {
 		this.lights[index].parse(xmlLights[index]);
 	}
 
-	console.log('DONE!');
+	//console.log('DONE!');
 };
 
 
@@ -79,7 +79,7 @@ Parser.prototype.loadLights = function() {
 * @return {null}
 */
 Parser.prototype.loadMaterials = function() {
-	console.log('Parsing Materials...');
+	//console.log('Parsing Materials...');
 
 	var node = this.rootElement.getElementsByTagName('MATERIALS')[0];
 	var xmlMaterials = node.getElementsByTagName('MATERIAL');
@@ -90,7 +90,7 @@ Parser.prototype.loadMaterials = function() {
 		this.materials[material.id] = material.toCGF(this.scene);
 	}
 
-	console.log('DONE!');
+	//console.log('DONE!');
 };
 
 /**
@@ -98,7 +98,7 @@ Parser.prototype.loadMaterials = function() {
 * @return {null}
 */
 Parser.prototype.loadTextures = function() {
-	console.log('Parsing Textures...');
+	//console.log('Parsing Textures...');
 
 	var node = this.rootElement.getElementsByTagName('TEXTURES')[0];
 	var xmlTextures = node.getElementsByTagName('TEXTURE');
@@ -110,7 +110,7 @@ Parser.prototype.loadTextures = function() {
 		this.textures[texture.id] = texture;
 	}
 
-	console.log('DONE!');
+	//console.log('DONE!');
 };
 
 /**
@@ -118,7 +118,7 @@ Parser.prototype.loadTextures = function() {
 * @return {null}
 */
 Parser.prototype.loadLeaves = function() {
-	console.log('Parsing Leafs...');
+	//console.log('Parsing Leafs...');
 
 	var node = this.rootElement.getElementsByTagName('LEAVES')[0];
 	var xmlLeafs = this.rootElement.getElementsByTagName('LEAF');
@@ -129,7 +129,7 @@ Parser.prototype.loadLeaves = function() {
 		this.leaves[leaf.id] = leaf.toCGF(this.scene);
 	}
 
-	console.log('DONE!');
+	//console.log('DONE!');
 };
 
 /**
@@ -137,7 +137,7 @@ Parser.prototype.loadLeaves = function() {
 * @return {null}
 */
 Parser.prototype.loadNodes = function() {
-	console.log('Parsing NODES...');
+	//console.log('Parsing NODES...');
 
 	var nodes = this.rootElement.getElementsByTagName('NODES')[0];
 	
@@ -151,5 +151,5 @@ Parser.prototype.loadNodes = function() {
 		this.nodes[node.id] = node;
 	}
 
-	console.log('DONE!');
+	//console.log('DONE!');
 };

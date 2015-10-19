@@ -1,5 +1,5 @@
 /**
- * MyInterface
+ * LightsInterface
  * @constructor
  */
  

@@ -1,5 +1,5 @@
 /**
-* init
+* BaseParserObject
  * @param {CGFXMLreader} reader 
 */
 function BaseParserObject(reader) {
