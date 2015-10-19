@@ -248,8 +248,8 @@
 			<DESCENDANT id="g_diagonal2" />
 			<DESCENDANT id="g_diagonal3" />
 			<DESCENDANT id="g_diagonal4" />
-			<DESCENDANT id="g_diagonal5" />
-			<DESCENDANT id="g_diagonal6" />
+			<!--<DESCENDANT id="g_diagonal5" />
+			<DESCENDANT id="g_diagonal6" />-->
 		</DESCENDANTS>
 	</NODE>
 	
@@ -1169,7 +1169,7 @@
 			<DESCENDANT id="bola5" />
 			<DESCENDANT id="bola6" />
 			<DESCENDANT id="bola7" />
-			<DESCENDANT id="roda" />
+			<!--<DESCENDANT id="roda" />-->
 		</DESCENDANTS>
 	</NODE>
     

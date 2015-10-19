@@ -71,20 +71,86 @@ MySceneGraph.prototype.onXMLReady=function()
 };
 
 ////////////////////////////////////////////////
-/*
-MySceneGraph.prototype.display= function()
+
+
+MySceneGraph.prototype.display  = function()
 {
+	var rootNode = this.nodes[this.rootNode];
 
-	//como é um map, este leaf contem apenas a chave
-	this.rootNode.display(this);
+	this.drawNode(rootNode, this.materialDefault, null);
 
-	/*for(var leaf in this.leaves){
-		this.leaves[leaf].display();	
-	}*//*
-};*/
+	// console.log('finished');
+};
+
+MySceneGraph.prototype.getNodeMaterial = function(node, parentMaterial) {
+	var materialId = node.getMaterialId();
+	
+	if(materialId === undefined)
+		return parentMaterial;
+
+	return this.materials[materialId];
+};
+
+MySceneGraph.prototype.getNodeTexture = function(node, parentTexture) {
+	var textureId = node.getTextureId();
+	
+	if(textureId === undefined)
+		return parentTexture;
+
+	// Clear texture
+	if(textureId === null)
+		return null;
+
+	return this.textures[textureId];
+};
+
+MySceneGraph.prototype.drawNode = function(node, material, texture) 
+{
+	// console.log(node.id);
+
+	this.scene.pushMatrix();
+	
+	// Apply transformations in scene
+	this.scene.multMatrix(node.transformations);
+
+	// Get Actual Material and Texture
+	var material = this.getNodeMaterial(node, material);
+	var texture = this.getNodeTexture(node, texture);
+
+	for (var i = 0; i < node.descendants.length; i++) {
+
+		var descendantId = node.descendants[i];
+		var isLeaf = (descendantId in this.leaves);
+
+		if(isLeaf)
+			this.drawLeaf(this.leaves[descendantId], material, texture);
+		else
+			this.drawNode(this.nodes[descendantId], material, texture);
+	}
+
+	this.scene.popMatrix();
+}
+
+MySceneGraph.prototype.drawLeaf = function(leaf, material, texture) {
+	// Update leaf textCoords if texture is defined
+	if(texture !== null) {
+		leaf.updateTexCoords(texture.amplif_factor.s, texture.amplif_factor.t);
+		// Set texture in apperance
+		material.setTexture(texture.texture);
+	} else
+		material.setTexture(null);
+
+	// console.log(texture, material);
+	// Apply Appearance in scene
+	this.scene.applyMaterial(material);
+
+	// DrawLeaf in scene
+	this.scene.drawLeaf(leaf);
+
+};
+
 ////////////////////////////////////////////////
-
-MySceneGraph.prototype.display = function() {
+/*MySceneGraph.prototype.display2 = function() {
 
 	var rootNode = this.nodes[this.rootNode];
 	var rootMaterial = this.materialDefault;
@@ -101,6 +167,7 @@ MySceneGraph.prototype.display = function() {
 	
 	this.scene.applyMaterial(rootMaterial);
 	this.processNodes(rootNode, rootNode.material, rootNode.texture);
+
 	this.scene.popMatrix();
 };
 
@@ -150,13 +217,13 @@ MySceneGraph.prototype.processNodes = function(node, materialId, textureId) {
 		}
 		else {
 			this.scene.pushMatrix();	
-			this.processNodes(nextElement, this.getNodeMaterial(mId, nextElement), this.getNodeTexture(tId, nextElement));			
+			this.processNodes(nextElement, this.getNodeMaterialId(mId, nextElement), this.getNodeTextureId(tId, nextElement));			
 			this.scene.popMatrix();
 		}		
 	}
 };
 
-MySceneGraph.prototype.getNodeTexture = function(currTextureId, nextElement) {
+MySceneGraph.prototype.getNodeTextureId = function(currTextureId, nextElement) {
 
 	if (nextElement.texture == 'null') {
 		return currTextureId;
@@ -169,7 +236,7 @@ MySceneGraph.prototype.getNodeTexture = function(currTextureId, nextElement) {
 	return nextElement.texture;
 };
 
-MySceneGraph.prototype.getNodeMaterial = function(currMaterialId, nextElement) {
+MySceneGraph.prototype.getNodeMaterialId = function(currMaterialId, nextElement) {
 
 	if (nextElement.material == 'null') {
 		return currMaterialId;
@@ -179,6 +246,7 @@ MySceneGraph.prototype.getNodeMaterial = function(currMaterialId, nextElement) {
 };
 
 
+*/
 	
 /*
  * Callback to be executed on any read error
@@ -188,26 +256,3 @@ MySceneGraph.prototype.onXMLError=function (message) {
 	console.error("XML Loading Error: "+message);	
 	this.loadedOk=false;
 };
-
-MySceneGraph.prototype.applyTexture = function(textureId) {
-	if(textureId === null)
-		this.scene.pushTexture(null);
-	else
-		this.scene.pushTexture(this.textures[textureId].texture);
-}
-
-MySceneGraph.prototype.applyMaterial = function(materialId) {
-	this.scene.pushAppearance(this.materials[materialId]);
-}
-
-MySceneGraph.prototype.removeMaterial = function() {
-	this.scene.popAppearance();
-}
-
-MySceneGraph.prototype.removeTexture = function(materialId) {
-	this.scene.popTexture();
-}
-
-MySceneGraph.prototype.updateAppearance = function() {
-	this.scene.updateAppearance();
-}

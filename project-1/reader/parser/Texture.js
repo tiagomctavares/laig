@@ -12,6 +12,7 @@ function Texture(reader, scene, XMLElement, texturePath) {
 	this.parseFile(xmlFile);
 	this.parseAmplif_factor(xmlAmplif_factor);
 	this.texture = new CGFtexture(scene, this.file);
+	this.texture.id = this.id;
 }
 
 Texture.prototype = Object.create(BaseParserObject.prototype);

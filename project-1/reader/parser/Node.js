@@ -71,9 +71,8 @@ Node.prototype.parseTranslation = function(XMLElement) {
 	var transformation = this.getCoordinates(XMLElement);
 	this.translate = mat4.translate(this.transformations, this.transformations, [transformation.x, transformation.y, transformation.z]);
 }
-/*
+
 Node.prototype.display = function(sceneGraph) {	
-	sceneGraph.scene.pushMatrix();
 
 	this.applyTransformations(sceneGraph.scene);
 	this.applyAppearance(sceneGraph);
@@ -99,7 +98,7 @@ Node.prototype.display = function(sceneGraph) {
 
 	this.removeAppearance(sceneGraph);
 	sceneGraph.scene.popMatrix();
-}*/
+}
 
 Node.prototype.applyTransformations = function(scene) {
 	scene.multMatrix(this.transformations);
@@ -123,4 +122,23 @@ Node.prototype.removeAppearance = function(sceneGraph) {
 
 	if(this.texture != 'null')
 		sceneGraph.removeTexture();
+}
+
+Node.prototype.getMaterialId = function() {
+
+	if(this.material != 'null')
+		return this.material;
+	
+	return undefined;
+};
+
+Node.prototype.getTextureId = function() {
+
+	if(this.texture != 'null')
+		if(this.texture == 'clear')
+			return null;
+		else
+			return this.texture;
+
+	return undefined;
 }
