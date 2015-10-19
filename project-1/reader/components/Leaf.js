@@ -30,8 +30,7 @@ Leaf.prototype.parse = function(XMLElement) {
 Leaf.prototype.parseArgs = function(XMLElement) {
 
 	var args = this.getString(XMLElement, 'args');
-	this.args = args.trim().split(' ');
-
+	this.args = args.replace(/\s+/g, ' ').split(' ');
 };
 
 /**
