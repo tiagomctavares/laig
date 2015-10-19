@@ -1,3 +1,7 @@
+/**
+* init
+ * @param {CGFXMLreader} reader 
+*/
 function Texture(reader, texturePath) {
 
 	this.TEXTURE_PATH = texturePath;
@@ -8,6 +12,11 @@ function Texture(reader, texturePath) {
 
 Texture.prototype = Object.create(BaseParserObject.prototype);
 
+/**
+* Realiza o parse das texturas do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Texture.prototype.parse = function(XMLElement) {
 
 	var xmlFile = XMLElement.getElementsByTagName('file')[0];
@@ -18,14 +27,29 @@ Texture.prototype.parse = function(XMLElement) {
 	this.parseAmplif_factor(xmlAmplif_factor);
 };
 
+/**
+* Realiza o parse do amplifFactor do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Texture.prototype.parseAmplif_factor = function(XMLElement) {
 	this.amplif_factor = this.getCoordinates(XMLElement, ['s', 't']);
 }
 
+/**
+* Realiza o parse da localização da textura do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Texture.prototype.parseFile = function(XMLElement) {
 	this.file = this.TEXTURE_PATH + this.getString(XMLElement, 'path');
 }
 
+/**
+* Transforma/Aplica o objecto para os elementos relativos na biblioteca CGF
+* @param {XMLscene} scene
+* @return {null}
+*/
 Texture.prototype.toCGF = function(scene) {
 	this.texture = new CGFtexture(scene, this.file);
 };

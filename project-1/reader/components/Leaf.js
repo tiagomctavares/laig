@@ -1,3 +1,7 @@
+/**
+* init
+ * @param {CGFXMLreader} reader 
+*/
 function Leaf(reader) {
 	this.reader = reader;
 	// Parent Class
@@ -6,14 +10,23 @@ function Leaf(reader) {
 
 Leaf.prototype = Object.create(BaseParserObject.prototype);
 
+/**
+* Realiza o parse das leafs do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Leaf.prototype.parse = function(XMLElement) {
 
 	this.id = this.parseId(XMLElement);
 	this.type = this.getString(XMLElement, 'type');
 	this.parseArgs(XMLElement);
-	
 };
 
+/**
+* Realiza o parse dos argumentos do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Leaf.prototype.parseArgs = function(XMLElement) {
 
 	var args = this.getString(XMLElement, 'args');
@@ -21,10 +34,21 @@ Leaf.prototype.parseArgs = function(XMLElement) {
 
 };
 
+/**
+* Transforma/Aplica o objecto para os elementos relativos na biblioteca CGF
+* @param {XMLscene} scene
+* @return {Object}
+*/
 Leaf.prototype.toCGF = function(scene) {
 	return new (this[this.type])(scene, this.args);
 }
 
+/**
+* Cria e retorna um retangulo
+* @param {XMLscene} scene
+* @param args - argumentos do rectangulo
+* @return {MyQuad}
+*/
 Leaf.prototype.rectangle = function(scene, args) {
 	
 	if(args.length != 4) return "O numero de parametros para um retangulo não é valido.";
@@ -42,6 +66,12 @@ Leaf.prototype.rectangle = function(scene, args) {
 	return new MyQuad(scene, x1, y1, x2, y2);
 };
 
+/**
+* Cria e retorna um cilindro
+* @param {XMLscene} scene
+* @param args - argumentos do rectangulo
+* @return {MyCylinder}
+*/
 Leaf.prototype.cylinder = function(scene, args) {
 	if(args.length != 5) return "O numero de parametros para um cilindro não é valido";
 	
@@ -61,6 +91,12 @@ Leaf.prototype.cylinder = function(scene, args) {
 	return new MyCylinder(scene, altura, raio_base, raio_topo, stacks, slices);
 };
 
+/**
+* Cria e retorna uma esfera
+* @param {XMLscene} scene
+* @param args - argumentos do rectangulo
+* @return {MySphere}
+*/
 Leaf.prototype.sphere = function(scene, args) {
 
 	if(args.length != 3)
@@ -77,6 +113,12 @@ Leaf.prototype.sphere = function(scene, args) {
 	return new MySphere(scene, raio, slices, stacks);
 };
 
+/**
+* Cria e retorna um triangulo
+* @param {XMLscene} scene
+* @param args - argumentos do rectangulo
+* @return {MyTriangle}
+*/
 Leaf.prototype.triangle = function(scene, args) {
 
 	if(args.length != 9)

@@ -1,3 +1,7 @@
+/**
+* init
+ * @param {CGFXMLreader} reader 
+*/
 function Node(reader) {
 	this.reader = reader;
 	this.transformationsTypes = ['ROTATION', 'TRANSLATION', 'SCALE'];
@@ -7,6 +11,11 @@ function Node(reader) {
 }
 Node.prototype = Object.create(BaseParserObject.prototype);
 
+/**
+* Realiza o parse dos nodes do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Node.prototype.parse = function(XMLElement) {
 	var xmlMaterial = XMLElement.getElementsByTagName('MATERIAL')[0];
 	var xmlTexture = XMLElement.getElementsByTagName('TEXTURE')[0];
@@ -26,6 +35,11 @@ Node.prototype.parse = function(XMLElement) {
 	this.parseDescendants(xmlDescendants);
 }
 
+/**
+* Realiza o parse dos ids dos nodes descendentes do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Node.prototype.parseDescendants = function(XMLElements) {
 	this.descendants = [];
 	for (var i = 0; i < XMLElements.length; i++) {
@@ -33,6 +47,11 @@ Node.prototype.parseDescendants = function(XMLElements) {
 	}
 };
 
+/**
+* Realiza o parse das transformações a aplicar do desenho deste node
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Node.prototype.parseTransformations = function(XMLElement) {
 	var children = XMLElement.children;
 
@@ -49,6 +68,11 @@ Node.prototype.parseTransformations = function(XMLElement) {
 	}
 }
 
+/**
+* Realiza o parse das rotação enviada no elemento e aplica à matrix de transformações
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Node.prototype.parseRotation = function(XMLElement) {
 
 	var rotation = {}
@@ -62,68 +86,30 @@ Node.prototype.parseRotation = function(XMLElement) {
 	mat4.rotate(this.transformations, this.transformations, rotation.angle, [rotation.x, rotation.y, rotation.z]);
 }
 
+/**
+* Realiza o parse do escalamento enviado no elemento e aplica à matrix de transformações
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Node.prototype.parseScale = function(XMLElement) {
 	var scale = this.getFloat(XMLElement, ['sx', 'sy', 'sz']);
 	mat4.scale(this.transformations, this.transformations, [scale.sx, scale.sy, scale.sz]);
 }
 
+/**
+* Realiza o parse das translação enviada no elemento e aplica à matrix de transformações
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Node.prototype.parseTranslation = function(XMLElement) {
 	var transformation = this.getCoordinates(XMLElement);
 	this.translate = mat4.translate(this.transformations, this.transformations, [transformation.x, transformation.y, transformation.z]);
 }
 
-Node.prototype.display = function(sceneGraph) {	
-
-	this.applyTransformations(sceneGraph.scene);
-	this.applyAppearance(sceneGraph);
-
-	for (var i = 0; i < this.descendants.length; i++) {
-
-		var descendantId = this.descendants[i];
-
-		if (descendantId in sceneGraph.leaves) {
-
-			// Updates scene to proper appearance
-			sceneGraph.updateAppearance();
-			if (this.texture != 'null' && this.texture != 'clear') {
-				var thisTexture = sceneGraph.textures[this.texture];
-				sceneGraph.leaves[descendantId].updateTexCoords(thisTexture.amplif_factor.s, thisTexture.amplif_factor.t);
-			}
-			sceneGraph.leaves[descendantId].display(sceneGraph);
-		}
-		else if(descendantId in sceneGraph.nodes) {
-			sceneGraph.nodes[descendantId].display(sceneGraph);
-		}
-	}
-
-	this.removeAppearance(sceneGraph);
-	sceneGraph.scene.popMatrix();
-}
-
-Node.prototype.applyTransformations = function(scene) {
-	scene.multMatrix(this.transformations);
-}
-
-Node.prototype.applyAppearance = function(sceneGraph) {
-
-	if(this.material != 'null')
-		sceneGraph.applyMaterial(this.material);
-
-	if(this.texture != 'null')
-		if(this.texture == 'clear')
-			sceneGraph.applyTexture(null);
-		else
-			sceneGraph.applyTexture(this.texture);
-}
-
-Node.prototype.removeAppearance = function(sceneGraph) {
-	if(this.material != 'null')
-		sceneGraph.removeMaterial();
-
-	if(this.texture != 'null')
-		sceneGraph.removeTexture();
-}
-
+/**
+* retorna o id do material lido no node - undefined quando for null
+* @return {string}
+*/
 Node.prototype.getMaterialId = function() {
 
 	if(this.material != 'null')
@@ -132,6 +118,10 @@ Node.prototype.getMaterialId = function() {
 	return undefined;
 };
 
+/**
+* retorna o id da textura lida no node - undefined quando for null e null quando apresentar clear
+* @return {string}
+*/
 Node.prototype.getTextureId = function() {
 
 	if(this.texture != 'null')

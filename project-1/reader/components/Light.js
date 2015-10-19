@@ -1,3 +1,7 @@
+/**
+* init
+ * @param {CGFXMLreader} reader 
+*/
 function Light(reader) {
 	this.reader = reader;
 	// Parent Class
@@ -5,6 +9,11 @@ function Light(reader) {
 }
 Light.prototype = Object.create(BaseParserObject.prototype);
 
+/**
+* Realiza o parse das lights do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Light.prototype.parse = function(XMLElement) {
 	
 	var colorElements = ['ambient', 'diffuse', 'specular'];
@@ -18,10 +27,20 @@ Light.prototype.parse = function(XMLElement) {
 	
 };
 
+/**
+* Realiza o parse das lights do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Light.prototype.parsePosition = function(XMLElement) {
 	this.position = this.getCoordinates(XMLElement, ['x', 'y', 'z', 'w']);
 }
 
+/**
+* Realiza bind das luzes à cena XML
+* @param light - luz para aplicar os elementos presentes na classe previamente lidos
+* @return {CFGLight}
+*/
 Light.prototype.bindInit = function(light) {
 
 	light.setPosition(this.position.x, this.position.y, this.position.z, this.position.w);

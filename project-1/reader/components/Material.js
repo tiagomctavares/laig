@@ -1,3 +1,7 @@
+/**
+* init
+ * @param {CGFXMLreader} reader 
+*/
 function Material(reader) {
 	this.reader = reader;
 	// Parent Class
@@ -5,6 +9,11 @@ function Material(reader) {
 }
 Material.prototype = Object.create(BaseParserObject.prototype);
 
+/**
+* Realiza o parse dos materiais do elemento XML recebido
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
 Material.prototype.parse = function(XMLElement) {
 	var colorElements = ['specular', 'diffuse', 'ambient', 'emission'];
 	var singleValueElements = ['shininess'];
@@ -14,6 +23,11 @@ Material.prototype.parse = function(XMLElement) {
 	this.parseColorElements(XMLElement, colorElements);
 };
 
+/**
+* Transforma/Aplica o objecto para os elementos relativos na biblioteca CGF
+* @param {XMLscene} scene
+* @return {CGFAppearance}
+*/
 Material.prototype.toCGF = function(scene) {
 	var material = new CGFappearance(scene);
 	

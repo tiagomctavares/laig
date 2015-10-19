@@ -1,3 +1,7 @@
+/**
+* init
+ * @param {CGFXMLreader} reader 
+*/
 function Parser(reader, scene, texturePath, rootElement) {
 	
 	this.reader = reader;
@@ -13,7 +17,7 @@ function Parser(reader, scene, texturePath, rootElement) {
 	this.texturePath = texturePath;
 	
 	this.loadInitials();
-	this.loadIlumination();
+	this.loadIllumination();
 	this.loadLights();
 	this.loadMaterials();
 	this.loadTextures();
@@ -21,28 +25,40 @@ function Parser(reader, scene, texturePath, rootElement) {
 	this.loadNodes();
 };
 
+/**
+* Processa o carregamento da informação relativa aos initials presente no ficheiro XML
+* @return {null}
+*/
 Parser.prototype.loadInitials = function() {
-	console.log('Parsing Initials.....');
+	// console.log('Parsing Initials.....');
 
 	var xmlInitials = this.rootElement.getElementsByTagName('INITIALS')[0];
 	var initials = new Initials(this.reader);
 	initials.parse(xmlInitials);
 	initials.toCGF(this.scene);
 	
-	console.log('DONE!');
+	// console.log('DONE!');
 };
 
-Parser.prototype.loadIlumination = function() {
-	console.log('Parsing Ilumination.....');
+/**
+* Processa o carregamento da informação relativa à llumination presente no ficheiro XML
+* @return {null}
+*/
+Parser.prototype.loadIllumination = function() {
+	// console.log('Parsing Illumination.....');
 
 	var xmlInitials = this.rootElement.getElementsByTagName('ILLUMINATION')[0];
 	var ilumination = new Illumination(this.reader);
 	ilumination.parse(xmlInitials);
 	ilumination.toCGF(this.scene);
 
-	console.log('Done!');
+	//console.log('Done!');
 };
 
+/**
+* Processa o carregamento da informação relativa às luzes presentes no ficheiro XML
+* @return {null}
+*/
 Parser.prototype.loadLights = function() {
 	console.log('Parsing Ligths.....');
 
@@ -57,6 +73,11 @@ Parser.prototype.loadLights = function() {
 	console.log('DONE!');
 };
 
+
+/**
+* Processa o carregamento da informação relativa aos materiais presentes no ficheiro XML
+* @return {null}
+*/
 Parser.prototype.loadMaterials = function() {
 	console.log('Parsing Materials...');
 
@@ -72,6 +93,10 @@ Parser.prototype.loadMaterials = function() {
 	console.log('DONE!');
 };
 
+/**
+* Processa o carregamento da informação relativa às texturas presentes no ficheiro XML
+* @return {null}
+*/
 Parser.prototype.loadTextures = function() {
 	console.log('Parsing Textures...');
 
@@ -88,6 +113,10 @@ Parser.prototype.loadTextures = function() {
 	console.log('DONE!');
 };
 
+/**
+* Processa o carregamento da informação relativa às leaves presentes no ficheiro XML
+* @return {null}
+*/
 Parser.prototype.loadLeaves = function() {
 	console.log('Parsing Leafs...');
 
@@ -103,6 +132,10 @@ Parser.prototype.loadLeaves = function() {
 	console.log('DONE!');
 };
 
+/**
+* Processa o carregamento da informação relativa aos Nodes presentes no ficheiro XML
+* @return {null}
+*/
 Parser.prototype.loadNodes = function() {
 	console.log('Parsing NODES...');
 
