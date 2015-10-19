@@ -255,11 +255,11 @@ XMLscene.prototype.updateInitials = function() {
 	this.camera.far = this.frustumFar;
 	this.camera.near = this.frustumNear;
 
-	mat4.scale(this.sceneMatrix, this.sceneMatrix, this.sceneScale);	
+	mat4.translate(this.sceneMatrix, this.sceneMatrix, this.sceneTranslate);
 	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[0], this.rotationAxis[0]);
 	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[1], this.rotationAxis[1]);
 	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[2], this.rotationAxis[2]);
-	mat4.translate(this.sceneMatrix, this.sceneMatrix, this.sceneTranslate);
+	mat4.scale(this.sceneMatrix, this.sceneMatrix, this.sceneScale);
 }
 
 /**
