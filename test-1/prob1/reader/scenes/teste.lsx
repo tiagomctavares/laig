@@ -1,0 +1,80 @@
+<SCENE>
+	<INITIALS>
+		<frustum near="0.1" far="200" />
+		<translation x="-18.0" y="-8.0" z="-12.0" />
+		<rotation axis="y" angle="0.0" />
+		<rotation axis="x" angle="0.0" />
+		<rotation axis="z" angle="0.0" />
+		<scale sx="1.0" sy="1.0" sz="1.0" />
+		<reference length="4.0" />
+	</INITIALS>
+
+	<ILLUMINATION>
+		<ambient r="0.1" g="0.1" b="0.1" a="1.0" />
+		<background r="0.3" g="0.3" b="0.3" a="1.0" />
+	</ILLUMINATION>
+
+	<LIGHTS>
+		<LIGHT id="l1">
+			<enable value ="1" />
+			<position x="18.75" y="8.0" z="7.5" w="1.0" />
+			<ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+			<diffuse r="0.8" g="0.8" b="0.8" a="0.8" />
+			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
+		</LIGHT>
+
+		<LIGHT id="l2">
+			<enable value ="1" />
+			<position x="6.25" y="8.0" z="7.5" w="1.0" />
+			<ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+			<diffuse r="0.8" g="0.8" b="0.8" a="0.8" />
+			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
+		</LIGHT>
+		
+		<LIGHT id="l3">
+			<enable value ="1" />
+			<position x="12.5" y="8.0" z="7.5" w="1.0" />
+			<ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+			<diffuse r="0.8" g="0.8" b="0.8" a="0.8" />
+			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
+		</LIGHT>
+	</LIGHTS>
+
+	<TEXTURES>
+		
+	</TEXTURES>
+
+	<MATERIALS>		
+		
+	</MATERIALS>
+
+	<LEAVES>
+		<LEAF id="garrafa" type="circumv" args="6 3.0 3.0 3.0 3.0 2.0 1.0 1.0 1.0 " />
+		<LEAF id="cilindro" type="cylinder" args="0.05 0.4 0.4 100 100" />
+	</LEAVES>
+
+<NODES>
+	<ROOT id="scene" />
+    <NODE id="scene">
+		<MATERIAL id="null" />
+		<TEXTURE id="null" />
+		
+		<SCALE sx="1" sy="1" sz="6"/>
+		
+		<DESCENDANTS>
+			<DESCENDANT id="garrafa" />
+		</DESCENDANTS>
+	</NODE>
+    <NODE id="cilindro-node">
+		<MATERIAL id="null" />
+		<TEXTURE id="null" />
+		
+		<SCALE sx="1" sy="1.0" sz="6"/>
+		<TRANSLATION x="0.0" y="2.0" z="0" />
+		
+		<DESCENDANTS>
+			<DESCENDANT id="cilindro" />
+		</DESCENDANTS>
+	</NODE>
+  </NODES>
+</SCENE>

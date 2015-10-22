@@ -1,0 +1,124 @@
+<SCENE>
+	<INITIALS>
+		<frustum near="0.1" far="200" />
+		<translation x="-18.0" y="-8.0" z="-12.0" />
+		<rotation axis="y" angle="0.0" />
+		<rotation axis="x" angle="0.0" />
+		<rotation axis="z" angle="0.0" />
+		<scale sx="1.0" sy="1.0" sz="1.0" />
+		<reference length="4.0" />
+	</INITIALS>
+
+	<ILLUMINATION>
+		<ambient r="0.1" g="0.1" b="0.1" a="1.0" />
+		<background r="0.3" g="0.3" b="0.3" a="1.0" />
+	</ILLUMINATION>
+
+	<LIGHTS>
+		<LIGHT id="l1">
+			<enable value ="1" />
+			<position x="18.75" y="8.0" z="7.5" w="1.0" />
+			<ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+			<diffuse r="0.8" g="0.8" b="0.8" a="0.8" />
+			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
+		</LIGHT>
+
+		<LIGHT id="l2">
+			<enable value ="1" />
+			<position x="6.25" y="8.0" z="7.5" w="1.0" />
+			<ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+			<diffuse r="0.8" g="0.8" b="0.8" a="0.8" />
+			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
+		</LIGHT>
+		
+		<LIGHT id="l3">
+			<enable value ="1" />
+			<position x="12.5" y="8.0" z="7.5" w="1.0" />
+			<ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+			<diffuse r="0.8" g="0.8" b="0.8" a="0.8" />
+			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
+		</LIGHT>
+	</LIGHTS>
+
+	<TEXTURES>
+		
+		<TEXTURE id="madeira">
+			<file path="images/madeira_branca.jpg" />
+			<amplif_factor s="1.0" t="1.0" />
+			<master value="1" />
+		</TEXTURE>
+		
+		<TEXTURE id="metal">
+			<file path="images/metal.jpg" />
+			<amplif_factor s="1.0" t="3.0" />
+			<master value="0" />
+		</TEXTURE>
+				
+		<TEXTURE id="text_bola">
+			<file path="images/ball.png" />
+			<amplif_factor s="1.0" t="1.0" />
+			<master value="1" />
+		</TEXTURE>
+		
+	</TEXTURES>
+
+	<MATERIALS>
+		<MATERIAL id="default">
+			<shininess value="5" />
+			<specular r="0.5" g="0.5" b="0.5" a="1.0" />
+			<diffuse r="0.5" g="0.5" b="0.5" a="1.0" />
+			<ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+			<emission r="0.0" g="0.0" b="0.0" a="0.0" />
+		</MATERIAL>		
+		
+	</MATERIALS>
+
+	<LEAVES>
+		<LEAF id="primitiva_retangulo" type="rectangle" args="0.0 1.0 1.0 0.0" />
+	</LEAVES>
+
+<NODES>
+	<ROOT id="scene" />
+    <NODE id="scene">
+		<MATERIAL id="default" />
+		<TEXTURE id="metal" />
+		
+		<DESCENDANTS>
+			<DESCENDANT id="primitiva_retangulo" />
+			<DESCENDANT id="node2" />
+		</DESCENDANTS>
+	</NODE>
+    <NODE id="node2">
+		<MATERIAL id="null" />
+		<TEXTURE id="madeira" />
+		
+		<TRANSLATION x="2" y="0" z="0" />
+		
+		<DESCENDANTS>
+			<DESCENDANT id="primitiva_retangulo" />
+			<DESCENDANT id="node3" />
+		</DESCENDANTS>
+	</NODE>
+    <NODE id="node3">
+		<MATERIAL id="null" />
+		<TEXTURE id="metal" />
+		
+		<TRANSLATION x="2" y="0" z="0" />
+		
+		<DESCENDANTS>
+			<DESCENDANT id="primitiva_retangulo" />
+			<DESCENDANT id="node4" />			
+		</DESCENDANTS>
+	</NODE>
+    <NODE id="node4">
+		<MATERIAL id="null" />
+		<TEXTURE id="text_bola" />
+		
+		<TRANSLATION x="2" y="0" z="0" />
+		
+		<DESCENDANTS>
+			<DESCENDANT id="primitiva_retangulo" />		
+		</DESCENDANTS>
+	</NODE>
+  </NODES>
+</SCENE>
