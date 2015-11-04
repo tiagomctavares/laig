@@ -103,7 +103,7 @@ XMLscene.prototype.popAppearance = function() {
  */
 XMLscene.prototype.initLights = function(lights) {
 	
-	this.shader.bind();
+	
 
 	for (var index = 0; index < lights.length; index++) {
 		this.lights[index] = lights[index].bindInit(this.lights[index]);
@@ -112,7 +112,6 @@ XMLscene.prototype.initLights = function(lights) {
 		this.lights[index].update();
 	};
 
-	this.shader.unbind();
 }
 
 /**
@@ -294,7 +293,7 @@ XMLscene.prototype.updateAppearance = function() {
 
 XMLscene.prototype.display = function () {
 	// ---- BEGIN Background, camera and axis setup
-    this.shader.bind();
+    //this.shader.bind();
 	
 	// Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
@@ -320,6 +319,6 @@ XMLscene.prototype.display = function () {
 		this.graph.display();
 	};
 
-    this.shader.unbind();
+//    this.shader.unbind();
 };
 

@@ -1,6 +1,5 @@
 /**
  * MyQuad
- * @param gl {WebGLRenderingContext}
  * @constructor
  */
 function MyQuad(scene, x1,y1, x2, y2) {

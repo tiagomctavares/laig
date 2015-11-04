@@ -12,11 +12,28 @@ function getUrlVars() {
 }	 
 
 serialInclude(['../lib/CGF.js', 
-    'XMLscene.js', 'MySceneGraph.js', './interfaces/LightsInterface.js',
-    './leaves/MyPrimitive.js', './leaves/MyQuad.js', './leaves/MyQuad2.js', 
-    './leaves/MyCylinder.js', './leaves/MySphere.js', './leaves/MyTriangle.js', 
-    './components/Parser.js', './components/BaseParserObject.js', './components/Initials.js', './components/Illumination.js', './components/Light.js', './components/Material.js',
-    './components/Texture.js', './components/Leaf.js', './components/Node.js', './animation/LinearAimation.js', './animation/CircularAimation.js', './animation/Animation.js',
+    'XMLscene.js', 
+    'MySceneGraph.js', 
+    './interfaces/LightsInterface.js',
+    './leaves/MyPrimitive.js', 
+    './leaves/MyQuad.js',
+    './leaves/MyCylinder.js', 
+    './leaves/MySphere.js', 
+    './leaves/MyTriangle.js',
+    './leaves/MyPlane.js', 
+	'./leaves/MyPatch.js', 
+    './components/Parser.js', 
+    './components/BaseParserObject.js', 
+    './components/Initials.js', 
+    './components/Illumination.js', 
+    './components/Light.js', 
+    './components/Material.js',
+    './components/Texture.js', 
+    './components/Leaf.js', 
+    './components/Node.js', 
+    './animation/Animation.js',
+    './animation/LinearAnimation.js', 
+    './animation/CircularAnimation.js', 
 
 main=function()
 {
