@@ -2,11 +2,18 @@
  * MyPatch
  * @constructor
  */
-function MyPatch(scene, divs1, divs2, degree1, degree2, knots1, knots2, controlpoints) {
+function MyPatch(scene, divs1, divs2, degree, controlpoints) {
 	
 	MyPrimitive.call(this, scene);
+	
+	var knotsArray = [
+	[0,0,1,1], 
+	[0,0,0,1,1,1], 
+	[0,0,0,0,1,1,1,1] ];
+	
+	knots = knotsArray[degree - 1];
 
-	var nurbsSurface = new CGFnurbsSurface(degree1, degree2, knots1, knots2, controlpoints);
+	var nurbsSurface = new CGFnurbsSurface(degree, degree, knots, knots, controlpoints);
 	
 	function getSurfacePoint(u, v) {
 		return nurbsSurface.getPoint(u, v);
