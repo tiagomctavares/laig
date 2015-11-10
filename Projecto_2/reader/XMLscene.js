@@ -36,6 +36,8 @@ XMLscene.prototype.init = function (application) {
     this.rotationAxis = [];
     this.rotationAngle = [];
 
+	this.terreno = new MyTerrain(this, "scenes/images/test_terrain.png", 
+		"scenes/images/test_heightmap.png");
     this.sceneMatrix = mat4.create();
     mat4.identity(this.sceneMatrix);
     
@@ -291,6 +293,10 @@ XMLscene.prototype.updateAppearance = function() {
 	this.texturesStack.push(texture);
 };
 
+XMLscene.prototype.resetShader = function (){
+	this.setActiveShader(this.defaultShader);
+};
+
 XMLscene.prototype.display = function () {
 	// ---- BEGIN Background, camera and axis setup
     //this.shader.bind();
@@ -315,8 +321,12 @@ XMLscene.prototype.display = function () {
 	if (this.graph.loadedOk)
 	{
 		this.updateLights();
-
 		this.graph.display();
+		this.pushMatrix();
+		this.translate(12.5,-2,7.5);
+		this.scale(25.0, 15.0, 15.0);
+		this.terreno.display();
+		this.popMatrix();
 	};
 
 //    this.shader.unbind();

@@ -1,8 +1,8 @@
 /**
- * MyPlane
+ * MyVehicle
  * @constructor
  */
-function MyPlane(scene, nrDivs) {
+function MyVehicle(scene, nrDivs) {
 	
 	MyPrimitive.call(this, scene);
 	
@@ -23,9 +23,9 @@ function MyPlane(scene, nrDivs) {
 	this.nurbsObject.initBuffers();
 };
 
-MyPlane.prototype = Object.create(MyPrimitive.prototype);
-MyPlane.prototype.constructor = MyPlane;
+MyVehicle.prototype = Object.create(MyPrimitive.prototype);
+MyVehicle.prototype.constructor = MyVehicle;
 
-MyPlane.prototype.display  = function() {
+MyVehicle.prototype.display  = function() {
 	this.nurbsObject.display();
 };

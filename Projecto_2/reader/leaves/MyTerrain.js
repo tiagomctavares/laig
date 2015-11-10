@@ -1,31 +1,36 @@
 /**
- * MyPlane
+ * MyTerrain
  * @constructor
  */
-function MyPlane(scene, nrDivs) {
+function MyTerrain(scene, texture, heightMap) {
 	
 	MyPrimitive.call(this, scene);
 	
-	var controlpoints = [
-	[[0.5, 0.0, 0.5, 1.0], 
-	[-0.5, 0.0, 0.5, 1.0]],
-	[[0.5, 0.0, -0.5, 1.0], 
-	[-0.5, 0.0, -0.5, 1.0]]
-	];
+	this.terrainPlane = new MyPlane(scene, 32);
+	this.terrainPlane.initBuffers();
 
-	var nurbsSurface = new CGFnurbsSurface(1, 1, [0,0,1,1], [0,0,1,1], controlpoints);
+	this.shader = new CGFshader(scene.gl, "shaders/terrain.vert", "shaders/terrain.frag");
+	this.texture = new CGFtexture(scene, texture);
+	this.heightMap = new CGFtexture(scene, heightMap);
 	
-	function getSurfacePoint(u, v) {
-		return nurbsSurface.getPoint(u, v);
-	}
-	
-	this.nurbsObject = new CGFnurbsObject(scene, getSurfacePoint, nrDivs, nrDivs);
-	this.nurbsObject.initBuffers();
+	this.shader.setUniformsValues({
+		texture: 0,
+		heightMap: 1
+	});
 };
 
-MyPlane.prototype = Object.create(MyPrimitive.prototype);
-MyPlane.prototype.constructor = MyPlane;
+MyTerrain.prototype = Object.create(MyPrimitive.prototype);
+MyTerrain.prototype.constructor = MyTerrain;
 
-MyPlane.prototype.display  = function() {
-	this.nurbsObject.display();
+MyTerrain.prototype.display  = function() {
+	
+	this.scene.setActiveShader(this.shader);
+	this.texture.bind(0);
+	this.heightMap.bind(1);
+	
+	this.terrainPlane.display();
+	
+	this.heightMap.unbind(1);
+	this.texture.unbind(0);
+	this.scene.resetShader();
 };
