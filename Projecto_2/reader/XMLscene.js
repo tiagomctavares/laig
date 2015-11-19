@@ -32,12 +32,10 @@ XMLscene.prototype.init = function (application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 
     this.enableTextures(true);
-    
+
     this.rotationAxis = [];
     this.rotationAngle = [];
-
-	this.terreno = new MyTerrain(this, "scenes/images/test_terrain.png", 
-		"scenes/images/test_heightmap.png");
+	this.setUpdatePeriod(1000/60);
     this.sceneMatrix = mat4.create();
     mat4.identity(this.sceneMatrix);
     
@@ -58,10 +56,8 @@ XMLscene.prototype.initAppearancesStack = function() {
  * @return {null}
  */
 XMLscene.prototype.initTexturesStack = function() {
-
 	this.texturesStack = new Array();
 	this.texturesStack.push(null);
-
 }
 
 /**
@@ -247,6 +243,12 @@ XMLscene.prototype.onGraphLoaded = function ()
 	this.updateIllumination();
 };
 
+XMLscene.prototype.update = function(deltaTempo) {
+	if (this.graph.loadedOk) {
+		this.graph.updateAnimations((deltaTempo - this.lastUpdate) * 0.001);	
+	}
+};
+
 /**
  * atualiza as Initials, colocando a camera consoante o frustum no lsx, e aplicando a matriz de transformacoes 
  * geometricas 
@@ -261,8 +263,17 @@ XMLscene.prototype.updateInitials = function() {
 	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[1], this.rotationAxis[1]);
 	mat4.rotate(this.sceneMatrix, this.sceneMatrix, this.rotationAngle[2], this.rotationAxis[2]);
 	mat4.scale(this.sceneMatrix, this.sceneMatrix, this.sceneScale);
-}
 
+	    this.terrainShader = new CGFshader(this.gl, "shaders/terrain.vert", "shaders/terrain.frag");
+		this.terrainShader.setUniformsValues({
+		texture: 0,
+		heightMap: 1
+	});
+	}
+
+	XMLscene.prototype.setTerrainShader = function() {
+		this.setActiveShader(this.terrainShader);
+	}
 /**
  * atualiza a iluminacao, tanto a nivel do background como da iluminacao global
  * @return {null}
@@ -322,13 +333,6 @@ XMLscene.prototype.display = function () {
 	{
 		this.updateLights();
 		this.graph.display();
-		this.pushMatrix();
-		this.translate(12.5,-2,7.5);
-		this.scale(25.0, 15.0, 15.0);
-		this.terreno.display();
-		this.popMatrix();
 	};
-
-//    this.shader.unbind();
 };
 

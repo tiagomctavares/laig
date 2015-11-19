@@ -69,6 +69,11 @@ BaseParserObject.prototype.getFloat = function(XMLElement, attribute, required) 
 	return this.getFloatItem(XMLElement, attribute, required);
 }
 
+BaseParserObject.prototype.getVector3 = function(XMLElement, attribute, required) {
+	return this.reader.getVector3(XMLElement, attribute, 
+		typeof required !== 'undefined' ? required : true);
+}
+
 /**
 * retorna um array de floats relativos aos attributos recebidos
 * @param XMLElement - Elemento XML
@@ -94,6 +99,17 @@ BaseParserObject.prototype.getFloatArray = function(XMLElement, attributes, requ
 */
 BaseParserObject.prototype.getFloatItem = function(XMLElement, attribute, required) {
 	return this.reader.getFloat(XMLElement, attribute, required);
+}
+
+/**
+* aplica a transformacao de rotacao a um eixo, com o respetivo angulo (????)
+* @param XMLElement - Elemento XML
+* @param attributes - Um array dos atributos a ler
+* @param required - Se os atributos a ler são obrigatórios ou não
+* @return {float}
+*/
+BaseParserObject.prototype.getInteger = function(XMLElement, attribute) {
+	return this.reader.getInteger(XMLElement, attribute);
 }
 
 /**

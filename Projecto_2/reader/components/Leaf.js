@@ -9,28 +9,16 @@ function Leaf(reader) {
 }
 
 Leaf.prototype = Object.create(BaseParserObject.prototype);
-
+Leaf.prototype.constructor = Leaf;
 /**
 * Realiza o parse das leafs do elemento XML recebido
 * @param XMLElement - Elemento XML
 * @return {null}
 */
 Leaf.prototype.parse = function(XMLElement) {
-
+	this.root = XMLElement;
 	this.id = this.parseId(XMLElement);
 	this.type = this.getString(XMLElement, 'type');
-	this.parseArgs(XMLElement);
-};
-
-/**
-* Realiza o parse dos argumentos do elemento XML recebido
-* @param XMLElement - Elemento XML
-* @return {null}
-*/
-Leaf.prototype.parseArgs = function(XMLElement) {
-
-	var args = this.getString(XMLElement, 'args');
-	this.args = args.replace(/\s+/g, ' ').split(' ');
 };
 
 /**
@@ -39,7 +27,7 @@ Leaf.prototype.parseArgs = function(XMLElement) {
 * @return {Object}
 */
 Leaf.prototype.toCGF = function(scene) {
-	return new (this[this.type])(scene, this.args);
+	return new (this[this.type])(scene, this);
 }
 
 /**
@@ -48,19 +36,25 @@ Leaf.prototype.toCGF = function(scene) {
 * @param args - argumentos do rectangulo
 * @return {MyQuad}
 */
-Leaf.prototype.rectangle = function(scene, args) {
-	
-	if(args.length != 4) return "O numero de parametros para um retangulo não é valido.";
+Leaf.prototype.rectangle = function(scene, self) {
+
+	var unprocessedArgs = self.getString(self.root, 'args');
+	var args = unprocessedArgs.replace(/\s+/g, ' ').split(' ');
+
+	if(args.length != 4) 
+		return "O numero de parametros para um retangulo não é valido.";
 	
 	var x1 = parseFloat(args[0]);
 	var y1 = parseFloat(args[1]);
 
-	if(x1 != x1 || y1 != y1) return "O valor de x1: " + x1 + "ou de y1: " + y1 + "não é valido.";
+	if(x1 != x1 || y1 != y1) 
+		return "O valor de x1: " + x1 + "ou de y1: " + y1 + "não é valido.";
 
 	var x2 = parseFloat(args[2]);
 	var y2 = parseFloat(args[3]);
 
-	if(x2 != x2 || y2 != y2) return "O valor de x2: " + x2 + "ou de y2: " + y2 + "não é valido.";
+	if(x2 != x2 || y2 != y2) 
+		return "O valor de x2: " + x2 + "ou de y2: " + y2 + "não é valido.";
 
 	return new MyQuad(scene, x1, y1, x2, y2);
 };
@@ -71,7 +65,11 @@ Leaf.prototype.rectangle = function(scene, args) {
 * @param args - argumentos do rectangulo
 * @return {MyCylinder}
 */
-Leaf.prototype.cylinder = function(scene, args) {
+Leaf.prototype.cylinder = function(scene, self) {
+	
+	var unprocessedArgs = self.getString(self.root, 'args');
+	var args = unprocessedArgs.replace(/\s+/g, ' ').split(' ');
+
 	if(args.length != 5) return "O numero de parametros para um cilindro não é valido";
 	
 	var altura = parseFloat(args[0]);
@@ -96,7 +94,10 @@ Leaf.prototype.cylinder = function(scene, args) {
 * @param args - argumentos do rectangulo
 * @return {MySphere}
 */
-Leaf.prototype.sphere = function(scene, args) {
+Leaf.prototype.sphere = function(scene, self) {
+
+	var unprocessedArgs = self.getString(self.root, 'args');
+	var args = unprocessedArgs.replace(/\s+/g, ' ').split(' ');
 
 	if(args.length != 3)
 		return "O numero de parametros para uma esfera não é valido";
@@ -118,7 +119,10 @@ Leaf.prototype.sphere = function(scene, args) {
 * @param args - argumentos do rectangulo
 * @return {MyTriangle}
 */
-Leaf.prototype.triangle = function(scene, args) {
+Leaf.prototype.triangle = function(scene, self) {
+	
+	var unprocessedArgs = self.getString(self.root, 'args');
+	var args = unprocessedArgs.replace(/\s+/g, ' ').split(' ');
 
 	if(args.length != 9)
 		return "O numero de parametros para um triangulo não é valido";
@@ -150,3 +154,75 @@ Leaf.prototype.triangle = function(scene, args) {
 
 	return new MyTriangle(scene, v1, v2, v3);
 };
+
+/**
+* Cria e retorna um veículo "voador"
+* @param {XMLscene} scene
+* @return {MyVehicle}
+*/
+Leaf.prototype.vehicle = function(scene, self) {
+	return new MyVehicle(scene);
+}
+
+/**
+* Cria e retorna um terreno
+* @param {XMLscene} scene
+* @return {MyVehicle}
+*/
+Leaf.prototype.terrain = function(scene, self) {
+	var texture = self.getString(self.root, 'texture');
+	var heightmap = self.getString(self.root, 'heightmap');
+	return new MyTerrain(scene, texture, heightmap);
+}
+
+/**
+* Cria e retorna um plano
+* @param {XMLscene} scene
+* @return {MyVehicle}
+*/
+Leaf.prototype.plane = function(scene, self) {
+	var parts = self.getFloat(self.root, 'parts');
+	return new MyPlane(scene, parts);
+}
+
+/**
+* Cria e retorna uma patch
+* @param {XMLscene} scene
+* @return {MyVehicle}
+*/
+Leaf.prototype.patch = function(scene, self) {
+	var divs1 = self.getInteger(self.root, 'partsU')
+	var divs2 = self.getInteger(self.root, 'partsV');
+	var degree = self.getInteger(self.root, 'order');
+
+	if (degree < 0 || degree > 3) {
+		// erro! grau das superfícies curvas deve ser 1, 2 ou 3
+		return null;
+	}
+
+	var controlpointsNode = self.root.getElementsByTagName('controlpoint');
+	
+	if ((degree + 1) * (degree + 1) != controlpointsNode.length) {
+		// erro! número de pontos de controlo deve ser (degree + 1) ^ 2
+		return null;
+	}
+	
+	var controlpoints = [];
+	var index = 0;
+	
+	for (var i = 0; i <= degree; i++) {
+		
+		var vCoords = [];
+		
+		for (var j = 0; j <= degree; j++) {		
+			var thisCoordinates = self.getCoordinates(controlpointsNode[index++], ['x', 'y', 'z']);
+			vCoords.push([thisCoordinates.x, thisCoordinates.y, thisCoordinates.z, 1.0]);
+		}
+		
+		controlpoints.push(vCoords);
+	}
+	
+	console.log(controlpoints);
+	
+	return new MyPatch(scene, divs1, divs2, degree, controlpoints);
+}

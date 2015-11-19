@@ -2,8 +2,9 @@
 * Node
  * @param {CGFXMLreader} reader 
 */
-function Node(reader) {
+function Node(reader, scene) {
 	this.reader = reader;
+	this.scene = scene;
 	this.transformationsTypes = ['ROTATION', 'TRANSLATION', 'SCALE'];
 
 	// Parent Class
@@ -16,22 +17,34 @@ Node.prototype = Object.create(BaseParserObject.prototype);
 * @param XMLElement - Elemento XML
 * @return {null}
 */
-Node.prototype.parse = function(XMLElement) {
+Node.prototype.parse = function(XMLElement, animations) {
+	
 	var xmlMaterial = XMLElement.getElementsByTagName('MATERIAL')[0];
 	var xmlTexture = XMLElement.getElementsByTagName('TEXTURE')[0];
-
 	var xmlDescendants = XMLElement.getElementsByTagName('DESCENDANTS')[0];
+	var xmlAnimations = XMLElement.getElementsByTagName('ANIMATIONREF');
+	
+	if (xmlAnimations.length > 0) {
+		xmlAnimations = xmlAnimations[0].getElementsByTagName('ANIMATION');
+	}
+	
 	xmlDescendants = xmlDescendants.getElementsByTagName('DESCENDANT');
 
 	this.id = this.parseId(XMLElement);
-
 	this.transformations = mat4.create();
+	this.matrix = mat4.create();
+	
 	mat4.identity(this.transformations);
+	mat4.identity(this.matrix);
 
 	this.material = this.parseId(xmlMaterial);
 	this.texture = this.parseId(xmlTexture);
-	this.parseTransformations(XMLElement);
+	
+	if (xmlAnimations != null) {
+		this.parseAnimations(xmlAnimations, animations);
+	}
 
+	this.parseTransformations(XMLElement);
 	this.parseDescendants(xmlDescendants);
 }
 
@@ -45,6 +58,75 @@ Node.prototype.parseDescendants = function(XMLElements) {
 	for (var i = 0; i < XMLElements.length; i++) {
 			this.descendants[i] = this.parseId(XMLElements[i]);
 	}
+};
+
+/**
+* Realiza o parse dos ids das animações do node
+* @param XMLElement - Elemento XML
+* @return {null}
+*/
+Node.prototype.parseAnimations = function(XMLElements, animations) {	
+	this.animations = [];
+	this.animationPlaying = false;
+	this.animationNumber = 0;	
+
+	for (var i = 0; i < XMLElements.length; i++) {
+		
+		var animationId = this.parseId(XMLElements[i]);	
+		this.animations.push(animations[animationId]);
+	}
+	
+	if (this.animations.length > 0) {
+		this.animationPlaying = true;
+		this.animations[0].start();
+	}
+};
+
+Node.prototype.stepAnimation = function(deltaTempo) {
+
+	var currentAnimation = this.animations[this.animationNumber];
+	
+	if(this.animationPlaying && currentAnimation != null && currentAnimation != undefined)
+	{
+		if (currentAnimation.playing) {
+			currentAnimation.step(deltaTempo);
+		}
+		else {
+			if (++this.animationNumber < this.animations.length) {
+				this.animations[this.animationNumber].start();
+			}
+			else {
+				this.animationNumber = 0;
+				this.animationPlaying = false;
+			}
+		}			
+	}
+};
+
+Node.prototype.update = function() {
+
+	this.matrix = mat4.clone(this.transformations);
+	var currentAnimation = this.animations[this.animationNumber];
+	
+	if (this.animationPlaying && currentAnimation != null && currentAnimation != undefined)
+	{
+		if (currentAnimation.playing) {	
+			currentAnimation.update();
+			mat4.multiply(this.matrix, currentAnimation.matrix, this.matrix);
+		}
+		else
+		{
+			if (++this.animationNumber < this.animations.length) {
+				this.animations[this.animationNumber].start();
+			}
+			else {
+				this.animationNumber = 0;
+				this.animationPlaying = false;
+			}
+		}			
+	}
+	
+	return this.matrix;
 };
 
 /**

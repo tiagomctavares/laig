@@ -51,7 +51,6 @@ MySceneGraph.prototype.onXMLReady=function()
 	this.lights = parser.lights;
 	this.textures = parser.textures;
 	this.materials = parser.materials;
-
 	this.leaves = parser.leaves;
 	this.nodes = parser.nodes;
 	this.rootNode = parser.rootId;
@@ -59,12 +58,8 @@ MySceneGraph.prototype.onXMLReady=function()
 	console.log('Done!');
 
 	this.scene.initLights(this.lights);
-		
 	this.loadedOk=true;
-	
-	// As the graph loaded ok, signal the scene so that any additional initialization depending on the graph can take place
 	this.scene.onGraphLoaded();
-
 };
 
 /**
@@ -122,8 +117,8 @@ MySceneGraph.prototype.drawNode = function(node, material, texture)
 {
 	this.scene.pushMatrix();
 	
-	// Apply transformations in scene
-	this.scene.multMatrix(node.transformations);
+	// Apply transformations and animations in scene
+	this.scene.multMatrix(node.update());
 
 	// Get Actual Material and Texture
 	var material = this.getNodeMaterial(node, material);
@@ -167,7 +162,13 @@ MySceneGraph.prototype.drawLeaf = function(leaf, material, texture) {
 	this.scene.drawLeaf(leaf);
 
 };
-	
+
+MySceneGraph.prototype.updateAnimations = function(deltaTempo) {
+	for (var node in this.nodes) {
+		this.nodes[node].stepAnimation(deltaTempo);
+	}
+};
+
 /*
  * Callback to be executed on any read error
  */
