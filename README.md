@@ -1,4 +1,4 @@
-# Laig
+# LAIG WebGL
 LAIG Project's
 
 Grupo T02G14
