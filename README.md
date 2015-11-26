@@ -1,5 +1,7 @@
-# laig
-LAIG Project
+# Laig
+LAIG Project's
 
-Diana Pinto
-Tiago Tavares
+Grupo T02G14
+
+- Diana Isabel Garcia Pinto, 201303187
+- Tiago Miguel Couto Tavares, 200904079
