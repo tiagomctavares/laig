@@ -1,0 +1,110 @@
+<SCENE>
+	<INITIALS>
+		<frustum near="0.1" far="200" />
+		<translation x="0.0" y="0.0" z="-7.0" />
+		<rotation axis="y" angle="0.0" />
+		<rotation axis="x" angle="0.0" />
+		<rotation axis="z" angle="0.0" />
+		<scale sx="1.0" sy="1.0" sz="1.0" />
+		<reference length="4.0" />
+	</INITIALS>
+	<ILLUMINATION>
+		<ambient r="0.1" g="0.1" b="0.1" a="1.0" />
+		<background r="0.17" g="0.2" b="0.36" a="1.0" />
+	</ILLUMINATION>
+	<LIGHTS>
+		<LIGHT id="luz1">
+			<enable value="1" />
+			<position x="12.5" y="4.0" z="7.5" w="1.0" />
+			<ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+			<diffuse r="0.8" g="0.8" b="0.8" a="0.8" />
+			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
+		</LIGHT>
+		<LIGHT id="luz2">
+			<enable value="1" />
+			<position x="4.5" y="4.0" z="7.5" w="1.0" />
+			<ambient r="0.0" g="0.0" b="0.0" a="1.0" />
+			<diffuse r="0.8" g="0.8" b="0.8" a="0.8" />
+			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
+		</LIGHT>
+		<LIGHT id="luz3">
+			<enable value="1" />
+			<position x="8" y="4" z="5" w="0.0" />
+			<ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+			<diffuse r="0.7" g="0.7" b="0.7" a="1.0" />
+			<specular r="0.5" g="0.5" b="0.5" a="1.0" />
+		</LIGHT>
+		<LIGHT id="luz4">
+			<enable value="1" />
+			<position x="0" y="4" z="2" w="0.0" />
+			<ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+			<diffuse r="0.7" g="0.7" b="0.7" a="1.0" />
+			<specular r="0.5" g="0.5" b="0.5" a="1.0" />
+		</LIGHT>
+	</LIGHTS>
+	<TEXTURES>	
+		<TEXTURE id="vidro">
+			<file path="images/vidro.jpg" />
+			<amplif_factor s="1.0" t="1.0" />
+		</TEXTURE>
+	</TEXTURES>
+	<MATERIALS>
+		<MATERIAL id="default">
+			<shininess value="5" />
+			<specular r="0.5" g="0.5" b="0.5" a="1.0" />
+			<diffuse r="0.5" g="0.5" b="0.5" a="1.0" />
+			<ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+			<emission r="0.0" g="0.0" b="0.0" a="0.0" />
+		</MATERIAL>
+	</MATERIALS>
+	<ANIMATIONS>
+		<ANIMATION id="first" span="8.0" type="linear">
+			<controlpoint xx="0.0" yy="0.0" zz="0.0" />
+			<controlpoint xx="8.0" yy="0.0" zz="0.0" />
+			<controlpoint xx="10.0" yy="0.0" zz="9.0" />
+			<controlpoint xx="8.0" yy="0.0" zz="0.0" />
+			<controlpoint xx="0.0" yy="0.0" zz="0.0" />
+			<controlpoint xx="0.0" yy="0.0" zz="8.0" />
+			<controlpoint xx="8.0" yy="0.0" zz="8.0" />
+			<controlpoint xx="0.0" yy="0.0" zz="8.0" />
+			<controlpoint xx="0.0" yy="0.0" zz="0.0" />
+			<controlpoint xx="8.0" yy="0.0" zz="8.0" />
+			<controlpoint xx="0.0" yy="0.0" zz="0.0" />
+			<controlpoint xx="8.0" yy="0.0" zz="0.0" />
+			<controlpoint xx="8.0" yy="0.0" zz="8.0" />
+			<controlpoint xx="8.0" yy="0.0" zz="0.0" />
+			<controlpoint xx="0.0" yy="0.0" zz="0.0" />
+		</ANIMATION>
+		<ANIMATION id="second" span="6.0" type="circular"
+			center="8.0 0.0 8.0" radius="8.0" startang="0" rotang="360">
+		</ANIMATION>
+	</ANIMATIONS>
+	<LEAVES>
+	<LEAF id="curve2" type="patch" orderU="2" partsU="10" orderV="3" partsV="15">
+			<controlpoint x="0.1" y="0.0" z="-0.6"/>
+			<controlpoint x="-1.0" y="0.0" z="1.0"/>
+			<controlpoint x="-2.0" y="0.0" z="-2.0"/>
+			<controlpoint x="-3.0" y="0.0" z="-1.0"/>
+			<controlpoint x="0.05" y="1.0" z="0.0"/>
+			<controlpoint x="-1.0" y="1.0" z="2.5"/>
+			<controlpoint x="-2.0" y="1.0" z="-1.5"/>
+			<controlpoint x="-3.0" y="1.0" z="0.0"/>
+			<controlpoint x="0.1" y="2.0" z="-0.6"/>
+			<controlpoint x="-1.0" y="2.0" z="1.0"/>
+			<controlpoint x="-2.0" y="2.0" z="-1.5"/>
+			<controlpoint x="-3.0" y="2.0" z="-0.5"/>
+		</LEAF>
+	
+	</LEAVES>
+	<NODES>
+		<ROOT id="scene" />
+		<NODE id="scene">
+			<MATERIAL id="default" />
+			<TEXTURE id="vidro" />
+			<TRANSLATION x="2.5" y="0.0" z="2.5" />
+			<DESCENDANTS>
+				<DESCENDANT id="curve2" />
+			</DESCENDANTS>
+		</NODE>	
+	</NODES>	
+</SCENE>
