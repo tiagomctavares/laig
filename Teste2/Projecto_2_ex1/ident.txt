@@ -1,0 +1,9 @@
+Grupo T02G14
+
+Diana Isabel Garcia Pinto, 201303187
+
+Problema Completo
+
+Nota: Para aceder ao lsx, acrescentar:
+?file=MySurfaces.lsx
+

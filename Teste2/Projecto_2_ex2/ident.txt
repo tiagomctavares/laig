@@ -1,0 +1,10 @@
+Grupo T02G14
+
+Diana Isabel Garcia Pinto, 201303187
+
+
+Problema Completo
+
+
+Nota: Se não iniciar logo com o ficheiro lsx, acrescentar:
+?file=MySurfaces.lsx
