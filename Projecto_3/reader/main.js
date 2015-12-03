@@ -20,10 +20,13 @@ serialInclude(['../lib/CGF.js',
     './leaves/MyCylinder.js', 
     './leaves/MySphere.js', 
     './leaves/MyTriangle.js',
+	'./leaves/MyDisk.js',
     './leaves/MyPlane.js', 
 	'./leaves/MyPatch.js',
 	'./leaves/MyTerrain.js',
-	'./leaves/MyVehicle.js', 
+	'./leaves/MyVehicle.js',
+	'./leaves/MyUnitCubeQuad.js',
+	'./leaves/MyPiece.js',
     './components/Parser.js', 
     './components/BaseParserObject.js', 
     './components/Initials.js', 
@@ -57,7 +60,7 @@ main=function()
 	// get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml 
 	// or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor) 
 	
-	var filename=getUrlVars()['file'] || "MySurfaces.lsx";
+	var filename=getUrlVars()['file'] || "tabuleiro.lsx";
 
 	// create and load graph, and associate it to scene. 
 	// Check console for loading errors
