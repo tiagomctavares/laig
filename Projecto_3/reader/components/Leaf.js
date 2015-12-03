@@ -88,6 +88,21 @@ Leaf.prototype.cylinder = function(scene, self) {
 	return new MyCylinder(scene, altura, raio_base, raio_topo, stacks, slices);
 };
 
+Leaf.prototype.disk = function(scene, self) {
+	
+	var unprocessedArgs = self.getString(self.root, 'args');
+	var args = unprocessedArgs.replace(/\s+/g, ' ').split(' ');
+
+	if(args.length != 1) return "O numero de parametros para um disco não é valido";
+	
+	var slices = parseInt(args[0]);
+
+	if(slices != slices)
+		return "O valor das slices" + slices + "não é valido." ;
+
+	return new MyDisk(scene, slices);
+};
+
 /**
 * Cria e retorna uma esfera
 * @param {XMLscene} scene
