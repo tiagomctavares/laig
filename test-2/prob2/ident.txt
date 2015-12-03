@@ -1,0 +1,6 @@
+Tiago Miguel Couto Tavares, 200904079
+Grupo T02G14
+Problema completo
+
+O nome do ficheiro para teste abre por default depois de alteração feita no main
+http://localhost:8080/prob2/reader/

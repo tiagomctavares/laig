@@ -1,0 +1,6 @@
+Tiago Miguel Couto Tavares, 200904079
+Grupo T02G14
+prob.incompleto -> Falta apenas o Flat Shading
+
+O nome do ficheiro para teste é teste.lsx que foi criado durante o exame
+http://localhost:8080/prob2/reader/?file=teste.lsx
