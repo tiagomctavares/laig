@@ -1525,7 +1525,7 @@
 		<TEXTURE id="null" />								
 		<DESCENDANTS>
 			<DESCENDANT id="candeeiro1" />	
-			<DESCENDANT id="candeeiro2" />
+			<DESCENDANT id="candeeiro2" />					
 			<DESCENDANT id="candeeiro3" />				
 		</DESCENDANTS>		
 	</NODE>
@@ -1533,27 +1533,27 @@
 	<NODE id="candeeiro1">
 		<MATERIAL id="null" />
 		<TEXTURE id="null" />		
-		<TRANSLATION x="6.25" y="8.0" z="7.5" />
+		<TRANSLATION x="6.25" y="8.0" z="7.5" />							
 		<DESCENDANTS>
-			<DESCENDANT id="candeeiro" />
+			<DESCENDANT id="candeeiro" />																	
 		</DESCENDANTS>		
 	</NODE>
 
 	<NODE id="candeeiro2">
 		<MATERIAL id="null" />
 		<TEXTURE id="null" />		
-		<TRANSLATION x="12.5" y="8.0" z="7.5" />
+		<TRANSLATION x="12.5" y="8.0" z="7.5" />					
 		<DESCENDANTS>
-			<DESCENDANT id="candeeiro" />
+			<DESCENDANT id="candeeiro" />															
 		</DESCENDANTS>		
 	</NODE>
 	
 	<NODE id="candeeiro3">
 		<MATERIAL id="null" />
 		<TEXTURE id="null" />		
-		<TRANSLATION x="18.75" y="8.0" z="7.5" />
+		<TRANSLATION x="18.75" y="8.0" z="7.5" />					
 		<DESCENDANTS>
-			<DESCENDANT id="candeeiro" />
+			<DESCENDANT id="candeeiro" />															
 		</DESCENDANTS>		
 	</NODE>
 
@@ -1563,7 +1563,7 @@
 		<DESCENDANTS>
 			<DESCENDANT id="candeeiro_lampada" />
 			<DESCENDANT id="candeeiro_fio" />	
-			<DESCENDANT id="candeeiro_exterior" />
+			<DESCENDANT id="candeeiro_exterior" />											
 		</DESCENDANTS>		
 	</NODE>
 
