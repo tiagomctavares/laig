@@ -1,7 +1,5 @@
 function Game() {
-
-    // MyPrimitive.call(this, scene);
-
+    this.logic = new PrologLogic();
 }
 
 // MyCylinder.prototype = Object.create(MyPrimitive.prototype);

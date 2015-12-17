@@ -105,12 +105,34 @@ print_header_line(_).
 
 :-include('modX.pl').
 
-parse_input(createNewGame, Res) :- createNewGame(Res).
-parse_input(startGameWithRandomBot, 1).
+parse_input(createBoard, ResGame) :- createNewGame(ResGame).
 
-parse_input(move(X, Y), Res) :- move(X, Y).
+parse_input(placeX(Row, Col, Game), ResGame) :- 
+	getGameBoard(Game, Board),
+	setMatrixElemAtWith(Row,Col,'whitePiece', Board, Game2),
+	setGameBoard(Game2,Game,ResGame).
+
+parse_input(playerPlayRandomBot(Row, Col, Game), ResGame):-
+    getGamePlayerTurn(Game, Player),
+    Player == playerTurn,
+    getGameBoard(Game, Board),        
+    isOccupied(Row,Col,Board,RetElem),
+    setMatrixElemAtWith(Row, Col, RetElem, Board, Game2),
+    setGameBoard(Game2, Game, Game3),
+    laig_endTurn(Game3, Game4),
+    setGamePlayerTurn(cpuTurn,Game4,ResGame).
+
+parse_input(botPlayRandomBot(Game), ResGame):-
+    getGamePlayerTurn(Game, Player),
+    Player == cpuTurn,
+    prologPlays(Game,Game2),
+    laig_endTurn(Game2, Game3),
+    setGamePlayerTurn(playerTurn,Game3,ResGame).
+
 parse_input(quit, goodbye).
 
-test(_,[],N) :- N =< 0.
-test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
-	
+laig_endTurn(Game, ResGame) :-
+	evaluatePlay(Game,Game3),
+    assertScores(Game3,Game4),
+    assertMarkers(Game4,Game5),
+    assertWhitePieces(Game5,ResGame).
