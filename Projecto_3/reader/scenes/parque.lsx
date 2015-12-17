@@ -1,6 +1,6 @@
 <SCENE>
 	<INITIALS>
-		<frustum near="0.1" far="200" />
+		<frustum near="0.1" far="400" />
 		<translation x="-18.0" y="-8.0" z="-12.0" />
 		<rotation axis="y" angle="0.0" />
 		<rotation axis="x" angle="0.0" />
@@ -11,13 +11,13 @@
 
 	<ILLUMINATION>
 		<ambient r="0.1" g="0.1" b="0.1" a="1.0" />
-		<background r="0.3" g="0.3" b="0.3" a="1.0" />
+		<background r="1.0" g="1.0" b="1.0" a="1.0" />
 	</ILLUMINATION>
 
 	<LIGHTS>
 		<LIGHT id="l1">
 			<enable value ="1" />
-			<position x="18.75" y="8.0" z="7.5" w="1.0" />
+			<position x="0.75" y="8.0" z="0.0" w="1.0" />
 			<ambient r="0.0" g="0.0" b="0.0" a="1.0" />
 			<diffuse r="0.8" g="0.8" b="0.8" a="0.8" />
 			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
@@ -41,6 +41,12 @@
 	</LIGHTS>
 
 	<TEXTURES>
+	
+		<TEXTURE id="text_pedra">
+			<file path="images/marmore.jpg" />
+			<amplif_factor s="0.2" t="0.2" />
+		</TEXTURE>
+		
 		<TEXTURE id="text_piso">
 			<file path="images/lakers.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
@@ -140,15 +146,65 @@
 			<file path="images/cartas.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
-		
-		<TEXTURE id="text_wall2">
-			<file path="images/ás.jpg" />
-			<amplif_factor s="1.0" t="1.0" />
-		</TEXTURE>
-		
+				
 		<TEXTURE id="text_wall3">
 			<file path="images/naipes.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
+		</TEXTURE>
+		
+		<TEXTURE id="forest">
+			<file path="images/hillGreen.png" />
+			<amplif_factor s="0.2" t="0.2" />
+		</TEXTURE>
+		
+		<TEXTURE id="tex_Water">
+			<file path="images/water2.jpg" />
+			<amplif_factor s="1.0" t="1.0" />
+		</TEXTURE>
+		
+		<TEXTURE id="leafText">
+        <file path="images/Leaf_Floor_texture.png" />
+        <amplif_factor s="1.0" t="1.0" />
+		</TEXTURE>
+		
+		<TEXTURE id="woodTree">
+        <file path="images/wood_texture.jpg" />
+        <amplif_factor s="1.0" t="1.0" />
+		</TEXTURE>
+
+		<TEXTURE id="woodTree2">
+			<file path="images/treeWood.png" />
+			<amplif_factor s="1.0" t="1.0" />
+		</TEXTURE>
+		
+		<TEXTURE id="pathTextX">
+			<file path="images/path.png" />
+			<amplif_factor s="6.0" t="1.0" />
+		</TEXTURE>
+		
+		<TEXTURE id="pathTextZ">
+			<file path="images/path.png" />
+			<amplif_factor s="0.2" t="0.2" />
+		</TEXTURE>
+		
+		<TEXTURE id="pathTextY">
+			<file path="images/areia.jpg" />
+			<amplif_factor s="2.0" t="2.0" />
+		</TEXTURE>
+		
+		<TEXTURE id="pathTextW">
+			<file path="images/asfalto.jpg" />
+			<amplif_factor s="2.0" t="2.0" />
+		</TEXTURE>
+		
+		<TEXTURE id="text_rock">
+			<file path="images/rocks.jpg" />
+			<amplif_factor s="0.02" t="1.0" />
+		</TEXTURE>
+		
+		<TEXTURE id="text_pele">
+			<file path="images/peleBranca.jpg" />
+			<amplif_factor s="0.3" t="1.0" />
 		</TEXTURE>
 	</TEXTURES>
 
@@ -167,7 +223,7 @@
 			<specular r="0.5" g="0.5" b="0.5" a="1.0" />
 			<diffuse r="0.5" g="0.5" b="0.5" a="1.0" />
 			<ambient r="0.5" g="0.5" b="0.5" a="1.0" />
-			<emission r="0.0" g="0.0" b="0.0" a="0.0" />
+			<emission r="0.4" g="0.4" b="0.4" a="0.0" />
 		</MATERIAL>		
 
 		<MATERIAL id="preto">
@@ -255,16 +311,22 @@
 		<LEAF id="primitiva_retangulo" type="rectangle" args="0.0 1.0 1.0 0.0" />
 		<LEAF id="primitiva_aro" type="cylinder" args="0.05 0.4 0.4 100 100" />
 		<LEAF id="primitiva_rede" type="cylinder" args="0.5 0.4 0.25 100 100" />
-		<LEAF id="primitiva_cilindro" type="cylinder" args="1.0 1.0 1.0 16 16" />	
+		<LEAF id="primitiva_cilindro" type="cylinder" args="1.0 1.0 1.0 64 64" />	
 		<LEAF id="primitiva_candeeiro" type="cylinder" args="0.5 0.65 0.05 16 16" />
 		<LEAF id="primitiva_bola" type="sphere" args="0.15 100 100" />
 		<LEAF id="primitiva_lampada" type="sphere" args="0.15 100 100" />
 		
-		<LEAF id="primitiva_disk" type="disk" args="100" />
-		
+		<!--<LEAF id="primitiva_disk" type="disk" args="100" />-->
+		<LEAF id="idCylinder" type="cylinder" args="1.0 1.0 1.0 16 16" />
+		<LEAF id="idCone" type="cylinder" args="1.0 1.0 0.01 16 200" />
+		 <LEAF id="idTriangle" type="triangle" args="-0.5 -0.5 0 0.5 -0.5 0 0 0.5 0"/>
+		 <LEAF id="idSphere" type="sphere" args="1.0 16 16" />
+		 <LEAF id = "idTower" type="cylinder" args="1.0 1.5 1.0 16 200" />
+		<LEAF id="idSquare" type="rectangle" args="0.0 0.0 1.0 1.0" />
+		 
 		<LEAF id="rect" type="rectangle" args="-.5 .5 .5 -.5" />
 	    <LEAF id="cyl" type="cylinder" args="1 1 1 12 64" />
-	    <LEAF id="circle" type="cylinder" args="0 1 0 3 64" />
+	    <LEAF id="circle" type="sphere" args="1.0 64 64" />
 	    <LEAF id="sph" type="sphere" args="1 64 64" />
 	</LEAVES>
 
@@ -275,6 +337,38 @@
 		<TEXTURE id="null" />
 		<DESCENDANTS>
 			<DESCENDANT id="campo" />
+			<DESCENDANT id="caminho" />
+			<DESCENDANT id="fonte" />
+		</DESCENDANTS>
+	</NODE>
+	
+	
+	<NODE id="fonte">
+		<MATERIAL id="null" />
+		<TEXTURE id="null" />
+		<DESCENDANTS>
+			<DESCENDANT id="base" />		
+		</DESCENDANTS>
+	</NODE>
+	
+	
+	<NODE id="base">
+		<MATERIAL id="null" />
+		<TEXTURE id="null" />
+		<DESCENDANTS>
+			<DESCENDANT id="parede_fonte" />	
+			<DESCENDANT id="p5_tapaTampo" />					
+		</DESCENDANTS>
+	</NODE>
+	
+	<NODE id="parede_fonte">
+		<MATERIAL id="null" />
+		<TEXTURE id="text_metal" />
+		<TRANSLATION x="0.0" y="2.0" z="0.0" />
+		<SCALE sx="4.0" sy="2.0" sz="4.0" />
+		<ROTATION axis="x" angle="90" />
+		<DESCENDANTS>
+			<DESCENDANT id="primitiva_cilindro" />
 		</DESCENDANTS>
 	</NODE>
 	
@@ -439,13 +533,331 @@
 		<TEXTURE id="null" />
 		<DESCENDANTS>
 			<DESCENDANT id="piso" />
+			
+			<DESCENDANT id="tree1" />
+			<DESCENDANT id="tree2" />
+			<DESCENDANT id="tree3" />
+			<DESCENDANT id="tree4" />
+			<DESCENDANT id="tree5" />
+			
 			<DESCENDANT id="bancos" />
-			<DESCENDANT id="tabuleiro" />
+		<!--	<DESCENDANT id="tabuleiro" />-->
 			<DESCENDANT id="mesa" />
 			<DESCENDANT id="mesa_redonda" />			
 		</DESCENDANTS>
 	</NODE>
 	
+	<!-- DEFINIR ARVORES -->		
+
+	<NODE id="treeModel">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+            <DESCENDANTS>
+                <DESCENDANT id="crown1" />
+				<DESCENDANT id="crown2" />
+				<DESCENDANT id="crown3" />
+				<DESCENDANT id="treeTrunk" />
+            </DESCENDANTS>
+    </NODE>
+	
+	<NODE id="crown1">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+			<SCALE sx="4" sy="4" sz="4" />
+            <DESCENDANTS>
+                <DESCENDANT id="idSphere" />
+            </DESCENDANTS>
+    </NODE>
+	
+	<NODE id="crown2">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+			<TRANSLATION x="0" y="3" z="0" />
+			<SCALE sx="3" sy="3" sz="3" />
+            <DESCENDANTS>
+                <DESCENDANT id="idSphere" />
+            </DESCENDANTS>
+    </NODE>
+	
+		<NODE id="crown3">
+            <MATERIAL id="null" />
+            <TEXTURE id="null" />
+			<TRANSLATION x="0" y="4" z="0" />
+			<SCALE sx="2" sy="3" sz="2" />
+            <DESCENDANTS>
+                <DESCENDANT id="idSphere" />
+            </DESCENDANTS>
+    </NODE>
+	
+	    <NODE id="treeTrunk">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="woodTree" />      
+	        <TRANSLATION x="0" y="-5" z="0" /> 
+	        <SCALE sx="2" sy="10" sz="2" />  
+	        <DESCENDANTS>
+	             <DESCENDANT id="pyramid1" /> 
+	             <DESCENDANT id="pyramid2" /> 
+	             <DESCENDANT id="pyramid3" /> 
+	             <DESCENDANT id="pyramid4" />   
+	        </DESCENDANTS>
+	    </NODE>
+
+	    <NODE id="pyramid1">    
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="null" />    
+	        <TRANSLATION x="0" y="0" z="0.5" /> 
+	        <ROTATION axis="x" angle="-30" />
+	        <TRANSLATION x="0" y="0" z="-0.3" />
+	        <DESCENDANTS>
+	            <DESCENDANT id="idTriangle" />     
+	        </DESCENDANTS>
+	    </NODE>
+
+	    <NODE id="pyramid2">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="null" />     
+	        <TRANSLATION x="0" y="0" z="0.5" /> 
+	        <ROTATION axis="y" angle="90" />
+	        <TRANSLATION x="0.5" y="0" z="0.5" />
+	        <ROTATION axis="x" angle="-30" />
+	        <TRANSLATION x="0" y="0" z="-0.3" />
+	        <DESCENDANTS>
+	            <DESCENDANT id="idTriangle" />     
+	        </DESCENDANTS>
+	    </NODE>
+
+	    <NODE id="pyramid3">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="null" />      
+	        <TRANSLATION x="0" y="0" z="-0.5" /> 
+	        <ROTATION axis="y" angle="180" />
+	        <ROTATION axis="x" angle="-30" />
+	        <TRANSLATION x="0" y="0" z="-0.3" />
+	        <DESCENDANTS>
+	            <DESCENDANT id="idTriangle" />     
+	        </DESCENDANTS>
+	    </NODE>
+
+	    <NODE id="pyramid4">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="null" />      
+	        <TRANSLATION x="0" y="0" z="-0.5" /> 
+	        <ROTATION axis="y" angle="270" />
+	        <TRANSLATION x="0.5" y="0" z="0.5" />
+	        <ROTATION axis="x" angle="-30" />
+	        <TRANSLATION x="0" y="0" z="-0.3" />
+	        <DESCENDANTS>
+	            <DESCENDANT id="idTriangle" />     
+	        </DESCENDANTS>
+	    </NODE>
+		
+		<NODE id="pyramidBottom">    
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="null" />      
+	        <TRANSLATION x="-0.5" y="-0.55" z="0.5" /> 
+	        <ROTATION axis="x" angle="180" />
+	        <DESCENDANTS>
+	            <DESCENDANT id="idSquare" />     
+	        </DESCENDANTS>
+		</NODE>
+		
+		<NODE id="tree1">
+            <MATERIAL id="null" />
+            <TEXTURE id="leafText" />
+			<TRANSLATION x="0" y ="10.8" z="-18" />
+            <DESCENDANTS>
+                <DESCENDANT id="treeModel" />
+            </DESCENDANTS>
+    </NODE>
+	
+		<NODE id="tree2">
+            <MATERIAL id="null" />
+            <TEXTURE id="leafText" />
+			<TRANSLATION x="-23" y ="7.8" z="-2" />
+			 <SCALE sx="0.7" sy="0.7" sz="0.7" />  
+            <DESCENDANTS>
+                 <DESCENDANT id="crown1" />
+				<DESCENDANT id="crown2" />
+				<DESCENDANT id="crown3" />
+				<DESCENDANT id="treeTrunk2" />
+            </DESCENDANTS>
+		</NODE>
+
+	    <NODE id="treeTrunk2">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="woodTree2" />      
+	        <TRANSLATION x="0" y="-5" z="0" /> 
+	        <SCALE sx="2" sy="10" sz="2" />  
+	        <DESCENDANTS>
+	             <DESCENDANT id="pyramid1" /> 
+	             <DESCENDANT id="pyramid2" /> 
+	             <DESCENDANT id="pyramid3" /> 
+	             <DESCENDANT id="pyramid4" />   
+	        </DESCENDANTS>
+	    </NODE>
+			
+		<NODE id="tree3">
+            <MATERIAL id="null" />
+            <TEXTURE id="leafText" />
+			<TRANSLATION x="10" y ="4.5" z="-20" />
+			 <SCALE sx="0.7" sy="0.7" sz="0.7" />  
+            <DESCENDANTS>
+				<DESCENDANT id="treeTrunk3" /> 
+                 <DESCENDANT id="treeTop3" /> 
+				 <DESCENDANT id="treeTop3_2" /> 
+            </DESCENDANTS>
+		</NODE>
+		
+		<NODE id="tree4">
+            <MATERIAL id="null" />
+            <TEXTURE id="leafText" />
+			<TRANSLATION x="-23" y ="5" z="6" />
+			 <SCALE sx="0.7" sy="0.7" sz="0.7" />  
+            <DESCENDANTS>
+				<DESCENDANT id="treeTrunk3" /> 
+                 <DESCENDANT id="treeTop3" /> 
+				 <DESCENDANT id="treeTop3_2" /> 
+            </DESCENDANTS>
+		</NODE>
+		
+		
+		<NODE id="tree5">
+            <MATERIAL id="null" />
+            <TEXTURE id="leafText" />
+			<TRANSLATION x="-15" y ="13" z="20" />
+			 <SCALE sx="1" sy="1.2" sz="1" />  
+            <DESCENDANTS>
+                <DESCENDANT id="crown1" />
+				<DESCENDANT id="crown2" />
+				<DESCENDANT id="crown3" />
+				<DESCENDANT id="treeTrunk2" />
+            </DESCENDANTS>
+		</NODE>
+	
+	    <NODE id="treeTop3">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="null" />      
+	        <TRANSLATION x="0" y="15" z="0" /> 
+	        <SCALE sx="10" sy="15" sz="10" />  
+	        <DESCENDANTS>
+	             <DESCENDANT id="pyramid1" /> 
+	             <DESCENDANT id="pyramid2" /> 
+	             <DESCENDANT id="pyramid3" /> 
+	             <DESCENDANT id="pyramid4" />   
+	        </DESCENDANTS>
+	    </NODE>
+		
+	    <NODE id="treeTop3_2">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="null" />                  
+	        <TRANSLATION x="0" y="20" z="0" /> 
+	        <SCALE sx="6" sy="15" sz="6" />          
+	        <DESCENDANTS>
+	             <DESCENDANT id="pyramid1" /> 
+	             <DESCENDANT id="pyramid2" /> 
+	             <DESCENDANT id="pyramid3" /> 
+	             <DESCENDANT id="pyramid4" />   
+	        </DESCENDANTS>
+	    </NODE>
+
+	    <NODE id="treeTrunk3">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="woodTree2" />
+			<TRANSLATION x="0.0" y="7.0" z="0.0" />
+			<SCALE sx="0.8" sy="14.0" sz="0.8" />
+			<ROTATION axis="x" angle="90" />
+	        <DESCENDANTS>
+	             <DESCENDANT id="primitiva_cilindro" /> 
+	        </DESCENDANTS>
+	    </NODE>
+		
+ <!-- FIM DE ARVORES -->	
+ 
+ <NODE id="caminho">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="null" /> 
+	        <DESCENDANTS>
+				<DESCENDANT id="p1" />
+				<DESCENDANT id="p2" />
+				<DESCENDANT id="centro" />
+	        </DESCENDANTS>
+	    </NODE>
+
+		<NODE id="p1">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="pathTextY" />     
+	        <TRANSLATION x="5.0" y="0.1" z="18.0" /> 
+			<SCALE sx="20.0" sy="1.0" sz="10.0" />
+			<ROTATION axis="x" angle="270" />
+	        <DESCENDANTS>
+				<DESCENDANT id="primitiva_retangulo" /> 
+	        </DESCENDANTS>
+	    </NODE>
+		
+		<NODE id="p2">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="pathTextY" />     
+	        <TRANSLATION x="-25.0" y="0.1" z="18.0" /> 
+			<SCALE sx="20.0" sy="1.0" sz="10.0" />
+			<ROTATION axis="x" angle="270" />
+	        <DESCENDANTS>
+				<DESCENDANT id="primitiva_retangulo" /> 
+	        </DESCENDANTS>
+	    </NODE>
+		
+		<NODE id="centro">
+			<MATERIAL id="null" />
+			<TEXTURE id="pathTextY" />
+			<TRANSLATION x="0.0" y="0.1" z="12.5" />
+			<SCALE sx="65.0" sy="1.0" sz="65.0" />
+			<DESCENDANTS>
+				<DESCENDANT id="primitiva_bola" />
+			</DESCENDANTS>
+		</NODE>
+		
+		<NODE id="p3">      
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="pathTextZ" />      
+	        <TRANSLATION x="16" y="0" z="-1" /> 
+			<SCALE sx="4" sy="1" sz="21" />
+	        <DESCENDANTS>
+				<DESCENDANT id="idSquare" /> 
+	        </DESCENDANTS>
+	    </NODE>
+		
+		
+		<NODE id="p4">     
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="pathTextZ" />      
+	        <TRANSLATION x="16" y="0.1" z="-11" /> 
+			<SCALE sx="4" sy="1" sz="22" />
+	        <DESCENDANTS>
+				<DESCENDANT id="idSquare" /> 
+	        </DESCENDANTS>
+	    </NODE>
+		
+		<NODE id="p5">      
+	    
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="pathTextX" />      
+	        <TRANSLATION x="5.0" y="1.0" z="5.0" />		
+	        <DESCENDANTS>
+				<DESCENDANT id="idSquare" /> 
+	        </DESCENDANTS>
+	    </NODE>
+		
+		<NODE id="p5_tapaTampo">      
+	    
+	        <MATERIAL id="null" />     
+	        <TEXTURE id="tex_Water" />      
+	        <TRANSLATION x="0.0" y="1.0" z="0.0" />
+			<SCALE sx="23.0" sy="1.0" sz="23.0" />			
+	        <DESCENDANTS>
+				<DESCENDANT id="primitiva_bola" /> 
+	        </DESCENDANTS>
+	    </NODE>
+	
+	 <!-- FIM DE CAMINHO -->
 	<NODE id="mesa">
 		<MATERIAL id="null" />
 		<TEXTURE id="metal-tex" />
@@ -462,10 +874,12 @@
 	
 	<NODE id="mesa_redonda">
 		<MATERIAL id="null" />
-		<TEXTURE id="metal-tex" />
+		<TEXTURE id="text_pedra" />
+		<TRANSLATION x="10.0" y="0.0" z="10.0" />
 		<DESCENDANTS>
 			<DESCENDANT id="tampo_redondo" />
-			<DESCENDANT id="tapa_tampo" />
+			<DESCENDANT id="tapa_tampo_cima" />
+			<DESCENDANT id="tapa_tampo_baixo" />
 			<DESCENDANT id="perna_Redonda1" />
 		</DESCENDANTS>
 	</NODE>
@@ -482,27 +896,41 @@
 	<NODE id="tampo_redondo">
 		<MATERIAL id="null" />
 		<TEXTURE id="null" />
-		<TRANSLATION x="0.0" y="8.0" z="0.0" />
+		<TRANSLATION x="0.0" y="3.5" z="0.0" />
+		<SCALE sx="2.7" sy="0.5" sz="2.7" />
 		<ROTATION axis="x" angle="90" />
 		<DESCENDANTS>
 			<DESCENDANT id="primitiva_cilindro" />
 		</DESCENDANTS>
 	</NODE>
 	
-	<NODE id="tapa_tampo">
+	<NODE id="tapa_tampo_cima">
 		<MATERIAL id="null" />
 		<TEXTURE id="null" />
-		<TRANSLATION x="0.0" y="8.0" z="0.0" />
+		<TRANSLATION x="0.0" y="3.5" z="0.0" />
+		<SCALE sx="18.0" sy="1.0" sz="18.0" />
 		<DESCENDANTS>
-			<DESCENDANT id="primitiva_disk" />
+			<DESCENDANT id="primitiva_bola" />
+		</DESCENDANTS>
+	</NODE>
+	
+	<NODE id="tapa_tampo_baixo">
+		<MATERIAL id="null" />
+		<TEXTURE id="null" />
+		<TRANSLATION x="0.0" y="3.0" z="0.0" />
+		<SCALE sx="18.0" sy="1.0" sz="18.0" />
+		<ROTATION axis="x" angle="180" />
+		<DESCENDANTS>
+			<DESCENDANT id="primitiva_bola" />
 		</DESCENDANTS>
 	</NODE>
 	
 	<NODE id="perna_Redonda1">
 		<MATERIAL id="null" />
-		<TEXTURE id="text_metal" />
-		<TRANSLATION x="0.0" y="0.0" z="0.94" />
+		<TEXTURE id="text_pedra" />
+		<TRANSLATION x="0.0" y="3.0" z="0.0" />
 		<ROTATION axis="x" angle="90" />
+		<SCALE sx="0.9" sy="0.9" sz="3.0" />
 		<DESCENDANTS>
 			<DESCENDANT id="primitiva_cilindro" />
 		</DESCENDANTS>
@@ -577,12 +1005,12 @@
 	
 	<NODE id="piso">
 		<MATERIAL id="null" />
-		<TEXTURE id="text_relva" />
-		<TRANSLATION x="-20.0" y="0.0" z="15" />
-		<SCALE sx="40.0" sy="1.0" sz="30.0"/>
+		<TEXTURE id="forest" />
+		<TRANSLATION x="-25.0" y="0.0" z="40.0" />
+		<SCALE sx="50.0" sy="1.0" sz="60.0"/>
 		<ROTATION axis="x" angle="-90" />
 		<DESCENDANTS>
-			<DESCENDANT id="primitiva_retangulo" />												
+			<DESCENDANT id="primitiva_retangulo" />	
 		</DESCENDANTS>
 	</NODE>
 	
