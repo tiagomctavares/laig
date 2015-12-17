@@ -41,10 +41,18 @@
 	</LIGHTS>
 
 	<TEXTURES>
-		<TEXTURE id="text_piso">
-			<file path="images/lakers.jpg" />
+		
+		
+		<TEXTURE id="text_yellow">
+			<file path="images/yellow.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
+		
+		<TEXTURE id="text_red">
+			<file path="images/red.jpg" />
+			<amplif_factor s="1.0" t="1.0" />
+		</TEXTURE>
+	
 		
 		<TEXTURE id="text_tapete">
 			<file path="images/tapete_preto.jpg" />
@@ -135,11 +143,11 @@
 			<file path="images/cartas.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
 		</TEXTURE>
-		
+		<!--
 		<TEXTURE id="text_wall2">
 			<file path="images/ás.jpg" />
 			<amplif_factor s="1.0" t="1.0" />
-		</TEXTURE>
+		</TEXTURE>-->
 		
 		<TEXTURE id="text_wall3">
 			<file path="images/naipes.jpg" />
@@ -450,7 +458,7 @@
 		<DESCENDANTS>
 			<DESCENDANT id="piso" />
 			<DESCENDANT id="bancos" />
-			<DESCENDANT id="tabuleiro" />
+			<!--<DESCENDANT id="tabuleiro" />-->
 			<DESCENDANT id="pecaX_Jog1" />
 			<DESCENDANT id="pecaX_Jog2" />
 		<!--	<DESCENDANT id="peca_pontuacao1" />-->
@@ -717,7 +725,7 @@
 		<DESCENDANTS>
 			<DESCENDANT id="tabela_poste" />
 			<DESCENDANT id="tabela_braco" />
-			<DESCENDANT id="tab" />
+			<!--<DESCENDANT id="tab" />-->
 			<DESCENDANT id="cesto" />
 		</DESCENDANTS>
 	</NODE>
@@ -730,7 +738,7 @@
 		<DESCENDANTS>
 			<DESCENDANT id="tabela_poste" />
 			<DESCENDANT id="tabela_braco" />
-			<DESCENDANT id="tab" />
+			<!--<DESCENDANT id="tab" />-->
 			<DESCENDANT id="cesto" />
 		</DESCENDANTS>
 	</NODE>

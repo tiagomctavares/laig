@@ -147,10 +147,12 @@
         	<file path="images/madeiraPreta.jpg" />
         	<amplif_factor s="1.0" t="1.0" />
     	</TEXTURE>
-		
-		
-		
-		
+				
+		<TEXTURE id="text_giz">
+			<file path="images/azul_giz.jpg" />
+			<amplif_factor s="1.0" t="1.0" />
+		</TEXTURE>
+				
 		<TEXTURE id="room_floor">
 			<file path="images/floor3.png" />
 			<amplif_factor s="0.25" t="0.5" />
@@ -1005,7 +1007,7 @@
 
 	<NODE id="ashtray_base">
 		<MATERIAL id="null" />
-		<TEXTURE id="marble" />
+		<TEXTURE id="text_giz" />
 		<DESCENDANTS>
 			<DESCENDANT id="ashtray_baseP1" />	
 			<DESCENDANT id="ashtray_baseP2" />	

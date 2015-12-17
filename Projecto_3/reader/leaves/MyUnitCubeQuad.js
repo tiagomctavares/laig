@@ -6,7 +6,7 @@
 function MyUnitCubeQuad(scene) {
 	CGFobject.call(this,scene);
 
-	this.quad = new MyQuad(this.scene);
+	this.quad = new MyQuad(this.scene, -0.5, 0.5, 0.5, -0.5);
 	this.quad.initBuffers();
 
 };

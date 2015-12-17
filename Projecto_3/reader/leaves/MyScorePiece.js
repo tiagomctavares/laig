@@ -1,9 +1,9 @@
 /**
- * MyPiece
+ * MyScorePiece
  * @param gl {WebGLRenderingContext}
  * @constructor
  */
-function MyPiece(scene) {
+function MyScorePiece(scene) {
 	CGFobject.call(this,scene);
 
 	this.cubeQuad = new MyUnitCubeQuad(this.scene);
@@ -12,21 +12,21 @@ function MyPiece(scene) {
 
 };
 
-MyPiece.prototype = Object.create(CGFobject.prototype);
-MyPiece.prototype.constructor=MyPiece;
+MyScorePiece.prototype = Object.create(CGFobject.prototype);
+MyScorePiece.prototype.constructor = MyScorePiece;
 
-MyPiece.prototype.select = function() {
+MyScorePiece.prototype.select = function() {
 	this.objectSelected = true;
 }
 
-MyPiece.prototype.clear = function() {
+MyScorePiece.prototype.clear = function() {
 	this.objectSelected = false;
 }
 
-MyPiece.prototype.isSelected = function() {
+MyScorePiece.prototype.isSelected = function() {
 	return this.objectSelected;
 }
-MyPiece.prototype.display = function() {
+MyScorePiece.prototype.display = function() {
 
 	//Peça de pontuação
 	this.scene.pushMatrix();

@@ -55,6 +55,11 @@ serialInclude(['../lib/CGF.js',
     './leaves/MyVehicle.js',
     './leaves/MyUnitCubeQuad.js',
     './leaves/MyPiece.js',
+    './leaves/MyScorePiece.js',
+    './leaves/MyClockHand.js',
+    './leaves/MyClock.js',
+    //'./leaves/Scoreboard.js',
+    './leaves/MyBoard.js',
     './components/Parser.js',
     './components/BaseParserObject.js',
     './components/Initials.js',
@@ -80,33 +85,32 @@ serialInclude(['../lib/CGF.js',
     './logic/PrologLogic.js',
 
     main = function () {
-        /*
-         // Standard application, scene and interface setup
-         var app = new CGFapplication(document.body);
-         var myScene = new XMLscene();
-         var lightsInterface = new LightsInterface();
 
-         app.init();
+        // Standard application, scene and interface setup
+        var app = new CGFapplication(document.body);
+        var myScene = new XMLscene();
+        var lightsInterface = new LightsInterface();
 
-         app.setScene(myScene);
-         app.setInterface(lightsInterface);
+        app.init();
 
-         lightsInterface.setActiveCamera(myScene.camera);
+        app.setScene(myScene);
+        app.setInterface(lightsInterface);
 
-         myScene.setInterface(lightsInterface);
+        lightsInterface.setActiveCamera(myScene.camera);
 
-         // get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
-         // or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)
+        myScene.setInterface(lightsInterface);
 
-         var filename=getUrlVars()['file'] || "tabuleiro.lsx";
+        // get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
+        // or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)
 
-         // create and load graph, and associate it to scene.
-         // Check console for loading errors
-         var myGraph = new MySceneGraph(filename, myScene);
+        var filename = getUrlVars()['file'] || "tabuleiro.lsx";
 
-         // start
-         app.run();
-         */
+        // create and load graph, and associate it to scene.
+        // Check console for loading errors
+        var myGraph = new MySceneGraph(filename, myScene);
+
+        // start
+        app.run();
 
         var logic = new PrologLogic();
         console.log(logic.gameState);

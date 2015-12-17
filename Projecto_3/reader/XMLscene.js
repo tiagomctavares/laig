@@ -29,7 +29,7 @@ XMLscene.prototype.init = function (application) {
     this.gl.enable(this.gl.DEPTH_TEST);
 	this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
-
+	this.selectedObject = null;
     this.enableTextures(true);
 
     this.rotationAxis = [];
@@ -40,14 +40,65 @@ XMLscene.prototype.init = function (application) {
     
 	this.axis=new CGFaxis(this);
 	
-	this.objects= [
-		new CGFplane(this),
-		new CGFplane(this),
-		new CGFplane(this),
-		new CGFplane(this), 
-		new MyPiece(this)
-	];
-
+	this.pieceRed = new CGFappearance(this);
+	this.pieceRed.loadTexture('../reader/scenes/images/red.jpg');
+	
+	this.pieceBlue = new CGFappearance(this);
+	this.pieceBlue.loadTexture('../reader/scenes/images/blue.jpg');
+	
+	this.tabuleiro = new MyBoard(this);
+	this.textYellow = new CGFappearance(this);
+	this.textYellow.loadTexture('../reader/scenes/images/yellow.jpg');
+	
+	this.textGreen = new CGFappearance(this);
+	this.textGreen.loadTexture('../reader/scenes/images/green.jpg');
+	
+	this.objects = [];
+	var i;
+	for(i =0; i< 64; i++)
+	{
+		this.objects[i] = new MyPiece(this);
+	}
+	
+	
+	this.piecesJog1 = [];
+	this.piecesJog2 = [];
+	
+	var j;
+	
+	for(j = 0; j < 17; j++)
+	{
+		this.piecesJog1[j] = new MyPiece(this);
+	}
+	
+	for(j = 0; j < 17; j++)
+	{
+		this.piecesJog2[j] = new MyPiece(this);
+	}
+	//RELOGIO
+	
+	momentoAtual = new Date();
+	
+	hora = momentoAtual.getHours(); 
+	minuto = momentoAtual.getMinutes(); 
+	segundo = momentoAtual.getSeconds(); 
+	
+	console.log(horaImprimivel = hora + " : " + minuto + " : " + segundo);
+	
+	setTimeout('segundo', 1000);	
+	
+	//MATERIALS
+	this.red = new CGFappearance(this);
+	this.red.setAmbient(0.66, 0.0, 0.02, 0.2);
+	this.red.setDiffuse(0.66, 0.0, 0.05, 0.6);
+	this.red.setSpecular(1.0, 1.0, 1.0, 1);
+	this.red.setShininess(30);
+	
+	this.blue = new CGFappearance(this);
+	this.blue.setAmbient(0.02, 0.0, 0.66, 0.2);
+	this.blue.setDiffuse(0.05, 0.0, 0.66, 0.6);
+	this.blue.setSpecular(1.0, 1.0, 1.0, 1);
+	this.blue.setShininess(30);
 	
 	this.setPickEnabled(true);
 };
@@ -181,9 +232,93 @@ XMLscene.prototype.setRotation = function(rotationId, axis, angle){
 }
 
 XMLscene.prototype.initCameras = function () {
+	
     this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+	//this.camera.Animator();
 };
+/*
+XMLscene.prototype.Animator = function () {
+	  // controller for animation objects.
+	  var self = this;
+	  var intervalRate = 20;
+	  this.tweenTypes = {
+		// % of total distance to move per-frame, total always = 100
+		'default': [1,2,3,4,5,6,7,8,9,10,9,8,7,6,5,4,3,2,1],
+		'blast': [12,12,11,10,10,9,8,7,6,5,4,3,2,1],
+		'linear': [10,10,10,10,10,10,10,10,10,10]
+	  }
+	  this.queue = [];
+	  this.queueHash = [];
+	  this.active = false;
+	  this.timer = null;
+	  this.createTween = function(start,end,type) {
+		// return array of tween coordinate data (start->end)
+		type = type||'default';
+		var tween = [start];
+		var tmp = start;
+		var diff = end-start;
+		var x = self.tweenTypes[type].length;
+		for (var i=0; i<x; i++) {
+		  tmp += diff*self.tweenTypes[type][i]*0.01;
+		  tween[i] = {};
+		  tween[i].data = tmp;
+		  tween[i].event = null;
+		}
+		return tween;
+	  };
 
+	  this.enqueue = function(o,fMethod,fOnComplete) {
+		// add object and associated methods to animation queue
+		// writeDebug('animator.enqueue()');
+		if (!fMethod) {
+		  // writeDebug('animator.enqueue(): missing fMethod');
+		}
+		self.queue.push(o);
+		o.active = true;
+	  };
+
+	  this.animate = function() {
+		// interval-driven loop: process queue, stop if done
+		var active = 0;
+		for (var i=0,j=self.queue.length; i<j; i++) {
+		  if (self.queue[i].active) {
+			self.queue[i].animate();
+			active++;
+		  }
+		}
+		if (active == 0 && self.timer) {
+		  // all animations finished
+		  // writeDebug('Animations complete');
+		  self.stop();
+		} else {
+		  // writeDebug(active+' active');
+		}
+	  };
+
+	  this.start = function() {
+		if (self.timer || self.active) {
+		  // writeDebug('animator.start(): already active');
+		  return false;
+		}
+		// writeDebug('animator.start()');
+		// report only if started
+		self.active = true;
+		self.timer = setInterval(self.animate,intervalRate);
+	  };
+
+	  this.stop = function() {
+		// writeDebug('animator.stop()',true);
+		// reset some things, clear for next batch of animations
+		clearInterval(self.timer);
+		self.timer = null;
+		self.active = false;
+		self.queue = [];
+	  };
+
+	};
+
+	var animator = new Animator();
+*/
 
 /**
  * aplica o background á cena
@@ -329,10 +464,24 @@ XMLscene.prototype.logPicking = function ()
 				{
 					var customId = this.pickResults[i][1];				
 					console.log("Picked object: " + obj + ", with pick id " + customId);
+					this.clearSelection();
+					this.select(this.pickResults[i][0]);
+					
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
 		}		
+	}
+}
+
+XMLscene.prototype.select = function(object) {
+	this.selectedObject = object;
+	this.selectedObject.select();
+}
+XMLscene.prototype.clearSelection = function() {
+	if (this.selectedObject != null) {
+		this.selectedObject.clear();
+		this.selectedObject = null;
 	}
 }
 
@@ -367,17 +516,71 @@ XMLscene.prototype.display = function () {
 	};
 	
 	
+	//this.red.apply();
+	this.textYellow.apply();
 	// draw objects
 	for (i =0; i<this.objects.length; i++) {
 		this.pushMatrix();
-	
-		this.translate(i*2, 0, 0);
+		var x = 0.4 * (i % 8);
+		var y = 0.4 * (~~(i / 8));
+		this.translate(x + 5.5, -0.2, y - 0.8);
+		this.scale(1.2, 1.0, 1.2);
 		this.registerForPick(i+1, this.objects[i]);
 		
-		this.translate(0,1,2);		
-		this.rotate(Math.PI/2.0,1,0,0);
-		this.objects[i].display();
+		//this.translate(0,1,2);		
+		//this.rotate(Math.PI/2.0,1,0,0);
+		if (this.objects[i].isSelected()) {
+			this.textGreen.apply();
+			//this.translate(8.5, 2.75, 3.5);
+			this.objects[i].display();
+			this.textYellow.apply();
+		} else {
+			this.objects[i].display();
+		}
+		
 		this.popMatrix();
 	}
+	
+	
+	this.pieceRed.apply();
+	for (i =0; i<this.piecesJog1.length; i++) {
+		this.pushMatrix();
+		var x = 0.4 * (~~(i / 3));
+		var y = 0.4 * (i % 3);
+		this.translate(x + 5.5, y - 0.2, -1.8);
+		this.scale(1.2, 1.0, 1.2);
+		this.registerForPick(i+1, this.piecesJog1[i]);
+		
+		if (this.piecesJog1[i].isSelected()) {
+			this.textGreen.apply();
+			this.piecesJog1[i].display();
+			this.pieceRed.apply();
+		} else {
+			this.piecesJog1[i].display();
+		}
+		
+		this.popMatrix();
+	}
+	
+	this.pieceBlue.apply();
+	for (i =0; i<this.piecesJog2.length; i++) {
+		this.pushMatrix();
+		var x = 0.4 * (~~(i / 3));
+		var y = 0.4 * (i % 3);
+		this.translate(x + 5.5, y - 0.2, 3.0);
+		this.scale(1.2, 1.0, 1.2);
+		this.registerForPick(i+1, this.piecesJog2[i]);
+		
+		if (this.piecesJog2[i].isSelected()) {
+			this.textGreen.apply();
+			this.piecesJog2[i].display();
+			this.pieceBlue.apply();
+		} else {
+			this.piecesJog2[i].display();
+		}
+		
+		this.popMatrix();
+	}
+	
 };
 

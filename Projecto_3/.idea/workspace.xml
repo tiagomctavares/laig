@@ -20,12 +20,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PrologLogic.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/reader/logic/PrologLogic.js">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reader/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59911895">
-              <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-              <folding />
+            <state vertical-scroll-proportion="1.7668712">
+              <caret line="117" column="37" selection-start-line="117" selection-start-column="37" selection-end-line="117" selection-end-column="37" />
+              <folding>
+                <marker date="1450381937788" expanded="true" signature="1303:3735" placeholder="[...]" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -58,7 +60,6 @@
         <option value="$PROJECT_DIR$/reader/logic/Logic.js" />
         <option value="$PROJECT_DIR$/reader/logic/Game.js" />
         <option value="$PROJECT_DIR$/reader/logic/Request.js" />
-        <option value="$PROJECT_DIR$/reader/main.js" />
         <option value="$PROJECT_DIR$/reader/ExceptionHandler.js" />
         <option value="$PROJECT_DIR$/reader/logic/exceptions/HttpBadRequestException.js" />
         <option value="$PROJECT_DIR$/reader/logic/RequestTemplate.js" />
@@ -66,6 +67,7 @@
         <option value="$PROJECT_DIR$/reader/logic/exceptions/DictionaryVariableMissingException.js" />
         <option value="$PROJECT_DIR$/reader/logic/prologURIs.js" />
         <option value="$PROJECT_DIR$/reader/logic/PrologLogic.js" />
+        <option value="$PROJECT_DIR$/reader/main.js" />
       </list>
     </option>
   </component>
@@ -318,70 +320,70 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="276" column="3" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
           <folding>
-            <marker date="1449165634117" expanded="true" signature="0:66" placeholder="/** construtor default da classe 'XMLscene' ...*/" />
-            <marker date="1449165634117" expanded="true" signature="87:115" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="217:421" placeholder="/** inicializa a cena com valores por defeito, eixos e observador(Camara) ...*/" />
-            <marker date="1449165634117" expanded="true" signature="471:1203" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1056:1169" placeholder="[...]" />
-            <marker date="1449165634117" expanded="true" signature="1206:1295" placeholder="/** inicializa a stack de appearences com os valores por defeito ...*/" />
-            <marker date="1449165634117" expanded="true" signature="1349:1451" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1453:1546" placeholder="/** inicializa a stack de texturas com uma textura inicialmente null ...*/" />
-            <marker date="1449165634117" expanded="true" signature="1597:1667" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1669:1806" placeholder="/** actualiza, fazendo push de texture para a stack de texturas ...*/" />
-            <marker date="1449165634117" expanded="true" signature="1858:1896" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1898:1998" placeholder="/** actualiza, fazendo pop da textura que está no topo da stack de texturas ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2042:2072" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2074:2223" placeholder="/** actualiza, fazendo push de appearance para a stack de appearances ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2281:2325" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2327:2433" placeholder="/** actualiza, fazendo pop da appearance que está no topo da stack de appearances ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2480:2513" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2515:2653" placeholder="/** inicializa as luzes da cena, percorrendo o vetor de luzes ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2703:2985" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2763:2981" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2987:3063" placeholder="/** atualiza cada luz, percorrendo o vetor de luzes ...*/" />
-            <marker date="1449165634117" expanded="true" signature="3109:3207" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3169:3204" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3209:3394" placeholder="/** atualiza o estado de cada luz, consoante o estado: enable desta ...*/" />
-            <marker date="1449165634117" expanded="true" signature="3446:3524" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3581:3603" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3650:3670" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3727:3759" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3761:4013" placeholder="/** aplica a transformacao de rotacao a um eixo, com o respetivo angulo ...*/" />
-            <marker date="1449165634117" expanded="true" signature="4080:4333" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4380:4486" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4490:4601" placeholder="/** aplica o background á cena ...*/" />
-            <marker date="1449165634117" expanded="true" signature="4652:4680" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4683:4779" placeholder="/*...*/" />
-            <marker date="1449165634117" expanded="true" signature="4781:4896" placeholder="/** aplica a luz ambiente á cena ...*/" />
-            <marker date="1449165634117" expanded="true" signature="4944:4969" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4972:5162" placeholder="/** altera as posicoes dos planos do observador ...*/" />
-            <marker date="1449165634117" expanded="true" signature="5215:5268" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5321:5348" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5404:5435" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5439:5559" placeholder="/** cria uma appearance por defeito ...*/" />
-            <marker date="1449165634117" expanded="true" signature="5627:5880" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5883:6040" placeholder="//..." />
-            <marker date="1449165634117" expanded="true" signature="6089:6144" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="6196:6302" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="6224:6300" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="6305:6458" placeholder="/** atualiza as Initials, colocando a camera consoante o frustum no lsx, e aplicando a matriz de transformacoes ...*/" />
-            <marker date="1449165634117" expanded="true" signature="6506:7184" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="7146:7179" placeholder="{&quot;texture&quot;: 0...}" />
-            <marker date="1449165634117" expanded="true" signature="7236:7284" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="7285:7390" placeholder="/** atualiza a iluminacao, tanto a nivel do background como da iluminacao global ...*/" />
-            <marker date="1449165634117" expanded="true" signature="7442:7692" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="7694:7746" placeholder="/** atualiza a appearance, ...*/" />
-            <marker date="1449165634117" expanded="true" signature="7796:8067" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8114:8160" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8217:8622" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8248:8620" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8313:8615" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8365:8556" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8422:8551" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8665:9722" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8668:8741" placeholder="//..." />
-            <marker date="1449165634117" expanded="true" signature="9391:9442" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="9505:9720" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="0:66" placeholder="/** construtor default da classe 'XMLscene' ...*/" />
+            <marker date="1450381876657" expanded="true" signature="87:115" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="217:421" placeholder="/** inicializa a cena com valores por defeito, eixos e observador(Camara) ...*/" />
+            <marker date="1450381876657" expanded="true" signature="471:807" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1056:1169" placeholder="[...]" />
+            <marker date="1450381876657" expanded="true" signature="1206:1295" placeholder="/** inicializa a stack de appearences com os valores por defeito ...*/" />
+            <marker date="1450381876657" expanded="true" signature="1349:1451" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1453:1546" placeholder="/** inicializa a stack de texturas com uma textura inicialmente null ...*/" />
+            <marker date="1450381876657" expanded="true" signature="1597:1667" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1669:1806" placeholder="/** actualiza, fazendo push de texture para a stack de texturas ...*/" />
+            <marker date="1450381876657" expanded="true" signature="1858:1896" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1898:1998" placeholder="/** actualiza, fazendo pop da textura que está no topo da stack de texturas ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2042:2072" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2074:2223" placeholder="/** actualiza, fazendo push de appearance para a stack de appearances ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2281:2325" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2327:2433" placeholder="/** actualiza, fazendo pop da appearance que está no topo da stack de appearances ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2480:2513" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2515:2653" placeholder="/** inicializa as luzes da cena, percorrendo o vetor de luzes ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2703:2985" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2763:2981" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2987:3063" placeholder="/** atualiza cada luz, percorrendo o vetor de luzes ...*/" />
+            <marker date="1450381876657" expanded="true" signature="3109:3207" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3169:3204" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3209:3394" placeholder="/** atualiza o estado de cada luz, consoante o estado: enable desta ...*/" />
+            <marker date="1450381876657" expanded="true" signature="3446:3524" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3581:3603" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3650:3670" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3727:3759" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3761:4013" placeholder="/** aplica a transformacao de rotacao a um eixo, com o respetivo angulo ...*/" />
+            <marker date="1450381876657" expanded="true" signature="4080:4333" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4380:4486" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4490:4601" placeholder="/** aplica o background á cena ...*/" />
+            <marker date="1450381876657" expanded="true" signature="4652:4680" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4683:4779" placeholder="/*...*/" />
+            <marker date="1450381876657" expanded="true" signature="4781:4896" placeholder="/** aplica a luz ambiente á cena ...*/" />
+            <marker date="1450381876657" expanded="true" signature="4944:4969" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4972:5162" placeholder="/** altera as posicoes dos planos do observador ...*/" />
+            <marker date="1450381876657" expanded="true" signature="5215:5268" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5321:5348" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5404:5435" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5439:5559" placeholder="/** cria uma appearance por defeito ...*/" />
+            <marker date="1450381876657" expanded="true" signature="5627:5880" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5883:6040" placeholder="//..." />
+            <marker date="1450381876657" expanded="true" signature="6089:6144" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="6196:6302" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="6224:6300" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="6305:6458" placeholder="/** atualiza as Initials, colocando a camera consoante o frustum no lsx, e aplicando a matriz de transformacoes ...*/" />
+            <marker date="1450381876657" expanded="true" signature="6506:7184" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="7146:7179" placeholder="{&quot;texture&quot;: 0...}" />
+            <marker date="1450381876657" expanded="true" signature="7236:7284" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="7285:7390" placeholder="/** atualiza a iluminacao, tanto a nivel do background como da iluminacao global ...*/" />
+            <marker date="1450381876657" expanded="true" signature="7442:7692" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="7694:7746" placeholder="/** atualiza a appearance, ...*/" />
+            <marker date="1450381876657" expanded="true" signature="7796:8067" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8114:8160" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8217:8622" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8248:8620" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8313:8615" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8365:8556" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8422:8551" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="14832:14834" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8668:8741" placeholder="//..." />
+            <marker date="1450381876657" expanded="true" signature="9391:9442" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="9505:9720" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -391,70 +393,70 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="274" column="49" selection-start-line="274" selection-start-column="49" selection-end-line="274" selection-end-column="49" />
           <folding>
-            <marker date="1449165634117" expanded="true" signature="0:66" placeholder="/** construtor default da classe 'XMLscene' ...*/" />
-            <marker date="1449165634117" expanded="true" signature="87:115" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="217:421" placeholder="/** inicializa a cena com valores por defeito, eixos e observador(Camara) ...*/" />
-            <marker date="1449165634117" expanded="true" signature="471:1203" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1056:1169" placeholder="[...]" />
-            <marker date="1449165634117" expanded="true" signature="1206:1295" placeholder="/** inicializa a stack de appearences com os valores por defeito ...*/" />
-            <marker date="1449165634117" expanded="true" signature="1349:1451" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1453:1546" placeholder="/** inicializa a stack de texturas com uma textura inicialmente null ...*/" />
-            <marker date="1449165634117" expanded="true" signature="1597:1667" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1669:1806" placeholder="/** actualiza, fazendo push de texture para a stack de texturas ...*/" />
-            <marker date="1449165634117" expanded="true" signature="1858:1896" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1898:1998" placeholder="/** actualiza, fazendo pop da textura que está no topo da stack de texturas ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2042:2072" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2074:2223" placeholder="/** actualiza, fazendo push de appearance para a stack de appearances ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2281:2325" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2327:2433" placeholder="/** actualiza, fazendo pop da appearance que está no topo da stack de appearances ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2480:2513" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2515:2653" placeholder="/** inicializa as luzes da cena, percorrendo o vetor de luzes ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2703:2985" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2763:2981" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2987:3063" placeholder="/** atualiza cada luz, percorrendo o vetor de luzes ...*/" />
-            <marker date="1449165634117" expanded="true" signature="3109:3207" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3169:3204" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3209:3394" placeholder="/** atualiza o estado de cada luz, consoante o estado: enable desta ...*/" />
-            <marker date="1449165634117" expanded="true" signature="3446:3524" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3581:3603" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3650:3670" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3727:3759" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3761:4013" placeholder="/** aplica a transformacao de rotacao a um eixo, com o respetivo angulo ...*/" />
-            <marker date="1449165634117" expanded="true" signature="4080:4333" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4380:4486" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4490:4601" placeholder="/** aplica o background á cena ...*/" />
-            <marker date="1449165634117" expanded="true" signature="4652:4680" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4683:4779" placeholder="/*...*/" />
-            <marker date="1449165634117" expanded="true" signature="4781:4896" placeholder="/** aplica a luz ambiente á cena ...*/" />
-            <marker date="1449165634117" expanded="true" signature="4944:4969" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4972:5162" placeholder="/** altera as posicoes dos planos do observador ...*/" />
-            <marker date="1449165634117" expanded="true" signature="5215:5268" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5321:5348" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5404:5435" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5439:5559" placeholder="/** cria uma appearance por defeito ...*/" />
-            <marker date="1449165634117" expanded="true" signature="5627:5880" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5883:6040" placeholder="//..." />
-            <marker date="1449165634117" expanded="true" signature="6089:6144" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="6196:6302" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="6224:6300" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="6305:6458" placeholder="/** atualiza as Initials, colocando a camera consoante o frustum no lsx, e aplicando a matriz de transformacoes ...*/" />
-            <marker date="1449165634117" expanded="true" signature="6506:7184" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="7146:7179" placeholder="{&quot;texture&quot;: 0...}" />
-            <marker date="1449165634117" expanded="true" signature="7236:7284" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="7285:7390" placeholder="/** atualiza a iluminacao, tanto a nivel do background como da iluminacao global ...*/" />
-            <marker date="1449165634117" expanded="true" signature="7442:7692" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="7694:7746" placeholder="/** atualiza a appearance, ...*/" />
-            <marker date="1449165634117" expanded="true" signature="7796:8067" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8114:8160" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8217:8622" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8248:8620" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8313:8615" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8365:8556" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8422:8551" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8665:9722" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8668:8741" placeholder="//..." />
-            <marker date="1449165634117" expanded="true" signature="9391:9442" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="9505:9720" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="0:66" placeholder="/** construtor default da classe 'XMLscene' ...*/" />
+            <marker date="1450381876657" expanded="true" signature="87:115" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="217:421" placeholder="/** inicializa a cena com valores por defeito, eixos e observador(Camara) ...*/" />
+            <marker date="1450381876657" expanded="true" signature="471:807" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1056:1169" placeholder="[...]" />
+            <marker date="1450381876657" expanded="true" signature="1206:1295" placeholder="/** inicializa a stack de appearences com os valores por defeito ...*/" />
+            <marker date="1450381876657" expanded="true" signature="1349:1451" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1453:1546" placeholder="/** inicializa a stack de texturas com uma textura inicialmente null ...*/" />
+            <marker date="1450381876657" expanded="true" signature="1597:1667" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1669:1806" placeholder="/** actualiza, fazendo push de texture para a stack de texturas ...*/" />
+            <marker date="1450381876657" expanded="true" signature="1858:1896" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1898:1998" placeholder="/** actualiza, fazendo pop da textura que está no topo da stack de texturas ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2042:2072" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2074:2223" placeholder="/** actualiza, fazendo push de appearance para a stack de appearances ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2281:2325" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2327:2433" placeholder="/** actualiza, fazendo pop da appearance que está no topo da stack de appearances ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2480:2513" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2515:2653" placeholder="/** inicializa as luzes da cena, percorrendo o vetor de luzes ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2703:2985" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2763:2981" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2987:3063" placeholder="/** atualiza cada luz, percorrendo o vetor de luzes ...*/" />
+            <marker date="1450381876657" expanded="true" signature="3109:3207" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3169:3204" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3209:3394" placeholder="/** atualiza o estado de cada luz, consoante o estado: enable desta ...*/" />
+            <marker date="1450381876657" expanded="true" signature="3446:3524" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3581:3603" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3650:3670" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3727:3759" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3761:4013" placeholder="/** aplica a transformacao de rotacao a um eixo, com o respetivo angulo ...*/" />
+            <marker date="1450381876657" expanded="true" signature="4080:4333" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4380:4486" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4490:4601" placeholder="/** aplica o background á cena ...*/" />
+            <marker date="1450381876657" expanded="true" signature="4652:4680" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4683:4779" placeholder="/*...*/" />
+            <marker date="1450381876657" expanded="true" signature="4781:4896" placeholder="/** aplica a luz ambiente á cena ...*/" />
+            <marker date="1450381876657" expanded="true" signature="4944:4969" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4972:5162" placeholder="/** altera as posicoes dos planos do observador ...*/" />
+            <marker date="1450381876657" expanded="true" signature="5215:5268" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5321:5348" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5404:5435" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5439:5559" placeholder="/** cria uma appearance por defeito ...*/" />
+            <marker date="1450381876657" expanded="true" signature="5627:5880" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5883:6040" placeholder="//..." />
+            <marker date="1450381876657" expanded="true" signature="6089:6144" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="6196:6302" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="6224:6300" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="6305:6458" placeholder="/** atualiza as Initials, colocando a camera consoante o frustum no lsx, e aplicando a matriz de transformacoes ...*/" />
+            <marker date="1450381876657" expanded="true" signature="6506:7184" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="7146:7179" placeholder="{&quot;texture&quot;: 0...}" />
+            <marker date="1450381876657" expanded="true" signature="7236:7284" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="7285:7390" placeholder="/** atualiza a iluminacao, tanto a nivel do background como da iluminacao global ...*/" />
+            <marker date="1450381876657" expanded="true" signature="7442:7692" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="7694:7746" placeholder="/** atualiza a appearance, ...*/" />
+            <marker date="1450381876657" expanded="true" signature="7796:8067" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8114:8160" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8217:8622" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8248:8620" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8313:8615" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8365:8556" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8422:8551" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="14832:14834" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8668:8741" placeholder="//..." />
+            <marker date="1450381876657" expanded="true" signature="9391:9442" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="9505:9720" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -524,70 +526,70 @@
         <state vertical-scroll-proportion="0.7083333">
           <caret line="277" column="46" selection-start-line="277" selection-start-column="46" selection-end-line="277" selection-end-column="46" />
           <folding>
-            <marker date="1449165634117" expanded="true" signature="0:66" placeholder="/** construtor default da classe 'XMLscene' ...*/" />
-            <marker date="1449165634117" expanded="true" signature="87:115" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="217:421" placeholder="/** inicializa a cena com valores por defeito, eixos e observador(Camara) ...*/" />
-            <marker date="1449165634117" expanded="true" signature="471:1203" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1056:1169" placeholder="[...]" />
-            <marker date="1449165634117" expanded="true" signature="1206:1295" placeholder="/** inicializa a stack de appearences com os valores por defeito ...*/" />
-            <marker date="1449165634117" expanded="true" signature="1349:1451" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1453:1546" placeholder="/** inicializa a stack de texturas com uma textura inicialmente null ...*/" />
-            <marker date="1449165634117" expanded="true" signature="1597:1667" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1669:1806" placeholder="/** actualiza, fazendo push de texture para a stack de texturas ...*/" />
-            <marker date="1449165634117" expanded="true" signature="1858:1896" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="1898:1998" placeholder="/** actualiza, fazendo pop da textura que está no topo da stack de texturas ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2042:2072" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2074:2223" placeholder="/** actualiza, fazendo push de appearance para a stack de appearances ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2281:2325" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2327:2433" placeholder="/** actualiza, fazendo pop da appearance que está no topo da stack de appearances ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2480:2513" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2515:2653" placeholder="/** inicializa as luzes da cena, percorrendo o vetor de luzes ...*/" />
-            <marker date="1449165634117" expanded="true" signature="2703:2985" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2763:2981" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="2987:3063" placeholder="/** atualiza cada luz, percorrendo o vetor de luzes ...*/" />
-            <marker date="1449165634117" expanded="true" signature="3109:3207" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3169:3204" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3209:3394" placeholder="/** atualiza o estado de cada luz, consoante o estado: enable desta ...*/" />
-            <marker date="1449165634117" expanded="true" signature="3446:3524" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3581:3603" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3650:3670" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3727:3759" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="3761:4013" placeholder="/** aplica a transformacao de rotacao a um eixo, com o respetivo angulo ...*/" />
-            <marker date="1449165634117" expanded="true" signature="4080:4333" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4380:4486" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4490:4601" placeholder="/** aplica o background á cena ...*/" />
-            <marker date="1449165634117" expanded="true" signature="4652:4680" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4683:4779" placeholder="/*...*/" />
-            <marker date="1449165634117" expanded="true" signature="4781:4896" placeholder="/** aplica a luz ambiente á cena ...*/" />
-            <marker date="1449165634117" expanded="true" signature="4944:4969" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="4972:5162" placeholder="/** altera as posicoes dos planos do observador ...*/" />
-            <marker date="1449165634117" expanded="true" signature="5215:5268" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5321:5348" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5404:5435" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5439:5559" placeholder="/** cria uma appearance por defeito ...*/" />
-            <marker date="1449165634117" expanded="true" signature="5627:5880" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="5883:6040" placeholder="//..." />
-            <marker date="1449165634117" expanded="true" signature="6089:6144" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="6196:6302" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="6224:6300" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="6305:6458" placeholder="/** atualiza as Initials, colocando a camera consoante o frustum no lsx, e aplicando a matriz de transformacoes ...*/" />
-            <marker date="1449165634117" expanded="true" signature="6506:7184" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="7146:7179" placeholder="{&quot;texture&quot;: 0...}" />
-            <marker date="1449165634117" expanded="true" signature="7236:7284" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="7285:7390" placeholder="/** atualiza a iluminacao, tanto a nivel do background como da iluminacao global ...*/" />
-            <marker date="1449165634117" expanded="true" signature="7442:7692" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="7694:7746" placeholder="/** atualiza a appearance, ...*/" />
-            <marker date="1449165634117" expanded="true" signature="7796:8067" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8114:8160" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8217:8622" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8248:8620" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8313:8615" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8365:8556" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8422:8551" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8665:9722" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="8668:8741" placeholder="//..." />
-            <marker date="1449165634117" expanded="true" signature="9391:9442" placeholder="{...}" />
-            <marker date="1449165634117" expanded="true" signature="9505:9720" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="0:66" placeholder="/** construtor default da classe 'XMLscene' ...*/" />
+            <marker date="1450381876657" expanded="true" signature="87:115" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="217:421" placeholder="/** inicializa a cena com valores por defeito, eixos e observador(Camara) ...*/" />
+            <marker date="1450381876657" expanded="true" signature="471:807" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1056:1169" placeholder="[...]" />
+            <marker date="1450381876657" expanded="true" signature="1206:1295" placeholder="/** inicializa a stack de appearences com os valores por defeito ...*/" />
+            <marker date="1450381876657" expanded="true" signature="1349:1451" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1453:1546" placeholder="/** inicializa a stack de texturas com uma textura inicialmente null ...*/" />
+            <marker date="1450381876657" expanded="true" signature="1597:1667" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1669:1806" placeholder="/** actualiza, fazendo push de texture para a stack de texturas ...*/" />
+            <marker date="1450381876657" expanded="true" signature="1858:1896" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="1898:1998" placeholder="/** actualiza, fazendo pop da textura que está no topo da stack de texturas ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2042:2072" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2074:2223" placeholder="/** actualiza, fazendo push de appearance para a stack de appearances ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2281:2325" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2327:2433" placeholder="/** actualiza, fazendo pop da appearance que está no topo da stack de appearances ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2480:2513" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2515:2653" placeholder="/** inicializa as luzes da cena, percorrendo o vetor de luzes ...*/" />
+            <marker date="1450381876657" expanded="true" signature="2703:2985" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2763:2981" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="2987:3063" placeholder="/** atualiza cada luz, percorrendo o vetor de luzes ...*/" />
+            <marker date="1450381876657" expanded="true" signature="3109:3207" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3169:3204" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3209:3394" placeholder="/** atualiza o estado de cada luz, consoante o estado: enable desta ...*/" />
+            <marker date="1450381876657" expanded="true" signature="3446:3524" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3581:3603" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3650:3670" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3727:3759" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="3761:4013" placeholder="/** aplica a transformacao de rotacao a um eixo, com o respetivo angulo ...*/" />
+            <marker date="1450381876657" expanded="true" signature="4080:4333" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4380:4486" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4490:4601" placeholder="/** aplica o background á cena ...*/" />
+            <marker date="1450381876657" expanded="true" signature="4652:4680" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4683:4779" placeholder="/*...*/" />
+            <marker date="1450381876657" expanded="true" signature="4781:4896" placeholder="/** aplica a luz ambiente á cena ...*/" />
+            <marker date="1450381876657" expanded="true" signature="4944:4969" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="4972:5162" placeholder="/** altera as posicoes dos planos do observador ...*/" />
+            <marker date="1450381876657" expanded="true" signature="5215:5268" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5321:5348" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5404:5435" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5439:5559" placeholder="/** cria uma appearance por defeito ...*/" />
+            <marker date="1450381876657" expanded="true" signature="5627:5880" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="5883:6040" placeholder="//..." />
+            <marker date="1450381876657" expanded="true" signature="6089:6144" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="6196:6302" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="6224:6300" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="6305:6458" placeholder="/** atualiza as Initials, colocando a camera consoante o frustum no lsx, e aplicando a matriz de transformacoes ...*/" />
+            <marker date="1450381876657" expanded="true" signature="6506:7184" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="7146:7179" placeholder="{&quot;texture&quot;: 0...}" />
+            <marker date="1450381876657" expanded="true" signature="7236:7284" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="7285:7390" placeholder="/** atualiza a iluminacao, tanto a nivel do background como da iluminacao global ...*/" />
+            <marker date="1450381876657" expanded="true" signature="7442:7692" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="7694:7746" placeholder="/** atualiza a appearance, ...*/" />
+            <marker date="1450381876657" expanded="true" signature="7796:8067" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8114:8160" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8217:8622" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8248:8620" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8313:8615" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8365:8556" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8422:8551" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="14832:14834" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="8668:8741" placeholder="//..." />
+            <marker date="1450381876657" expanded="true" signature="9391:9442" placeholder="{...}" />
+            <marker date="1450381876657" expanded="true" signature="9505:9720" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -690,27 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reader/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50660795">
-          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
-          <folding>
-            <marker date="1450381397129" expanded="true" signature="71:493" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="90:188" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="524:1002" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="651:975" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="682:863" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="801:851" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="869:959" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="1058:1287" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="1184:1266" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="1303:3623" placeholder="[...]" />
-            <marker date="1450381397129" expanded="true" signature="2552:3620" placeholder="{...}" />
-            <marker date="1450381397129" expanded="true" signature="2562:3462" placeholder="/*...*/" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/reader/ExceptionHandler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -778,9 +759,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/reader/logic/PrologLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59911895">
-          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-          <folding />
+        <state vertical-scroll-proportion="0.6343612">
+          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+          <folding>
+            <marker date="1450381784922" expanded="true" signature="23:78" placeholder="{...}" />
+            <marker date="1450381784922" expanded="true" signature="140:439" placeholder="{...}" />
+            <marker date="1450381784922" expanded="true" signature="486:516" placeholder="{...}" />
+            <marker date="1450381784922" expanded="true" signature="586:832" placeholder="{...}" />
+            <marker date="1450381784922" expanded="true" signature="678:802" placeholder="{...}" />
+            <marker date="1450381784922" expanded="true" signature="877:918" placeholder="{...}" />
+            <marker date="1450381784922" expanded="true" signature="977:1093" placeholder="{...}" />
+            <marker date="1450381784922" expanded="true" signature="1017:1089" placeholder="{...}" />
+            <marker date="1450381784922" expanded="true" signature="1162:1240" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reader/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7668712">
+          <caret line="117" column="37" selection-start-line="117" selection-start-column="37" selection-end-line="117" selection-end-column="37" />
+          <folding>
+            <marker date="1450381937788" expanded="true" signature="1303:3735" placeholder="[...]" />
+          </folding>
         </state>
       </provider>
     </entry>
