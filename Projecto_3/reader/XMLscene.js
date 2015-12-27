@@ -75,6 +75,11 @@ XMLscene.prototype.init = function (application) {
 	{
 		this.piecesJog2[j] = new MyPiece(this);
 	}
+	
+	//AMBIENTES DE JOGO
+	
+	this.AmbienteJogo = 0;
+	
 	//RELOGIO
 	
 	momentoAtual = new Date();
@@ -100,7 +105,39 @@ XMLscene.prototype.init = function (application) {
 	this.blue.setSpecular(1.0, 1.0, 1.0, 1);
 	this.blue.setShininess(30);
 	
+	//MY CHANGES
+	this.angle = 0;
+	this.cameraspeed = 0.01;
+	
 	this.setPickEnabled(true);
+};
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[decodeURIComponent(key)] = decodeURIComponent(value);
+    });
+    return vars;
+}	
+
+XMLscene.prototype.AmbienteJogo = function(ambienteAtual)
+{
+	var myScene = new XMLscene();
+	
+	if(ambienteAtual  ==  ambiente[0]){
+		var filename=getUrlVars()['file'] || "SalaoJogos.lsx";
+		var myGraph = new MySceneGraph(filename, this);
+	}
+	else{
+		var filename=getUrlVars()['file'] || "parque.lsx";
+		var myGraph = new MySceneGraph(filename, this);
+	}
+};
+
+XMLscene.prototype.get = function(k)
+{
+	ambienteList[k];
 };
 
 /**
@@ -183,6 +220,17 @@ XMLscene.prototype.updateLights = function() {
 	};
 }
 
+XMLscene.prototype.resetTime = function()
+{
+	this.time = 0;
+}
+
+XMLscene.prototype.updateTime = function(tempoAtual)
+{
+	if(this.lastUpdate != 0)
+		this.time += (tempoAtual - this.lastUpdate) / 1000; 
+}
+
 /**
  * atualiza o estado de cada luz, consoante o estado: enable desta
  * @param id - identificador da luz
@@ -231,9 +279,25 @@ XMLscene.prototype.setRotation = function(rotationId, axis, angle){
 
 }
 
+XMLscene.prototype.updateCamera = function ()
+{
+	this.angle= 180*Math.PI/180;
+	this.cameraspeed = 1.0;
+	
+	this.angle += this.cameraspeed;
+	this.z = 100*Math.sin(this.angle);
+	this.x = 200*Math.sin(this.angle);
+	//this.camera.setPosition(vec3.fromValues(100,100,200));
+	
+	this.camera.setPosition(vec3.fromValues(this.x,this.y,this.z));
+}
+
 XMLscene.prototype.initCameras = function () {
 	
-    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+	
+	this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+	//this.camera.updateCamera();
+	
 	//this.camera.Animator();
 };
 /*
@@ -390,7 +454,19 @@ XMLscene.prototype.onGraphLoaded = function ()
 
 XMLscene.prototype.update = function(deltaTempo) {
 	if (this.graph.loadedOk) {
-		this.graph.updateAnimations((deltaTempo - this.lastUpdate) * 0.001);	
+		this.graph.updateAnimations((deltaTempo - this.lastUpdate) * 0.001);
+	
+	for(var i = 0; i < 1; i++)
+	{
+		this.angle += this.cameraspeed;
+		this.z = 25*Math.sin(this.angle);
+		this.x = 50*Math.sin(this.angle);
+		this.y = this.camera.position[1];
+		//this.camera.setPosition(vec3.fromValues(100,100,200));
+
+		this.camera.setPosition(vec3.fromValues(this.x,this.y,this.z));
+	}	
+	//this.camera.setPosition(vec3.fromValues(100,100,200));
 	}
 };
 
@@ -549,7 +625,7 @@ XMLscene.prototype.display = function () {
 		var y = 0.4 * (i % 3);
 		this.translate(x + 5.5, y - 0.2, -1.8);
 		this.scale(1.2, 1.0, 1.2);
-		this.registerForPick(i+1, this.piecesJog1[i]);
+		this.registerForPick(i+101, this.piecesJog1[i]);
 		
 		if (this.piecesJog1[i].isSelected()) {
 			this.textGreen.apply();
@@ -569,7 +645,7 @@ XMLscene.prototype.display = function () {
 		var y = 0.4 * (i % 3);
 		this.translate(x + 5.5, y - 0.2, 3.0);
 		this.scale(1.2, 1.0, 1.2);
-		this.registerForPick(i+1, this.piecesJog2[i]);
+		this.registerForPick(i+201, this.piecesJog2[i]);
 		
 		if (this.piecesJog2[i].isSelected()) {
 			this.textGreen.apply();
@@ -583,4 +659,3 @@ XMLscene.prototype.display = function () {
 	}
 	
 };
-

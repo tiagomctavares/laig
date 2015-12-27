@@ -455,6 +455,7 @@ humanPlaceX(Game,ResultantGame):-
         setMatrixElemAtWith(DestRow4,DestCol4,'whitePiece',ResultantBoard3,ResultantBoard4),
 
         setMatrixElemAtWith(DestRow5,DestCol5,'whitePiece',ResultantBoard4,ResultantBoard5),
+
         
         setGameBoard(ResultantBoard5,Game,TempGame),
         
