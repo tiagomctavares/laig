@@ -13,5 +13,9 @@ var prologConfig = {
         'squareCPUOverlap',
         'playerTurn',
         'cpuTurn'
-    ]
+    ],
+    prologSpecialConstants: {
+        'CPU2X': "'CPU2X'",
+        'CPUsquare': "'CPUsquare'"
+    }
 };

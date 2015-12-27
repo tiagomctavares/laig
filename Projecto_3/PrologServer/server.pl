@@ -112,22 +112,11 @@ parse_input(placeX(Row, Col, Game), ResGame) :-
 	setMatrixElemAtWith(Row,Col,'whitePiece', Board, Game2),
 	setGameBoard(Game2,Game,ResGame).
 
-parse_input(playerPlayRandomBot(Row, Col, Game), ResGame):-
-    getGamePlayerTurn(Game, Player),
-    Player == playerTurn,
-    getGameBoard(Game, Board),        
-    isOccupied(Row,Col,Board,RetElem),
-    setMatrixElemAtWith(Row, Col, RetElem, Board, Game2),
-    setGameBoard(Game2, Game, Game3),
-    laig_endTurn(Game3, Game4),
-    setGamePlayerTurn(cpuTurn,Game4,ResGame).
+parse_input(playerPlay(Row, Col, Game), ResGame):- 
+	getGamePlayerTurn(Game, Player),
+	laig_playerPlay(Row, Col, Player, Game, ResGame).
 
-parse_input(botPlayRandomBot(Game), ResGame):-
-    getGamePlayerTurn(Game, Player),
-    Player == cpuTurn,
-    prologPlays(Game,Game2),
-    laig_endTurn(Game2, Game3),
-    setGamePlayerTurn(playerTurn,Game3,ResGame).
+parse_input(endGame(Game), Res):- laig_endGame(Game, Res).
 
 parse_input(quit, goodbye).
 
@@ -136,3 +125,33 @@ laig_endTurn(Game, ResGame) :-
     assertScores(Game3,Game4),
     assertMarkers(Game4,Game5),
     assertWhitePieces(Game5,ResGame).
+
+laig_playerPlay(Row, Col, playerTurn, Game, ResGame):-
+    getGameBoard(Game, Board),        
+    isOccupied(Row,Col,Board,RetElem),
+    setMatrixElemAtWith(Row, Col, RetElem, Board, Game2),
+    setGameBoard(Game2, Game, Game3),
+    laig_endTurn(Game3, Game4),
+    setGamePlayerTurn(cpuTurn,Game4,ResGame).
+
+laig_playerPlay(Row, Col, cpuTurn, Game, ResGame):-
+    getGameBoard(Game, Board),
+    isOccupiedPlayer2(Row,Col,Board,RetElem),
+    setMatrixElemAtWith(Row, Col, RetElem, Board, Game2),
+    setGameBoard(Game2, Game, Game3),
+    laig_endTurn(Game3, Game4),
+    setGamePlayerTurn(playerTurn,Game4,ResGame).
+
+laig_endGame(Game, Res) :-
+    assertPieces(Game,'player1X'),
+    Res = [player1X, pieces].
+laig_endGame(Game, Res) :-
+    assertPieces(Game,'CPU2X'),
+    Res = [CPU2X, pieces].
+laig_endGame(Game, Res) :-
+    checkScorePlayer(Game),
+    Res = [player1X, score].
+laig_endGame(Game, Res) :-
+    checkScorePlayer(Game),
+    Res = [CPU2X, score].
+laig_endGame(Game, Res) :- Res = [].

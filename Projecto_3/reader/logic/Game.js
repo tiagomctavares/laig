@@ -1,10 +1,4 @@
 function Game() {
-    this.logic = new PrologLogic();
+    this.logic = new PrologInterface();
 }
 
-// MyCylinder.prototype = Object.create(MyPrimitive.prototype);
-// MyCylinder.prototype.constructor = MyCylinder;
-
-//MyCylinder.prototype.initBuffers = function() {
-
-//};
