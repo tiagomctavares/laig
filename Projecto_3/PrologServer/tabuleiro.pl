@@ -1,13 +1,13 @@
 /* -*- Mode:Prolog; coding:iso-8859-1; -*- */
 
-getPiece('free',' ').
-getPiece('player1X','1').
+getPiece(free,' ').
+getPiece(player1X,'1').
 getPiece('CPU2X','2').
-getPiece('playersquare','*').
+getPiece(playersquare,'*').
 getPiece('CPUsquare','+').
-getPiece('whitePiece','O').
-getPiece('squarePlayerOverlap','I').
-getPiece('squareCPUOverlap','D').
+getPiece(whitePiece,'O').
+getPiece(squarePlayerOverlap,'I').
+getPiece(squareCPUOverlap,'D').
 
 printline:-
      write('     ---------------------------------'),nl.        
@@ -103,50 +103,50 @@ getMatrixElemAt(ElemRow, ElemCol, [_|RemainingLists], Elem):-
         getMatrixElemAt(ElemRow1, ElemCol, RemainingLists, Elem).
 
 testValidPiecesPlayer(Elem,Ret):-
-        Elem \= 'free',
+        Elem \= free,
         Elem \= 'CPU2X',
-        Elem \= 'playersquare',
+        Elem \= playersquare,
         Elem \= 'CPUsquare',
-        Elem \= 'squarePlayerOverlap',
-        Elem \= 'whitePiece',
+        Elem \= squarePlayerOverlap,
+        Elem \= whitePiece,
         Ret = valido.
 
 testValidPiecesPlayer(Elem,_):-
-        Elem \= 'free',
+        Elem \= free,
         Elem \= 'CPU2X',
-        Elem \= 'playersquare',
+        Elem \= playersquare,
         Elem \= 'CPUsquare',
-        Elem \= 'squarePlayerOverlap'.
+        Elem \= squarePlayerOverlap.
         
 testValidPiecesCPU(Elem,Ret):-
-        Elem \= 'free',
-        Elem \= 'player1X',
-        Elem \= 'playersquare',
+        Elem \= free,
+        Elem \= player1X,
+        Elem \= playersquare,
         Elem \= 'CPUsquare',
-        Elem \= 'squareCPUOverlap',
-        Elem \= 'whitePiece',
+        Elem \= squareCPUOverlap,
+        Elem \= whitePiece,
         Ret = valido.
 
 testValidPiecesCPU(Elem,_):-
-        Elem \= 'free',
-        Elem \= 'player1X',
-        Elem \= 'playersquare',
+        Elem \= free,
+        Elem \= player1X,
+        Elem \= playersquare,
         Elem \= 'CPUsquare',
-        Elem \= 'squareCPUOverlap'.
+        Elem \= squareCPUOverlap.
 
 isPiecePlayer(Elem):-
-        Elem \= 'free',
+        Elem \= free,
         Elem \= 'CPU2X',
-        Elem \= 'playersquare',
+        Elem \= playersquare,
         Elem \= 'CPUsquare',
-        Elem \= 'squarePlayerOverlap'.
+        Elem \= squarePlayerOverlap.
 
 isPieceCPU(Elem):-
-        Elem \= 'free',
-        Elem \= 'player1X',
-        Elem \= 'playersquare',
+        Elem \= free,
+        Elem \= player1X,
+        Elem \= playersquare,
         Elem \= 'CPUsquare',
-        Elem \= 'squareCPUOverlap'.
+        Elem \= squareCPUOverlap.
         
         
 testPlusShape(Row,Col,Board,Elem, ResultingBoard):-
@@ -175,11 +175,11 @@ testPlusShape(Row,Col,Board,Elem, ResultingBoard):-
         
         Ret == valido,
         
-        setMatrixElemAtWith(Row,Col,'playersquare',Board,Board1),
-        setMatrixElemAtWith(RowL,Col,'playersquare',Board1,Board2),
-        setMatrixElemAtWith(RowR,Col,'playersquare',Board2,Board3),
-        setMatrixElemAtWith(Row,ColU,'playersquare',Board3,Board4),
-        setMatrixElemAtWith(Row,ColB,'playersquare',Board4,Board5),
+        setMatrixElemAtWith(Row,Col,playersquare,Board,Board1),
+        setMatrixElemAtWith(RowL,Col,playersquare,Board1,Board2),
+        setMatrixElemAtWith(RowR,Col,playersquare,Board2,Board3),
+        setMatrixElemAtWith(Row,ColU,playersquare,Board3,Board4),
+        setMatrixElemAtWith(Row,ColB,playersquare,Board4,Board5),
         
         ResultingBoard = Board5, !.
 
@@ -244,11 +244,11 @@ testCrossShape(Row,Col,Board,Elem, ReturnBoard):-
        
        Ret == valido,
        
-       setMatrixElemAtWith(Row,Col,'playersquare',Board,Board1),
-       setMatrixElemAtWith(RowL,ColU,'playersquare',Board1,Board2),
-       setMatrixElemAtWith(RowR,ColU,'playersquare',Board2,Board3),
-       setMatrixElemAtWith(RowL,ColB,'playersquare',Board3,Board4),
-       setMatrixElemAtWith(RowR,ColB,'playersquare',Board4,Board5),
+       setMatrixElemAtWith(Row,Col,playersquare,Board,Board1),
+       setMatrixElemAtWith(RowL,ColU,playersquare,Board1,Board2),
+       setMatrixElemAtWith(RowR,ColU,playersquare,Board2,Board3),
+       setMatrixElemAtWith(RowL,ColB,playersquare,Board3,Board4),
+       setMatrixElemAtWith(RowR,ColB,playersquare,Board4,Board5),
        
        ReturnBoard = Board5 , !.
 
@@ -313,11 +313,11 @@ testHorizontalLine(Row,Col,Board,Elem, ReturnBoard):-
        
        Ret == valido,
        
-       setMatrixElemAtWith(Row,Col,'playersquare',Board,ResultantBoard),
-       setMatrixElemAtWith(Row,ColUU,'playersquare',ResultantBoard,ResultantBoard2),
-       setMatrixElemAtWith(Row,ColU,'playersquare',ResultantBoard2,ResultantBoard3),
-       setMatrixElemAtWith(Row,ColBB,'playersquare',ResultantBoard3,ResultantBoard4),
-       setMatrixElemAtWith(Row,ColB,'playersquare',ResultantBoard4,ResultantBoard5),
+       setMatrixElemAtWith(Row,Col,playersquare,Board,ResultantBoard),
+       setMatrixElemAtWith(Row,ColUU,playersquare,ResultantBoard,ResultantBoard2),
+       setMatrixElemAtWith(Row,ColU,playersquare,ResultantBoard2,ResultantBoard3),
+       setMatrixElemAtWith(Row,ColBB,playersquare,ResultantBoard3,ResultantBoard4),
+       setMatrixElemAtWith(Row,ColB,playersquare,ResultantBoard4,ResultantBoard5),
               
        ReturnBoard = ResultantBoard5 , !.
 
@@ -380,11 +380,11 @@ testVerticalLine(Row,Col,Board,Elem, ReturnBoard):-
        
        Ret == valido,
        
-       setMatrixElemAtWith(Row,Col,'playersquare',Board,Board1),
-       setMatrixElemAtWith(RowL,Col,'playersquare',Board1,Board2),
-       setMatrixElemAtWith(RowLL,Col,'playersquare',Board2,Board3),
-       setMatrixElemAtWith(RowR,Col,'playersquare',Board3,Board4),
-       setMatrixElemAtWith(RowRR,Col,'playersquare',Board4,Board5),
+       setMatrixElemAtWith(Row,Col,playersquare,Board,Board1),
+       setMatrixElemAtWith(RowL,Col,playersquare,Board1,Board2),
+       setMatrixElemAtWith(RowLL,Col,playersquare,Board2,Board3),
+       setMatrixElemAtWith(RowR,Col,playersquare,Board3,Board4),
+       setMatrixElemAtWith(RowRR,Col,playersquare,Board4,Board5),
        
        imprimeBoard(Board5),nl,
        
@@ -451,11 +451,11 @@ testDiagonalLeftLine(Row,Col,Board,Elem, ReturnBoard):-
        
        Ret == valido,
        
-       setMatrixElemAtWith(Row,Col,'playersquare',Board,Board1),
-       setMatrixElemAtWith(RowR,ColU,'playersquare',Board1,Board2),
-       setMatrixElemAtWith(RowRR,ColUU,'playersquare',Board2,Board3),
-       setMatrixElemAtWith(RowL,ColB,'playersquare',Board3,Board4),
-       setMatrixElemAtWith(RowLL,ColBB,'playersquare',Board4,Board5),
+       setMatrixElemAtWith(Row,Col,playersquare,Board,Board1),
+       setMatrixElemAtWith(RowR,ColU,playersquare,Board1,Board2),
+       setMatrixElemAtWith(RowRR,ColUU,playersquare,Board2,Board3),
+       setMatrixElemAtWith(RowL,ColB,playersquare,Board3,Board4),
+       setMatrixElemAtWith(RowLL,ColBB,playersquare,Board4,Board5),
        
        ReturnBoard = Board5 , !.
 
@@ -527,11 +527,11 @@ testDiagonalRightLine(Row,Col,Board,Elem, ReturnBoard):-
        
        Ret == valido,
        
-       setMatrixElemAtWith(Row,Col,'playersquare',Board,Board1),
-       setMatrixElemAtWith(RowR,ColU,'playersquare',Board1,Board2),
-       setMatrixElemAtWith(RowRR,ColUU,'playersquare',Board2,Board3),
-       setMatrixElemAtWith(RowL,ColB,'playersquare',Board3,Board4),
-       setMatrixElemAtWith(RowLL,ColBB,'playersquare',Board4,Board5),
+       setMatrixElemAtWith(Row,Col,playersquare,Board,Board1),
+       setMatrixElemAtWith(RowR,ColU,playersquare,Board1,Board2),
+       setMatrixElemAtWith(RowRR,ColUU,playersquare,Board2,Board3),
+       setMatrixElemAtWith(RowL,ColB,playersquare,Board3,Board4),
+       setMatrixElemAtWith(RowLL,ColBB,playersquare,Board4,Board5),
        
        ReturnBoard = Board5 , !.
 
@@ -614,7 +614,7 @@ headMatrix([],Index,Index,Board,Board):-
         !.
 
 headMatrix([H|T],Index,RetIndex,Board,ReturnBoard):-
-        H == 'player1X',
+        H == player1X,
         ElemRow is Index // 8,
         ElemCol is Index rem 8,
         testShapes(ElemRow,ElemCol,Board,H,RetBoard),
@@ -630,7 +630,7 @@ headMatrix([H|T],Index,RetIndex,Board,ReturnBoard):-
         headMatrix(T,Index1,RetIndex,RetBoard,ReturnBoard), !.
 
 headMatrix([H|T],Index,RetIndex,Board,ReturnBoard):-
-        H == 'whitePiece',
+        H == whitePiece,
         ElemRow is Index // 8,
         ElemCol is Index rem 8,
         testShapes(ElemRow,ElemCol,Board,H,RetBoard),
@@ -638,7 +638,7 @@ headMatrix([H|T],Index,RetIndex,Board,ReturnBoard):-
         headMatrix(T,Index1,RetIndex,RetBoard,ReturnBoard), !.
 
 headMatrix([H|T],Index,RetIndex,Board,ReturnBoard):-
-        H == 'squarePlayerOverlap',
+        H == squarePlayerOverlap,
         ElemRow is Index // 8,
         ElemCol is Index rem 8,
         testShapes(ElemRow,ElemCol,Board,H,RetBoard),
@@ -646,7 +646,7 @@ headMatrix([H|T],Index,RetIndex,Board,ReturnBoard):-
         headMatrix(T,Index1,RetIndex,RetBoard,ReturnBoard), !.
 
 headMatrix([H|T],Index,RetIndex,Board,ReturnBoard):-
-        H == 'squareCPUOverlap',
+        H == squareCPUOverlap,
         ElemRow is Index // 8,
         ElemCol is Index rem 8,
         testShapes(ElemRow,ElemCol,Board,H,RetBoard),
@@ -680,17 +680,17 @@ findInHead([H|T],Player,CPU,RetPlayer,RetCPU):-
         findInHead(T,Player,CPURet,RetPlayer,RetCPU).
 
 findInHead([H|T],Player,CPU,RetPlayer,RetCPU):-
-        H == 'squareCPUOverlap',
+        H == squareCPUOverlap,
         CPURet is CPU + 1,
         findInHead(T,Player,CPURet,RetPlayer,RetCPU).
 
 findInHead([H|T],Player,CPU,RetPlayer,RetCPU):-
-        H == 'playersquare',
+        H == playersquare,
         PlayerRet1 is Player + 1,
         findInHead(T,PlayerRet1,CPU,RetPlayer,RetCPU).
 
 findInHead([H|T],Player,CPU,RetPlayer,RetCPU):-
-        H == 'squarePlayerOverlap',
+        H == squarePlayerOverlap,
         PlayerRet1 is Player + 1,
         findInHead(T,PlayerRet1,CPU,RetPlayer,RetCPU).
 
@@ -707,12 +707,12 @@ accountPlayerX([H|T],X,RetX):-
 findPlayerX([],X,X).
 
 findPlayerX([H|T],X,RetX):-
-        H == 'player1X',
+        H == player1X,
         X1 is X + 1,
         findPlayerX(T, X1, RetX).
 
 findPlayerX([H|T],X,RetX):-
-        H == 'squareCPUOverlap',
+        H == squareCPUOverlap,
         X1 is X + 1,
         findPlayerX(T, X1, RetX).
 
@@ -734,7 +734,7 @@ findCPUX([H|T],X,RetX):-
         findCPUX(T, X1, RetX).
 
 findCPUX([H|T],X,RetX):-
-        H == 'squarePlayerOverlap',
+        H == squarePlayerOverlap,
         X1 is X + 1,
         findCPUX(T, X1, RetX).
 
@@ -755,7 +755,7 @@ accountWhitePieces([H|T],X,RetX):-
 findWhitePiece([],X,X).
 
 findWhitePiece([H|T],X,RetX):-
-        H == 'whitePiece',
+        H == whitePiece,
         X1 is X + 1,
         findWhitePiece(T,X1,RetX).
 
@@ -764,33 +764,33 @@ findWhitePiece([_|T],X,RetX):-
 
 
 initialBoard([
-         ['free','free','free','free','free','free','free','free'],
-         ['free','free','free','free','free','free','free','free'],
-         ['free','free','free','free','free','free','free','free'],
-         ['free','free','free','free','free','free','free','free'],
-         ['free','free','free','free','free','free','free','free'],
-         ['free','free','free','free','free','free','free','free'],
-         ['free','free','free','free','free','free','free','free'],
-         ['free','free','free','free','free','free','free','free']]).
+         [free,free,free,free,free,free,free,free],
+         [free,free,free,free,free,free,free,free],
+         [free,free,free,free,free,free,free,free],
+         [free,free,free,free,free,free,free,free],
+         [free,free,free,free,free,free,free,free],
+         [free,free,free,free,free,free,free,free],
+         [free,free,free,free,free,free,free,free],
+         [free,free,free,free,free,free,free,free]]).
 
 intermediateBoard([
-         ['free','whitePiece','free','CPU2X','free','CPU2X','whitePiece','free'],
-         ['CPU2X','free','CPUsquare','free','playersquare','CPUsquare','free','free'],
-        ['free','free','CPU2X','CPUsquare','playersquare','CPUsquare','free','free'],
-         ['free','free','free','free','CPUsquare','free','free','free'],
-         ['free','player1X','player1X','playersquare','playersquare','playersquare','free','free'],
-        ['whitePiece','free','free','free','free','playersquare','free','free'],
-         ['free','whitePiece','free','free','player1X','player1X','free','free'],
-         ['CPU2X','free','free','CPU2X','free','whitePiece','free','free']]).
+         [free,whitePiece,free,'CPU2X',free,'CPU2X',whitePiece,free],
+         ['CPU2X',free,'CPUsquare',free,playersquare,'CPUsquare',free,free],
+        [free,free,'CPU2X','CPUsquare',playersquare,'CPUsquare',free,free],
+         [free,free,free,free,'CPUsquare',free,free,free],
+         [free,player1X,player1X,playersquare,playersquare,playersquare,free,free],
+        [whitePiece,free,free,free,free,playersquare,free,free],
+         [free,whitePiece,free,free,player1X,player1X,free,free],
+         ['CPU2X',free,free,'CPU2X',free,whitePiece,free,free]]).
 
 endBoard([
-         ['free','whitePiece','free','CPU2X','free','CPU2X','whitePiece','free'],
-         ['CPU2X','playersquare','CPUsquare','free','playersquare','CPUsquare','free','free'],
-         ['free','playersquare','CPU2X','CPUsquare','playersquare','CPUsquare','free','free'],
-         ['free','free','playersquare','free','CPUsquare','free','free','free'],
-         ['free','player1X','player1X','playersquare','playersquare','playersquare','free','free'],
-         ['whitePiece','free','playersquare','playersquare','playersquare','playersquare','free','free'],
-         ['free','whitePiece','free','free','player1X','player1X','free','free'],
-         ['CPU2X','free','free','CPU2X','free','whitePiece','free','free']]).
+         [free,whitePiece,free,'CPU2X',free,'CPU2X',whitePiece,free],
+         ['CPU2X',playersquare,'CPUsquare',free,playersquare,'CPUsquare',free,free],
+         [free,playersquare,'CPU2X','CPUsquare',playersquare,'CPUsquare',free,free],
+         [free,free,playersquare,free,'CPUsquare',free,free,free],
+         [free,player1X,player1X,playersquare,playersquare,playersquare,free,free],
+         [whitePiece,free,playersquare,playersquare,playersquare,playersquare,free,free],
+         [free,whitePiece,free,free,player1X,player1X,free,free],
+         ['CPU2X',free,free,'CPU2X',free,whitePiece,free,free]]).
         
         

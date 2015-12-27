@@ -118,6 +118,7 @@ parse_input(playerPlay(Row, Col, Game), ResGame):-
 
 parse_input(endGame(Game), Res):- laig_endGame(Game, Res).
 
+parse_input(move(X, Y), Res) :- move(X, Y).
 parse_input(quit, goodbye).
 
 laig_endTurn(Game, ResGame) :-

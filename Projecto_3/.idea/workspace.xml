@@ -20,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/reader/main.js">
+      <file leaf-file-name="server.pl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PrologServer/server.pl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68281937">
-              <caret line="146" column="16" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.5263158">
+              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -65,12 +65,12 @@
         <option value="$PROJECT_DIR$/reader/logic/Game.js" />
         <option value="$PROJECT_DIR$/reader/logic/prologInterface/PrologLogic.js" />
         <option value="$PROJECT_DIR$/reader/logic/prologInterface/Request.js" />
-        <option value="$PROJECT_DIR$/PrologServer/server.pl" />
         <option value="$PROJECT_DIR$/reader/logic/prologInterface/prologURIs.js" />
         <option value="$PROJECT_DIR$/reader/logic/prologInterface/PrologInterface.js" />
         <option value="$PROJECT_DIR$/reader/logic/exceptions/GameEndedException.js" />
         <option value="$PROJECT_DIR$/reader/logic/Config.js" />
         <option value="$PROJECT_DIR$/reader/main.js" />
+        <option value="$PROJECT_DIR$/PrologServer/server.pl" />
       </list>
     </option>
   </component>
@@ -266,7 +266,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1378" height="744" extended-state="1" />
+    <frame x="-8" y="0" width="1378" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17180617" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -275,7 +275,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -359,7 +359,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="119" column="23" selection-start-line="119" selection-start-column="23" selection-end-line="119" selection-end-column="23" />
-          <folding />
+          <folding>
+            <marker date="1451248904030" expanded="true" signature="746:962" placeholder="{...}" />
+            <marker date="1451248904030" expanded="true" signature="869:941" placeholder="{...}" />
+            <marker date="1451248904030" expanded="true" signature="980:3481" placeholder="[...]" />
+            <marker date="1451248904030" expanded="true" signature="2471:3479" placeholder="{...}" />
+            <marker date="1451248904030" expanded="true" signature="2481:3365" placeholder="/*...*/" />
+            <marker date="1451248904030" expanded="true" signature="3512:4377" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -426,7 +433,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="78" column="63" selection-start-line="78" selection-start-column="63" selection-end-line="79" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1451248904030" expanded="true" signature="746:962" placeholder="{...}" />
+            <marker date="1451248904030" expanded="true" signature="869:941" placeholder="{...}" />
+            <marker date="1451248904030" expanded="true" signature="980:3481" placeholder="[...]" />
+            <marker date="1451248904030" expanded="true" signature="2471:3479" placeholder="{...}" />
+            <marker date="1451248904030" expanded="true" signature="2481:3365" placeholder="/*...*/" />
+            <marker date="1451248904030" expanded="true" signature="3512:4377" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -605,18 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PrologServer/server.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5212922">
-          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-          <folding>
-            <marker date="1451242394091" expanded="true" signature="1138:1293" placeholder="{...}" />
-            <marker date="1451242394091" expanded="true" signature="1139:1201" placeholder="{...}" />
-            <marker date="1451242394091" expanded="true" signature="1213:1292" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PrologServer/modX.pl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33282208">
@@ -630,12 +632,12 @@
         <state vertical-scroll-proportion="0.5153374">
           <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding>
-            <marker date="1448561781207" expanded="true" signature="23623:24170" placeholder="{...}" />
-            <marker date="1448561781207" expanded="true" signature="23624:24169" placeholder="{...}" />
-            <marker date="1448561781207" expanded="true" signature="24190:24860" placeholder="{...}" />
-            <marker date="1448561781207" expanded="true" signature="24191:24859" placeholder="{...}" />
-            <marker date="1448561781207" expanded="true" signature="24871:25591" placeholder="{...}" />
-            <marker date="1448561781207" expanded="true" signature="24872:25590" placeholder="{...}" />
+            <marker date="1451248760326" expanded="true" signature="23623:24170" placeholder="{...}" />
+            <marker date="1451248760326" expanded="true" signature="23624:24169" placeholder="{...}" />
+            <marker date="1451248760326" expanded="true" signature="24190:24860" placeholder="{...}" />
+            <marker date="1451248760326" expanded="true" signature="24191:24859" placeholder="{...}" />
+            <marker date="1451248760326" expanded="true" signature="25108:25111" placeholder="{...}" />
+            <marker date="1451248760326" expanded="true" signature="25108:25110" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -711,8 +713,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/reader/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68281937">
-          <caret line="146" column="16" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.84210527">
+          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding>
+            <marker date="1451248904030" expanded="true" signature="746:962" placeholder="{...}" />
+            <marker date="1451248904030" expanded="true" signature="869:941" placeholder="{...}" />
+            <marker date="1451248904030" expanded="true" signature="980:3481" placeholder="[...]" />
+            <marker date="1451248904030" expanded="true" signature="2471:3479" placeholder="{...}" />
+            <marker date="1451248904030" expanded="true" signature="2481:3365" placeholder="/*...*/" />
+            <marker date="1451248904030" expanded="true" signature="3512:4377" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PrologServer/server.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5263158">
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding />
         </state>
       </provider>
