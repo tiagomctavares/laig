@@ -35,14 +35,14 @@ accessMatrix([H|T],Index,RetIndex,List,RetList):-
 
 accessMatrix([H|T],Index,RetIndex,List,RetList):-
         
-        H == 'whitePiece',
+        H == whitePiece,
         append(List,[Index],RetList2),
         Index1 is Index + 1,
         accessMatrix(T,Index1,RetIndex,RetList2,RetList), !.
 
 accessMatrix([H|T],Index,RetIndex,List,RetList):-
         
-        H == 'squarePlayerOverlap',
+        H == squarePlayerOverlap,
         append(List,[Index],RetList2),
         Index1 is Index + 1,
         accessMatrix(T,Index1,RetIndex,RetList2,RetList), !.
@@ -318,21 +318,21 @@ accessHeadMatrix([],Index,Index,List,List):-
 
 accessHeadMatrix([H|T],Index,RetIndex,List,RetList):-
         
-        H == 'player1X',
+        H == player1X,
         append(List,[Index],RetList2),
         Index1 is Index + 1,
         accessHeadMatrix(T,Index1,RetIndex,RetList2,RetList), !.
 
 accessHeadMatrix([H|T],Index,RetIndex,List,RetList):-
         
-        H == 'whitePiece',
+        H == whitePiece,
         append(List,[Index],RetList2),
         Index1 is Index + 1,
         accessHeadMatrix(T,Index1,RetIndex,RetList2,RetList), !.
 
 accessHeadMatrix([H|T],Index,RetIndex,List,RetList):-
         
-        H == 'squareCPUOverlap',
+        H == squareCPUOverlap,
         append(List,[Index],RetList2),
         Index1 is Index + 1,
         accessHeadMatrix(T,Index1,RetIndex,RetList2,RetList), !.
@@ -370,7 +370,7 @@ accessSquare([],Index,Index,List,List):-
 
 accessSquare([H|T],Index,RetIndex,List,RetList):-
         
-        H == 'playersquare',
+        H == playersquare,
         append(List,[Index],RetList2),
         Index1 is Index + 1,
         accessSquare(T,Index1,RetIndex,RetList2,RetList), !.
@@ -635,7 +635,6 @@ predictPlayerMove([H|_],Board,Resposta):-
         predictDiagonalBE(H,Board,Resposta), !.
 
 predictPlayerMove([_|T],Board,Resposta):-
-        write('bangabnaganbagnabanga'),nl,
         predictPlayerMove(T,Board,Resposta), !.
 
 
@@ -655,19 +654,19 @@ predictPlayerMove([_|T],Board,Resposta):-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 isImportantPiece(Elem):-
-        Elem \= 'free',
+        Elem \= free,
         Elem \= 'CPU2X',
-        Elem \= 'playersquare',
+        Elem \= playersquare,
         Elem \= 'CPUsquare',
-        Elem \= 'squareCPUOverlap'.
+        Elem \= squareCPUOverlap.
 
 isLegit(Elem):-
-        Elem \= 'player1X',
+        Elem \= player1X,
         Elem \= 'CPU2X',
         Elem \= 'CPUsquare',
-        Elem \= 'whitePiece',
-        Elem \= 'squarePlayerOverlap',
-        Elem \= 'squareCPUOverlap'.
+        Elem \= whitePiece,
+        Elem \= squarePlayerOverlap,
+        Elem \= squareCPUOverlap.
 
 superpredictDireita(X,Board,Resposta):-
         
@@ -1326,7 +1325,7 @@ test2Adjacencies([H|_],Board,Resposta):-
         superpredictDiagonalBE(H,Board,Resposta), !.
 
 test2Adjacencies([_|T],Board,Resposta):-
-        write('bangabnaganbagnabanga'),nl,
+        
         test2Adjacencies(T,Board,Resposta), !.
 
 
@@ -1576,13 +1575,13 @@ prologExploitsAndAgressive(Game,ResultantGame):-
 
 testPosition(DestRow,DestCol,Board,RetPiece):-
         getMatrixElemAt(DestRow,DestCol,Board,Elem),
-        Elem == 'free',
+        Elem == free,
         RetPiece = 'CPU2X'.
 
 testPosition(DestRow,DestCol,Board,RetPiece):-
         getMatrixElemAt(DestRow,DestCol,Board,Elem),
-        Elem == 'playersquare',
-        RetPiece = 'squarePlayerOverlap'.
+        Elem == playersquare,
+        RetPiece = squarePlayerOverlap.
 
 prologPlaceWhitePiece(Valor,Game,ResultantGame):-
         
@@ -1736,29 +1735,29 @@ prologPlaceWhitePiece(5,Game,Game).
 
 tryWhitePiece(DestRow,DestCol,Board,RetPiece):-
         getMatrixElemAt(DestRow,DestCol,Board,Elem),
-        Elem == 'free',
-        RetPiece = 'whitePiece'.
+        Elem == free,
+        RetPiece = whitePiece.
 
 
 isFree(DestRow,DestCol,Board,RetPiece):-
         getMatrixElemAt(DestRow,DestCol,Board,Elem),
-        Elem == 'free',
+        Elem == free,
         RetPiece = 'CPU2X'.
 
 isFree(DestRow,DestCol,Board,RetPiece):-
         getMatrixElemAt(DestRow,DestCol,Board,Elem),
-        Elem == 'playersquare',
-        RetPiece = 'squarePlayerOverlap'.
+        Elem == playersquare,
+        RetPiece = squarePlayerOverlap.
                                          
 isFreeFromPlayer(DestRow,DestCol,Board,RetPiece):-
         getMatrixElemAt(DestRow,DestCol,Board,Elem),
-        Elem == 'free',
-        RetPiece = 'player1X'.
+        Elem == free,
+        RetPiece = player1X.
 
 isFreeFromPlayer(DestRow,DestCol,Board,RetPiece):-
         getMatrixElemAt(DestRow,DestCol,Board,Elem),
         Elem == 'CPUsquare',
-        RetPiece = 'squareCPUOverlap'.                                         
+        RetPiece = squareCPUOverlap.                                         
 
 prologPlaceWhitePieces(Game,ResultantGame):-
         getGameBoard(Game,Board),
@@ -1774,15 +1773,15 @@ prologPlaceWhitePieces(Game,ResultantGame):-
         random(0,8,DestRow5),
         random(0,8,DestCol5),
         
-        setMatrixElemAtWith(DestRow1,DestCol1,'whitePiece',Board,ResultantBoard),
+        setMatrixElemAtWith(DestRow1,DestCol1,whitePiece,Board,ResultantBoard),
 
-        setMatrixElemAtWith(DestRow2,DestCol2,'whitePiece',ResultantBoard,ResultantBoard2),
+        setMatrixElemAtWith(DestRow2,DestCol2,whitePiece,ResultantBoard,ResultantBoard2),
 
-        setMatrixElemAtWith(DestRow3,DestCol3,'whitePiece',ResultantBoard2,ResultantBoard3),
+        setMatrixElemAtWith(DestRow3,DestCol3,whitePiece,ResultantBoard2,ResultantBoard3),
 
-        setMatrixElemAtWith(DestRow4,DestCol4,'whitePiece',ResultantBoard3,ResultantBoard4),
+        setMatrixElemAtWith(DestRow4,DestCol4,whitePiece,ResultantBoard3,ResultantBoard4),
 
-        setMatrixElemAtWith(DestRow5,DestCol5,'whitePiece',ResultantBoard4,ResultantBoard5),
+        setMatrixElemAtWith(DestRow5,DestCol5,whitePiece,ResultantBoard4,ResultantBoard5),
         
         setGameBoard(ResultantBoard5,Game,TempGame),
         

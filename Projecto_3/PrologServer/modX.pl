@@ -10,7 +10,7 @@
 
 %condição de paragem 1: - o jogador nao tem mais peças
 playGame(Game):-
-        assertPieces(Game,'player1X'),
+        assertPieces(Game,player1X),
         write('PLAYER GANHOU O JOGO!').
 
 playGame(Game):-
@@ -61,7 +61,7 @@ playGame(Game):-
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 playGameRandomBot(Game):-
-        assertPieces(Game,'player1X'),
+        assertPieces(Game,player1X),
         write('PLAYER GANHOU O JOGO!').
 
 playGameRandomBot(Game):-
@@ -110,7 +110,7 @@ playGameRandomBot(Game):-
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 playGameGreedyBot(Game):-
-        assertPieces(Game,'player1X'),
+        assertPieces(Game,player1X),
         write('PLAYER GANHOU O JOGO!').
 
 playGameGreedyBot(Game):-
@@ -159,7 +159,7 @@ playGameGreedyBot(Game):-
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 playGameExploiterBot(Game):-
-        assertPieces(Game,'player1X'),
+        assertPieces(Game,player1X),
         write('PLAYER GANHOU O JOGO!').
 
 playGameExploiterBot(Game):-
@@ -208,7 +208,7 @@ playGameExploiterBot(Game):-
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 playGameExploiterAgressiveBot(Game):-
-        assertPieces(Game,'player1X'),
+        assertPieces(Game,player1X),
         write('CPU GANHOU O JOGO!').
 
 playGameExploiterAgressiveBot(Game):-
@@ -257,7 +257,7 @@ playGameExploiterAgressiveBot(Game):-
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 playGamePvP(Game):-
-        assertPieces(Game,'player1X'),
+        assertPieces(Game,player1X),
         write('Player 2 GANHOU O JOGO!').
 
 playGamePvP(Game):-
@@ -380,7 +380,7 @@ checkScoreCPU(Game):-
         Ret >= 12.
 
 assertPieces(Game, ElemToBeChecked):-
-        ElemToBeChecked == 'player1X',
+        ElemToBeChecked == player1X,
         getGameNumPlayerX(Game, Ret),
         Ret == 0.
 
@@ -446,15 +446,15 @@ humanPlaceX(Game,ResultantGame):-
         write('Peca 5: '),
         getPieceToBeInsertedDestinyCoords(DestRow5,DestCol5),
         
-        setMatrixElemAtWith(DestRow1,DestCol1,'whitePiece',Board,ResultantBoard),
+        setMatrixElemAtWith(DestRow1,DestCol1,whitePiece,Board,ResultantBoard),
 
-        setMatrixElemAtWith(DestRow2,DestCol2,'whitePiece',ResultantBoard,ResultantBoard2),
+        setMatrixElemAtWith(DestRow2,DestCol2,whitePiece,ResultantBoard,ResultantBoard2),
 
-        setMatrixElemAtWith(DestRow3,DestCol3,'whitePiece',ResultantBoard2,ResultantBoard3),
+        setMatrixElemAtWith(DestRow3,DestCol3,whitePiece,ResultantBoard2,ResultantBoard3),
 
-        setMatrixElemAtWith(DestRow4,DestCol4,'whitePiece',ResultantBoard3,ResultantBoard4),
+        setMatrixElemAtWith(DestRow4,DestCol4,whitePiece,ResultantBoard3,ResultantBoard4),
 
-        setMatrixElemAtWith(DestRow5,DestCol5,'whitePiece',ResultantBoard4,ResultantBoard5),
+        setMatrixElemAtWith(DestRow5,DestCol5,whitePiece,ResultantBoard4,ResultantBoard5),
 
         
         setGameBoard(ResultantBoard5,Game,TempGame),
@@ -473,6 +473,7 @@ letHumanPlay(Game, ResultantGame):-
         getPieceToBeInsertedDestinyCoords(DestRow, DestCol),
         
         isOccupied(DestRow,DestCol,Board,RetElem),
+        
         setMatrixElemAtWith(DestRow, DestCol,RetElem, Board, ResultantBoard),
         setGameBoard(ResultantBoard, Game, TempGame),
         
@@ -499,28 +500,35 @@ letPlayer2Play(Game, ResultantGame):-
 
 isOccupied(Dr,Dc,Board,RetElem):-
         getMatrixElemAt(Dr,Dc,Board,Elem),
-        Elem == 'free',
-        RetElem = 'player1X'.
+        Elem == free,
+        RetElem = player1X.
 
 isOccupied(Dr,Dc,Board,RetElem):-
         getMatrixElemAt(Dr,Dc,Board,Elem),
         Elem == 'CPUsquare',
-        RetElem = 'squareCPUOverlap'.
+        RetElem = squareCPUOverlap.
+
+isOccupied(_,_,_,_):-
+        write('POSITION ALREADY OCCUPIED!'),nl.
 
 isOccupiedPlayer2(Dr,Dc,Board,RetElem):-
         getMatrixElemAt(Dr,Dc,Board,Elem),
-        Elem == 'free',
+        Elem == free,
         RetElem = 'CPU2X'.
+
+isOccupiedPlayer2(_,_,_,_):-
+        write('POSITION ALREADY OCCUPIED!'),nl.
 
 isOccupiedPlayer2(Dr,Dc,Board,RetElem):-
         getMatrixElemAt(Dr,Dc,Board,Elem),
         Elem == 'CPUsquare',
-        RetElem = 'squarePlayerOverlap'.        
+        RetElem = squarePlayerOverlap.        
         
 
 getPieceToBeInsertedDestinyCoords(Row, Col):-
         write('Please insert the coordinates where to place your marker.'), nl,
-        inputCoords(Row, Col), nl.      
+        inputCoords(Row, Col), nl, !.
+
 
 
 inputCoords(RowNo, ColNo):-
