@@ -52,12 +52,16 @@ serialInclude(['../lib/CGF.js',
     './logic/exceptions/PrologUriNotFoundException.js',
     './logic/exceptions/DictionaryVariableMissingException.js',
     './logic/exceptions/GameEndedException.js',
+    './logic/exceptions/BoardCellOccupiedException.js',
 
     './logic/Config.js',
     './logic/prologInterface/PrologURIs.js',
     './logic/prologInterface/PrologInterface.js',
     './logic/prologInterface/Request.js',
     './logic/prologInterface/RequestTemplate.js',
+    './logic/Game.js',
+    './logic/PlayLog.js',
+    './logic/Board.js',
 
     main = function () {
         /*
@@ -88,63 +92,19 @@ serialInclude(['../lib/CGF.js',
         app.run();
         */
 
-        var logic = new PrologInterface();
-        testGame(logic);
+        var game = new Game();
+        // var logic = new PrologInterface();
+        // testGame(logic);
+        game.placeAllWhitePieces();
+        console.log('CAN PLAY: ' + game.canPlay(0, 0));
 
-        console.log(logic.gameState);
+        if(game.canPlay(0, 0))
+            game.play(0, 0);
+
+        game.logBoard();
+        console.log(game.undo());
+        game.logBoard();
+
+        console.log(game.logic.getGameState());
     }
 ]);
-
-testGame = function(logic) {
-    logic.placeWhitePiece(0, 0);
-    logic.placeWhitePiece(0, 1);
-    logic.placeWhitePiece(0, 2);
-    logic.placeWhitePiece(0, 3);
-    logic.placeWhitePiece(0, 4);
-    logic.play(2, 0);
-    logic.play(1, 1);
-
-    logic.play(3, 0);
-    logic.play(1, 2);
-
-    logic.play(4, 0);
-    logic.play(1, 3);
-
-    logic.play(5, 0);
-    logic.play(1, 4);
-
-    logic.play(6, 0);
-    logic.play(1, 5);
-
-    logic.play(1, 5);
-    logic.play(2, 0);
-
-    logic.play(6, 1);
-    logic.play(1, 6);
-
-    logic.play(6, 2);
-    logic.play(1, 7);
-
-    logic.play(6, 3);
-    logic.play(2, 1);
-
-    logic.play(6, 4);
-    logic.play(2, 2);
-
-    logic.play(6, 5);
-    logic.play(2, 3);
-
-    logic.play(5, 1);
-    logic.play(2, 4);
-
-    logic.play(5, 2);
-    logic.play(2, 5);
-
-    logic.play(5, 3);
-    logic.play(2, 6);
-
-    logic.play(5, 4);
-    logic.play(2, 7);
-
-    logic.play(5, 5);
-};

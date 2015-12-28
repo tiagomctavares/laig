@@ -6,12 +6,17 @@ function PrologInterface() {
 PrologInterface.prototype.parseGame = function (prologResponse) {
     this.gameStateResponse = this.specialConstants(prologResponse);
     this.gameState = JSON.parse(this.replaceConstants(prologResponse));
-    /*this.board = this.gameState[0];
-     this.piecesAvailable = this.gameState[1];
-     this.scores = this.gameState[2];
-     this.currentTurn = this.gameState[3];*/
 
     return this;
+};
+
+PrologInterface.prototype.getLastAnswer = function () {
+    return this.lastAnswer;
+};
+
+PrologInterface.prototype.setLastAnswer = function (lastAnswer) {
+    this.lastAnswer = lastAnswer;
+    this.parseGame(lastAnswer);
 };
 
 PrologInterface.prototype.getGameState = function () {
