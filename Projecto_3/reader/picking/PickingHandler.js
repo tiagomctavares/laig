@@ -40,8 +40,9 @@ PickingHandler.prototype.handle = function () {
 
         if (this.availablePlayerPieceToBoard(results[i])) {
             if (this.gameLogic.canPlayPosition(results[i].id - 1)) {
-                console.log('Played Piece');
-                this.gameLogic.playPosition(results[i].id - 1);
+                console.log('Played Piece: ');
+                console.log(results[i].object);
+                this.gameLogic.playPosition(results[i].id - 1, this.lastPickedObject);
                 this.gameLogic.logBoard();
             }
         }
