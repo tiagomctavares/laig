@@ -1,9 +1,12 @@
-function PickingHandler(scene) {
+function PickingHandler(scene, gameLogic) {
     this.scene = scene;
+    this.gameLogic = gameLogic;
+
     this.objects = [];
     this.boardOffset = 1;
     this.player1Offset = 101;
     this.player2Offset = 201;
+    this.lastPickedObject = new PickingObject(0, {});
 
     this.scene.setPickEnabled(true);
 }
@@ -13,38 +16,51 @@ PickingHandler.prototype.clearObjects = function () {
 };
 
 PickingHandler.prototype.addBoardCell = function (id, object) {
-    this.objects.push(new PickingObject(id, object));
-    this.scene.registerForPick(id + this.boardOffset, object);
+    this.objects.push(new PickingObject(this.boardOffset + id, object));
+    this.scene.registerForPick(this.boardOffset + id, object);
 };
 
 PickingHandler.prototype.addPlayer1Piece = function (id, object) {
     this.objects.push(new PickingObject(this.player1Offset + id, object));
-    this.scene.registerForPick(id, object);
+    this.scene.registerForPick(this.player1Offset + id, object);
 };
 
 PickingHandler.prototype.addPlayer2Piece = function (id, object) {
     this.objects.push(new PickingObject(this.player2Offset + id, object));
-    this.scene.registerForPick(id, object);
+    this.scene.registerForPick(this.player2Offset + id, object);
 };
 
 PickingHandler.prototype.handle = function () {
-    this.log();
-};
+    if (!this.hasPickedResults())
+        return;
 
-//PICKING
-PickingHandler.prototype.log = function () {
-    if (this.hasPickedResults()) {
-        var results = this.loadPickedResults();
-        for (var i = 0; i < results.length; i++) {
-            console.log("Picked object: " + results[i].object + ", with pick id " + results[i].id);
+    var results = this.loadPickedResults();
+    for (var i = 0; i < results.length; i++) {
+        console.log(this.lastPickedObject);
+
+        if (this.availablePlayerPieceToBoard(results[i])) {
+            if (this.gameLogic.canPlayPosition(results[i].id - 1)) {
+                console.log('Played Piece');
+                this.gameLogic.playPosition(results[i].id - 1);
+                this.gameLogic.logBoard();
+            }
         }
     }
+
+    if (results[i - 1] === undefined)
+        this.lastPickedObject = new PickingObject(0, {});
+    else
+        this.lastPickedObject = results[i - 1];
+};
+
+PickingHandler.prototype.availablePlayerPieceToBoard = function (piece) {
+    return this.lastPickedObject.belongsToPlayer() && piece.belongsToBoard();
 };
 
 PickingHandler.prototype.loadPickedResults = function () {
     var pickingObjects = [];
     var results = this.scene.pickResults;
-    for(var i = 0; i < results.length; i++) {
+    for (var i = 0; i < results.length; i++) {
         var obj = results[i][0];
         var id = this.scene.pickResults[i][1];
         if (obj) {
@@ -65,8 +81,3 @@ PickingHandler.prototype.hasPickedResults = function () {
         && this.scene.pickResults.length > 0
     );
 };
-
-function PickingObject(id, object) {
-    this.id = id;
-    this.object = object;
-}

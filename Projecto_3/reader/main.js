@@ -16,8 +16,6 @@ serialInclude(['../lib/CGF.js',
     'MySceneGraph.js', 
 	'ExceptionHandler.js',
 
-    'PickingHandler.js',
-
     './interfaces/LightsInterface.js',
     './leaves/MyPrimitive.js', 
     './leaves/MyQuad.js',
@@ -48,8 +46,10 @@ serialInclude(['../lib/CGF.js',
     './components/Node.js',	
     './animation/DefaultAnimation.js',
     './animation/LinearAnimation.js', 
-    './animation/CircularAnimation.js', 
-	
+    './animation/CircularAnimation.js',
+
+    './picking/PickingHandler.js',
+    './picking/PickingObject.js',
 	
     './logic/exceptions/HttpBadRequestException.js',
     './logic/exceptions/PrologUriNotFoundException.js',
@@ -93,6 +93,7 @@ serialInclude(['../lib/CGF.js',
         // start
         app.run();
 
+        /*
         var game = new GameLogic();
         // var logic = new PrologInterface();
         // testGame(logic);
@@ -108,5 +109,6 @@ serialInclude(['../lib/CGF.js',
         game.logBoard();
 
         console.log(game.logic.getGameState());
+        */
     }
 ]);

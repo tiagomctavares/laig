@@ -5,6 +5,16 @@ function GameLogic() {
     this.playLog = new PlayLog();
 }
 
+GameLogic.prototype.playPosition = function (position) {
+    var coordinate = new BoardPosition(position);
+    this.play(coordinate.getX(), coordinate.getY());
+};
+
+GameLogic.prototype.canPlayPosition = function (position) {
+    var coordinate = new BoardPosition(position);
+    return this.canPlay(coordinate.getX(), coordinate.getY());
+};
+
 GameLogic.prototype.placeWhitePiece = function (x, y) {
     if (this.board.whitePieces < this.maxWhitePieces)
         return false;

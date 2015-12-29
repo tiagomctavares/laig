@@ -101,8 +101,12 @@ XMLscene.prototype.init = function (application) {
     this.blue.setSpecular(1.0, 1.0, 1.0, 1);
     this.blue.setShininess(30);
 
+    // GameLogic
+    this.gameLogic = new GameLogic();
+    this.gameLogic.placeAllWhitePieces();
+
     // PickingHandler Class
-    this.pickingHandler = new PickingHandler(this);
+    this.pickingHandler = new PickingHandler(this, this.gameLogic);
 
     //MY CHANGES
     this.angle = 0;
@@ -518,7 +522,8 @@ XMLscene.prototype.resetShader = function () {
 XMLscene.prototype.select = function (object) {
     this.selectedObject = object;
     this.selectedObject.select();
-}
+};
+
 XMLscene.prototype.clearSelection = function () {
     if (this.selectedObject != null) {
         this.selectedObject.clear();
