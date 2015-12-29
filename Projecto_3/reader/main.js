@@ -15,6 +15,9 @@ serialInclude(['../lib/CGF.js',
     'XMLscene.js', 
     'MySceneGraph.js', 
 	'ExceptionHandler.js',
+
+    'PickingHandler.js',
+
     './interfaces/LightsInterface.js',
     './leaves/MyPrimitive.js', 
     './leaves/MyQuad.js',
@@ -59,12 +62,11 @@ serialInclude(['../lib/CGF.js',
     './logic/prologInterface/PrologInterface.js',
     './logic/prologInterface/Request.js',
     './logic/prologInterface/RequestTemplate.js',
-    './logic/Game.js',
+    './logic/GameLogic.js',
     './logic/PlayLog.js',
     './logic/Board.js',
 
     main = function () {
-        /*
         // Standard application, scene and interface setup
         var app = new CGFapplication(document.body);
         var myScene = new XMLscene();
@@ -90,9 +92,8 @@ serialInclude(['../lib/CGF.js',
 
         // start
         app.run();
-        */
 
-        var game = new Game();
+        var game = new GameLogic();
         // var logic = new PrologInterface();
         // testGame(logic);
         game.placeAllWhitePieces();
@@ -100,6 +101,7 @@ serialInclude(['../lib/CGF.js',
 
         if(game.canPlay(0, 0))
             game.play(0, 0);
+
 
         game.logBoard();
         console.log(game.undo());

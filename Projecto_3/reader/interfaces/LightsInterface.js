@@ -42,7 +42,7 @@ LightsInterface.prototype.init = function(application) {
 	this.group2=this.gui.addFolder("Camera");
 	this.group2.open();
 	
-	this.group3=this.gui.addFolder("Game");
+	this.group3=this.gui.addFolder("GameLogic");
 	this.group3.open();
 	
 	this.gui.add(this.scene, "resetTime").name("Reset Time");
