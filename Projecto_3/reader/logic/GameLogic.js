@@ -5,9 +5,9 @@ function GameLogic() {
     this.playLog = new PlayLog();
 }
 
-GameLogic.prototype.playPosition = function (position) {
+GameLogic.prototype.playPosition = function (position, pieceUsed) {
     var coordinate = new BoardPosition(position);
-    this.play(coordinate.getX(), coordinate.getY());
+    this.play(coordinate.getX(), coordinate.getY(), pieceUsed);
 };
 
 GameLogic.prototype.canPlayPosition = function (position) {
@@ -31,11 +31,11 @@ GameLogic.prototype.placeAllWhitePieces = function () {
     }
 };
 
-GameLogic.prototype.play = function (x, y) {
+GameLogic.prototype.play = function (x, y, pieceUsed) {
     if (!this.canPlay(x, y))
         throw new BoardCellOccupiedException();
 
-    this.addLog(x, y);
+    this.addLog(x, y, pieceUsed);
     this.board.placePiece(x, y);
 };
 
@@ -43,8 +43,8 @@ GameLogic.prototype.canPlay = function (x, y) {
     return this.board.isEmpty(x, y)
 };
 
-GameLogic.prototype.addLog = function (x, y) {
-    this.playLog.push(this.board.getPieceAt(x, y), x, y, this.getCurrentPlayer(), this.logic.getLastAnswer());
+GameLogic.prototype.addLog = function (x, y, pieceUsed) {
+    this.playLog.push(this.board.getPieceAt(x, y), x, y, this.getCurrentPlayer(), pieceUsed, this.logic.getLastAnswer());
 };
 
 GameLogic.prototype.getCurrentPlayer = function () {
