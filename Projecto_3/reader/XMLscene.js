@@ -530,7 +530,7 @@ XMLscene.prototype.display = function () {
     // ---- BEGIN Background, camera and axis setup
     //this.shader.bind();
 
-    this.pickingHandler.log();
+    this.pickingHandler.handle();
     this.pickingHandler.clearObjects();
 
     // Clear image and depth buffer everytime we update the scene
