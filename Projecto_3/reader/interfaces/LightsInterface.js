@@ -45,11 +45,17 @@ LightsInterface.prototype.init = function(application) {
 	this.group3=this.gui.addFolder("GameLogic");
 	this.group3.open();
 	
+	this.AmbienteJogo = 'SalaoJogos.lsx';
+	
 	this.gui.add(this.scene, "resetTime").name("Reset Time");
 	// add two check boxes to the group. The identifiers must be members variables of the scene initialized in scene.init as boolean
 	// e.g. this.option1=true; this.option2=false;
 	
-	this.gui.add(this.scene, 'AmbienteJogo', {'Salao de Jogos' : 0, 'Parque' : 1});
+	this.gui.add(this.scene, "AmbienteJogo", {'Salao de Jogos' : 'SalaoJogos.lsx', 'Parque' : 'parque.lsx'}).name("Ambientes").onChange(function(AmbienteJogo) {
+		self.scene.loadGraph(AmbienteJogo);
+	}).listen();
+	
+	self.scene.loadGraph(this.AmbienteJogo);
 	
 	
 	return true;

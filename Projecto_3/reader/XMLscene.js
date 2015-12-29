@@ -52,11 +52,17 @@ XMLscene.prototype.init = function (application) {
 
     this.textGreen = new CGFappearance(this);
     this.textGreen.loadTexture('../reader/scenes/images/green.jpg');
+	
+	this.branco = new CGFappearance(this);
+	this.branco.setAmbient(0,0,0,1);
+	this.branco.setDiffuse(0,0,0,1);
+	this.branco.setSpecular(0,0,0,1);
+	this.branco.setShininess(120);
 
     this.objects = [];
     var i;
     for (i = 0; i < 64; i++) {
-        this.objects[i] = new MyPiece(this);
+        this.objects[i] = new MyScorePiece(this);
     }
 
     this.piecesJog1 = [];
@@ -65,12 +71,17 @@ XMLscene.prototype.init = function (application) {
     var j;
 
     for (j = 0; j < 17; j++) {
-        this.piecesJog1[j] = new MyPiece(this);
+        this.piecesJog1[j] = new MyScorePiece(this);
     }
 
     for (j = 0; j < 17; j++) {
-        this.piecesJog2[j] = new MyPiece(this);
+        this.piecesJog2[j] = new MyScorePiece(this);
     }
+	
+	for(k = 0; k < 5; k++)
+	{
+		this.piecesBrancas = new MyPiece(this);
+	}
 
     //AMBIENTES DE JOGO
 
@@ -121,6 +132,14 @@ function getUrlVars() {
         });
     return vars;
 }
+
+XMLscene.prototype.loadGraph = function(lsxPath) {
+	//this.resetDisplay();
+	//this.activeLights = 0;
+	//this.guiInterface.resetLights();
+	//this.guiInterface.setActiveCamera(null);
+	new MySceneGraph(lsxPath, this);
+};
 
 XMLscene.prototype.AmbienteJogo = function (ambienteAtual) {
     var myScene = new XMLscene();
@@ -198,8 +217,11 @@ XMLscene.prototype.popAppearance = function () {
  */
 XMLscene.prototype.initLights = function (lights) {
 
+	//console.log(this.interface);
     for (var index = 0; index < lights.length; index++) {
         this.lights[index] = lights[index].bindInit(this.lights[index]);
+		
+		
         this.interface.insertLight(index, lights[index].id, lights[index].enable);
         this.lights[index].setVisible(true);
         this.lights[index].update();
@@ -447,7 +469,7 @@ XMLscene.prototype.update = function (deltaTempo) {
     if (this.graph.loadedOk) {
         this.graph.updateAnimations((deltaTempo - this.lastUpdate) * 0.001);
 
-        for (var i = 0; i < 1; i++) {
+      /*  for (var i = 0; i < 1; i++) {
             this.angle += this.cameraspeed;
             this.z = 25 * Math.sin(this.angle);
             this.x = 50 * Math.sin(this.angle);
@@ -456,7 +478,7 @@ XMLscene.prototype.update = function (deltaTempo) {
 
             this.camera.setPosition(vec3.fromValues(this.x, this.y, this.z));
         }
-        //this.camera.setPosition(vec3.fromValues(100,100,200));
+        //this.camera.setPosition(vec3.fromValues(100,100,200));*/
     }
 };
 
@@ -625,5 +647,16 @@ XMLscene.prototype.display = function () {
 
         this.popMatrix();
     }
-
+	
+	this.pieceBlue.apply();
+	 for (i = 0; i < this.piecesBrancas.length; i++) {
+        this.pushMatrix();
+			var x = 0.4 * (~~(i / 3));
+			var y = 0.4 * (i % 3);
+			this.translate(x + 5.5, y - 0.2, 3.0);
+			this.scale(2.4, 2.0, 2.4);
+			this.pieceBlue.apply();
+            this.piecesBrancas[i].display();
+        this.popMatrix();
+    }
 };
