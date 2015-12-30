@@ -53,34 +53,52 @@ XMLscene.prototype.init = function (application) {
     this.textGreen = new CGFappearance(this);
     this.textGreen.loadTexture('../reader/scenes/images/green.jpg');
 	
+	this.cinza = new CGFappearance(this);
+	this.cinza.setAmbient(0.2,0.2,0.2,1);
+	this.cinza.setDiffuse(0.2,0.2,0.2,1);
+	this.cinza.setSpecular(0.4,0.4,0.4,1);
+	this.cinza.setShininess(120);
+	
 	this.branco = new CGFappearance(this);
-	this.branco.setAmbient(0,0,0,1);
-	this.branco.setDiffuse(0,0,0,1);
-	this.branco.setSpecular(0,0,0,1);
+	this.branco.setAmbient(1,1,1,1);
+	this.branco.setDiffuse(1,1,1,1);
+	this.branco.setSpecular(1,1,1,1);
 	this.branco.setShininess(120);
 
+	//TABULEIRO DE JOGO
     this.objects = [];
     var i;
     for (i = 0; i < 64; i++) {
         this.objects[i] = new MyScorePiece(this);
     }
-
+	
+	//PECAS DO JOGO
     this.piecesJog1 = [];
     this.piecesJog2 = [];
+	this.ScorePieces1 = [];
+    this.ScorePieces2 = [];
+	this.piecesBrancas = [];
 
     var j;
 
     for (j = 0; j < 17; j++) {
-        this.piecesJog1[j] = new MyScorePiece(this);
+        this.ScorePieces1[j] = new MyScorePiece(this);
     }
 
     for (j = 0; j < 17; j++) {
-        this.piecesJog2[j] = new MyScorePiece(this);
+        this.ScorePieces2[j] = new MyScorePiece(this);
     }
 	
-	for(k = 0; k < 5; k++)
-	{
-		this.piecesBrancas = new MyPiece(this);
+	for (j = 0; j < 17; j++) {
+        this.piecesJog1[j] = new MyPiece(this);
+    }
+
+    for (j = 0; j < 17; j++) {
+        this.piecesJog2[j] = new MyPiece(this);
+    }
+	
+	for(j = 0; j < 5; j++) {
+		this.piecesBrancas[j] = new MyPiece(this);
 	}
 
     //AMBIENTES DE JOGO
@@ -607,13 +625,13 @@ XMLscene.prototype.display = function () {
 
         this.popMatrix();
     }
-
-    this.pieceRed.apply();
+	
+	this.pieceRed.apply();
     for (i = 0; i < this.piecesJog1.length; i++) {
         this.pushMatrix();
         var x = 0.4 * (~~(i / 3));
         var y = 0.4 * (i % 3);
-        this.translate(x + 5.5, y - 0.2, -1.8);
+        this.translate(x + 5.5, y - 0.2, -0.8);
         this.scale(1.2, 1.0, 1.2);
         this.pickingHandler.addPlayer1Piece(i, this.piecesJog1[i]);
 
@@ -633,7 +651,7 @@ XMLscene.prototype.display = function () {
         this.pushMatrix();
         var x = 0.4 * (~~(i / 3));
         var y = 0.4 * (i % 3);
-        this.translate(x + 5.5, y - 0.2, 3.0);
+        this.translate(x + 5.5, y - 0.2, 4.0);
         this.scale(1.2, 1.0, 1.2);
         this.pickingHandler.addPlayer2Piece(i, this.piecesJog2[i]);
 
@@ -648,15 +666,45 @@ XMLscene.prototype.display = function () {
         this.popMatrix();
     }
 	
-	this.pieceBlue.apply();
+    this.pieceRed.apply();
+    for (i = 0; i < this.ScorePieces1.length; i++) {
+        this.pushMatrix();
+        var x = 0.4 * (~~(i / 3));
+        var y = 0.4 * (i % 3);
+        this.translate(x + 5.5, y - 0.2, -1.8);
+        this.scale(1.2, 1.0, 1.2);
+        this.ScorePieces1[i].display();
+        this.popMatrix();
+    }
+
+    this.pieceBlue.apply();
+    for (i = 0; i < this.ScorePieces2.length; i++) {
+        this.pushMatrix();
+        var x = 0.4 * (~~(i / 3));
+        var y = 0.4 * (i % 3);
+        this.translate(x + 5.5, y - 0.2, 3.0);
+        this.scale(1.2, 1.0, 1.2);
+        this.ScorePieces2[i].display();
+        this.popMatrix();
+    }
+	
+	this.branco.apply();
 	 for (i = 0; i < this.piecesBrancas.length; i++) {
         this.pushMatrix();
-			var x = 0.4 * (~~(i / 3));
-			var y = 0.4 * (i % 3);
-			this.translate(x + 5.5, y - 0.2, 3.0);
-			this.scale(2.4, 2.0, 2.4);
-			this.pieceBlue.apply();
+			var x = 0.4 * (~~(i / 1));
+			var y = 0.4 * (i % 1);
+			this.translate(x + 5.5, y, 2.0);
+			this.scale(1.2, 1.0, 1.2);
+            this.pickingHandler.addPlayer2Piece(i, this.piecesBrancas[i]);
+
+        if (this.piecesBrancas[i].isSelected()) {
+            this.cinza.apply();
             this.piecesBrancas[i].display();
+            this.branco.apply();
+        } else {
+            this.piecesBrancas[i].display();
+        }
+
         this.popMatrix();
     }
 };
