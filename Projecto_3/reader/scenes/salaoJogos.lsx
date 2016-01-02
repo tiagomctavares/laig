@@ -1,6 +1,6 @@
 <SCENE>
 	<INITIALS>
-		<frustum near="0.1" far="200" />
+		<frustum near="0.1" far="300" />
 		<translation x="-17.0" y="-9.0" z="4.0" />
 		<rotation axis="y" angle="60.0" />
 		<rotation axis="x" angle="-22.0" />
@@ -456,6 +456,7 @@
     <NODE id="scene">
 		<MATERIAL id="default" />
 		<TEXTURE id="null" />
+		<TRANSLATION x="-14.8" y="0.0" z="0.0" />
 		<DESCENDANTS>
 			<DESCENDANT id="table_snoker1" />
 			<DESCENDANT id="table_snoker2" />
@@ -604,13 +605,14 @@
 		<TEXTURE id="null" />
 		<TRANSLATION x="15.0" y="0.0" z="0.0"/>
 		<DESCENDANTS>
-			<DESCENDANT id="tabuleiro" />
+			<!--<DESCENDANT id="tabuleiro" />
 			<DESCENDANT id="pecaX_Jog1" />
 			<DESCENDANT id="pecaX_Jog2" />
 			<DESCENDANT id="peca_pontuacao1" />
-			<DESCENDANT id="peca_pontuacao2" />
+			<DESCENDANT id="peca_pontuacao2" />-->
 			<DESCENDANT id="mesa" />
 			<DESCENDANT id="chair1"/>
+			<DESCENDANT id="chair2"/>
 			<DESCENDANT id="marcador" />		
 		</DESCENDANTS>
 	</NODE>
@@ -1887,13 +1889,24 @@
 		</DESCENDANTS>
 	</NODE>
 	
-	<!-- CADEIRA DE ESCRITORIO -->
+	<!-- CADEIRAS DE ESCRITORIO -->
 	
 	<NODE id="chair1">      
 	        <MATERIAL id="null" /> 
 	        <TEXTURE id="plastic" />
-	        <TRANSLATION x="3" y="0" z="6.5"/>
+	        <TRANSLATION x="10.5" y="0" z="5.0"/>
 			<ROTATION axis="y" angle="-90"/>
+	        <SCALE sx=".3" sy=".3" sz=".3"/>
+	        <DESCENDANTS>
+	        	<DESCENDANT id="chair"/>
+	        </DESCENDANTS>
+	    </NODE>
+		
+		<NODE id="chair2">      
+	        <MATERIAL id="null" /> 
+	        <TEXTURE id="plastic" />
+	        <TRANSLATION x="3.0" y="0" z="5.0"/>
+			<ROTATION axis="y" angle="-270"/>
 	        <SCALE sx=".3" sy=".3" sz=".3"/>
 	        <DESCENDANTS>
 	        	<DESCENDANT id="chair"/>

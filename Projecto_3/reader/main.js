@@ -32,8 +32,11 @@ serialInclude(['../lib/CGF.js',
     './leaves/MyScorePiece.js',
     './leaves/MyClockHand.js',
     './leaves/MyClock.js',
-
     './leaves/MyBoard.js',
+	'./leaves/ObjectDigit.js',
+	'./leaves/ObjectRamp.js',
+	'./leaves/ObjectClock.js',
+	
     './components/Parser.js',
     './components/BaseParserObject.js',
     './components/Initials.js',

@@ -458,11 +458,11 @@
 		<DESCENDANTS>
 			<DESCENDANT id="piso" />
 			<DESCENDANT id="bancos" />
-			<!--<DESCENDANT id="tabuleiro" />-->
+			<!--<DESCENDANT id="tabuleiro" />
 			<DESCENDANT id="pecaX_Jog1" />
 			<DESCENDANT id="pecaX_Jog2" />
-		<!--	<DESCENDANT id="peca_pontuacao1" />-->
-			<DESCENDANT id="peca_pontuacao2" />
+			<DESCENDANT id="peca_pontuacao1" />
+			<DESCENDANT id="peca_pontuacao2" />-->
 			<DESCENDANT id="mesa" />
 			<DESCENDANT id="mesa2" />			
 		</DESCENDANTS>

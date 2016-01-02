@@ -34,9 +34,9 @@ MyTriangle.prototype.constructor = MyTriangle;
 
 MyTriangle.prototype.initBuffers  = function() {
 			this.vertices = [
-            v1[0], v1[1], v1[2],
-            v2[0], v2[1], v2[2],
-            v3[0], v3[1], v3[2]
+            this.v1[0], this.v1[1], this.v1[2],
+            this.v2[0], this.v2[1], this.v2[2],
+            this.v3[0], this.v3[1], this.v3[2]
 			];
 
 	this.indices = [

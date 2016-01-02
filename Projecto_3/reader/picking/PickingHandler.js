@@ -6,6 +6,7 @@ function PickingHandler(scene, gameLogic) {
     this.boardOffset = 1;
     this.player1Offset = 101;
     this.player2Offset = 201;
+	this.whitePieces = 301;
     this.lastPickedObject = new PickingObject(0, {});
 
     this.scene.setPickEnabled(true);
@@ -28,6 +29,11 @@ PickingHandler.prototype.addPlayer1Piece = function (id, object) {
 PickingHandler.prototype.addPlayer2Piece = function (id, object) {
     this.objects.push(new PickingObject(this.player2Offset + id, object));
     this.scene.registerForPick(this.player2Offset + id, object);
+};
+
+PickingHandler.prototype.addWhitePiece = function (id, object) {
+    this.objects.push(new PickingObject(this.whitePieces + id, object));
+    this.scene.registerForPick(this.whitePieces + id, object);
 };
 
 PickingHandler.prototype.handle = function () {

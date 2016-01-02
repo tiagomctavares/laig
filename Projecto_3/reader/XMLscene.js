@@ -46,7 +46,7 @@ XMLscene.prototype.init = function (application) {
     this.pieceBlue = new CGFappearance(this);
     this.pieceBlue.loadTexture('../reader/scenes/images/blue.jpg');
 
-    this.tabuleiro = new MyBoard(this);
+    //this.tabuleiro = new MyBoard(this);
     this.textYellow = new CGFappearance(this);
     this.textYellow.loadTexture('../reader/scenes/images/yellow.jpg');
 
@@ -64,6 +64,7 @@ XMLscene.prototype.init = function (application) {
 	this.branco.setDiffuse(1,1,1,1);
 	this.branco.setSpecular(1,1,1,1);
 	this.branco.setShininess(120);
+
 
 	//TABULEIRO DE JOGO
     this.objects = [];
@@ -106,6 +107,8 @@ XMLscene.prototype.init = function (application) {
     this.AmbienteJogo = 0;
 
     //RELOGIO
+	
+	this.relogio = new ObjectClock(this);
 
     momentoAtual = new Date();
 
@@ -329,7 +332,7 @@ XMLscene.prototype.updateCamera = function () {
 
 XMLscene.prototype.initCameras = function () {
 
-    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(4, 8, 4), vec3.fromValues(0, 0, 0));
     //this.camera.updateCamera();
 
     //this.camera.Animator();
@@ -486,6 +489,14 @@ XMLscene.prototype.onGraphLoaded = function () {
 XMLscene.prototype.update = function (deltaTempo) {
     if (this.graph.loadedOk) {
         this.graph.updateAnimations((deltaTempo - this.lastUpdate) * 0.001);
+		
+		this.relogio.update(0, 0);
+		this.relogio.updateClock(100);
+		
+		console.log('tempo: ' + deltaTempo);
+		if(deltaTempo == 15){
+			this.relogio.resetClock();
+		}
 
       /*  for (var i = 0; i < 1; i++) {
             this.angle += this.cameraspeed;
@@ -600,6 +611,8 @@ XMLscene.prototype.display = function () {
         this.graph.display();
     }
     ;
+	
+	this.relogio.display();
 
     //this.red.apply();
     this.textYellow.apply();
@@ -629,9 +642,9 @@ XMLscene.prototype.display = function () {
 	this.pieceRed.apply();
     for (i = 0; i < this.piecesJog1.length; i++) {
         this.pushMatrix();
-        var x = 0.4 * (~~(i / 3));
-        var y = 0.4 * (i % 3);
-        this.translate(x + 5.5, y - 0.2, -0.8);
+        var z = 0.3* (~~(i / 2));
+        var x = 0.3 * (i % 2);
+        this.translate(x + 9.0, - 0.2, z - 0.7);
         this.scale(1.2, 1.0, 1.2);
         this.pickingHandler.addPlayer1Piece(i, this.piecesJog1[i]);
 
@@ -649,9 +662,9 @@ XMLscene.prototype.display = function () {
     this.pieceBlue.apply();
     for (i = 0; i < this.piecesJog2.length; i++) {
         this.pushMatrix();
-        var x = 0.4 * (~~(i / 3));
-        var y = 0.4 * (i % 3);
-        this.translate(x + 5.5, y - 0.2, 4.0);
+        var z = 0.3 * (~~(i / 2));
+        var x = 0.3 * (i % 2);
+        this.translate(x + 4.5, - 0.2, z - 0.75);
         this.scale(1.2, 1.0, 1.2);
         this.pickingHandler.addPlayer2Piece(i, this.piecesJog2[i]);
 
@@ -669,9 +682,9 @@ XMLscene.prototype.display = function () {
     this.pieceRed.apply();
     for (i = 0; i < this.ScorePieces1.length; i++) {
         this.pushMatrix();
-        var x = 0.4 * (~~(i / 3));
-        var y = 0.4 * (i % 3);
-        this.translate(x + 5.5, y - 0.2, -1.8);
+        var y = 0.01 * (~~(i / 1));
+        var x = 0.01 * (i % 1);
+        this.translate(x + 9.31, y - 0.2, 1.7);
         this.scale(1.2, 1.0, 1.2);
         this.ScorePieces1[i].display();
         this.popMatrix();
@@ -680,9 +693,9 @@ XMLscene.prototype.display = function () {
     this.pieceBlue.apply();
     for (i = 0; i < this.ScorePieces2.length; i++) {
         this.pushMatrix();
-        var x = 0.4 * (~~(i / 3));
-        var y = 0.4 * (i % 3);
-        this.translate(x + 5.5, y - 0.2, 3.0);
+        var y = 0.01 * (~~(i / 1));
+        var x = 0.01 * (i % 1);
+        this.translate(x + 4.81, y - 0.2, 1.7);
         this.scale(1.2, 1.0, 1.2);
         this.ScorePieces2[i].display();
         this.popMatrix();
@@ -693,9 +706,9 @@ XMLscene.prototype.display = function () {
         this.pushMatrix();
 			var x = 0.4 * (~~(i / 1));
 			var y = 0.4 * (i % 1);
-			this.translate(x + 5.5, y, 2.0);
+			this.translate(x + 6.05, y, 2.7);
 			this.scale(1.2, 1.0, 1.2);
-            this.pickingHandler.addPlayer2Piece(i, this.piecesBrancas[i]);
+            this.pickingHandler.addWhitePiece(i, this.piecesBrancas[i]);
 
         if (this.piecesBrancas[i].isSelected()) {
             this.cinza.apply();
