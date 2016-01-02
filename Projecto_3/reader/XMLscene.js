@@ -52,26 +52,26 @@ XMLscene.prototype.init = function (application) {
 
     this.textGreen = new CGFappearance(this);
     this.textGreen.loadTexture('../reader/scenes/images/green.jpg');
-	
-	this.cinza = new CGFappearance(this);
-	this.cinza.setAmbient(0.2,0.2,0.2,1);
-	this.cinza.setDiffuse(0.2,0.2,0.2,1);
-	this.cinza.setSpecular(0.4,0.4,0.4,1);
-	this.cinza.setShininess(120);
-	
-	this.branco = new CGFappearance(this);
-	this.branco.setAmbient(1,1,1,1);
-	this.branco.setDiffuse(1,1,1,1);
-	this.branco.setSpecular(1,1,1,1);
-	this.branco.setShininess(120);
+
+    this.cinza = new CGFappearance(this);
+    this.cinza.setAmbient(0.2, 0.2, 0.2, 1);
+    this.cinza.setDiffuse(0.2, 0.2, 0.2, 1);
+    this.cinza.setSpecular(0.4, 0.4, 0.4, 1);
+    this.cinza.setShininess(120);
+
+    this.branco = new CGFappearance(this);
+    this.branco.setAmbient(1, 1, 1, 1);
+    this.branco.setDiffuse(1, 1, 1, 1);
+    this.branco.setSpecular(1, 1, 1, 1);
+    this.branco.setShininess(120);
 
     //AMBIENTES DE JOGO
 
     this.AmbienteJogo = 0;
 
     //RELOGIO
-	
-	this.relogio = new ObjectClock(this);
+
+    this.relogio = new ObjectClock(this);
 
     momentoAtual = new Date();
 
@@ -121,12 +121,12 @@ function getUrlVars() {
     return vars;
 }
 
-XMLscene.prototype.loadGraph = function(lsxPath) {
-	//this.resetDisplay();
-	//this.activeLights = 0;
-	//this.guiInterface.resetLights();
-	//this.guiInterface.setActiveCamera(null);
-	new MySceneGraph(lsxPath, this);
+XMLscene.prototype.loadGraph = function (lsxPath) {
+    //this.resetDisplay();
+    //this.activeLights = 0;
+    //this.guiInterface.resetLights();
+    //this.guiInterface.setActiveCamera(null);
+    new MySceneGraph(lsxPath, this);
 };
 
 XMLscene.prototype.AmbienteJogo = function (ambienteAtual) {
@@ -205,11 +205,10 @@ XMLscene.prototype.popAppearance = function () {
  */
 XMLscene.prototype.initLights = function (lights) {
 
-	//console.log(this.interface);
+    //console.log(this.interface);
     for (var index = 0; index < lights.length; index++) {
         this.lights[index] = lights[index].bindInit(this.lights[index]);
-		
-		
+
         this.interface.insertLight(index, lights[index].id, lights[index].enable);
         this.lights[index].setVisible(true);
         this.lights[index].update();
@@ -231,6 +230,10 @@ XMLscene.prototype.updateLights = function () {
 
 XMLscene.prototype.resetTime = function () {
     this.time = 0;
+}
+
+XMLscene.prototype.resetGame = function () {
+    new GameLogic();
 }
 
 XMLscene.prototype.updateTime = function (tempoAtual) {
@@ -456,25 +459,25 @@ XMLscene.prototype.onGraphLoaded = function () {
 XMLscene.prototype.update = function (deltaTempo) {
     if (this.graph.loadedOk) {
         this.graph.updateAnimations((deltaTempo - this.lastUpdate) * 0.001);
-		
-		this.relogio.update(0, 0);
-		this.relogio.updateClock(100);
-		
-		// console.log('tempo: ' + deltaTempo);
-		if(deltaTempo == 15){
-			this.relogio.resetClock();
-		}
 
-      /*  for (var i = 0; i < 1; i++) {
-            this.angle += this.cameraspeed;
-            this.z = 25 * Math.sin(this.angle);
-            this.x = 50 * Math.sin(this.angle);
-            this.y = this.camera.position[1];
-            //this.camera.setPosition(vec3.fromValues(100,100,200));
+        this.relogio.update(0, 0);
+        this.relogio.updateClock(100);
 
-            this.camera.setPosition(vec3.fromValues(this.x, this.y, this.z));
+        // console.log('tempo: ' + deltaTempo);
+        if (deltaTempo == 15) {
+            this.relogio.resetClock();
         }
-        //this.camera.setPosition(vec3.fromValues(100,100,200));*/
+
+        /*  for (var i = 0; i < 1; i++) {
+         this.angle += this.cameraspeed;
+         this.z = 25 * Math.sin(this.angle);
+         this.x = 50 * Math.sin(this.angle);
+         this.y = this.camera.position[1];
+         //this.camera.setPosition(vec3.fromValues(100,100,200));
+
+         this.camera.setPosition(vec3.fromValues(this.x, this.y, this.z));
+         }
+         //this.camera.setPosition(vec3.fromValues(100,100,200));*/
     }
 };
 
@@ -556,7 +559,6 @@ XMLscene.prototype.display = function () {
     this.pickingHandler.handle();
     this.pickingHandler.clearObjects();
 
-
     // Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -578,9 +580,12 @@ XMLscene.prototype.display = function () {
         this.updateLights();
         this.graph.display();
     }
-    ;
-	
-	this.relogio.display();
+
+    this.pushMatrix();
+        this.translate(6.0, 3.0, 3.0);
+        this.scale(0.2, 0.2, 0.2);
+        this.relogio.display();
+    this.popMatrix();
 
     this.gameInterface.display();
 };
