@@ -16,10 +16,11 @@ GameLogic.prototype.canPlayPosition = function (position) {
 };
 
 GameLogic.prototype.placeWhitePiece = function (x, y) {
-    if (this.board.whitePieces < this.maxWhitePieces)
+    if (this.board.whitePieces >= this.maxWhitePieces)
         return false;
 
-    this.board.placeWhitePiece(x, y);
+    this.board.placeWhitePiece(x,
+        y);
     return true;
 };
 
@@ -27,7 +28,7 @@ GameLogic.prototype.placeAllWhitePieces = function () {
     var placed = true;
     while (placed) {
         var freePosition = this.board.getRandomFreePosition();
-        placed = this.board.placeWhitePiece(freePosition.getX(), freePosition.getY());
+        placed = this.placeWhitePiece(freePosition.getX(), freePosition.getY());
     }
 };
 

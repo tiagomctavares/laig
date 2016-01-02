@@ -30,6 +30,7 @@ serialInclude(['../lib/CGF.js',
     './leaves/MyUnitCubeQuad.js',
     './leaves/MyPiece.js',
     './leaves/MyScorePiece.js',
+    './leaves/MyBoardCell.js',
     './leaves/MyClockHand.js',
     './leaves/MyClock.js',
     './leaves/MyBoard.js',
@@ -53,6 +54,8 @@ serialInclude(['../lib/CGF.js',
 
     './picking/PickingHandler.js',
     './picking/PickingObject.js',
+
+    './gameVisualComponents/GameInterface.js',
 	
     './logic/exceptions/HttpBadRequestException.js',
     './logic/exceptions/PrologUriNotFoundException.js',

@@ -65,43 +65,6 @@ XMLscene.prototype.init = function (application) {
 	this.branco.setSpecular(1,1,1,1);
 	this.branco.setShininess(120);
 
-
-	//TABULEIRO DE JOGO
-    this.objects = [];
-    var i;
-    for (i = 0; i < 64; i++) {
-        this.objects[i] = new MyScorePiece(this);
-    }
-	
-	//PECAS DO JOGO
-    this.piecesJog1 = [];
-    this.piecesJog2 = [];
-	this.ScorePieces1 = [];
-    this.ScorePieces2 = [];
-	this.piecesBrancas = [];
-
-    var j;
-
-    for (j = 0; j < 17; j++) {
-        this.ScorePieces1[j] = new MyScorePiece(this);
-    }
-
-    for (j = 0; j < 17; j++) {
-        this.ScorePieces2[j] = new MyScorePiece(this);
-    }
-	
-	for (j = 0; j < 17; j++) {
-        this.piecesJog1[j] = new MyPiece(this);
-    }
-
-    for (j = 0; j < 17; j++) {
-        this.piecesJog2[j] = new MyPiece(this);
-    }
-	
-	for(j = 0; j < 5; j++) {
-		this.piecesBrancas[j] = new MyPiece(this);
-	}
-
     //AMBIENTES DE JOGO
 
     this.AmbienteJogo = 0;
@@ -139,6 +102,10 @@ XMLscene.prototype.init = function (application) {
 
     // PickingHandler Class
     this.pickingHandler = new PickingHandler(this, this.gameLogic);
+
+    // GameInterface
+    this.gameInterface = new GameInterface(this, this.gameLogic, this.pickingHandler);
+    this.gameInterface.updateObjects();
 
     //MY CHANGES
     this.angle = 0;
@@ -339,7 +306,7 @@ XMLscene.prototype.initCameras = function () {
 };
 /*
  XMLscene.prototype.Animator = function () {
- // controller for animation objects.
+ // controller for animation boardCells.
  var self = this;
  var intervalRate = 20;
  this.tweenTypes = {
@@ -493,7 +460,7 @@ XMLscene.prototype.update = function (deltaTempo) {
 		this.relogio.update(0, 0);
 		this.relogio.updateClock(100);
 		
-		console.log('tempo: ' + deltaTempo);
+		// console.log('tempo: ' + deltaTempo);
 		if(deltaTempo == 15){
 			this.relogio.resetClock();
 		}
@@ -589,6 +556,7 @@ XMLscene.prototype.display = function () {
     this.pickingHandler.handle();
     this.pickingHandler.clearObjects();
 
+
     // Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -614,110 +582,5 @@ XMLscene.prototype.display = function () {
 	
 	this.relogio.display();
 
-    //this.red.apply();
-    this.textYellow.apply();
-    // draw objects
-    for (i = 0; i < this.objects.length; i++) {
-        this.pushMatrix();
-        var x = 0.4 * (i % 8);
-        var y = 0.4 * (~~(i / 8));
-        this.translate(x + 5.5, -0.2, y - 0.8);
-        this.scale(1.2, 1.0, 1.2);
-        this.pickingHandler.addBoardCell(i, this.objects[i]);
-
-        //this.translate(0,1,2);
-        //this.rotate(Math.PI/2.0,1,0,0);
-        if (this.objects[i].isSelected()) {
-            this.textGreen.apply();
-            //this.translate(8.5, 2.75, 3.5);
-            this.objects[i].display();
-            this.textYellow.apply();
-        } else {
-            this.objects[i].display();
-        }
-
-        this.popMatrix();
-    }
-	
-	this.pieceRed.apply();
-    for (i = 0; i < this.piecesJog1.length; i++) {
-        this.pushMatrix();
-        var z = 0.3* (~~(i / 2));
-        var x = 0.3 * (i % 2);
-        this.translate(x + 9.0, - 0.2, z - 0.7);
-        this.scale(1.2, 1.0, 1.2);
-        this.pickingHandler.addPlayer1Piece(i, this.piecesJog1[i]);
-
-        if (this.piecesJog1[i].isSelected()) {
-            this.textGreen.apply();
-            this.piecesJog1[i].display();
-            this.pieceRed.apply();
-        } else {
-            this.piecesJog1[i].display();
-        }
-
-        this.popMatrix();
-    }
-
-    this.pieceBlue.apply();
-    for (i = 0; i < this.piecesJog2.length; i++) {
-        this.pushMatrix();
-        var z = 0.3 * (~~(i / 2));
-        var x = 0.3 * (i % 2);
-        this.translate(x + 4.5, - 0.2, z - 0.75);
-        this.scale(1.2, 1.0, 1.2);
-        this.pickingHandler.addPlayer2Piece(i, this.piecesJog2[i]);
-
-        if (this.piecesJog2[i].isSelected()) {
-            this.textGreen.apply();
-            this.piecesJog2[i].display();
-            this.pieceBlue.apply();
-        } else {
-            this.piecesJog2[i].display();
-        }
-
-        this.popMatrix();
-    }
-	
-    this.pieceRed.apply();
-    for (i = 0; i < this.ScorePieces1.length; i++) {
-        this.pushMatrix();
-        var y = 0.01 * (~~(i / 1));
-        var x = 0.01 * (i % 1);
-        this.translate(x + 9.31, y - 0.2, 1.7);
-        this.scale(1.2, 1.0, 1.2);
-        this.ScorePieces1[i].display();
-        this.popMatrix();
-    }
-
-    this.pieceBlue.apply();
-    for (i = 0; i < this.ScorePieces2.length; i++) {
-        this.pushMatrix();
-        var y = 0.01 * (~~(i / 1));
-        var x = 0.01 * (i % 1);
-        this.translate(x + 4.81, y - 0.2, 1.7);
-        this.scale(1.2, 1.0, 1.2);
-        this.ScorePieces2[i].display();
-        this.popMatrix();
-    }
-	
-	this.branco.apply();
-	 for (i = 0; i < this.piecesBrancas.length; i++) {
-        this.pushMatrix();
-			var x = 0.4 * (~~(i / 1));
-			var y = 0.4 * (i % 1);
-			this.translate(x + 6.05, y, 2.7);
-			this.scale(1.2, 1.0, 1.2);
-            this.pickingHandler.addWhitePiece(i, this.piecesBrancas[i]);
-
-        if (this.piecesBrancas[i].isSelected()) {
-            this.cinza.apply();
-            this.piecesBrancas[i].display();
-            this.branco.apply();
-        } else {
-            this.piecesBrancas[i].display();
-        }
-
-        this.popMatrix();
-    }
+    this.gameInterface.display();
 };

@@ -6,29 +6,32 @@
  
  var degToRad = Math.PI / 180.0;
  
-function MyPiece(scene) {
+function MyPiece(scene, appearance) {
 	CGFobject.call(this,scene);
 
 	this.cubeQuad = new MyUnitCubeQuad(this.scene);
 	this.cubeQuad.initBuffers();
-	this.objectSelected = false;
+	this.applyObjectSelectedOptions = false;
 
+	this.used = false;
+	this.defaultAppearance = appearance;
 };
 
 MyPiece.prototype = Object.create(CGFobject.prototype);
 MyPiece.prototype.constructor=MyPiece;
 
 MyPiece.prototype.select = function() {
-	this.objectSelected = true;
+	this.applyObjectSelectedOptions = true;
 }
 
 MyPiece.prototype.clear = function() {
-	this.objectSelected = false;
+	this.applyObjectSelectedOptions = false;
 }
 
 MyPiece.prototype.isSelected = function() {
-	return this.objectSelected;
-}
+	return this.applyObjectSelectedOptions;
+};
+
 MyPiece.prototype.display = function() {
 
 	//Peça de jogo X
@@ -46,4 +49,4 @@ MyPiece.prototype.display = function() {
 		this.cubeQuad.display();
     this.scene.popMatrix();
 	
-}
+};

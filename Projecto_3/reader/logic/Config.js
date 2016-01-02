@@ -17,5 +17,14 @@ var prologConfig = {
     prologSpecialConstants: {
         'CPU2X': "'CPU2X'",
         'CPUsquare': "'CPUsquare'"
-    }
+    },
+};
+
+var gameConstants = {
+    'EMPTY_CELL': "free",
+    "PLAYER1PIECE": "player1X",
+    "PLAYER2PIECE": "CPU2X",
+    'PLAYER1SCORE': "playersquare",
+    'PLAYER2SCORE': "CPUsquare",
+    'WHITE_PIECE': "whitePiece"
 };

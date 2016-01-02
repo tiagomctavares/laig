@@ -2,38 +2,42 @@
  * MyScorePiece
  * @constructor
  */
-function MyScorePiece(scene, appearance) {
+function MyBoardCell(scene) {
     CGFobject.call(this, scene);
 
     this.cubeQuad = new MyUnitCubeQuad(this.scene);
     this.cubeQuad.initBuffers();
     this.applyObjectSelectedOptions = false;
 
-    this.used = false;
-    this.defaultAppearance = appearance;
+    this.isOcuppied = false;
+    this.object = null;
 }
 
-MyScorePiece.prototype = Object.create(CGFobject.prototype);
-MyScorePiece.prototype.constructor = MyScorePiece;
+MyBoardCell.prototype = Object.create(CGFobject.prototype);
+MyBoardCell.prototype.constructor = MyScorePiece;
 
-MyScorePiece.prototype.select = function () {
+MyBoardCell.prototype.select = function () {
     this.applyObjectSelectedOptions = true;
 };
 
-MyScorePiece.prototype.clear = function () {
+MyBoardCell.prototype.clear = function () {
     this.applyObjectSelectedOptions = false;
 };
 
-MyScorePiece.prototype.isSelected = function () {
+MyBoardCell.prototype.isSelected = function () {
     return this.applyObjectSelectedOptions;
 };
-MyScorePiece.prototype.display = function () {
 
+MyBoardCell.prototype.display = function () {
     //Peça de pontuação
     this.scene.pushMatrix();
     this.scene.translate(0.20, 3.0, 3.7);
     this.scene.scale(0.3, 0.07, 0.3);
     this.cubeQuad.display();
     this.scene.popMatrix();
+};
 
+MyBoardCell.prototype.placeObject = function (object) {
+    this.isOcuppied = true;
+    this.object = object;
 };

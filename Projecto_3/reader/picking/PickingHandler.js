@@ -2,7 +2,7 @@ function PickingHandler(scene, gameLogic) {
     this.scene = scene;
     this.gameLogic = gameLogic;
 
-    this.objects = [];
+    this.boardCells = [];
     this.boardOffset = 1;
     this.player1Offset = 101;
     this.player2Offset = 201;
@@ -17,22 +17,22 @@ PickingHandler.prototype.clearObjects = function () {
 };
 
 PickingHandler.prototype.addBoardCell = function (id, object) {
-    this.objects.push(new PickingObject(this.boardOffset + id, object));
+    this.boardCells.push(new PickingObject(this.boardOffset + id, object));
     this.scene.registerForPick(this.boardOffset + id, object);
 };
 
 PickingHandler.prototype.addPlayer1Piece = function (id, object) {
-    this.objects.push(new PickingObject(this.player1Offset + id, object));
+    this.boardCells.push(new PickingObject(this.player1Offset + id, object));
     this.scene.registerForPick(this.player1Offset + id, object);
 };
 
 PickingHandler.prototype.addPlayer2Piece = function (id, object) {
-    this.objects.push(new PickingObject(this.player2Offset + id, object));
+    this.boardCells.push(new PickingObject(this.player2Offset + id, object));
     this.scene.registerForPick(this.player2Offset + id, object);
 };
 
 PickingHandler.prototype.addWhitePiece = function (id, object) {
-    this.objects.push(new PickingObject(this.whitePieces + id, object));
+    this.boardCells.push(new PickingObject(this.whitePieces + id, object));
     this.scene.registerForPick(this.whitePieces + id, object);
 };
 
@@ -50,6 +50,7 @@ PickingHandler.prototype.handle = function () {
                 console.log(results[i].object);
                 this.gameLogic.playPosition(results[i].id - 1, this.lastPickedObject);
                 this.gameLogic.logBoard();
+                this.scene.gameInterface.updateObjects();
             }
         }
     }
