@@ -58,8 +58,8 @@ ObjectClock.prototype.display = function() {
     this.scene.popMatrix();
     //--------------------------------------------------------
     this.scene.pushMatrix();
-        this.scene.translate(5.25, -0.5, 0);
-        this.scene.scale(10.5, -1.0, 4.0 * this.defaultFactor);
+        this.scene.translate(5.25, -0.5, 1.0);
+        this.scene.scale(10.5, -1.0, 2.0 * this.defaultFactor);
         this.plane.display();
     this.scene.popMatrix();
     //--------------------------------------------------------
@@ -73,28 +73,28 @@ ObjectClock.prototype.display = function() {
         this.scene.translate(10.5, -0.25, 0.0);
         this.scene.scale(1.0, 0.5, 4.0 * this.defaultFactor);
         this.scene.rotate(Math.PI, 1.0, 1.0, 0.0);
-        this.plane.display();
+     //   this.plane.display();
     this.scene.popMatrix();
     //--------------------------------------------------------
     this.scene.pushMatrix();
         this.scene.translate(0.0, -0.25, 0.0);
         this.scene.scale(-1.0, -0.5, 4.0 * this.defaultFactor);
         this.scene.rotate(Math.PI, 1.0, 1.0, 0.0);
-        this.plane.display();
+     //   this.plane.display();
     this.scene.popMatrix();
     //--------------------------------------------------------
     this.scene.pushMatrix();
         this.scene.translate(10.5, this.defaultFactor, -this.defaultFactor);
         this.scene.scale(1.0, 2.0 * this.defaultFactor, 2.0 * this.defaultFactor);
         this.scene.rotate(Math.PI, 1.0, 1.0, 0.0);
-        this.plane.display();
+       // this.plane.display();
     this.scene.popMatrix();
     //--------------------------------------------------------
     this.scene.pushMatrix();
         this.scene.translate(0.0, this.defaultFactor, -this.defaultFactor);
         this.scene.scale(-1.0, -2.0 * this.defaultFactor, 2.0 * this.defaultFactor);
         this.scene.rotate(Math.PI, 1.0, 1.0, 0.0);
-        this.plane.display();
+       // this.plane.display();
     this.scene.popMatrix();
     //--------------------------------------------------------
     this.scene.pushMatrix();
@@ -112,7 +112,7 @@ ObjectClock.prototype.display = function() {
     this.scene.popMatrix();
     //--------------------------------------------------------
     this.scene.pushMatrix();
-        this.scene.translate(5.25, this.defaultFactor - 0.25, -2.0 * this.defaultFactor);
+        this.scene.translate(5.25, this.defaultFactor - 0.25, -2.0 * this.defaultFactor + 1.8);
         this.scene.scale(10.5, 2.0 * this.defaultFactor + 0.5, 1.0);
         this.scene.rotate(Math.PI/2, -1.0, 0.0, 0.0);
         this.plane.display();
@@ -123,7 +123,7 @@ ObjectClock.prototype.display = function() {
         this.scene.translate(5.25, 2.0 * this.defaultFactor, -this.defaultFactor);
         this.scene.scale(10.5, 1.0, 2.0 * this.defaultFactor);
         this.scene.rotate(Math.PI/2, -1.0, 0.0, 0.0);
-        this.top.display();
+       // this.top.display();
     this.scene.popMatrix();
     //--------------------------------------------------------
     this.scene.pushMatrix();

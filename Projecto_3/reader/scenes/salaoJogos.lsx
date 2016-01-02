@@ -147,6 +147,11 @@
         	<file path="images/madeiraPreta.jpg" />
         	<amplif_factor s="1.0" t="1.0" />
     	</TEXTURE>
+		
+		<TEXTURE id="text_verm">
+        	<file path="images/text_vermelho2.jpg" />
+        	<amplif_factor s="1.0" t="1.0" />
+    	</TEXTURE>
 				
 		<TEXTURE id="text_giz">
 			<file path="images/azul_giz.jpg" />
@@ -611,9 +616,31 @@
 			<DESCENDANT id="peca_pontuacao1" />
 			<DESCENDANT id="peca_pontuacao2" />-->
 			<DESCENDANT id="mesa" />
+			<DESCENDANT id="caixa1" />
+			<DESCENDANT id="caixa2" />
 			<DESCENDANT id="chair1"/>
 			<DESCENDANT id="chair2"/>
 			<DESCENDANT id="marcador" />		
+		</DESCENDANTS>
+	</NODE>
+	
+	<NODE id="caixa1">
+		<MATERIAL id="null" />
+		<TEXTURE id="null" />
+		<TRANSLATION x="4.0" y="2.6" z="3.0" />
+		<SCALE sx="1.0" sy="0.3" sz="4.0"/>
+		<DESCENDANTS>
+			<DESCENDANT id="ashtray_base" />
+		</DESCENDANTS>
+	</NODE>
+	
+	<NODE id="caixa2">
+		<MATERIAL id="null" />
+		<TEXTURE id="null" />
+		<TRANSLATION x="9.0" y="2.6" z="3.0" />
+		<SCALE sx="1.0" sy="0.3" sz="4.0"/>
+		<DESCENDANTS>
+			<DESCENDANT id="ashtray_base2" />
 		</DESCENDANTS>
 	</NODE>
 	
@@ -1009,9 +1036,21 @@
 
 	<NODE id="ashtray_base">
 		<MATERIAL id="null" />
-		<TEXTURE id="text_giz" />
+		<TEXTURE id="metal_tex" />
 		<DESCENDANTS>
 			<DESCENDANT id="ashtray_baseP1" />	
+			<DESCENDANT id="ashtray_baseP2" />	
+			<DESCENDANT id="ashtray_baseP3" />	
+			<DESCENDANT id="ashtray_baseP4" />	
+			<DESCENDANT id="ashtray_baseP5" />
+		</DESCENDANTS>
+	</NODE>
+	
+	<NODE id="ashtray_base2">
+		<MATERIAL id="null" />
+		<TEXTURE id="metal_tex" />
+		<DESCENDANTS>
+			<DESCENDANT id="ashtray_baseP1_2" />	
 			<DESCENDANT id="ashtray_baseP2" />	
 			<DESCENDANT id="ashtray_baseP3" />	
 			<DESCENDANT id="ashtray_baseP4" />	
@@ -1021,7 +1060,17 @@
 
 	<NODE id="ashtray_baseP1">
 		<MATERIAL id="null" />
-		<TEXTURE id="null" />
+		<TEXTURE id="text_giz" />
+		<TRANSLATION x="0.15" y="0.0" z="0.15" />
+		<SCALE sx="0.7" sy="0.15" sz="0.7"/>
+		<DESCENDANTS>
+			<DESCENDANT id="primitive_cube" />
+		</DESCENDANTS>
+	</NODE>
+	
+	<NODE id="ashtray_baseP1_2">
+		<MATERIAL id="null" />
+		<TEXTURE id="text_verm" />
 		<TRANSLATION x="0.15" y="0.0" z="0.15" />
 		<SCALE sx="0.7" sy="0.15" sz="0.7"/>
 		<DESCENDANTS>
@@ -1037,6 +1086,7 @@
 			<DESCENDANT id="primitive_cube" />
 		</DESCENDANTS>
 	</NODE>
+	
 
 	<NODE id="ashtray_baseP3">
 		<MATERIAL id="null" />

@@ -266,6 +266,10 @@ XMLscene.prototype.resetTime = function () {
     this.time = 0;
 }
 
+XMLscene.prototype.resetGame = function () {
+    new GameLogic();
+}
+
 XMLscene.prototype.updateTime = function (tempoAtual) {
     if (this.lastUpdate != 0)
         this.time += (tempoAtual - this.lastUpdate) / 1000;
@@ -490,7 +494,7 @@ XMLscene.prototype.update = function (deltaTempo) {
     if (this.graph.loadedOk) {
         this.graph.updateAnimations((deltaTempo - this.lastUpdate) * 0.001);
 		
-		this.relogio.update(0, 0);
+		this.relogio.update(0,0);
 		this.relogio.updateClock(100);
 		
 		console.log('tempo: ' + deltaTempo);
@@ -609,11 +613,14 @@ XMLscene.prototype.display = function () {
     if (this.graph.loadedOk) {
         this.updateLights();
         this.graph.display();
-    }
-    ;
+    };
 	
-	this.relogio.display();
-
+	this.pushMatrix();
+		this.translate(6.0, 3.0, 3.0);
+		this.scale(0.2, 0.2, 0.2);
+		this.relogio.display();
+	this.popMatrix();
+	
     //this.red.apply();
     this.textYellow.apply();
     // draw objects
@@ -644,7 +651,7 @@ XMLscene.prototype.display = function () {
         this.pushMatrix();
         var z = 0.3* (~~(i / 2));
         var x = 0.3 * (i % 2);
-        this.translate(x + 9.0, - 0.2, z - 0.7);
+        this.translate(x + 9.3, - 0.3, z - 0.65);
         this.scale(1.2, 1.0, 1.2);
         this.pickingHandler.addPlayer1Piece(i, this.piecesJog1[i]);
 
@@ -664,7 +671,7 @@ XMLscene.prototype.display = function () {
         this.pushMatrix();
         var z = 0.3 * (~~(i / 2));
         var x = 0.3 * (i % 2);
-        this.translate(x + 4.5, - 0.2, z - 0.75);
+        this.translate(x + 4.3, - 0.3, z - 0.65);
         this.scale(1.2, 1.0, 1.2);
         this.pickingHandler.addPlayer2Piece(i, this.piecesJog2[i]);
 
@@ -684,8 +691,8 @@ XMLscene.prototype.display = function () {
         this.pushMatrix();
         var y = 0.01 * (~~(i / 1));
         var x = 0.01 * (i % 1);
-        this.translate(x + 9.31, y - 0.2, 1.7);
-        this.scale(1.2, 1.0, 1.2);
+        this.translate(x + 9.63, y - 0.3, 2.15);
+        this.scale(1.1, 1.0, 1.1);
         this.ScorePieces1[i].display();
         this.popMatrix();
     }
@@ -695,8 +702,8 @@ XMLscene.prototype.display = function () {
         this.pushMatrix();
         var y = 0.01 * (~~(i / 1));
         var x = 0.01 * (i % 1);
-        this.translate(x + 4.81, y - 0.2, 1.7);
-        this.scale(1.2, 1.0, 1.2);
+        this.translate(x + 4.66, y - 0.3, 2.15);
+        this.scale(1.1, 1.0, 1.1);
         this.ScorePieces2[i].display();
         this.popMatrix();
     }
