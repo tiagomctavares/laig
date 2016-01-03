@@ -108,7 +108,7 @@ GameInterface.prototype.player1PiecesDisplay = function () {
 
             var z = 0.3 * (~~(i / 2));
             var x = 0.3 * (i % 2);
-            this.scene.translate(x + 9.0, -0.2, z - 0.7);
+            this.scene.translate(x + 9.3, -0.3, z - 0.65);
             this.scene.scale(1.2, 1.0, 1.2);
 
             this.pickingHandler.addPlayer1Piece(i, this.player1Pieces[i]);
@@ -128,13 +128,15 @@ GameInterface.prototype.player2PiecesDisplay = function () {
 
             var z = 0.3 * (~~(i / 2));
             var x = 0.3 * (i % 2);
-            this.scene.translate(x + 4.5, -0.2, z - 0.75);
+            this.scene.translate(x + 4.3, -0.3, z - 0.65);
             this.scene.scale(1.2, 1.0, 1.2);
 
             this.pickingHandler.addPlayer2Piece(i, this.player2Pieces[i]);
 
             this.player2Pieces[i].display();
             this.applyObjectSelectedOptions(this.player2Pieces[i]);
+			this.player2Pieces[i].display();
+			
             this.scene.popMatrix();
         }
     }
@@ -148,8 +150,8 @@ GameInterface.prototype.player1ScorePiecesDisplay = function () {
 
             var y = 0.01 * (~~(i));
             var x = 0.01 * (i % 1);
-            this.scene.translate(x + 9.31, y - 0.2, 1.7);
-            this.scene.scale(1.2, 1.0, 1.2);
+            this.scene.translate(x + 9.63, y - 0.3, 2.15);
+            this.scene.scale(1.1, 1.0, 1.1);
 
             this.player1ScorePieces[i].display();
 
@@ -167,8 +169,8 @@ GameInterface.prototype.player2ScorePiecesDisplay = function () {
 
             var y = 0.01 * (~~(i));
             var x = 0.01 * (i % 1);
-            this.scene.translate(x + 4.81, y - 0.2, 1.7);
-            this.scene.scale(1.2, 1.0, 1.2);
+            this.scene.translate(x + 4.66, y - 0.3, 2.15);
+            this.scene.scale(1.1, 1.0, 1.1);
 
             this.player2ScorePieces[i].display();
             this.scene.popMatrix();
