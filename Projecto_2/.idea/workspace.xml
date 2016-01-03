@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="18ce09e9-e221-44fb-978e-1cba4052a2b6" name="Default" comment="" />
+    <ignored path="Projecto_2.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Projecto_2" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="MySceneGraph.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reader/MySceneGraph.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.40381792">
+              <caret line="167" column="32" selection-start-line="167" selection-start-column="25" selection-end-line="167" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="width" value="1369" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projecto_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projecto_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projecto_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projecto_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projecto_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projecto_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projecto_2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scenes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.lastSelected" value="preferences.sourceCode" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="18ce09e9-e221-44fb-978e-1cba4052a2b6" name="Default" comment="" />
+      <created>1451793613771</created>
+      <option name="number" value="Default" />
+      <updated>1451793613771</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="0" width="1369" height="744" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981523" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/reader/scenes/MySurfaces.lsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="55" selection-start-line="76" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reader/scenes/animationTest.lsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49339208">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reader/scenes/MySurfaces.lsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53744495">
+          <caret line="87" column="35" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reader/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6123348">
+          <caret line="64" column="4" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
+          <folding>
+            <marker date="1448558585220" expanded="true" signature="746:962" placeholder="{...}" />
+            <marker date="1448558585220" expanded="true" signature="869:941" placeholder="{...}" />
+            <marker date="1448558585220" expanded="true" signature="980:2582" placeholder="[...]" />
+            <marker date="1448558585220" expanded="true" signature="1795:2579" placeholder="{...}" />
+            <marker date="1448558585220" expanded="true" signature="2163:2347" placeholder="//..." />
+            <marker date="1448558585220" expanded="true" signature="2408:2498" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reader/components/Node.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26284876">
+          <caret line="91" column="46" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="46" />
+          <folding>
+            <marker date="1448558585198" expanded="true" signature="0:46" placeholder="/** Node ...*/" />
+            <marker date="1448558585198" expanded="true" signature="76:246" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="308:419" placeholder="/** Realiza o parse dos nodes do elemento XML recebido ...*/" />
+            <marker date="1448558585198" expanded="true" signature="476:1365" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="788:862" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="1227:1282" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="1367:1499" placeholder="/** Realiza o parse dos ids dos nodes descendentes do elemento XML recebido ...*/" />
+            <marker date="1448558585198" expanded="true" signature="1556:1689" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="1628:1687" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="1692:1798" placeholder="/** Realiza o parse dos ids das animações do node ...*/" />
+            <marker date="1448558585198" expanded="true" signature="1866:2210" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="1999:2106" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2142:2208" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2265:2714" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2422:2712" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2456:2499" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2507:2706" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2565:2622" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2631:2702" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2752:3338" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2959:3313" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="2993:3098" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="3108:3307" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="3166:3223" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="3232:3303" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="3341:3468" placeholder="/** Realiza o parse das transformações a aplicar do desenho deste node ...*/" />
+            <marker date="1448558585198" expanded="true" signature="3528:3963" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="3623:3961" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="3687:3732" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="3800:3848" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="3916:3958" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="3965:4109" placeholder="/** Realiza o parse das rotação enviada no elemento e aplica à matrix de transformações ...*/" />
+            <marker date="1448558585198" expanded="true" signature="4162:4502" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="4504:4651" placeholder="/** Realiza o parse do escalamento enviado no elemento e aplica à matrix de transformações ...*/" />
+            <marker date="1448558585198" expanded="true" signature="4701:4853" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="4855:5002" placeholder="/** Realiza o parse das translação enviada no elemento e aplica à matrix de transformações ...*/" />
+            <marker date="1448558585198" expanded="true" signature="5058:5250" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="5252:5345" placeholder="/** retorna o id do material lido no node - undefined quando for null ...*/" />
+            <marker date="1448558585198" expanded="true" signature="5388:5466" placeholder="{...}" />
+            <marker date="1448558585198" expanded="true" signature="5469:5592" placeholder="/** retorna o id da textura lida no node - undefined quando for null e null quando apresentar clear ...*/" />
+            <marker date="1448558585198" expanded="true" signature="5634:5763" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reader/MySceneGraph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40381792">
+          <caret line="167" column="32" selection-start-line="167" selection-start-column="25" selection-end-line="167" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

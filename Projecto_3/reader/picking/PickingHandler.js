@@ -50,7 +50,9 @@ PickingHandler.prototype.handle = function () {
                 console.log(results[i].object);
                 this.gameLogic.playPosition(results[i].id - 1, this.lastPickedObject);
                 this.gameLogic.logBoard();
-                this.scene.gameInterface.updateObjects();
+                this.scene.playingAnimation = true;
+                this.scene.gameInterface.animateObject(this.lastPickedObject.object, results[i].object);
+                // this.scene.gameInterface.updateObjects();
             }
         }
     }

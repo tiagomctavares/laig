@@ -11,6 +11,7 @@ function MyBoardCell(scene) {
 
     this.isOcuppied = false;
     this.object = null;
+    this.initialPosition = [];
 }
 
 MyBoardCell.prototype = Object.create(CGFobject.prototype);
@@ -40,4 +41,15 @@ MyBoardCell.prototype.display = function () {
 MyBoardCell.prototype.placeObject = function (object) {
     this.isOcuppied = true;
     this.object = object;
+};
+
+MyBoardCell.prototype.getInitialPosition = function () {
+    return this.initialPosition;
+};
+
+MyBoardCell.prototype.setInitialPosition = function (x, y, z) {
+    this.initialPosition = [];
+    this.initialPosition.push(x);
+    this.initialPosition.push(y);
+    this.initialPosition.push(z);
 };

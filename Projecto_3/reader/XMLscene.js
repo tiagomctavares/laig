@@ -107,6 +107,8 @@ XMLscene.prototype.init = function (application) {
     this.gameInterface = new GameInterface(this, this.gameLogic, this.pickingHandler);
     this.gameInterface.updateObjects();
 
+    this.pieceAnimation = null;
+
     //MY CHANGES
     this.angle = 0;
     this.cameraspeed = 0.01;
@@ -478,6 +480,10 @@ XMLscene.prototype.update = function (deltaTempo) {
          this.camera.setPosition(vec3.fromValues(this.x, this.y, this.z));
          }
          //this.camera.setPosition(vec3.fromValues(100,100,200));*/
+        if(this.pieceAnimation != null) {
+            this.pieceAnimation.step((deltaTempo - this.lastUpdate) * 0.001);
+            console.log('UPDATED');
+        }
     }
 };
 

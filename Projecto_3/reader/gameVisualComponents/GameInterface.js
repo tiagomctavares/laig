@@ -31,6 +31,23 @@ GameInterface.prototype.initObjects = function () {
     }
 };
 
+GameInterface.prototype.animateObject = function (object, objectTo) {
+    this.animatedObject = object;
+    this.destinationObject = objectTo;
+    this.animationPlaying = true;
+    var firstPoint = object.getInitialPosition();
+    var lastPoint = objectTo.getInitialPosition();
+    console.log(firstPoint, lastPoint);
+    this.animation = new LinearAnimation(1, 1000, [
+        [firstPoint],
+        [firstPoint[0], -0.3, firstPoint[2]],
+        [lastPoint[0], -0.3, lastPoint[2]],
+        [objectTo.getInitialPosition()]
+    ]);
+    this.animation.start();
+    this.scene.pieceAnimation = this.animation;
+};
+
 GameInterface.prototype.updateObjects = function () {
     this.initObjects();
     var board = this.gameLogic.getBoard();
@@ -64,6 +81,18 @@ GameInterface.prototype.updateObjects = function () {
 };
 
 GameInterface.prototype.display = function () {
+    if(this.animationPlaying) {
+        if(!this.animation.playing) {
+            this.animatedObject.used = true;
+            this.destinationObject.isOcuppied = true;
+            this.destinationObject.placeObject(this.animatedObject);
+            this.animationPlaying = false;
+            this.scene.pieceAnimation = null;
+            this.scene.setPickEnabled(true);
+        } else {
+            this.scene.setPickEnabled(false);
+        }
+    }
     this.boardCellsDisplay();
     this.player1PiecesDisplay();
     this.player2PiecesDisplay();
@@ -81,6 +110,7 @@ GameInterface.prototype.boardCellsDisplay = function () {
         var y = 0.4 * (~~(i / 8));
         this.scene.translate(x + 5.5, -0.2, y - 0.8);
         this.scene.scale(1.2, 1.0, 1.2);
+        this.boardCells[i].setInitialPosition(x + 5.5, -0.2, y - 0.8);
 
         this.pickingHandler.addBoardCell(i, this.boardCells[i]);
 
@@ -92,6 +122,7 @@ GameInterface.prototype.boardCellsDisplay = function () {
 
         // Object over Board cell
         if (this.boardCells[i].isOcuppied) {
+            new LinearAnimation(1, this.boardCells[i].object, []);
             this.scene.translate(0, 0.1, 0);
             this.boardCells[i].object.defaultAppearance.apply();
             this.boardCells[i].object.display();
@@ -111,6 +142,7 @@ GameInterface.prototype.player1PiecesDisplay = function () {
             var x = 0.3 * (i % 2);
             this.scene.translate(x + 9.3, -0.3, z - 0.65);
             this.scene.scale(1.2, 1.0, 1.2);
+            this.player1Pieces[i].setInitialPosition(x + 9.3, -0.3, z - 0.65);
 
             this.pickingHandler.addPlayer1Piece(i, this.player1Pieces[i]);
             this.applyObjectSelectedOptions(this.player1Pieces[i]);
@@ -131,7 +163,7 @@ GameInterface.prototype.player2PiecesDisplay = function () {
             var x = 0.3 * (i % 2);
             this.scene.translate(x + 4.3, -0.3, z - 0.65);
             this.scene.scale(1.2, 1.0, 1.2);
-
+            this.player2Pieces[i].setInitialPosition(x + 4.3, -0.3, z - 0.65);
             this.pickingHandler.addPlayer2Piece(i, this.player2Pieces[i]);
 
             this.player2Pieces[i].display();
