@@ -81,15 +81,15 @@ GameInterface.prototype.boardCellsDisplay = function () {
         var y = 0.4 * (~~(i / 8));
         this.scene.translate(x + 5.5, -0.2, y - 0.8);
         this.scene.scale(1.2, 1.0, 1.2);
-
-        if (!this.boardCells[i].isOcuppied) {
+        
+        if ( !this.boardCells[i].isOcuppied) {
             this.pickingHandler.addBoardCell(i, this.boardCells[i]);
             this.applyObjectSelectedOptions(this.boardCells[i]);
         }
 
-        this.applyObjectSelectedOptions(this.boardCells[i]);
         this.boardCells[i].display();
 
+        // Object over Board cell
         if (this.boardCells[i].isOcuppied) {
             this.scene.translate(0, 0.1, 0);
             this.boardCells[i].object.defaultAppearance.apply();
