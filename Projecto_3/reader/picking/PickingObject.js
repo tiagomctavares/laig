@@ -14,3 +14,7 @@ PickingObject.prototype.belongsToPlayer = function () {
 PickingObject.prototype.belongsToBoard = function () {
     return this.id > 0 && this.id < 100;
 };
+
+PickingObject.prototype.isOcuppied = function () {
+    return this.object.isOcuppied;
+};

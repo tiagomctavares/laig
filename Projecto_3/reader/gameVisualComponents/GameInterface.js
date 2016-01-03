@@ -81,9 +81,10 @@ GameInterface.prototype.boardCellsDisplay = function () {
         var y = 0.4 * (~~(i / 8));
         this.scene.translate(x + 5.5, -0.2, y - 0.8);
         this.scene.scale(1.2, 1.0, 1.2);
-        
+
+        this.pickingHandler.addBoardCell(i, this.boardCells[i]);
+
         if ( !this.boardCells[i].isOcuppied) {
-            this.pickingHandler.addBoardCell(i, this.boardCells[i]);
             this.applyObjectSelectedOptions(this.boardCells[i]);
         }
 

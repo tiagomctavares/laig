@@ -62,7 +62,7 @@ PickingHandler.prototype.handle = function () {
 };
 
 PickingHandler.prototype.availablePlayerPieceToBoard = function (piece) {
-    return this.lastPickedObject.belongsToPlayer() && piece.belongsToBoard() && piece.isOcuppied == false;
+    return this.lastPickedObject.belongsToPlayer() && (piece.belongsToBoard() && !piece.isOcuppied());
 };
 
 PickingHandler.prototype.loadPickedResults = function () {
