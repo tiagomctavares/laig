@@ -38,11 +38,11 @@ GameInterface.prototype.animateObject = function (object, objectTo) {
     var firstPoint = object.getInitialPosition();
     var lastPoint = objectTo.getInitialPosition();
     console.log(firstPoint, lastPoint);
-    this.animation = new LinearAnimation(1, 1000, [
-        [firstPoint],
+    this.animation = new LinearAnimation(1, 5, [
+        firstPoint,
         [firstPoint[0], -0.3, firstPoint[2]],
         [lastPoint[0], -0.3, lastPoint[2]],
-        [objectTo.getInitialPosition()]
+        objectTo.getInitialPosition()
     ]);
     this.animation.start();
     this.scene.pieceAnimation = this.animation;
@@ -90,6 +90,7 @@ GameInterface.prototype.display = function () {
             this.scene.pieceAnimation = null;
             this.scene.setPickEnabled(true);
         } else {
+			this.animatedObject.used = false;
             this.scene.setPickEnabled(false);
         }
     }
@@ -134,7 +135,14 @@ GameInterface.prototype.boardCellsDisplay = function () {
 
 GameInterface.prototype.player1PiecesDisplay = function () {
     for (var i = 0; i < this.player1Pieces.length; i++) {
-        if (!this.player1Pieces[i].used) {
+		if (this.player1Pieces[i] === this.animatedObject)
+		{
+			this.scene.pushMatrix();
+			this.scene.multMatrix(this.animation.matrix);
+			this.player1Pieces[i].display();
+			this.scene.popMatrix();
+		}
+        else if (!this.player1Pieces[i].used) {
             this.scene.pieceRed.apply();
             this.scene.pushMatrix();
 

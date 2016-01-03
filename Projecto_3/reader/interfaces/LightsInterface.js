@@ -37,21 +37,44 @@ LightsInterface.prototype.init = function(application) {
 	// e.g. LightingScene.prototype.doSomething = function () { console.log("Doing something..."); }; 
 	
 	this.group=this.gui.addFolder("Lights");
-	this.group.open();
+	this.group.close();
 	
 	this.group2=this.gui.addFolder("Camera");
 	this.group2.open();
 	
+	this.posicaoCamera = 0;
+	
+	this.gui.add(this.scene, "posicaoCamera", {'Player 1' : 0, 'Player 2' : 1}).name("Position").onChange(function(posicaoCamera) {
+		self.scene.load(posicaoCamera);
+	}).listen();
+	
+	self.scene.load(this.posicaoCamera);
+	
+	
 	this.group3=this.gui.addFolder("GameLogic");
 	this.group3.open();
 	
-	this.AmbienteJogo = 'salaoJogos.lsx';
+	this.gui.add(this.scene, "resetTime").name("Reset Time").onChange(function()
+	{
+		self.scene.resetTime();
+	}).listen();
+	self.scene.resetTime();
 	
-	this.gui.add(this.scene, "resetTime").name("Reset Time");
+	this.gui.add(this.scene, "undo").name("Undo").onChange(function()
+	{
+		self.scene.undo();
+	}).listen();
+	self.scene.undo();
+	
+	//this.gui.add(this.scene, "resetTime").name("Reset Time");
 	
 	this.gui.add(this.scene, "resetGame").name("Reset Game");
+	
+	
 	// add two check boxes to the group. The identifiers must be members variables of the scene initialized in scene.init as boolean
 	// e.g. this.option1=true; this.option2=false;
+	
+	this.AmbienteJogo = 'salaoJogos.lsx';
 	
 	this.gui.add(this.scene, "AmbienteJogo", {'Salao de Jogos' : 'salaoJogos.lsx', 'Parque' : 'parque.lsx'}).name("Ambientes").onChange(function(AmbienteJogo) {
 		self.scene.loadGraph(AmbienteJogo);
@@ -59,6 +82,14 @@ LightsInterface.prototype.init = function(application) {
 	
 	self.scene.loadGraph(this.AmbienteJogo);
 	
+	
+	this.modoJogo = 0;
+	
+	this.gui.add(this.scene, "modoJogo", {'Player vs Player' : 0, 'Player vs CPU' : 1}).name("Modos de Jogo").onChange(function(modoJogo) {
+		self.scene.loadModes(modoJogo);
+	}).listen();
+	
+	self.scene.loadModes(this.modoJogo);
 	
 	return true;
 };

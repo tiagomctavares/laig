@@ -28,7 +28,7 @@ function LinearAnimation(id, span, controlpoints) {
 	this.velocidade[0] = vec3.create();
 	this.duracoes[0] = 0.0;
 	this.orientacao[0] = 0.0;
-
+	
 	for (var i = 1; i < this.controlpoints.length; i++) {
 		var orientacao = 0.0;
 		var deslocamento = vec3.create();
@@ -92,7 +92,7 @@ LinearAnimation.prototype.step = function(deltaTempo){
 	// atualiza posição e orientação do objeto
 	vec3.scale(this.deltaVelocidade, this.velocidade[this.seccaoAtual], deltaTempo);
 	vec3.add(this.posicaoAtual, this.posicaoAtual, this.deltaVelocidade);
-
+	console.log(this.posicaoAtual, this.seccaoAtual);
 	// atualiza tempo decorrido
 	this.tempoDecorrido += deltaTempo;
 

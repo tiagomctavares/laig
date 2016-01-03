@@ -67,7 +67,11 @@ XMLscene.prototype.init = function (application) {
 
     //AMBIENTES DE JOGO
 
-    this.AmbienteJogo = 0;
+    this.AmbienteJogo = 'salaoJogos.lsx';
+	this.posicaoCamera = 0;
+	this.modoJogo = 0;
+
+	//this.texto = new ObjectFont(this);
 
     //RELOGIO
 
@@ -131,6 +135,35 @@ XMLscene.prototype.loadGraph = function (lsxPath) {
     new MySceneGraph(lsxPath, this);
 };
 
+XMLscene.prototype.load = function (pcamera) {
+    //this.resetDisplay();
+    //this.activeLights = 0;
+    //this.guiInterface.resetLights();
+    //this.guiInterface.setActiveCamera(null);
+	if(pcamera == 0)
+	{
+		this.camera = new CGFcamera(0.4, 0.1, 300, vec3.fromValues(-47.82, -2.13, 52.20), vec3.fromValues(-48.19, -22.90, 35.15));
+	}
+	else{
+		this.camera = new CGFcamera(0.4, 0.1, 300, vec3.fromValues(-68.3, -28.33, 6.19), vec3.fromValues(-47.37, -31.54, 29.68));
+	}
+};
+
+XMLscene.prototype.loadModes = function (modo) {
+    //this.resetDisplay();
+    //this.activeLights = 0;
+    //this.guiInterface.resetLights();
+    //this.guiInterface.setActiveCamera(null);
+	if(modo == 0)
+	{
+		
+	}
+	
+	else{
+		
+	}
+};
+
 XMLscene.prototype.AmbienteJogo = function (ambienteAtual) {
     var myScene = new XMLscene();
 
@@ -142,6 +175,15 @@ XMLscene.prototype.AmbienteJogo = function (ambienteAtual) {
         var filename = getUrlVars()['file'] || "parque.lsx";
         var myGraph = new MySceneGraph(filename, this);
     }
+};
+
+XMLscene.prototype.posicaoCamera = function (posicaoAtual) {
+   var myScene = new XMLscene();
+};
+
+
+XMLscene.prototype.modoJogo = function (jogoAtual) {
+   var myScene = new XMLscene();
 };
 
 XMLscene.prototype.get = function (k) {
@@ -231,7 +273,11 @@ XMLscene.prototype.updateLights = function () {
 }
 
 XMLscene.prototype.resetTime = function () {
-    this.time = 0;
+    this.relogio.resetClock();
+}
+
+XMLscene.prototype.undo = function () {
+    
 }
 
 XMLscene.prototype.resetGame = function () {
@@ -480,9 +526,11 @@ XMLscene.prototype.update = function (deltaTempo) {
          this.camera.setPosition(vec3.fromValues(this.x, this.y, this.z));
          }
          //this.camera.setPosition(vec3.fromValues(100,100,200));*/
-        if(this.pieceAnimation != null) {
+        
+		if(this.pieceAnimation != null) {
             this.pieceAnimation.step((deltaTempo - this.lastUpdate) * 0.001);
-            console.log('UPDATED');
+            console.log('UPDATED' + ((deltaTempo - this.lastUpdate) * 0.001));
+			this.pieceAnimation.update();
         }
     }
 };
