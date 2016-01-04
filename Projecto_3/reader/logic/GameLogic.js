@@ -48,13 +48,17 @@ GameLogic.prototype.addLog = function (x, y, pieceUsed) {
     this.playLog.push(this.board.getPieceAt(x, y), x, y, this.getCurrentPlayer(), pieceUsed, this.logic.getLastAnswer());
 };
 
+GameLogic.prototype.getCurrentScore = function () {
+    return this.logic.getGameState()[2];
+};
+
 GameLogic.prototype.getCurrentPlayer = function () {
     return this.logic.getGameState()[3];
 };
 
 GameLogic.prototype.undo = function () {
-    if(this.playLog.isEmpty())
-        return ;
+    if (this.playLog.isEmpty())
+        return;
 
     var lastPlayInfo = this.playLog.pop();
     this.logic.setLastAnswer(lastPlayInfo.lastAnswer);
@@ -64,7 +68,7 @@ GameLogic.prototype.undo = function () {
 };
 
 GameLogic.prototype.getBoard = function () {
-    return this.board.board;
+    return this.board.get();
 };
 
 GameLogic.prototype.logBoard = function () {

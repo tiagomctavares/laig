@@ -6,7 +6,7 @@ function PickingHandler(scene, gameLogic) {
     this.boardOffset = 1;
     this.player1Offset = 101;
     this.player2Offset = 201;
-	this.whitePieces = 301;
+    this.whitePieces = 301;
     this.lastPickedObject = new PickingObject(0, {});
 
     this.scene.setPickEnabled(true);
@@ -44,7 +44,7 @@ PickingHandler.prototype.handle = function () {
     for (var i = 0; i < results.length; i++) {
         console.log(this.lastPickedObject);
 
-        if (this.availablePlayerPieceToBoard(results[i])) {
+        if (this.currentPlayerPieceToBoard(results[i])) {
             if (this.gameLogic.canPlayPosition(results[i].id - 1)) {
                 console.log('Played Piece: ');
                 console.log(results[i].object);
@@ -52,7 +52,7 @@ PickingHandler.prototype.handle = function () {
                 this.gameLogic.logBoard();
                 this.scene.playingAnimation = true;
                 this.scene.gameInterface.animateObject(this.lastPickedObject.object, results[i].object);
-                // this.scene.gameInterface.updateObjects();
+                // this.scene.gameInterface.updateObjectsFromScratch();
             }
         }
     }
@@ -63,8 +63,10 @@ PickingHandler.prototype.handle = function () {
         this.lastPickedObject = results[i - 1];
 };
 
-PickingHandler.prototype.availablePlayerPieceToBoard = function (piece) {
-    return this.lastPickedObject.belongsToPlayer() && (piece.belongsToBoard() && !piece.isOcuppied());
+PickingHandler.prototype.currentPlayerPieceToBoard = function (piece) {
+    return this.lastPickedObject.belongsToPlayer(this.gameLogic.getCurrentPlayer())
+        && (piece.belongsToBoard()
+        && !piece.isOcuppied());
 };
 
 PickingHandler.prototype.loadPickedResults = function () {

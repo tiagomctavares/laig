@@ -68,6 +68,7 @@ LightsInterface.prototype.init = function(application) {
 	self.scene.undo();
 	*/
 	this.gui.add(this.scene, "undo").name("Undo").listen();
+	this.gui.add(this.scene, "forceInterfaceRefresh").name("Refresh Pieces").listen();
 	
 	//this.gui.add(this.scene, "resetTime").name("Reset Time");
 	

@@ -100,18 +100,7 @@ XMLscene.prototype.init = function (application) {
     this.blue.setSpecular(1.0, 1.0, 1.0, 1);
     this.blue.setShininess(30);
 
-    // GameLogic
-    this.gameLogic = new GameLogic();
-    this.gameLogic.placeAllWhitePieces();
-
-    // PickingHandler Class
-    this.pickingHandler = new PickingHandler(this, this.gameLogic);
-
-    // GameInterface
-    this.gameInterface = new GameInterface(this, this.gameLogic, this.pickingHandler);
-    this.gameInterface.updateObjects();
-
-    this.pieceAnimation = null;
+    this.resetGame();
 
     //MY CHANGES
     this.angle = 0;
@@ -279,8 +268,21 @@ XMLscene.prototype.undo = function () {
 };
 
 XMLscene.prototype.resetGame = function () {
+
+    // GameLogic
     this.gameLogic = new GameLogic();
-    this.gameInterface.updateObjects();
+    this.gameLogic.placeAllWhitePieces();
+
+    // PickingHandler Class
+    this.pickingHandler = new PickingHandler(this, this.gameLogic);
+
+    // GameInterface
+    this.gameInterface = new GameInterface(this, this.gameLogic, this.pickingHandler);
+    this.gameInterface.updateObjectsFromScratch();
+
+    this.pieceAnimation = null;
+
+    this.resetTime();
 };
 
 XMLscene.prototype.updateTime = function (tempoAtual) {
@@ -507,7 +509,7 @@ XMLscene.prototype.update = function (deltaTempo) {
     if (this.graph.loadedOk) {
         this.graph.updateAnimations((deltaTempo - this.lastUpdate) * 0.001);
 
-        this.relogio.update(0, 0);
+        this.relogio.update(this.gameInterface.player2Points, this.gameInterface.player1Points);
         this.relogio.updateClock(100);
 
         // console.log('tempo: ' + deltaTempo);
@@ -609,7 +611,15 @@ XMLscene.prototype.display = function () {
     // ---- BEGIN Background, camera and axis setup
     //this.shader.bind();
 
-    this.pickingHandler.handle();
+    try {
+        this.pickingHandler.handle();
+    } catch (error) {
+        if (error instanceof GameEndedException) {
+            console.log(error.toString());
+            this.assertGameEndedActions(error.getPlayer());
+        }
+    }
+
     this.pickingHandler.clearObjects();
 
     // Clear image and depth buffer everytime we update the scene
@@ -641,4 +651,20 @@ XMLscene.prototype.display = function () {
     this.popMatrix();
 
     this.gameInterface.display();
+};
+
+XMLscene.prototype.assertGameEndedActions = function (player) {
+    if (player == gameConstants.PLAYER1PIECE) {
+        console.log('Player 1 WINS!')
+    } else if (player == gameConstants.PLAYER2PIECE) {
+        console.log('Player 2 WINS!')
+    } else {
+        console.log('The game ended in a DRAW!')
+    }
+
+    this.resetGame();
+};
+
+XMLscene.prototype.forceInterfaceRefresh = function () {
+    this.gameInterface.updateObjectsFromScratch();
 };

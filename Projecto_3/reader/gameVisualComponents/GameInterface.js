@@ -2,7 +2,9 @@ function GameInterface(scene, gameLogic, pickingHandler) {
     this.scene = scene;
     this.gameLogic = gameLogic;
     this.pickingHandler = pickingHandler;
-    this.updateObjects();
+    this.player1Points = 0;
+    this.player2Points = 0;
+    this.updateObjectsFromScratch();
 }
 
 GameInterface.prototype.initObjects = function () {
@@ -37,18 +39,18 @@ GameInterface.prototype.animateObject = function (object, objectTo) {
     this.animationPlaying = true;
     var firstPoint = object.getInitialPosition();
     var lastPoint = objectTo.getInitialPosition();
-    console.log(firstPoint, lastPoint);
-    this.animation = new LinearAnimation(1, 5, [
+
+    this.animation = new LinearAnimation(1, 1, [
         firstPoint,
-        [firstPoint[0], -0.3, firstPoint[2]],
-        [lastPoint[0], -0.3, lastPoint[2]],
+        [firstPoint[0], firstPoint[1], firstPoint[2]],
+        [lastPoint[0], lastPoint[1], lastPoint[2]],
         objectTo.getInitialPosition()
     ]);
     this.animation.start();
     this.scene.pieceAnimation = this.animation;
 };
 
-GameInterface.prototype.updateObjects = function () {
+GameInterface.prototype.updateObjectsFromScratch = function () {
     this.initObjects();
     var board = this.gameLogic.getBoard();
 
@@ -72,25 +74,72 @@ GameInterface.prototype.updateObjects = function () {
             piece = this.getFirstUnusedObject(this.player1ScorePieces);
             this.boardCells[i].placeObject(piece);
             piece.used = true;
-        } else if(board[i] == gameConstants.PLAYER2SCORE) {
+        } else if (board[i] == gameConstants.PLAYER2SCORE) {
             piece = this.getFirstUnusedObject(this.player2ScorePieces);
+            this.boardCells[i].placeObject(piece);
+            piece.used = true;
+        }
+    }
+
+    this.updateScoreClock();
+};
+
+GameInterface.prototype.updateScoreObjects = function () {
+    var board = this.gameLogic.getBoard();
+
+    this.updateScoreClock();
+
+    this.whitePieces = [];
+    for (var z = 0; z < 5; z++) {
+        this.whitePieces[z] = new MyPiece(this.scene, this.scene.branco);
+    }
+
+    for (var i = 0; i < board.length; i++) {
+        var piece = null;
+
+        if (board[i] == gameConstants.PLAYER1SCORE) {
+            piece = this.getFirstUnusedObject(this.player1ScorePieces);
+            // Return last piece to owner
+            if(this.boardCells[i].object != null)
+                this.boardCells[i].object.used = false;
+            this.boardCells[i].placeObject(piece);
+            piece.used = true;
+        } else if (board[i] == gameConstants.PLAYER2SCORE) {
+            piece = this.getFirstUnusedObject(this.player2ScorePieces);
+            // Return last piece to owner
+            if(this.boardCells[i].object != null)
+                this.boardCells[i].object.used = false;
+            this.boardCells[i].placeObject(piece);
+            piece.used = true;
+        } else if(board[i] == gameConstants.WHITE_PIECE) {
+            piece = this.getFirstUnusedObject(this.whitePieces);
+            // Return last piece to owner
+            if(this.boardCells[i].object != null)
+                this.boardCells[i].object.used = false;
             this.boardCells[i].placeObject(piece);
             piece.used = true;
         }
     }
 };
 
+GameInterface.prototype.updateScoreClock = function () {
+    var score = this.gameLogic.getCurrentScore();
+    this.player1Points = score[0];
+    this.player2Points = score[1];
+};
+
 GameInterface.prototype.display = function () {
-    if(this.animationPlaying) {
-        if(!this.animation.playing) {
+    if (this.animationPlaying) {
+        if (!this.animation.playing) {
             this.animatedObject.used = true;
             this.destinationObject.isOcuppied = true;
             this.destinationObject.placeObject(this.animatedObject);
             this.animationPlaying = false;
             this.scene.pieceAnimation = null;
             this.scene.setPickEnabled(true);
+
+            this.updateScoreObjects();
         } else {
-			this.animatedObject.used = false;
             this.scene.setPickEnabled(false);
         }
     }
@@ -105,15 +154,17 @@ GameInterface.prototype.display = function () {
 GameInterface.prototype.undoPlay = function () {
     var playLogStructure = this.gameLogic.undo();
 
-    if(playLogStructure === undefined) {
+    if (playLogStructure === undefined) {
         console.log('Can\t undo if there are no plays');
-        return ;
+        return;
     }
 
     var position = playLogStructure.x * 8 + playLogStructure.y;
 
     this.boardCells[position].object.used = false;
     this.boardCells[position].removePiece();
+
+    this.updateScoreClock();
 
     // TODO animate undo from boardCell to Origin Cell
     console.log('FINISHED UNDO');
@@ -132,7 +183,7 @@ GameInterface.prototype.boardCellsDisplay = function () {
 
         this.pickingHandler.addBoardCell(i, this.boardCells[i]);
 
-        if ( !this.boardCells[i].isOcuppied) {
+        if (!this.boardCells[i].isOcuppied) {
             this.applyObjectSelectedOptions(this.boardCells[i]);
         }
 
@@ -140,7 +191,6 @@ GameInterface.prototype.boardCellsDisplay = function () {
 
         // Object over Board cell
         if (this.boardCells[i].isOcuppied) {
-            new LinearAnimation(1, this.boardCells[i].object, []);
             this.scene.translate(0, 0.1, 0);
             this.boardCells[i].object.defaultAppearance.apply();
             this.boardCells[i].object.display();
@@ -152,13 +202,12 @@ GameInterface.prototype.boardCellsDisplay = function () {
 
 GameInterface.prototype.player1PiecesDisplay = function () {
     for (var i = 0; i < this.player1Pieces.length; i++) {
-		if (this.player1Pieces[i] === this.animatedObject)
-		{
-			this.scene.pushMatrix();
-			this.scene.multMatrix(this.animation.matrix);
-			this.player1Pieces[i].display();
-			this.scene.popMatrix();
-		}
+        if (this.player1Pieces[i] === this.animatedObject) {
+            this.scene.pushMatrix();
+            this.scene.multMatrix(this.animation.matrix);
+            this.player1Pieces[i].display();
+            this.scene.popMatrix();
+        }
         else if (!this.player1Pieces[i].used) {
             this.scene.pieceRed.apply();
             this.scene.pushMatrix();
@@ -193,8 +242,8 @@ GameInterface.prototype.player2PiecesDisplay = function () {
 
             this.player2Pieces[i].display();
             this.applyObjectSelectedOptions(this.player2Pieces[i]);
-			this.player2Pieces[i].display();
-			
+            this.player2Pieces[i].display();
+
             this.scene.popMatrix();
         }
     }

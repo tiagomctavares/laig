@@ -1,5 +1,6 @@
 function PrologInterface() {
     this.request = new Request();
+    this.lastAnswer = [];
     this.start();
 }
 
@@ -24,11 +25,13 @@ PrologInterface.prototype.getGameState = function () {
 };
 
 PrologInterface.prototype.makeRequest = function (prologAction, data, dontParse) {
-    this.lastAnswer = this.request.get(prologAction, data);
-    if (dontParse === undefined)
+    var answer = this.request.get(prologAction, data);
+    if (dontParse === undefined) {
+        this.lastAnswer = answer;
         return this.parseGame(this.lastAnswer);
+    }
 
-    return this;
+    return answer;
 };
 
 PrologInterface.prototype.replaceConstants = function (prologResponse) {
@@ -73,11 +76,11 @@ PrologInterface.prototype.play = function (x, y) {
 
 PrologInterface.prototype.checkEndGame = function () {
 
-    this.makeRequest('endGame', {
+    var answer = this.makeRequest('endGame', {
         game: this.gameStateResponse
     }, false);
 
-    if(this.lastAnswer !== '[]') {
+    if (answer !== '[]') {
         throw new GameEndedException(this.lastAnswer);
     }
 

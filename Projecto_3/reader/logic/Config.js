@@ -26,5 +26,7 @@ var gameConstants = {
     "PLAYER2PIECE": "CPU2X",
     'PLAYER1SCORE': "playersquare",
     'PLAYER2SCORE': "CPUsquare",
-    'WHITE_PIECE': "whitePiece"
+    'WHITE_PIECE': "whitePiece",
+    'PLAYER1TURN': "playerTurn",
+    'PLAYER2TURN': "cpuTurn"
 };
