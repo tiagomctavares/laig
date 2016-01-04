@@ -59,12 +59,15 @@ LightsInterface.prototype.init = function(application) {
 		self.scene.resetTime();
 	}).listen();
 	self.scene.resetTime();
-	
+
+	/** REMOVED WAS CALLING UNDO ON PAGE LOAD AND 2 TIMES ON CLICK
 	this.gui.add(this.scene, "undo").name("Undo").onChange(function()
 	{
 		self.scene.undo();
 	}).listen();
 	self.scene.undo();
+	*/
+	this.gui.add(this.scene, "undo").name("Undo").listen();
 	
 	//this.gui.add(this.scene, "resetTime").name("Reset Time");
 	

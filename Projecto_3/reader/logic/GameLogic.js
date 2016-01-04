@@ -53,9 +53,13 @@ GameLogic.prototype.getCurrentPlayer = function () {
 };
 
 GameLogic.prototype.undo = function () {
+    if(this.playLog.isEmpty())
+        return ;
+
     var lastPlayInfo = this.playLog.pop();
     this.logic.setLastAnswer(lastPlayInfo.lastAnswer);
     this.board.updateBoard();
+
     return lastPlayInfo;
 };
 

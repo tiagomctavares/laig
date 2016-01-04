@@ -102,6 +102,23 @@ GameInterface.prototype.display = function () {
     this.whitePiecesDisplay();
 };
 
+GameInterface.prototype.undoPlay = function () {
+    var playLogStructure = this.gameLogic.undo();
+
+    if(playLogStructure === undefined) {
+        console.log('Can\t undo if there are no plays');
+        return ;
+    }
+
+    var position = playLogStructure.x * 8 + playLogStructure.y;
+
+    this.boardCells[position].object.used = false;
+    this.boardCells[position].removePiece();
+
+    // TODO animate undo from boardCell to Origin Cell
+    console.log('FINISHED UNDO');
+};
+
 GameInterface.prototype.boardCellsDisplay = function () {
     for (var i = 0; i < this.boardCells.length; i++) {
         this.scene.textYellow.apply();

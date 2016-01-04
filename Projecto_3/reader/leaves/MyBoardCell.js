@@ -53,3 +53,8 @@ MyBoardCell.prototype.setInitialPosition = function (x, y, z) {
     this.initialPosition.push(y);
     this.initialPosition.push(z);
 };
+
+MyBoardCell.prototype.removePiece = function () {
+    this.isOcuppied = false;
+    this.object = null;
+};

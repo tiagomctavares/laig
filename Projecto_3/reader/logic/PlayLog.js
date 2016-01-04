@@ -10,6 +10,10 @@ PlayLog.prototype.pop = function () {
     return this.log.pop();
 };
 
+PlayLog.prototype.isEmpty = function () {
+    return this.log.length == 0;
+};
+
 function PlayLogStructure(lastPiece, x, y, player, pieceUsed, lastAnswer) {
     this.lastPiece = lastPiece;
     this.x = x;
